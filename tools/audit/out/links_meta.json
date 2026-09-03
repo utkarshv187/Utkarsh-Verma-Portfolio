@@ -1,0 +1,877 @@
+{
+  "links": [
+    {
+      "text": "",
+      "href": "./#home",
+      "hrefAbs": "https://uxuiuv.framer.website/#home",
+      "target": "",
+      "rel": "",
+      "framerName": "Variant 1"
+    },
+    {
+      "text": "Résumé",
+      "href": "https://drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view?usp=sharing",
+      "hrefAbs": "https://drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view?usp=sharing",
+      "target": "_blank",
+      "rel": "",
+      "framerName": "Left"
+    },
+    {
+      "text": "<>Spinny's car auction app PLP redesignMORE USERRETENTIONREV",
+      "href": "https://auction-plp-redesign-by-uv.vercel.app/",
+      "hrefAbs": "https://auction-plp-redesign-by-uv.vercel.app/",
+      "target": "_blank",
+      "rel": "",
+      "framerName": "Solid Part work"
+    },
+    {
+      "text": "Introduced atier based gamificationMORE USERRETENTIONSURGE I",
+      "href": "https://gamification-by-uv.vercel.app/",
+      "hrefAbs": "https://gamification-by-uv.vercel.app/",
+      "target": "_blank",
+      "rel": "",
+      "framerName": "Solid Part work"
+    },
+    {
+      "text": "Established the Spinny design systemVARIANTS DESIGNED& DEVEL",
+      "href": "https://www.figma.com/design/iBOEPZFnnHc4BZ3FtVsQZ7/Spinny-Design-System---Styles---Components?node-id=2-4101",
+      "hrefAbs": "https://www.figma.com/design/iBOEPZFnnHc4BZ3FtVsQZ7/Spinny-Design-System---Styles---Components?node-id=2-4101",
+      "target": "_blank",
+      "rel": "",
+      "framerName": "Solid Part work"
+    },
+    {
+      "text": "",
+      "href": "https://www.linkedin.com/in/uxuiuv/",
+      "hrefAbs": "https://www.linkedin.com/in/uxuiuv/",
+      "target": "_blank",
+      "rel": "",
+      "framerName": "Solid Part work"
+    },
+    {
+      "text": "",
+      "href": "https://www.linkedin.com/in/uxuiuv/",
+      "hrefAbs": "https://www.linkedin.com/in/uxuiuv/",
+      "target": "_blank",
+      "rel": "",
+      "framerName": "Solid Part work"
+    },
+    {
+      "text": "",
+      "href": "https://www.linkedin.com/in/uxuiuv/",
+      "hrefAbs": "https://www.linkedin.com/in/uxuiuv/",
+      "target": "_blank",
+      "rel": "",
+      "framerName": "Solid Part work"
+    },
+    {
+      "text": "",
+      "href": "./#home",
+      "hrefAbs": "https://uxuiuv.framer.website/#home",
+      "target": "",
+      "rel": "",
+      "framerName": "Variant 1"
+    },
+    {
+      "text": "Create a free website with Framer, the website builder loved",
+      "href": "https://www.framer.com",
+      "hrefAbs": "https://www.framer.com/",
+      "target": "",
+      "rel": "noopener",
+      "framerName": "Light"
+    }
+  ],
+  "meta": {
+    "title": "Utkarsh Verma",
+    "description": "Let's work together. Call/WhatsApp at +918869808079",
+    "canonical": "https://uxuiuv.framer.website/",
+    "ogTitle": "Utkarsh Verma",
+    "ogDescription": "Let's work together. Call/WhatsApp at +918869808079",
+    "ogImage": "https://framerusercontent.com/images/sB6wpIS7XS4U6nhva4i10xBcI.png",
+    "ogUrl": "https://uxuiuv.framer.website/",
+    "ogType": "website",
+    "twitterCard": "summary_large_image",
+    "twitterTitle": "Utkarsh Verma",
+    "twitterDescription": "Let's work together. Call/WhatsApp at +918869808079",
+    "twitterImage": "https://framerusercontent.com/images/sB6wpIS7XS4U6nhva4i10xBcI.png",
+    "themeColor": null,
+    "viewport": "width=device-width",
+    "manifest": null,
+    "icons": [
+      {
+        "rel": "icon",
+        "href": "https://framerusercontent.com/images/Jf2rQVQDTNlCSEYnvhaqoXTaFw.png",
+        "sizes": null,
+        "type": null
+      },
+      {
+        "rel": "icon",
+        "href": "https://framerusercontent.com/images/jrFoxMrr8bYLYwE0r2SC5ipeiM.png",
+        "sizes": null,
+        "type": null
+      },
+      {
+        "rel": "apple-touch-icon",
+        "href": "https://framerusercontent.com/images/aY7J5iXVgHeHCVi132jhQIwkv8.png",
+        "sizes": null,
+        "type": null
+      }
+    ]
+  },
+  "counter": {
+    "text": "7y 8m 7d 16h 4m 57s",
+    "fontVariantNumeric": "tabular-nums",
+    "fontFeatureSettings": "normal",
+    "width": "188.484px",
+    "minWidth": "max-content",
+    "whiteSpace": "nowrap",
+    "letterSpacing": "1.28px",
+    "fontFamily": "\"Clash Display\", \"Clash Display Placeholder\", sans-serif",
+    "fontWeight": "600",
+    "rectW": 188,
+    "parentClass": "",
+    "outerHTML": "<div aria-label=\"Forward timer\" role=\"timer\" style=\"color: rgb(255, 183, 5); font-family: &quot;Clash Display&quot;, &quot;Clash Display Placeholder&quot;, sans-serif; font-size: 16px; font-style: normal; font-weight: 600; letter-spacing: 0.08em; line-height: 1em; text-align: center; font-variant-nu"
+  },
+  "leaves": [
+    {
+      "t": "html body { background: rgb(14, 12, 32); }",
+      "fn": ""
+    },
+    {
+      "t": "Thinking design",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "all the time",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "Designing for",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "7y 8m 7d 16h 4m 57s",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "About",
+      "fn": "Label"
+    },
+    {
+      "t": "Contact",
+      "fn": "Label"
+    },
+    {
+      "t": "Résumé",
+      "fn": "Text"
+    },
+    {
+      "t": "PR       DUCT",
+      "fn": "Intro"
+    },
+    {
+      "t": "O",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "LET'S • WORK • TOGETHER •",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "DESIGNER",
+      "fn": "Variant 5"
+    },
+    {
+      "t": "STRATEGIST",
+      "fn": "Variant 5"
+    },
+    {
+      "t": "RESEARCHER",
+      "fn": "Variant 5"
+    },
+    {
+      "t": "COPY WRITER",
+      "fn": "Variant 5"
+    },
+    {
+      "t": "ANIMATOR",
+      "fn": "Variant 5"
+    },
+    {
+      "t": "DESIGNER",
+      "fn": "Variant 5"
+    },
+    {
+      "t": "STORYTELLER",
+      "fn": "Variant 5"
+    },
+    {
+      "t": "WORK  EXPERIENCE",
+      "fn": "Info"
+    },
+    {
+      "t": "BASED  IN  DELHI  NCR,  INDIA    •    AVAILABLE  WORLDWIDE",
+      "fn": "Info"
+    },
+    {
+      "t": "Senior Product Designer",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "May 2019 — Jun 2026",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "CURRENTLY",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Managing & leading a team of 4 designers",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Planning directly with the Director of design to establish a thriving design culture continuously",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "•",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "Hiring key design talent",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "& developing design team",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Managing",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "weekly design sprints",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "of all the Spinny designers",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Leveraging analytics tools, user feedback, and testing to improve the user experience & make",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "data-driven decisions",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Working directly with the product VP, CTO, business heads, devs, QAs, PMs & other cross functional teams",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Redesigned bidding platform's listing page based on data, user research & intent which led to more than",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "2x increase in NPS",
+      "fn": "Variant 1"
+    },
+    {
+      "t": ",",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "13% more user retention, 9% growth in revenue & 40% drop in auctions missed",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Swiftly designed & released lucky draw sale which led to",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "30% increase in revenue",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "in bidding platform",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "in just 11 days",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Executed strategy for an AI calling communication platform led to calling operations",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "expenses drop by 50%",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "•",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "Designed 20+ A/B tests in 6 months",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "on listing, product detail page & checkout page to",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "improve conversion",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "funnel",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "by almost 2x",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "in consumer website & app",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "A  WHILE  BACK",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Championed a user-centric approach to design, conduct UX research, gather insights, and translate into effective & intuitive user experiences for product listing & product details page of the consumer app leading to",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "11% increase in online sales",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Designed B2B auction products and platform,",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "contributing 20% of revenue & 40% of unit sales",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Scaled real-time online bidding experience on",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "1+ million car listings annually",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Designed leaderboard-based gamification to reward highly active dealers, which led to",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "increased engagement by 13%",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Established & refined",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "design systems & guidelines",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "making reusable UI components ensuring consistence",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Mentored 2 junior designers",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "JOINED  AS  THE  FOUNDING  DESIGNER",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Was the",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "only designer for initial 2 years working on every project single handedly",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "•",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "Designed consumer web & mobile app from 0 to 1 & 1 to 10",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "while also meeting business alignment to 10x growth in volume",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Designed car evaluation app and dashboards",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "dropping the human errors by ~81% & bandwidth ~60% efficient",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "• Spearheaded design and development of Relationship manager app & CRMs covering end to end user journey which",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "increased the NPS by 4x, human errors to almost 0",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "TLC",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "UX UI Designer",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "Jan 2019 — May 2019",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "GameZop",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "UI Design Intern",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "Oct 2018 — Dec 2018",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "YEARS OF EXPERIENCE",
+      "fn": "Text"
+    },
+    {
+      "t": "SUCCESSFUL PRODUCTS",
+      "fn": "Text"
+    },
+    {
+      "t": "DIVERSIFIED USERS",
+      "fn": "Text"
+    },
+    {
+      "t": "RECENT  WORK",
+      "fn": "Info"
+    },
+    {
+      "t": "I  LOVE  BLENDING  ART  &  TECHNOLOGY",
+      "fn": "Info"
+    },
+    {
+      "t": "<",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": ">",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "Spinny's car auction app PLP redesign",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "MORE USER",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "RETENTION",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "REVENUE",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "GROWTH",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "DROP IN",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "CARS MISSED",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "SHOOT UP",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "IN NPS",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "Introduced a",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "tier based gamification",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "MORE USER",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "RETENTION",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "SURGE IN",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "REVENUE",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "RISE IN",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "BIDS MADE",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "REDUCED T.A.T OF",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "CAR DELIVERIES",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "Established the Spinny design system",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "VARIANTS DESIGNED",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "& DEVELOPED",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "DESIGN",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "BANDWIDTH SAVED",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "DEVELOPMENT TIME",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "REDUCED",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "CONSISTENCY",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "ACHIEVED",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "Other small & big projects with",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "big & BIG impact",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "PROJECTS",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "DONE",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "AND",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "BEYOND",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "THINGS  THEY  SAY",
+      "fn": "Info"
+    },
+    {
+      "t": "REAL  WORK,  REAL  WORDS,  REAL WORTH",
+      "fn": "Info"
+    },
+    {
+      "t": "MORE  ABOUT  ME",
+      "fn": "Info"
+    },
+    {
+      "t": "ENGINEER  TURNED  ARTIST",
+      "fn": "Info"
+    },
+    {
+      "t": "Result,",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "impact",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "&",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "delight",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "driven",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "designer",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "with",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "7+",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "years",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "of",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "expertise",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "in",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "building",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "human",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "experiences",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "by",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "thoughtful",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "interfaces",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "&",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "ideas",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "which",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "work",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "&",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "thrive",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "^",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "if not, then we correct & make it work",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "^",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "& improving",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": ", mentor, storyteller",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "^",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": ", products & businesses",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "^",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "sometimes unconventional",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "^",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "LEARNING",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "LEARNING",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "JUST  IN  CASE  WHEN  I  AM  NOT  DESIGNING",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "GAMING",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "very very competitive!",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "SOCIALIZING",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "extrovert like a designer should be",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "ADVENTURING",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "whenever work allows",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "&",
+      "fn": "Junior Developer"
+    },
+    {
+      "t": "PHOTOGRAPHING",
+      "fn": "Solid Part work"
+    },
+    {
+      "t": "SCROLLED",
+      "fn": "Contnet Wrapper"
+    },
+    {
+      "t": "THIS  FAR?",
+      "fn": "Contnet Wrapper"
+    },
+    {
+      "t": "LET’S  WORK",
+      "fn": "Contnet Wrapper"
+    },
+    {
+      "t": "TOGETHER",
+      "fn": "Contnet Wrapper"
+    },
+    {
+      "t": "+91 8869808079",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "utkarshv187@gmail.com",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "Connect",
+      "fn": "Variant 1"
+    },
+    {
+      "t": "(()=>{function u(){function n(t,e,i){let r=document.createElement(\"a\");r.href=t,r.target=i,r.rel=e,document.body.appendChild(r),r.click(),r.remove()}function o(t){if(this.dataset.hydrated){this.removeEventListener(\"click\",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute(\"href\");if(!e)return;if(/Mac|iPod|iPhone|iPad/u.test(navigator.userAgent)?t.metaKey:t.ctrlKey)return n(e,\"\",\"_blank\");let r=this.getAttribute(\"rel\")??\"\",c=this.getAttribute(\"target\")??\"\";n(e,r,c)}function a(t){if(this.dataset.hydrated){this.removeEventListener(\"auxclick\",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute(\"href\");e&&n(e,\"\",\"_blank\")}function s(t){if(this.dataset.hydrated){this.removeEventListener(\"keydown\",s);return}if(t.key!==\"Enter\")return;t.preventDefault(),t.stopPropagation();let e=this.getAttribute(\"href\");if(!e)return;let i=this.getAttribute(\"rel\")??\"\",r=this.getAttribute(\"target\")??\"\";n(e,i,r)}document.querySelectorAll(\"[data-nested-link]\").forEach(t=>{t instanceof HTMLElement&&(t.addEventListener(\"click\",o),t.addEventListener(\"auxclick\",a),t.addEventListener(\"keydown\",s))})}return u})()()",
+      "fn": ""
+    },
+    {
+      "t": "!function(){var w=\"framer_variant\";function u(a,r){let e=r.indexOf(\"#\"),t=e===-1?r:r.substring(0,e),o=e===-1?\"\":r.substring(e),n=t.indexOf(\"?\"),h=n===-1?t:t.substring(0,n),d=n===-1?\"\":t.substring(n),s=new URLSearchParams(d),m=new URLSearchParams(a);for(let[i,l]of m)s.has(i)||i!==w&&s.append(i,l);let c=s.toString();return c===\"\"?t+o:h+\"?\"+c+o}var g='div#main a[href^=\"#\"],div#main a[href^=\"/\"],div#main a[href^=\".\"]',f=\"div#main a[data-framer-preserve-params]\",S=document.currentScript?.hasAttribute(\"data-preserve-internal-params\");if(window.location.search&&!navigator.webdriver&&!/bot|-google|google-|yandex|ia_archiver|crawl|spider/iu.test(navigator.userAgent)){let a=document.querySelectorAll(S?`${g},${f}`:f);for(let r of a){let e=u(window.location.search,r.href);r.setAttribute(\"href\",e)}}\n}()",
+      "fn": ""
+    },
+    {
+      "t": "Create a free website with Framer, the website builder loved by startups, designers and agencies.",
+      "fn": "Content"
+    },
+    {
+      "t": "var animator=(()=>{var L=(e,r,t)=>t>r?r:t<e?e:t;var U=()=>{};function _(e){let r;return()=>(r===void 0&&(r=e()),r)}var Q=e=>e;var D=e=>e*1e3,O=e=>e/1e3;var J=e=>Array.isArray(e)&&typeof e[0]==\"number\";var $=(e,r,t=10)=>{let o=\"\",s=Math.max(Math.round(r/t),2);for(let i=0;i<s;i++)o+=Math.round(e(i/(s-1))*1e4)/1e4+\", \";return`linear(${o.substring(0,o.length-2)})`};function j(e){let r=0,t=50,o=e.next(r);for(;!o.done&&r<2e4;)r+=t,o=e.next(r);return r>=2e4?1/0:r}function de(e,r=100,t){let o=t({...e,keyframes:[0,r]}),s=Math.min(j(o),2e4);return{type:\"keyframes\",ease:i=>o.next(s*i).value/r,duration:O(s)}}var d={stiffness:100,damping:10,mass:1,velocity:0,duration:800,bounce:.3,visualDuration:.3,restSpeed:{granular:.01,default:2},restDelta:{granular:.005,default:.5},minDuration:.01,maxDuration:10,minDamping:.05,maxDamping:1};function te(e,r){return e*Math.sqrt(1-r*r)}var ke=12;function Ie(e,r,t){let o=t;for(let s=1;s<ke;s++)o=o-e(o)/r(o);return o}var re=.001;function Be({duration:e=d.duration,bounce:r=d.bounce,velocity:t=d.velocity,mass:o=d.mass}){let s,i;U(e<=D(d.maxDuration),\"Spring duration must be 10 seconds or less\",\"spring-duration-limit\");let n=1-r;n=L(d.minDamping,d.maxDamping,n),e=L(d.minDuration,d.maxDuration,O(e)),n<1?(s=m=>{let p=m*n,c=p*e,u=p-t,g=te(m,n),A=Math.exp(-c);return re-u/g*A},i=m=>{let c=m*n*e,u=c*t+t,g=Math.pow(n,2)*Math.pow(m,2)*e,A=Math.exp(-c),x=te(Math.pow(m,2),n);return(-s(m)+re>0?-1:1)*((u-g)*A)/x}):(s=m=>{let p=Math.exp(-m*e),c=(m-t)*e+1;return-re+p*c},i=m=>{let p=Math.exp(-m*e),c=(t-m)*(e*e);return p*c});let f=5/e,a=Ie(s,i,f);if(e=D(e),isNaN(a))return{stiffness:d.stiffness,damping:d.damping,duration:e};{let m=Math.pow(a,2)*o;return{stiffness:m,damping:n*2*Math.sqrt(o*m),duration:e}}}var Ke=[\"duration\",\"bounce\"],Ge=[\"stiffness\",\"damping\",\"mass\"];function ge(e,r){return r.some(t=>e[t]!==void 0)}function Le(e){let r={velocity:d.velocity,stiffness:d.stiffness,damping:d.damping,mass:d.mass,isResolvedFromDuration:!1,...e};if(!ge(e,Ge)&&ge(e,Ke))if(r.velocity=0,e.visualDuration){let t=e.visualDuration,o=2*Math.PI/(t*1.2),s=o*o,i=2*L(.05,1,1-(e.bounce||0))*Math.sqrt(s);r={...r,mass:d.mass,stiffness:s,damping:i}}else{let t=Be({...e,velocity:0});r={...r,...t,mass:d.mass},r.isResolvedFromDuration=!0}return r}function E(e=d.visualDuration,r=d.bounce){let t=typeof e!=\"object\"?{visualDuration:e,keyframes:[0,1],bounce:r}:e,{restSpeed:o,restDelta:s}=t,i=t.keyframes[0],n=t.keyframes[t.keyframes.length-1],f={done:!1,value:i},{stiffness:a,damping:m,mass:p,duration:c,velocity:u,isResolvedFromDuration:g}=Le({...t,velocity:-O(t.velocity||0)}),A=u||0,x=m/(2*Math.sqrt(a*p)),h=n-i,y=O(Math.sqrt(a/p)),F=Math.abs(h)<5;o||(o=F?d.restSpeed.granular:d.restSpeed.default),s||(s=F?d.restDelta.granular:d.restDelta.default);let w,V,M,G,Y,H;if(x<1)M=te(y,x),G=(A+x*y*h)/M,w=l=>{let T=Math.exp(-x*y*l);return n-T*(G*Math.sin(M*l)+h*Math.cos(M*l))},Y=x*y*G+h*M,H=x*y*h-G*M,V=l=>Math.exp(-x*y*l)*(Y*Math.sin(M*l)+H*Math.cos(M*l));else if(x===1){w=T=>n-Math.exp(-y*T)*(h+(A+y*h)*T);let l=A+y*h;V=T=>Math.exp(-y*T)*(y*l*T-A)}else{let l=y*Math.sqrt(x*x-1);w=v=>{let k=Math.exp(-x*y*v),P=Math.min(l*v,300);return n-k*((A+x*y*h)*Math.sinh(P)+l*h*Math.cosh(P))/l};let T=(A+x*y*h)/l,S=x*y*T-h*l,N=x*y*h-T*l;V=v=>{let k=Math.exp(-x*y*v),P=Math.min(l*v,300);return k*(S*Math.sinh(P)+N*Math.cosh(P))}}let Z={calculatedDuration:g&&c||null,velocity:l=>D(V(l)),next:l=>{if(!g&&x<1){let S=Math.exp(-x*y*l),N=Math.sin(M*l),v=Math.cos(M*l),k=n-S*(G*N+h*v),P=D(S*(Y*N+H*v));return f.done=Math.abs(P)<=o&&Math.abs(n-k)<=s,f.value=f.done?n:k,f}let T=w(l);if(g)f.done=l>=c;else{let S=D(V(l));f.done=Math.abs(S)<=o&&Math.abs(n-T)<=s}return f.value=f.done?n:T,f},toString:()=>{let l=Math.min(j(Z),2e4),T=$(S=>Z.next(l*S).value,l,30);return l+\"ms \"+T},toTransition:()=>{}};return Z}E.applyToOptions=e=>{let r=de(e,100,E);return e.ease=r.ease,e.duration=D(r.duration),e.type=\"keyframes\",e};var ye=[\"transformPerspective\",\"x\",\"y\",\"z\",\"translateX\",\"translateY\",\"translateZ\",\"scale\",\"scaleX\",\"scaleY\",\"rotate\",\"rotateX\",\"rotateY\",\"rotateZ\",\"skew\",\"skewX\",\"skewY\"],oe=new Set([...ye,\"pathRotation\"]);var Ae={};function he(e,r){let t=_(e);return()=>Ae[r]??t()}var Te=he(()=>{try{document.createElement(\"div\").animate({opacity:0},{easing:\"linear(0, 1)\"})}catch{return!1}return!0},\"linearEasing\");var C=([e,r,t,o])=>`cubic-bezier(${e}, ${r}, ${t}, ${o})`;var ne={linear:\"linear\",ease:\"ease\",easeIn:\"ease-in\",easeOut:\"ease-out\",easeInOut:\"ease-in-out\",circIn:C([0,.65,.55,1]),circOut:C([.55,0,1,.45]),backIn:C([.31,.01,.66,-.59]),backOut:C([.33,1.53,.69,.99])};function ie(e,r){if(e)return typeof e==\"function\"?Te()?$(e,r):\"ease-out\":J(e)?C(e):Array.isArray(e)?e.map(t=>ie(t,r)||ne.easeOut):ne[e]}function W(e,r,t,{delay:o=0,duration:s=300,repeat:i=0,repeatType:n=\"loop\",ease:f=\"easeOut\",times:a}={},m=void 0){let p={[r]:t};a&&(p.offset=a);let c=ie(f,s);Array.isArray(c)&&(p.easing=c);let u={delay:o,duration:s,easing:Array.isArray(c)?\"linear\":c,fill:\"both\",iterations:i+1,direction:n===\"reverse\"?\"alternate\":\"normal\"};return m&&(u.pseudoElement=m),e.animate(p,u)}function Me(e){return e.replace(/([A-Z])/g,r=>`-${r.toLowerCase()}`)}var q=\"framerAppearId\",ae=\"data-\"+Me(q);function se(e){return e.props[ae]}var b=new Map,I=new Map;var B=(e,r)=>{let t=oe.has(r)?\"transform\":r;return`${e}: ${t}`};function pe(e,r,t){let o=B(e,r),s=b.get(o);if(!s)return null;let{animation:i,startTime:n}=s;function f(){window.MotionCancelOptimisedAnimation?.(e,r,t)}return i.onfinish=f,n===null||window.MotionHandoffIsComplete?.(e)?(f(),null):n}var X,K,me=new Set;function Re(){me.forEach(e=>{e.animation.play(),e.animation.startTime=e.startTime}),me.clear()}function fe(e,r,t,o,s){if(window.MotionIsMounted)return;let i=e.dataset[q];if(!i)return;window.MotionHandoffAnimation=pe;let n=B(i,r);K||(K=W(e,r,[t[0],t[0]],{duration:1e4,ease:\"linear\"}),b.set(n,{animation:K,startTime:null}),window.MotionHandoffAnimation=pe,window.MotionHasOptimisedAnimation=(a,m)=>{if(!a)return!1;if(!m)return I.has(a);let p=B(a,m);return!!b.get(p)},window.MotionHandoffMarkAsComplete=a=>{I.has(a)&&I.set(a,!0)},window.MotionHandoffIsComplete=a=>I.get(a)===!0,window.MotionCancelOptimisedAnimation=(a,m,p,c)=>{let u=B(a,m),g=b.get(u);g&&(p&&c===void 0?p.postRender(()=>{p.postRender(()=>{g.animation.cancel()})}):g.animation.cancel(),p&&c?(me.add(g),p.render(Re)):(b.delete(u),b.size||(window.MotionCancelOptimisedAnimation=void 0)))},window.MotionCheckAppearSync=(a,m,p)=>{let c=se(a);if(!c)return;let u=window.MotionHasOptimisedAnimation?.(c,m),g=a.props.values?.[m];if(!u||!g)return;let A=p.on(\"change\",x=>{g.get()!==x&&(window.MotionCancelOptimisedAnimation?.(c,m),A())});return A});let f=()=>{K.cancel();let a=W(e,r,t,o);X===void 0&&(X=performance.now()),a.startTime=X,b.set(n,{animation:a,startTime:X}),s&&s(a)};I.set(i,!1),K.ready?K.ready.then(f).catch(Q):f()}var ce=[\"transformPerspective\",\"x\",\"y\",\"z\",\"translateX\",\"translateY\",\"translateZ\",\"scale\",\"scaleX\",\"scaleY\",\"rotate\",\"rotateX\",\"rotateY\",\"rotateZ\",\"skew\",\"skewX\",\"skewY\"],ze={x:\"translateX\",y:\"translateY\",z:\"translateZ\",transformPerspective:\"perspective\"},Fe={translateX:\"px\",translateY:\"px\",translateZ:\"px\",x:\"px\",y:\"px\",z:\"px\",perspective:\"px\",transformPerspective:\"px\",rotate:\"deg\",rotateX:\"deg\",rotateY:\"deg\"};function be(e,r){let t=Fe[e];return!t||typeof r==\"string\"&&r.endsWith(t)?r:`${r}${t}`}function le(e){return ce.includes(e)}var Ne=(e,r)=>ce.indexOf(e)-ce.indexOf(r);function Ve({transform:e,transformKeys:r},t){let o={},s=!0,i=\"\";r.sort(Ne);for(let n of r){let f=e[n],a=!0;typeof f==\"number\"?a=f===(n.startsWith(\"scale\")?1:0):a=parseFloat(f)===0,a||(s=!1,i+=`${ze[n]||n}(${e[n]}) `),t&&(o[n]=e[n])}return i=i.trim(),t?i=t(o,i):s&&(i=\"none\"),i}function ue(e,r){let t=new Set(Object.keys(e));for(let o in r)t.add(o);return Array.from(t)}function xe(e,r){let t=r-e.length;if(t<=0)return e;let o=new Array(t).fill(e[e.length-1]);return e.concat(o)}function R(e){return e*1e3}var De={duration:.001},z={opacity:1,scale:1,translateX:0,translateY:0,translateZ:0,x:0,y:0,z:0,rotate:0,rotateX:0,rotateY:0};function we(e,r,t,o,s){return t.delay&&(t.delay=R(t.delay)),t.type===\"spring\"?je(e,r,t,o,s):qe(e,r,t,o,s)}function $e(e,r,t){let o={},s=0,i=0;for(let n of ue(e,r)){let f=e[n]??z[n],a=r[n]??z[n];if(f===void 0||a===void 0||n!==\"transformPerspective\"&&f===a&&f===z[n])continue;n===\"transformPerspective\"&&(o[n]=[f,a]);let m=Ue(f,a,t),{duration:p,keyframes:c}=m;p===void 0||c===void 0||(p>s&&(s=p,i=c.length),o[n]=c)}return{keyframeValuesByProps:o,longestDuration:s,longestLength:i}}function je(e,r,t,o,s){let i={},{keyframeValuesByProps:n,longestDuration:f,longestLength:a}=$e(e,r,t);if(!a)return i;let m={ease:\"linear\",duration:f,delay:t.delay},p=s?De:m,c={};for(let[g,A]of Object.entries(n))le(g)?c[g]=xe(A,a):i[g]={keyframes:xe(A,a),options:g===\"opacity\"?m:p};let u=Oe(c,o);return u&&(i.transform={keyframes:u,options:p}),i}function We(e){let{type:r,duration:t,...o}=e;return{duration:R(t),...o}}function qe(e,r,t,o,s){let i=We(t);if(!i)return;let n={},f=s?De:i,a={};for(let p of ue(e,r)){let c=e[p]??z[p],u=r[p]??z[p];c===void 0||u===void 0||p!==\"transformPerspective\"&&c===u||(le(p)?a[p]=[c,u]:n[p]={keyframes:[c,u],options:p===\"opacity\"?i:f})}let m=Oe(a,o);return m&&(n.transform={keyframes:m,options:f}),n}var Xe=[\"duration\",\"bounce\"],Ye=[\"stiffness\",\"damping\",\"mass\"];function Pe(e){return Ye.some(r=>r in e)?!1:Xe.some(r=>r in e)}function He(e,r,t){return Pe(t)?`${e}-${r}-${t.duration}-${t.bounce}`:`${e}-${r}-${t.damping}-${t.stiffness}-${t.mass}`}function Ze(e){return Pe(e)?{...e,duration:R(e.duration)}:e}var Se=new Map,ve=10;function Ue(e,r,t){let o=He(e,r,t),s=Se.get(o);if(s)return s;let i=[e,r],n=E({...Ze(t),keyframes:i}),f={done:!1,value:i[0]},a=[],m=0;for(;!f.done&&m<R(10);)f=n.next(m),a.push(f.value),m+=ve;i=a;let p=m-ve,u={keyframes:i,duration:p,ease:\"linear\"};return Se.set(o,u),u}function Oe(e,r){let t=[],o=Object.values(e)[0]?.length;if(!o)return;let s=Object.keys(e);for(let i=0;i<o;i++){let n={};for(let[a,m]of Object.entries(e)){let p=m[i];p!==void 0&&(n[a]=be(a,p))}let f=Ve({transform:n,transformKeys:s},r);t.push(f)}return t}function _e(e,r){if(!r)for(let t in e){let o=e[t];return o?.legacy===!0?o:void 0}}function Ee(e,r,t,o,s,i){for(let[n,f]of Object.entries(e)){let a=i?f[i]:void 0;if(a===null||!a&&f.default===null)continue;let m=a??f.default??_e(f,i);if(!m)continue;let{initial:p,animate:c,transformTemplate:u}=m;if(!p||!c)continue;let{transition:g,...A}=c,x=we(p,A,g,Qe(u,o),s);if(!x)continue;let h={},y={};for(let[w,V]of Object.entries(x))h[w]=V.keyframes,y[w]=V.options;let F=i?`:not(.hidden-${i}) `:\"\";r(`${F}[${t}=\"${n}\"]`,h,y)}}function Qe(e,r){if(!(!e||!r))return(t,o)=>e.replace(r,o)}function Ce(e){return e?e.find(t=>t.mediaQuery?window.matchMedia(t.mediaQuery).matches===!0:!1)?.hash:void 0}var Dt={animateAppearEffects:Ee,getActiveVariantHash:Ce,spring:E,startOptimizedAppearAnimation:fe};return Dt})()",
+      "fn": ""
+    },
+    {
+      "t": "{\"125y54k\":{\"default\":{\"initial\":{\"opacity\":0.001,\"rotate\":0,\"rotateX\":0,\"rotateY\":0,\"scale\":1,\"skewX\":0,\"skewY\":0,\"x\":0,\"y\":40},\"animate\":{\"opacity\":1,\"rotate\":0,\"rotateX\":0,\"rotateY\":0,\"scale\":1,\"skewX\":0,\"skewY\":0,\"transition\":{\"delay\":0,\"duration\":1,\"ease\":[0.4,0,0,1],\"type\":\"tween\"},\"x\":0,\"y\":0}},\"1ad5f3u\":{\"initial\":{\"opacity\":0.001,\"rotate\":0,\"rotateX\":0,\"rotateY\":0,\"scale\":1,\"skewX\":0,\"skewY\":0,\"x\":0,\"y\":40},\"animate\":{\"opacity\":1,\"rotate\":0,\"rotateX\":0,\"rotateY\":0,\"scale\":1,\"skewX\":0,\"skewY\":0,\"transition\":{\"delay\":0,\"duration\":1,\"ease\":[0.4,0,0,1],\"type\":\"tween\"},\"x\":0,\"y\":0}},\"fq6frr\":null},\"tk95rq\":{\"default\":{\"initial\":{\"opacity\":0.001,\"rotate\":0,\"rotateX\":0,\"rotateY\":0,\"scale\":1,\"skewX\":0,\"skewY\":0,\"x\":0,\"y\":20},\"animate\":{\"opacity\":1,\"rotate\":0,\"rotateX\":0,\"rotateY\":0,\"scale\":1,\"skewX\":0,\"skewY\":0,\"transition\":{\"bounce\":0.2,\"delay\":1,\"duration\":1,\"type\":\"spring\"},\"x\":0,\"y\":0}}},\"1o5ot3d\":{\"default\":{\"initial\":{\"opacity\":0.001,\"rotate\":0,\"rotateX\":0,\"rotateY\":0,\"scale\":1,\"skewX\":0,\"skewY\":0,\"x\":0,\"y\":20},\"animate\":{\"opacity\":1,\"rotate\":0,\"rotateX\":0,\"rotateY\":0,\"scale\":1,\"skewX\":0,\"skewY\":0,\"transition\":{\"bounce\":0.2,\"delay\":1.5,\"duration\":1,\"type\":\"spring\"},\"x\":0,\"y\":0}}}}",
+      "fn": ""
+    },
+    {
+      "t": "[{\"hash\":\"72rtr7\",\"mediaQuery\":\"(min-width: 1280px)\"},{\"hash\":\"1ad5f3u\",\"mediaQuery\":\"(min-width: 810px) and (max-width: 1279.98px)\"},{\"hash\":\"fq6frr\",\"mediaQuery\":\"(max-width: 809.98px)\"}]",
+      "fn": ""
+    },
+    {
+      "t": "(()=>{function c(i,o,s){if(window.__framer_disable_appear_effects_optimization__||typeof animator>\"u\")return;let e={detail:{bg:document.hidden}};requestAnimationFrame(()=>{let a=\"framer-appear-start\";performance.mark(a,e),animator.animateAppearEffects(JSON.parse(window.__framer__appearAnimationsContent.text),(m,p,d)=>{let t=document.querySelector(m);if(t)for(let[r,f]of Object.entries(p))animator.startOptimizedAppearAnimation(t,r,f,d[r])},i,o,s&&window.matchMedia(\"(prefers-reduced-motion:reduce)\").matches===!0,animator.getActiveVariantHash(JSON.parse(window.__framer__breakpoints.text)));let n=\"framer-appear-end\";performance.mark(n,e),performance.measure(\"framer-appear\",{start:a,end:n,detail:e.detail})})}return c})()(\"data-framer-appear-id\",\"__Appear_Animation_Transform__\",false)",
+      "fn": ""
+    },
+    {
+      "t": "typeof document<\"u\"&&(window.process={...window.process,env:{...window.process?.env,NODE_ENV:\"production\"}});",
+      "fn": ""
+    }
+  ]
+}
