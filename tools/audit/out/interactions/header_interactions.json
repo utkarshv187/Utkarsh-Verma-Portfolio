@@ -1,0 +1,126 @@
+{
+  "about": {
+    "label": "About",
+    "changed": {
+      "color": "rgb(0, 0, 0)  ->  rgb(0, 0, 238)",
+      "transform": "none  ->  matrix(1, 0, 0, 1, -0.234403, 0)",
+      "borderTopColor": "rgb(0, 0, 0)  ->  rgb(0, 0, 238)"
+    },
+    "transition": {
+      "p": "all",
+      "d": "0s",
+      "e": "ease",
+      "delay": "0s"
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "notFound": true
+  },
+  "resume": {
+    "label": "Resume",
+    "changed": {
+      "backgroundColor": "rgb(108, 55, 178)  ->  rgb(107, 55, 176)",
+      "transform": "none  ->  matrix(0.99776, 0, 0, 1, -0.169274, 0)"
+    },
+    "transition": {
+      "p": "all",
+      "d": "0s",
+      "e": "ease",
+      "delay": "0s"
+    }
+  },
+  "counter": {
+    "label": "Counter",
+    "changed": {
+      "letterSpacing": "1.28px  ->  0.08px"
+    },
+    "transition": {
+      "p": "all",
+      "d": "0s",
+      "e": "ease",
+      "delay": "0s"
+    }
+  },
+  "resumeGlowLoop": {
+    "names": [
+      "Glow",
+      "Stroke"
+    ],
+    "count": 9,
+    "samples": [
+      {
+        "t": 0,
+        "bg": [
+          "radial-gradient(25% 40.0355% at 18.0625% 68.0625%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(18.0811% 45.5926% at 18.0625% 68.0625%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      },
+      {
+        "t": 485,
+        "bg": [
+          "radial-gradient(25.2188% 34.974% at 0.4375% 50%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(16.8858% 43.7641% at 0.4375% 50%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      },
+      {
+        "t": 938,
+        "bg": [
+          "radial-gradient(40% 73.76% at 30% 50%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(36.1996% 88.64% at 30% 50%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      },
+      {
+        "t": 1419,
+        "bg": [
+          "radial-gradient(50% 100%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(49.266% 119%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      },
+      {
+        "t": 1911,
+        "bg": [
+          "radial-gradient(42.0938% 79.5703% at 65.8125% 50%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(38.8089% 94.3958% at 65.8125% 50%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      },
+      {
+        "t": 2456,
+        "bg": [
+          "radial-gradient(27.375% 41.537% at 95.25% 50%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(19.3413% 48.591% at 95.25% 50%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      },
+      {
+        "t": 2943,
+        "bg": [
+          "radial-gradient(25% 40.145% at 83.75% 66.25%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(17.6625% 44.06% at 83.75% 66.25%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      },
+      {
+        "t": 3410,
+        "bg": [
+          "radial-gradient(25% 48.321% at 55.75% 94.25%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(20.1825% 48.988% at 55.75% 94.25%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      },
+      {
+        "t": 3909,
+        "bg": [
+          "radial-gradient(25% 45.6515% at 36.0625% 86.0625%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)",
+          "radial-gradient(19.5571% 48.0766% at 36.0625% 86.0625%, rgb(255, 182, 1) 0%, rgba(255, 182, 1, 0) 100%)"
+        ],
+        "tf": "none"
+      }
+    ]
+  }
+}

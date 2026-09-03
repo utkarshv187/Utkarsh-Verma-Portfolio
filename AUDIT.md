@@ -309,5 +309,26 @@ Exact per-breakpoint strings for **every** section will be re-verified section-b
 
 ---
 
+## 9. Interaction states (hover / focus-visible / active) — page-wide
+
+Captured by programmatically driving pointer states on the live site (`tools/audit/interactions.mjs`, `header_states_full.mjs`, `header_hover_shots.mjs`). Framer drives these with JS (Motion), so most expose no CSS `transition` value — timings are matched visually and flagged **~approx** where the exact spring/tween isn't recoverable from the minified bundle. (The scroll-only Phase-1 audit missed this whole category.)
+
+### Header (desktop)
+| Element | Default | Hover | Active / focus | Notes |
+|---|---|---|---|---|
+| **Logo** (`#home`) | UX mark | **no change** | UA active only; keyboard outline | intentionally static |
+| **Designing-for block** | "Designing for" (gold) + live counter (gold) | **variant swap** → Utkarsh **memoji** (`HNcMAlWL…png`, thumbs-up) + **"Thinking design / all the time"** in **Caveat Brush** (white, 2 lines); counter `letter-spacing` collapses 1.28px→~0.08px during the swap | not a link | crossfade ~0.25s ~approx |
+| **About** | "About" (Clash 600 16px white) | **"↓" arrow** fades/slides in to the right of the label | outline | scroll-to-section affordance |
+| **Contact** | outline pill "Contact" | **expands into a panel** revealing ✉ `utkarshv187@gmail.com` + WhatsApp `+91 8869808079` (underlined); "About" shifts left to make room | mailto + wa.me links | width-expand reveal ~approx |
+| **Résumé** | purple pill with a **continuous orbiting gold glow** (border-beam: "Glow" + "Stroke" gold `rgb(255,182,1)` radial-gradients travel the perimeter — a JS loop, ~2–3s ~approx) | **"↗" arrow** appears + **full gold border** lights + button `scaleX≈0.93` + tiny `translateX` squish + bg darkens `#6C37B2`→`~#5D3097` | outline | glow runs continuously incl. on touch |
+
+### Rest of page
+Interaction states for project cards, testimonial cards, "GO TO TOP", footer/social links and carousel arrows are captured **per-section as each is built** (same tooling). **No-hover (intentional):** logo, body copy, section headings.
+
+### Reproduction rules (all sections)
+- Hover effects gated behind `@media (hover: hover) and (pointer: fine)` so they never stick on touch.
+- On touch: match the live `:active`/tap (or nothing) — captured, not assumed. **Continuous** animations (Résumé glow) run on touch too, as on live.
+- `prefers-reduced-motion`: per PLAN §3 (freeze loops, instant state changes, keep focus visible).
+
 ### Appendix — capture tooling
 `tools/audit/` (committed): `recon.mjs` (network/fonts/CSS/assets), `extract.mjs` (per-breakpoint copy + computed styles + screenshots), `scrollshots.mjs` (viewport shots that survive pinned sections), `anim.mjs` (scroll/loop/cursor probes), `card3.mjs`, `montage.mjs`. Re-runnable with `node audit/<script>.mjs`.

@@ -1,3 +1,9 @@
+@property --beam-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -24,132 +30,145 @@
   align-items: center;
   gap: 24px;
 }
-
 .header__logo {
   display: block;
   width: 53px;
   color: #ffffff;
 }
-.header__logo svg {
-  width: 100%;
-  height: auto;
-}
+.header__logo svg { width: 100%; height: auto; }
 
-.designing-for {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+/* Intro block: default (Designing for + counter) crossfades to hover (memoji + script). */
+.intro { position: relative; display: inline-block; }
+.intro__default { display: flex; flex-direction: column; gap: 4px; transition: opacity 0.25s ease; }
+.intro__label {
+  font-family: var(--font-display); font-weight: 500; font-size: 14px; line-height: 1.2; color: var(--gold-2);
 }
-.designing-for__label {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.2;
-  color: var(--gold-2);
+.intro__value {
+  font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 1; letter-spacing: 0.08em;
+  color: var(--gold-2); font-variant-numeric: tabular-nums; white-space: nowrap; width: 200px; text-align: center;
 }
-.designing-for__value {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  color: var(--gold-2);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-  width: 200px;
-  text-align: center;
+.intro__hover {
+  position: absolute; inset: 0; display: flex; align-items: center; gap: 10px;
+  opacity: 0; transition: opacity 0.25s ease; pointer-events: none;
+}
+.intro__memoji { width: 41px; height: 48px; object-fit: contain; }
+.intro__script {
+  font-family: var(--font-script-2); font-weight: 400; font-size: 20px; line-height: 1.05; color: var(--white);
 }
 
 /* ---- Right nav ---- */
-.header__nav {
-  display: flex;
-  align-items: center;
-}
-.header__nav--desktop {
-  gap: 36px;
-}
-.header__nav--mobile {
-  display: none;
-  gap: 22px;
-}
+.header__nav { display: flex; align-items: center; }
+.header__nav--desktop { gap: 36px; }
+.header__nav--mobile { display: none; gap: 22px; }
 
 .nav-link {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--white);
+  display: inline-flex; align-items: center; gap: 2px;
+  font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 24px; color: var(--white);
+}
+.nav-link__arrow {
+  display: inline-flex; align-items: center; color: var(--white);
+  max-width: 0; opacity: 0; overflow: hidden; transform: translateY(-2px);
+  transition: max-width 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 
-.nav-pill {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--white);
-  padding: 12px 32px;
-  border-radius: 100px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.nav-pill--outline {
-  background: transparent;
+/* Contact: outline pill that expands on hover/focus to reveal email + WhatsApp */
+.contact {
+  position: relative; display: inline-flex; align-items: center; overflow: hidden;
+  padding: 12px 32px; border-radius: 100px;
   border: 1px solid rgba(226, 226, 240, 0.16);
   box-shadow: inset 0 -1px 0 0 rgba(47, 43, 67, 0.1), 0 1px 3px 0 rgba(47, 43, 67, 0.1);
+  transition: padding 0.35s ease;
 }
-.nav-pill--resume {
-  background: var(--purple-mid);
-  box-shadow: 0 2px 20px 2px rgba(255, 150, 10, 0.45);
+.contact__label {
+  font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 24px; color: var(--white);
+  max-width: 90px; opacity: 1; overflow: hidden; white-space: nowrap;
+  transition: max-width 0.3s ease, opacity 0.2s ease;
 }
+.contact__reveal {
+  display: flex; align-items: center; gap: 14px; white-space: nowrap;
+  max-width: 0; opacity: 0; overflow: hidden;
+  transition: max-width 0.4s ease, opacity 0.3s ease;
+}
+.contact__item {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 24px; color: var(--white);
+}
+.contact__phone { text-decoration: underline; text-decoration-color: var(--link-phone); text-underline-offset: 4px; }
+.contact__divider { width: 1px; height: 22px; background: rgba(226, 226, 240, 0.22); }
 
-.nav-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+/* ---- Résumé button (orbiting gold border-beam + hover) ---- */
+.resume {
+  position: relative; isolation: isolate;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 12px 32px; border-radius: 100px; background: var(--purple-mid); color: var(--white);
+  font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 24px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
+.resume__label { position: relative; z-index: 3; }
+.resume__arrow {
+  position: relative; z-index: 3; display: inline-flex; align-items: center; color: var(--white);
+  max-width: 0; opacity: 0; overflow: hidden; transition: max-width 0.2s ease, opacity 0.2s ease;
+}
+.resume__beam {
+  position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; z-index: 1;
+  background: conic-gradient(from var(--beam-angle), transparent 0deg, transparent 250deg, #ffe29a 300deg, #ffb601 320deg, #ffe29a 340deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: beam-spin 2.6s linear infinite;
+}
+.resume__glow {
+  position: absolute; inset: -3px; border-radius: inherit; z-index: 0;
+  background: conic-gradient(from var(--beam-angle), transparent 220deg, rgba(255, 182, 1, 0.85) 310deg, transparent 360deg);
+  filter: blur(8px); opacity: 0.7;
+  animation: beam-spin 2.6s linear infinite;
+}
+.resume__ring {
+  position: absolute; inset: 0; border-radius: inherit; z-index: 2;
+  border: 1.5px solid var(--gold); opacity: 0; transition: opacity 0.25s ease;
+}
+@keyframes beam-spin { to { --beam-angle: 360deg; } }
 
-/* ---- Scroll progress bar (bottom of header) ---- */
+/* ---- Scroll progress bar ---- */
 .scroll-progress {
-  position: absolute;
-  bottom: 0;
-  left: 120px;
-  right: 120px;
-  height: 1px;
-  background: var(--gold-2);
-  transform-origin: left;
+  position: absolute; bottom: 0; left: 120px; right: 120px; height: 1px;
+  background: var(--gold-2); transform-origin: left;
 }
 
-/* ================= Phone (Framer breakpoint <= 809.98px) ================= */
+/* ================= HOVER (fine pointer only) ================= */
+@media (hover: hover) and (pointer: fine) {
+  .intro:hover .intro__default { opacity: 0; }
+  .intro:hover .intro__hover { opacity: 1; }
+
+  .nav-link:hover .nav-link__arrow { max-width: 20px; opacity: 1; transform: translateY(0); }
+
+  .contact:hover, .contact:focus-within { padding: 12px 24px; }
+  .contact:hover .contact__label, .contact:focus-within .contact__label { max-width: 0; opacity: 0; }
+  .contact:hover .contact__reveal, .contact:focus-within .contact__reveal { max-width: 520px; opacity: 1; }
+
+  .resume:hover { transform: scaleX(0.93); background: #5d3097; }
+  .resume:hover .resume__ring { opacity: 1; }
+  .resume:hover .resume__arrow { max-width: 22px; opacity: 1; }
+}
+/* keyboard: reveal contact via focus regardless of pointer */
+.contact:focus-within .contact__label { max-width: 0; opacity: 0; }
+.contact:focus-within .contact__reveal { max-width: 520px; opacity: 1; }
+
+/* ================= Phone (<= 809.98px) ================= */
 @media (max-width: 809.98px) {
-  .header {
-    top: 15px;
-    left: 15px;
-    right: 15px;
-  }
-  .header__inner {
-    height: 64px;
-    padding: 12px 16px;
-    border-radius: 22px;
-  }
-  .header__desking-for-wrap {
-    display: none; /* no "Designing for" / counter on phone */
-  }
-  .header__logo {
-    width: 42px;
-    color: #e2e2ff;
-  }
-  .header__nav--desktop {
-    display: none;
-  }
-  .header__nav--mobile {
-    display: flex;
-  }
-  .nav-pill--resume {
-    font-size: 14px;
-    padding: 8px 20px;
-  }
-  .scroll-progress {
-    display: none; /* progress bar is desktop-only chrome */
-  }
+  .header { top: 15px; left: 15px; right: 15px; }
+  .header__inner { height: 64px; padding: 12px 16px; border-radius: 22px; }
+  .header__intro-wrap { display: none; }
+  .header__logo { width: 42px; color: #e2e2ff; }
+  .header__nav--desktop { display: none; }
+  .header__nav--mobile { display: flex; }
+  .resume--mobile { font-size: 14px; padding: 8px 20px; }
+  .scroll-progress { display: none; }
+}
+
+/* ================= Reduced motion ================= */
+@media (prefers-reduced-motion: reduce) {
+  .resume__beam, .resume__glow { animation: none; }
+  .resume__glow { opacity: 0.45; }
+  .intro__default, .intro__hover, .nav-link__arrow, .contact, .contact__label, .contact__reveal,
+  .resume, .resume__ring, .resume__arrow { transition-duration: 0.01ms; }
 }

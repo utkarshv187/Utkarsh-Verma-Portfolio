@@ -1,0 +1,78 @@
+{
+  "about": {
+    "texts": [
+      {
+        "t": "About",
+        "font": "\"Clash Display\"",
+        "size": "16px",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "svgCount": 0,
+    "svgs": [],
+    "transition": "all",
+    "html": "<p class=\"framer-text\" style=\"--font-selector:RlM7Q2xhc2ggRGlzcGxheS1zZW1pYm9sZA==;--framer-font-family:&quot;Clash Display&quot;, &quot;Clash Display Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-Rb5OgUSWE-c1BizxIee) * 1px);--framer-font-weight:600;--framer-line-height:24px;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255))\">About</p>"
+  },
+  "resume": {
+    "texts": [
+      "Résumé"
+    ],
+    "svgCount": 0,
+    "svgs": [],
+    "selfTransition": "all",
+    "transform": "none"
+  },
+  "contact": {
+    "links": [
+      {
+        "href": "http://api.whatsapp.com/send/?phone=918869808079&text=Hi+Utkarsh%2C+I+visited+your+portfolio+and+would+like+to+discuss+an+opportunity.&type=phone_number&app_absent=0",
+        "text": "+91 8869808079",
+        "x": 0,
+        "w": 0,
+        "visible": false,
+        "color": "rgb(0, 0, 238)"
+      },
+      {
+        "href": "mailto:utkarshv187@gmail.com",
+        "text": "utkarshv187@gmail.com",
+        "x": 0,
+        "w": 0,
+        "visible": false,
+        "color": "rgb(0, 0, 238)"
+      },
+      {
+        "href": "http://api.whatsapp.com/send/?phone=918869808079&text=Hi+Utkarsh%2C+I+visited+your+portfolio+and+would+like+to+discuss+an+opportunity.&type=phone_number&app_absent=0",
+        "text": "+91 8869808079",
+        "x": 0,
+        "w": 0,
+        "visible": false,
+        "color": "rgb(0, 0, 238)"
+      },
+      {
+        "href": "mailto:utkarshv187@gmail.com",
+        "text": "utkarshv187@gmail.com",
+        "x": 0,
+        "w": 0,
+        "visible": false,
+        "color": "rgb(0, 0, 238)"
+      },
+      {
+        "href": "http://api.whatsapp.com/send/?phone=918869808079&text=Hi+Utkarsh%2C+I+visited+your+portfolio+and+would+like+to+discuss+an+opportunity.&type=phone_number&app_absent=0",
+        "text": "",
+        "x": 0,
+        "w": 0,
+        "visible": false,
+        "color": "rgb(0, 0, 238)"
+      },
+      {
+        "href": "mailto:utkarshv187@gmail.com",
+        "text": "",
+        "x": 0,
+        "w": 0,
+        "visible": false,
+        "color": "rgb(0, 0, 238)"
+      }
+    ],
+    "contactFrameText": "Contact"
+  }
+}

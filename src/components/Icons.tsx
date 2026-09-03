@@ -1,10 +1,31 @@
+import { useId } from 'react';
+
+// Hover affordance arrows.
+export function ArrowDown({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ display: 'block' }}>
+      <path d="M8 3 V12.5 M4 8.5 L8 12.5 L12 8.5" />
+    </svg>
+  );
+}
+export function ArrowUpRight({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ display: 'block' }}>
+      <path d="M5 11 L11 5 M6 5 H11 V10" />
+    </svg>
+  );
+}
+
 // Header contact icons — exact vectors (incl. brand gradients) from the live site's mobile header.
 
 export function WhatsAppIcon({ size = 24 }: { size?: number }) {
+  const gid = useId();
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" style={{ display: 'block', overflow: 'visible' }}>
       <defs>
-        <linearGradient id="wa-grad" x1="0.4975" x2="0.5025" y1="1" y2="0">
+        <linearGradient id={gid} x1="0.4975" x2="0.5025" y1="1" y2="0">
           <stop offset="0" stopColor="rgb(32,176,56)" />
           <stop offset="1" stopColor="rgb(96,214,106)" />
         </linearGradient>
@@ -14,7 +35,7 @@ export function WhatsAppIcon({ size = 24 }: { size?: number }) {
         d="M 20.504 3.488 C 18.263 1.246 15.22 -0.01 12.05 0 C 5.464 0 0.102 5.334 0.1 11.892 C 0.1 13.988 0.65 16.034 1.696 17.838 L 0 24 L 6.334 22.346 C 8.088 23.297 10.051 23.794 12.046 23.794 L 12.05 23.794 C 18.636 23.794 24 18.458 24 11.902 C 24 8.722 22.76 5.736 20.504 3.488 Z M 12.05 21.786 L 12.046 21.786 C 10.268 21.786 8.523 21.309 6.992 20.406 L 6.628 20.194 L 2.868 21.174 L 3.872 17.528 L 3.636 17.154 C 2.641 15.58 2.114 13.756 2.116 11.894 C 2.12 6.442 6.576 2.008 12.054 2.008 C 14.687 2.001 17.214 3.045 19.074 4.908 C 20.941 6.755 21.989 9.274 21.982 11.9 C 21.98 17.35 17.524 21.786 12.05 21.786 Z"
       />
       <path
-        fill="url(#wa-grad)"
+        fill={`url(#${gid})`}
         d="M 1 22.902 L 2.62 17.022 C 1.619 15.298 1.093 13.34 1.094 11.346 C 1.098 5.09 6.216 0 12.5 0 C 15.55 0 18.414 1.182 20.566 3.328 C 22.709 5.449 23.912 8.341 23.904 11.356 C 23.9 17.614 18.784 22.706 12.5 22.706 L 12.496 22.706 C 10.593 22.706 8.72 22.232 7.046 21.326 Z"
       />
       <path
@@ -30,11 +51,12 @@ export function WhatsAppIcon({ size = 24 }: { size?: number }) {
 }
 
 export function MailIcon({ size = 24 }: { size?: number }) {
+  const gid = useId();
   const h = (size * 17.441) / 26;
   return (
     <svg width={size} height={h} viewBox="0 0 26 17.441" aria-hidden="true" style={{ display: 'block', overflow: 'visible' }}>
       <defs>
-        <linearGradient id="mail-grad" x1="0.4975" x2="0.5025" y1="0" y2="1">
+        <linearGradient id={gid} x1="0.4975" x2="0.5025" y1="0" y2="1">
           <stop offset="0" stopColor="rgb(29,111,242)" />
           <stop offset="1" stopColor="rgb(26,200,252)" />
         </linearGradient>
@@ -44,7 +66,7 @@ export function MailIcon({ size = 24 }: { size?: number }) {
         d="M 25.094 17.183 L 17.658 9.432 L 15.83 11.337 C 15.073 12.088 14.055 12.485 13.011 12.435 C 11.966 12.491 10.946 12.094 10.192 11.337 L 8.363 9.432 L 0.929 17.183 C 1.21 17.355 1.531 17.444 1.857 17.441 L 24.167 17.441 C 24.493 17.44 24.813 17.351 25.096 17.183 Z M 25.748 16.472 C 25.936 16.189 26.024 15.846 25.995 15.503 L 25.995 1.938 C 25.993 1.599 25.907 1.264 25.748 0.969 L 18.312 8.721 L 25.746 16.472 Z M 0.249 16.472 L 7.683 8.721 L 0.249 0.969 C 0.083 1.262 -0.003 1.597 0 1.938 L 0 15.503 C 0.001 15.843 0.086 16.177 0.247 16.472 Z M 25.094 0.258 C 24.812 0.091 24.49 0 24.165 0 L 1.857 0 C 1.532 0.001 1.212 0.09 0.929 0.258 L 10.877 10.625 C 11.45 11.199 12.222 11.503 13.015 11.466 C 13.808 11.503 14.58 11.199 15.153 10.625 L 25.098 0.258 Z"
       />
       <path
-        fill="url(#mail-grad)"
+        fill={`url(#${gid})`}
         d="M 25.094 17.183 L 17.658 9.432 L 15.83 11.337 C 15.073 12.088 14.055 12.485 13.011 12.435 C 11.966 12.491 10.946 12.094 10.192 11.337 L 8.363 9.432 L 0.929 17.183 C 1.21 17.355 1.531 17.444 1.857 17.441 L 24.167 17.441 C 24.493 17.44 24.813 17.351 25.096 17.183 Z M 25.748 16.472 C 25.936 16.189 26.024 15.846 25.995 15.503 L 25.995 1.938 C 25.993 1.599 25.907 1.264 25.748 0.969 L 18.312 8.721 L 25.746 16.472 Z M 0.249 16.472 L 7.683 8.721 L 0.249 0.969 C 0.083 1.262 -0.003 1.597 0 1.938 L 0 15.503 C 0.001 15.843 0.086 16.177 0.247 16.472 Z M 25.094 0.258 C 24.812 0.091 24.49 0 24.165 0 L 1.857 0 C 1.532 0.001 1.212 0.09 0.929 0.258 L 10.877 10.625 C 11.45 11.199 12.222 11.503 13.015 11.466 C 13.808 11.503 14.58 11.199 15.153 10.625 L 25.098 0.258 Z"
       />
     </svg>
