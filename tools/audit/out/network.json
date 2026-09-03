@@ -1,0 +1,394 @@
+[
+  {
+    "url": "https://uxuiuv.framer.website/",
+    "method": "GET",
+    "resourceType": "document",
+    "status": 200,
+    "mime": "text/html",
+    "bytes": 56601
+  },
+  {
+    "url": "https://framerusercontent.com/images/7nuBCHYzW4t5TCODcz3ifgeAc.png?width=284&height=608",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 21868
+  },
+  {
+    "url": "https://framerusercontent.com/images/eNT4XgzhjkW7AqGWTXtlFa3a230.png?scale-down-to=512&width=1084&height=657",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 39313
+  },
+  {
+    "url": "https://framerusercontent.com/images/IWdo08dy1SBtkPucLvwPp046Fug.png?scale-down-to=2048&width=1809&height=2091",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 137612
+  },
+  {
+    "url": "https://framerusercontent.com/images/HNcMAlWLu4lFUEfq7TvRl8iac.png?width=107&height=126",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 4888
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/caveatbrush/v12/EYq0maZfwr9S9-ETZc3fKXt8XLOS.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "status": 200,
+    "mime": "font/woff2",
+    "bytes": 67460
+  },
+  {
+    "url": "https://framerusercontent.com/third-party-assets/fontshare/wf/BFBSY7LX5W2U2EROCLVVTQP4VS7S4PC3/IIUX4FGTMD2LK2VWD3RVTAS4SSMUN7B5/53RZKGODFYDW3QHTIL7IPOWTBCSUEZK7.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "status": 200,
+    "mime": "application/octet-stream",
+    "bytes": 14544
+  },
+  {
+    "url": "https://framerusercontent.com/third-party-assets/fontshare/wf/2GQIT54GKQY3JRFTSHS4ARTRNRQISSAA/3CIP5EBHRRHE5FVQU3VFROPUERNDSTDF/JTSL5QESUXATU47LCPUNHZQBDDIWDOSW.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "status": 200,
+    "mime": "application/octet-stream",
+    "bytes": 15272
+  },
+  {
+    "url": "https://framerusercontent.com/third-party-assets/fontshare/wf/5ICO57VJIN252OT5L2KLEIPW754DTLAO/ZU64SLR2IEO66N27IVY5Z6JJJRTJECJK/TCTRLNEXANFIGSFCZTGQL7PZ5362GYK6.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "status": 200,
+    "mime": "application/octet-stream",
+    "bytes": 24276
+  },
+  {
+    "url": "https://framerusercontent.com/third-party-assets/fontshare/wf/P2LQKHE6KA6ZP4AAGN72KDWMHH6ZH3TA/ZC32TK2P7FPS5GFTL46EU6KQJA24ZYDB/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "status": 200,
+    "mime": "application/octet-stream",
+    "bytes": 25596
+  },
+  {
+    "url": "https://framerusercontent.com/third-party-assets/fontshare/wf/FPDAZ2S6SW4QMSRIIKNNGTPM6VIXYMKO/5HNPQ453FRLIQWV2FNOBUU3FKTDZQVSG/Z3MGHFHX6DCTLQ55LJYRJ5MDCZPMFZU6.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "status": 200,
+    "mime": "application/octet-stream",
+    "bytes": 15284
+  },
+  {
+    "url": "https://framerusercontent.com/images/upit0LYDKKJSw1HtFId1F3CeUM.jpg?width=1159&height=1399",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 154946
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/squarepeg/v7/y83eW48Nzw6ZlUHc-phrNDbhHQ.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "status": 200,
+    "mime": "font/woff2",
+    "bytes": 31724
+  },
+  {
+    "url": "https://framerusercontent.com/sites/5jWREmfqrTwzquGuJa3zIk/rolldown-runtime.Dh6celcD.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 629
+  },
+  {
+    "url": "https://framerusercontent.com/sites/5jWREmfqrTwzquGuJa3zIk/mu4cPntb2ihR7jRbZyzundgV5COBQXjbYNlA0-HzroI.BKqgHryV.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 137
+  },
+  {
+    "url": "https://framerusercontent.com/third-party-assets/fontshare/wf/NHPGVFYUXYXE33DZ75OIT4JFGHITX5PE/PSUTMASCDJTVPERDYJZPN23BVUFUCQIF/J64QX5IPOHK56I2KYUNBQ5M2XWZEYKYX.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "status": 200,
+    "mime": "application/octet-stream",
+    "bytes": 23484
+  },
+  {
+    "url": "https://framerusercontent.com/images/Hc8qhenVvOzLFygH7bRBkqgUo.jpg?width=375&height=3257",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 117037
+  },
+  {
+    "url": "https://framerusercontent.com/images/O7otRCPpiunRfMOoFypvX76Zw.png?scale-down-to=1024&width=3420&height=1958",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 10587
+  },
+  {
+    "url": "https://framerusercontent.com/images/w1Uk2Z8nPI65mdCgH1IKeD5A.jpg?width=375&height=875",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 30431
+  },
+  {
+    "url": "https://framerusercontent.com/images/ekzcQGySZuDI6aO6napaJLM7l4.jpg?width=750&height=1992",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 67386
+  },
+  {
+    "url": "https://framerusercontent.com/images/6hgoOPOkPPU1z91CqG0uFEgSc.png?width=750&height=450",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 54574
+  },
+  {
+    "url": "https://framerusercontent.com/sites/5jWREmfqrTwzquGuJa3zIk/framer.GvvTmx6b.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 463238
+  },
+  {
+    "url": "https://framerusercontent.com/sites/5jWREmfqrTwzquGuJa3zIk/motion.CZFfaKgw.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 151989
+  },
+  {
+    "url": "https://framerusercontent.com/sites/5jWREmfqrTwzquGuJa3zIk/react.D20wc1Tc.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 144643
+  },
+  {
+    "url": "https://framerusercontent.com/sites/5jWREmfqrTwzquGuJa3zIk/script_main.Dqu3CX3y.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 5660
+  },
+  {
+    "url": "https://framerusercontent.com/sites/5jWREmfqrTwzquGuJa3zIk/shared-lib.DAu7GhgS.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 953824
+  },
+  {
+    "url": "https://events.framer.com/script?v=2",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 7698
+  },
+  {
+    "url": "https://framerusercontent.com/images/pPe0FYYV2Bdo8NXv2liWKfjpbBc.png?width=750&height=450",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 43263
+  },
+  {
+    "url": "https://framerusercontent.com/images/LPldbLZleWCHQ8iStdXpnTncYF8.jpeg?width=739&height=1078",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 91744
+  },
+  {
+    "url": "https://framerusercontent.com/images/PhGm7gbV4OdzdWCFbVugcu087c.png?width=750&height=450",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 44793
+  },
+  {
+    "url": "https://framerusercontent.com/images/0xM0LwglmLoHfQRMpkOlhGbDgyc.jpeg?width=739&height=1061",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 93337
+  },
+  {
+    "url": "https://framerusercontent.com/images/OCxNlm00yTsoxQzANqF3TpPYXUU.jpeg?width=693&height=906",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 83959
+  },
+  {
+    "url": "https://framerusercontent.com/images/XFUk3SputOPAbgYFMLDMcrnX8Y.jpeg?width=739&height=1297",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 44358
+  },
+  {
+    "url": "https://framerusercontent.com/images/m0vqge19PPkSIHepKAhwB81OaI0.jpeg?width=739&height=1275",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 147856
+  },
+  {
+    "url": "https://framerusercontent.com/images/RgYfjJzg7L04gQLcwSFiI7tk.jpeg?width=739&height=1083",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 112564
+  },
+  {
+    "url": "https://framerusercontent.com/images/xCgmx8FtzEwRjJtPxk7YH88x2r4.jpeg?width=739&height=1234",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 50907
+  },
+  {
+    "url": "https://framerusercontent.com/images/TvEhfYnaj6QGKK2ZUzI5NCAUc4.jpeg?width=332&height=416",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 20473
+  },
+  {
+    "url": "https://framerusercontent.com/images/gxxPbKBLTmYKpDAIdJnG11wEs9E.jpeg?width=739&height=1261",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 28726
+  },
+  {
+    "url": "https://framerusercontent.com/images/SeM8KGSZkzUU4JSxsa8ta2ej9g.jpeg?width=739&height=1263",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 141476
+  },
+  {
+    "url": "https://framerusercontent.com/images/p6SftsAXebn0PD0DRTpHftXgtxI.jpeg?width=739&height=1106",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 23031
+  },
+  {
+    "url": "https://framerusercontent.com/images/ZnNaPG8g8s6CjiTfBbx4sjIzYc.jpeg?width=739&height=1266",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 91676
+  },
+  {
+    "url": "https://framerusercontent.com/images/eKISVOiUdQcSF8TrYhBxq1COg.jpg?width=1952&height=1944",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 172696
+  },
+  {
+    "url": "https://framerusercontent.com/images/BeRbTT6Zpf9Eybwmy9WStsO0hGg.jpg?width=1500&height=1500",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 79455
+  },
+  {
+    "url": "https://framerusercontent.com/images/PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg?width=1952&height=1944",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/avif",
+    "bytes": 163230
+  },
+  {
+    "url": "https://framerusercontent.com/images/xkzkmWXB2AV2EIqCliUZyQEHw.gif?width=746&height=1628",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/webp",
+    "bytes": 3915178
+  },
+  {
+    "url": "https://framer.com/edit/init.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 8323
+  },
+  {
+    "url": "https://framerusercontent.com/images/bAXnzVrKeF5riTiESNxjpvqOWWM.gif?width=778&height=1702",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/gif",
+    "bytes": 8098242
+  },
+  {
+    "url": "https://framerusercontent.com/images/wJSpzHHWPlexbIf1wtaEMsSiKjM.gif?scale-down-to=1024&width=750&height=1200",
+    "method": "GET",
+    "resourceType": "image",
+    "status": 200,
+    "mime": "image/webp",
+    "bytes": 10035210
+  },
+  {
+    "url": "https://app.framerstatic.com/chunk-OHYXMHQF.mjs",
+    "method": "GET",
+    "resourceType": "script",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 4163
+  }
+]

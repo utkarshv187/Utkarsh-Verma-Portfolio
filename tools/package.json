@@ -1,0 +1,10 @@
+{
+  "name": "portfolio-rebuild-tools",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Audit + asset-extraction tooling for the pixel-exact Framer rebuild",
+  "type": "module",
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}

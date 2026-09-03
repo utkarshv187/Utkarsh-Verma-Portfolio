@@ -1,0 +1,8 @@
+/* href: null */
+#__framer-editorbar { color-scheme: light dark; overflow: hidden; position: fixed; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; z-index: calc(2.14748e+09); top: 0px; left: 0px; width: 100vw; height: 100vh; touch-action: manipulation; }
+@supports (height: 100dvh) {
+  #__framer-editorbar { height: 100dvh; }
+}
+#__framer-editorbar.status_hidden { display: none; }
+#__framer-editorbar.status_visually_hidden { clip-path: circle(1px at calc(100% - 1px) calc(100% - 1px)); z-index: calc(2.14748e+09); }
+#__framer-editorbar.status_measuring { clip-path: unset; }

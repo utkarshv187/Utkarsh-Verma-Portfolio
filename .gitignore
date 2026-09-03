@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+tools/node_modules/
+
+# Playwright browser binaries are large; do not commit
+# (audit scripts + JSON output ARE committed)
+
+# Build output
+dist/
+build/
+.vite/
+
+# OS / editor
+Thumbs.db
+.DS_Store
+*.log
+
+# Env
+.env
+.env.local
