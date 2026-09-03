@@ -1,0 +1,45 @@
+/* Design tokens — exact values from AUDIT.md §2 (computed styles of the live site). */
+:root {
+  /* Backgrounds */
+  --bg-dark: rgb(15, 12, 32); /* #0F0C20 */
+  --bg-dark-2: rgb(14, 12, 32);
+  --bg-dark-3: rgb(12, 12, 31);
+
+  /* Accents */
+  --gold: rgb(255, 182, 1); /* #FFB601 section/accent */
+  --gold-2: rgb(255, 183, 5); /* #FFB705 text accent */
+  --purple: rgb(155, 80, 255); /* #9B50FF */
+  --purple-deep: rgb(83, 31, 154); /* #531F9A */
+  --purple-deep-2: rgb(86, 35, 154); /* #56239A */
+  --purple-mid: rgb(108, 55, 178); /* #6C37B2 */
+  --purple-483: rgb(72, 59, 153); /* #483B99 */
+  --teal: rgb(37, 197, 179); /* #25C5B3 */
+  --teal-tile: rgba(37, 197, 179, 0.12);
+  --pink: rgb(238, 202, 197); /* #EECAC5 */
+
+  /* Text */
+  --display: rgb(238, 238, 255); /* #EEEEFF off-white display */
+  --white: #ffffff;
+  --grey-e6: #e6e6e6;
+  --grey-d1: #d1dae0;
+  --grey-bf: #bfbfbf;
+  --grey-b3: #b3c2cb;
+  --grey-bb: #bbbbbb;
+
+  /* Contact link colors */
+  --link-phone: rgb(62, 193, 79);
+  --link-email: rgb(28, 157, 247);
+  --link-linkedin: rgb(40, 104, 178);
+
+  /* Common alphas */
+  --ink-80: rgba(12, 12, 31, 0.8);
+  --ink-40: rgba(12, 12, 31, 0.4);
+  --white-56: rgba(255, 255, 255, 0.56);
+  --white-15: rgba(255, 255, 255, 0.15);
+
+  /* Fonts */
+  --font-display: 'Clash Display', 'Clash Display Placeholder', sans-serif;
+  --font-body: 'Satoshi', 'Satoshi Placeholder', sans-serif;
+  --font-script: 'Square Peg', cursive;
+  --font-script-2: 'Caveat Brush', cursive;
+}

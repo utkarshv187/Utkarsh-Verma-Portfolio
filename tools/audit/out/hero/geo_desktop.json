@@ -1,0 +1,92 @@
+{
+  "pick": [
+    {
+      "tag": "PRODUCT",
+      "text": "PR       DUCT",
+      "x": 44,
+      "y": 196,
+      "w": 1353,
+      "h": 310,
+      "fontSize": "282px",
+      "fontWeight": "700",
+      "color": "rgb(238, 238, 255)",
+      "transform": "none",
+      "zIndex": "auto",
+      "position": "static"
+    },
+    {
+      "tag": "role",
+      "text": "DESIGNER",
+      "x": 42,
+      "y": -301,
+      "w": 1344,
+      "h": 292,
+      "fontSize": "265px",
+      "fontWeight": "700",
+      "color": "rgb(238, 238, 255)",
+      "transform": "none",
+      "zIndex": "auto",
+      "position": "static"
+    },
+    {
+      "tag": "portrait",
+      "text": "",
+      "x": 426,
+      "y": 95,
+      "w": 631,
+      "h": 770,
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "zIndex": "auto",
+      "position": "static"
+    },
+    {
+      "tag": "wordmark",
+      "text": "",
+      "x": 549,
+      "y": 190,
+      "w": 112,
+      "h": 240,
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "zIndex": "auto",
+      "position": "static"
+    },
+    {
+      "tag": "logo",
+      "text": "",
+      "x": 197,
+      "y": 22,
+      "w": 2,
+      "h": 2,
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "zIndex": "auto",
+      "position": "static"
+    },
+    {
+      "tag": "navbar",
+      "text": "Thinking designall the t",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 81,
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)",
+      "transform": "matrix(1, 0, 0, 1, -720, 0)",
+      "zIndex": "10",
+      "position": "fixed"
+    }
+  ],
+  "bodyBg": "rgb(14, 12, 32)",
+  "vw": 1440,
+  "vh": 900,
+  "docH": 18019
+}

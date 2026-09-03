@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+import { fileURLToPath } from 'node:url'; import { dirname, join } from 'node:path';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const b = await chromium.launch({ headless:true });
+const ctx = await b.newContext({ viewport:{width:1440,height:900}, deviceScaleFactor:2 });
+const p = await ctx.newPage();
+await p.goto('http://localhost:5199/', { waitUntil:'networkidle', timeout:30000 });
+await p.waitForTimeout(600);
+await p.evaluate(()=>window.scrollTo(0, document.body.scrollHeight*0.5));
+await p.waitForTimeout(500);
+await p.screenshot({ path: join(__dirname,'out','compare','progress_mid.png'), clip:{x:0,y:0,width:1440,height:90} });
+console.log('progress bar screenshot saved');
+await b.close();

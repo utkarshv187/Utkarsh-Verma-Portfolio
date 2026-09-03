@@ -1,0 +1,51 @@
+/* Self-hosted, subset fonts. Weights: Clash 500/600/700, Satoshi 500/900(+italic TBD), Square Peg 400, Caveat Brush 400. */
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-subset.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-subset.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Square Peg';
+  src: url('/fonts/SquarePeg-subset.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Caveat Brush';
+  src: url('/fonts/CaveatBrush-subset.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Metric-matched fallbacks (Framer's CLS trick — same override values as the live site). */
+@font-face {
+  font-family: 'Clash Display Placeholder';
+  src: local('Arial');
+  ascent-override: 83.42%;
+  descent-override: 23.43%;
+  line-gap-override: 8.44%;
+  size-adjust: 106.69%;
+}
+@font-face {
+  font-family: 'Satoshi Placeholder';
+  src: local('Arial');
+  ascent-override: 102.23%;
+  descent-override: 24.29%;
+  line-gap-override: 10.12%;
+  size-adjust: 98.8%;
+}

@@ -1,0 +1,13 @@
+/* Hero background base — dark ground + purple glow (placeholder for the full hero, next section). */
+.hero-base {
+  min-height: 100vh;
+  background:
+    radial-gradient(60% 55% at 52% 22%, rgba(155, 80, 255, 0.55) 0%, rgba(83, 31, 154, 0.25) 38%, rgba(14, 12, 32, 0) 70%),
+    var(--bg-dark-2);
+}
+
+/* Temporary scroll spacer so the progress bar has range during header review. */
+.dev-spacer {
+  height: 180vh;
+  background: var(--bg-dark-2);
+}

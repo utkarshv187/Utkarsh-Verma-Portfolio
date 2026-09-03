@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Variant 3",
+    "w": 20,
+    "h": 20,
+    "x": 710,
+    "y": 410,
+    "bg": "rgba(14, 12, 32, 0.4)",
+    "border": "0px none rgb(0, 0, 0)",
+    "borderRadius": "100px",
+    "mixBlend": "normal",
+    "zIndex": "13",
+    "transform": "matrix(1, 0, 0, 1, 710, 410)",
+    "opacity": "1",
+    "outerStart": "<div class=\"framer-5PYcM framer-1a9spxd framer-pointer-events-none framer-v-lo55x4\" data-framer-appear-id=\"1a9spxd\" data-framer-name=\"Variant 3\" tabindex=\"0\" st"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "logoSvg": "<svg style=\"width:100%;height:100%;overflow: visible;\" preserveAspectRatio=\"none\" width=\"100%\" height=\"100%\"><use href=\"#svg1188313292_586\"></use></svg>",
+  "contactPill": {
+    "border": "0px none rgb(0, 0, 0)",
+    "boxShadow": "rgba(47, 43, 67, 0.1) 0px -1px 0px 0px inset, rgba(47, 43, 67, 0.1) 0px 1px 3px 0px",
+    "bg": "rgba(15, 21, 31, 0)",
+    "radius": "37px",
+    "outline": "rgb(0, 0, 0) none 3px"
+  },
+  "contactPillSvg": null,
+  "resumeTop": {
+    "boxShadow": "none",
+    "bg": "rgb(108, 55, 178)",
+    "radius": "118px",
+    "filter": "none"
+  },
+  "resumeParent": {
+    "boxShadow": "none",
+    "filter": "none",
+    "name": "Button Stroke"
+  }
+}

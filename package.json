@@ -1,0 +1,29 @@
+{
+  "name": "uxuiuv-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview",
+    "assets": "node scripts/extract-assets.mjs",
+    "fonts": "node scripts/subset-fonts.mjs"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1",
+    "framer-motion": "^11.15.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "sharp": "^0.33.5",
+    "subset-font": "^2.3.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}

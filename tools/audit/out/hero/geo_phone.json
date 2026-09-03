@@ -1,0 +1,64 @@
+{
+  "pick": [
+    {
+      "tag": "PRODUCT",
+      "text": "PRODUCT",
+      "x": 16,
+      "y": 179,
+      "w": 358,
+      "h": 81,
+      "fontSize": "74px",
+      "fontWeight": "700",
+      "color": "rgb(238, 238, 255)",
+      "transform": "none",
+      "zIndex": "auto",
+      "position": "static"
+    },
+    {
+      "tag": "role",
+      "text": "DESIGNER",
+      "x": 18,
+      "y": 290,
+      "w": 354,
+      "h": 79,
+      "fontSize": "72px",
+      "fontWeight": "700",
+      "color": "rgb(238, 238, 255)",
+      "transform": "none",
+      "zIndex": "auto",
+      "position": "static"
+    },
+    {
+      "tag": "portrait",
+      "text": "",
+      "x": 42,
+      "y": 119,
+      "w": 306,
+      "h": 396,
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "zIndex": "auto",
+      "position": "static"
+    },
+    {
+      "tag": "navbar",
+      "text": "Résumé",
+      "x": 15,
+      "y": 15,
+      "w": 360,
+      "h": 64,
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "zIndex": "10",
+      "position": "sticky"
+    }
+  ],
+  "bodyBg": "rgb(14, 12, 32)",
+  "vw": 390,
+  "vh": 844,
+  "docH": 8858
+}

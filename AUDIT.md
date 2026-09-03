@@ -293,8 +293,12 @@ Exact per-breakpoint strings for **every** section will be re-verified section-b
 3. **Analytics**: Framer analytics → Vercel Analytics (can't migrate).
 4. **"Made in Framer" badge** removed.
 5. **Hotlinked Framer assets** → self-hosted, AVIF/WebP re-encoded from originals.
-6. *(Proposed, pending approval)* add `rel="noopener noreferrer"` to `_blank` links (original leaves `rel` empty; modern browsers imply noopener anyway) — invisible security hardening.
-7. *(Proposed, pending approval)* GIF→animated-WebP/video swap (R4).
+6. **Approved:** add `rel="noopener noreferrer"` to all `_blank` links (original leaves `rel` empty).
+7. **Approved:** GIF→animated-WebP/video swap (R4) — present comparison before shipping each.
+8. **Footer résumé link (1c):** original DOM has **no** footer résumé link; we deliberately add one pointing to the same header file `1g0gHmhit…` (`/view`, no `?usp=sharing`).
+9. **Résumé URL:** use bare `…/view` (drop live `?usp=sharing`).
+
+**Not deviations (final):** design-system card → live `iBOEPZ…Spinny-Design-System` (ANSWERS §7 table was wrong; live is correct). Card 4 "Other projects" → non-clickable, as on live.
 
 ## 7b. Remaining questions (do not block Phase 2; needed before/within Phase 3)
 1. **Two-cards-same-Figma discrepancy:** ANSWERS §7 says the design-system and "Other projects" cards both point to `E3jWyZ8…/Auction-new-listing-B2B`. **The live site shows neither** — design-system → `iBOEPZ…` and card 4 is **not linked**. I'll reproduce the **live** state (design-system→`iBOEPZ…`, card 4 unlinked) and list it as a deviation. Confirm, or give the intended targets.
