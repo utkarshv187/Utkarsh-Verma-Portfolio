@@ -70,7 +70,24 @@ Horizontal **project cards** with **‹ ›** arrows; the cards use a **sticky-s
 - Card metric tile colour theme changes per card (teal `#25C5B3` on dark; gold `#FFB601` on purple).
 
 ### S5 — Testimonials (purple section: `THINGS  THEY  SAY` / `REAL  WORK,  REAL  WORDS,  REAL WORTH`)
-- Auto-scrolling **marquee of LinkedIn recommendation cards** (white rounded cards: avatar, name, "· 1st", role line, LinkedIn logo, quote). One reads: *Prakash Srivastava — Global Product Leader | Ex-Spinny, Paytm…* → "Worked with Utkarsh for 4+ years [on] consumer website, app, Hub App… thinks from first principles… great grasp of user needs… A strong asset to any product or design team." **(Full text of every card still to be transcribed — see Open Questions Q3.)**
+**3 cards**, rendered as **baked LinkedIn-screenshot images** (not HTML text — confirmed: no matching text in the DOM), each wrapped in a link to `https://www.linkedin.com/in/uxuiuv/` (`target=_blank`). Source images (originals downloaded): `gpjodx2yMjShNO7g2ZqcCr2hkHk.jpg`, `kdSA7tSSazkTsQg4wDo6lUezPU.jpg`, `lCNpjsEvk6trKntPntPBcbFpy8Q.jpg` (each ~333×416 displayed). Order left→right = Ujjwal, Anurag, Prakash. Verbatim transcriptions (for `alt` text / accessibility — see Resolution R3):
+
+1. **Ujjwal Kumar · 1st** — *Head of Product Design @ Spinny | 4x TEDx | 250+ Stages* — "Ujjwal managed Utkarsh directly"
+   > I have had the pleasure of working with Utkarsh for the past four years, during which he has been deeply involved in multiple projects. It is fair to say that Utkarsh is one of the most hardworking and passionate individuals I have worked with. He consistently strives for excellence and pays close attention to the finer details.
+   >
+   > Utkarsh has a strong sense of design taste and is always keen on exploring fresh and novel directions when required. He takes complete ownership of his work and has been a reliable mentor to other members of the team. Well-versed across multiple design disciplines, he particularly enjoys diving deep into the user psyche and has led several impactful research initiatives for the products he owns.
+2. **Anurag Gaggar · 1st** — *SVP, Product at MakeMyTrip* — "Anurag managed Utkarsh directly"
+   > Utkarsh brings a great deal of positive energy to any team he works with. He is not afraid to challenge conventional design patterns with fresh ideas, and executes them with speed and discipline. His collaborative approach helps him build strong rapport across levels, and he balances innovation with respect for existing systems and context.
+3. **Prakash Srivastava · 1st** — *Global Product Leader | Ex-Spinny, Paytm, PayU | IIT Delhi* — "Prakash was senior to Utkarsh but didn't manage Utkarsh directly"
+   > Worked with Utkarsh for 4+ years across the consumer website, app, Hub App, and CRMs.
+   > He consistently showed strong leadership and clear ownership.
+   > Utkarsh thinks from first principles and brings solid critical thinking to design decisions.
+   > He has a great grasp of user needs and is deeply invested in UXR.
+   > Always pushes for depth and multiple iterations, not shortcuts.
+   > Balances quality with speed and executes reliably under pressure.
+   > A strong asset to any product or design team.
+
+Marquee/scroll behaviour (autoplay, direction, speed, pause-on-hover, wrap) **still to be confirmed by live observation in Phase 3** (headless frames were static) — see Remaining Questions.
 
 ### S6 — More About Me (dark section)
 - **"MORE  ABOUT  ME"** (gold 80px) / **"ENGINEER  TURNED  ARTIST"** (white 40px).
@@ -152,7 +169,7 @@ Horizontal **project cards** with **‹ ›** arrows; the cards use a **sticky-s
 | **Caveat Brush** | 400 | Google Fonts (gstatic) | ❌ **MISSING** |
 
 - Placeholder faces `Clash Display Placeholder` / `Satoshi Placeholder` (Arial metric-override) are Framer's CLS trick; we'll replicate with our own metric-adjusted fallback.
-- **Caveat Brush 400 is used** ("Thinking design / all the time" in the header) but is **not in `/fonts`**. It's an OFL Google font, so self-hosting is licit — but per your rule I'm flagging it rather than substituting. **See Open Questions Q1.**
+- **Caveat Brush** — used only at **weight 400, normal style**, only for the header script line "Thinking design / all the time". **Resolved (ANSWERS R1):** self-host it (OFL) — download, subset, convert to woff2, commit; **not** loaded from Google's CDN in the final build. Subset will cover full Basic-Latin + punctuation to be safe (the visible glyphs are `Thinkgdesalime` + space; the ampersand/caret/accented characters in "MORE ABOUT ME" are **Square Peg**, already in `/fonts`, and its subset will cover `& , ^` and the annotation glyphs).
 
 ---
 
@@ -193,7 +210,7 @@ Framer serves images via its CDN with `?width/height/scale-down-to` params. Per 
 
 | # | Element | Trigger | Properties | Loop/once | Notes / values known |
 |---|---|---|---|---|---|
-| A | **"Designing for" counter** | load, time-based `setInterval` (1s) | text | infinite | Counts **up** from a fixed start ≈ **2018-12-27** (format `Xy Xm Xd Xh Xm Xs`). Exact seed timestamp **TBD** (Q2). |
+| A | **"Designing for" counter** | load, time-based (1s tick) | text | infinite | `<div role="timer" aria-label="Forward timer">`, Clash Display 600, 16px, ls 0.08em, gold `#FFB705`, `text-align:center`, `line-height:1em`. **No-reflow** via `font-variant-numeric: tabular-nums` + `white-space: nowrap` + fixed container width (~188px). Format `Xy Xm Xd Xh Xm Xs`, **no zero-padding**. Algorithm = **calendar-aware borrow** (y/m/d/h/m/s from origin using getFullYear/Month/Date/Hours/Min/Sec, borrowing days-from-previous-month). **Origin = authorized deviation** → `new Date(2019,0,7,0,0,0,0)` viewer-local (see Authorized Deviations). |
 | B | **Hero role ticker** | timed loop | vertical `translateY` slot-machine (all 6 words stacked + duplicate for seamless wrap) | infinite | Each word **auto-fits** to container width (hence differing font sizes). Interval/easing **being measured** (~2–3s dwell). |
 | C | **Circular "LET'S WORK TOGETHER" badge** | load | continuous `rotate` | infinite | Constant angular velocity; period **TBD** from Motion props. |
 | D | **Header scroll-progress bar** | scroll-linked | `scaleX` 0→1 across page scroll | — | element `progress`; input 0→pageScroll, output scale 0→1. |
@@ -226,20 +243,65 @@ Framer's 3 breakpoints (from the served media queries):
 
 Document heights (1440 / 900 / 390): **18019 / 15353 / 8989 px**. Content order is identical across breakpoints; only layout/type/some copy differ. I'll map all three variants to **one responsive implementation** (not three copies).
 
+**Per-breakpoint copy differences found (must be reproduced exactly, including the original's typos):**
+| Desktop | Phone |
+|---|---|
+| CTA "SCROLLED THIS FAR? / LET'S WORK TOGETHER" | "CAME THIS FAR? / LET'S TALK" |
+| "Established the Spinny design system" | "Established Spinny consumer design system" |
+| "DESIGN BANDWIDTH SAVED" | "DESIGN TIME SAVED" |
+| "DEVELOPMENT TIME REDUCED" | "DEVELOP-MENT TIME REDUCED" (hyphenated) |
+| "CONSISTENCY ACHIEVED" | "CONSISTANCY ACHIVED" *(sic)* |
+| "PROJECTS DONE" | "PROJECT DONE" |
+| "Other small & big projects with big & BIG impact" | "Other small & big project with big & BIG impact" |
+| "REDUCED T.A.T OF CAR DELIVERIES" | "REDUCED TAT OF CAR DELIVERIES" |
+Exact per-breakpoint strings for **every** section will be re-verified section-by-section during Phase 3 (tablet variant strings still to be diffed).
+
 ---
 
-## 7. Open questions (need your answers before Phase 3; please confirm the audit for Phase 2)
+## 7. Resolutions (from ANSWERS.md) — supersedes the original open questions
 
-1. **Caveat Brush 400** is used ("Thinking design / all the time") but isn't in `/fonts`. It's an OFL Google font — **may I self-host it** (I'll subset it), or will you drop it into `/fonts`? (I will not substitute a lookalike.)
-2. **"Designing for" counter seed:** what is the exact **start timestamp** it counts up from? My estimate is ~2018-12-27 00:00 IST. An exact datetime (and timezone) makes it match to the second.
-3. **Testimonials:** the cards are real LinkedIn recommendation text. Do you want me to **transcribe every card verbatim from the live site** (I can), or will you give me the canonical text? Also: how many cards, and should the marquee pause on hover?
-4. **GIFs (~22 MB):** OK to let me prepare **animated-WebP / muted-video** swaps and show you a side-by-side before committing? If you'd rather keep exact GIFs, I'll self-host them as-is (page stays heavy).
-5. **Résumé button:** where should it link — a PDF you'll provide, or the current target? (Please share the résumé file / URL.)
-6. **Favicon + OG image:** reuse the current ones (I'll pull `Jf2rQV…`, apple-touch `aY7J5i…`, OG `sB6wpIS7…`) or supply new files?
-7. **Links:** confirm exact targets for **WhatsApp** (`+91 8869808079` → wa.me link?), **email** (`mailto:utkarshv187@gmail.com`), and **Connect/LinkedIn** URL.
-8. **Custom cursor:** confirm you want the hide-native-cursor + custom-cursor behavior reproduced (it can hurt accessibility/mobile; it's currently on).
-9. **Deploy target / domain:** where will this be hosted (affects font self-host paths, analytics)? Keep Framer analytics (`events.framer.com`) or drop it?
-10. **Custom domain / analytics keys**, if any, and whether to keep the "Made in Framer" badge removed (assumed yes).
+- **R1 — Caveat Brush:** self-host (OFL), 400 normal only, subset to woff2, no Google CDN. See §3.
+- **R2 — Counter:** origin `new Date(2019,0,7,0,0,0,0)` **viewer-local** (authorized deviation, below). Reproduce the original's algorithm/format/no-reflow/aria exactly (see §5 row A). Sanity: on 2026-09-03 → ~`7y 7m 27d` ✓ with calendar-borrow.
+- **R3 — Testimonials:** 3 image cards, transcribed verbatim in §S5; all link to `linkedin.com/in/uxuiuv/` `_blank`. Kept as images to match the original exactly; transcription used as `alt`. Marquee behaviour to confirm live (Phase 3).
+- **R4 — GIFs:** build animated-WebP **and** muted-video variants, present byte sizes + a side-by-side before committing anything; keep untouched originals in `/assets/original`. Acceptance = playback fidelity (fps, duration, loop, autoplay, no first-frame freeze), not size. Will report iOS Low-Power-Mode behaviour for the video route (`muted`+`playsinline`+`autoplay` mandatory).
+- **R5 — Résumé:** use `https://drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view` in **both** header and footer. Live site currently only exposes the header link (with `?usp=sharing`); the footer link `1Ks4l8…` you mentioned is **not present** in the live DOM (flagged in Remaining Questions).
+- **R6 — Favicon/OG:** reuse + self-host. Live has **no web manifest**; favicon set = `icon` `Jf2rQV…`, `icon` `jrFoxM…`, `apple-touch-icon` `aY7J5i…` (no `sizes`). OG/Twitter meta captured below. Canonical + OG/Twitter absolute URLs → new domain.
+- **R7 — Links:** confirmed table below. WhatsApp `http`→`https` (only authorized link change; query byte-identical). `#home` anchor + "GO TO TOP" present — behaviour to match live (Phase 3).
+- **R8 — Custom cursor:** reproduce; gate on `@media (hover:hover) and (pointer:fine)`; keep keyboard focus visible; reduced-motion behaviour proposed in the Phase 2 plan (drop follow-lag, keep 1:1 tracking) — awaiting your OK before implementing.
+- **R9 — Deploy:** Vercel + **Vercel Analytics** (replaces Framer analytics, which can't migrate). No other third-party scripts.
+- **R10 — Domain:** `uxuiuv.vercel.app`, stored as a single `SITE_URL` config value (location named in the Phase 2 plan).
+
+### Confirmed external links (from live DOM)
+| Where | Live target | target | rel |
+|---|---|---|---|
+| Logo + "GO TO TOP" | `/#home` | — | — |
+| Résumé (header) | `drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view?usp=sharing` | `_blank` | *(empty)* |
+| Card 1 — Auction PLP | `https://auction-plp-redesign-by-uv.vercel.app/` | `_blank` | *(empty)* |
+| Card 2 — Gamification | `https://gamification-by-uv.vercel.app/` | `_blank` | *(empty)* |
+| Card 3 — Design system | `https://www.figma.com/design/iBOEPZFnnHc4BZ3FtVsQZ7/Spinny-Design-System---Styles---Components?node-id=2-4101` | `_blank` | *(empty)* |
+| Card 4 — Other projects | **not a link** on the live site | — | — |
+| Testimonials ×3 | `https://www.linkedin.com/in/uxuiuv/` | `_blank` | *(empty)* |
+| Footer "Made in Framer" | `https://www.framer.com/` | — | `noopener` |
+| WhatsApp / Email / Connect | per ANSWERS §7 table (WhatsApp → `https://`) | `_blank` | *(to set)* |
+
+### Meta (to carry over, canonical/OG/twitter → new domain)
+`title` "Utkarsh Verma" · `description` / `og:description` / `twitter:description` = "Let's work together. Call/WhatsApp at +918869808079" · `og:title`/`twitter:title` "Utkarsh Verma" · `og:type` website · `twitter:card` summary_large_image · `og:image`/`twitter:image` = self-hosted `sB6wpIS7XS4U6nhva4i10xBcI.png` · `viewport` `width=device-width` · no `theme-color`, no manifest.
+
+## 7a. Authorized deviations from the live site (will appear in the Phase 4 deviations report)
+1. **Counter origin** `2019-01-07` viewer-local → reads ~10 days lower than Framer; **do not "fix"** (ANSWERS §2). Bundle origin, if seen, reported as info only.
+2. **WhatsApp link** `http`→`https` (ANSWERS §7), query byte-identical.
+3. **Analytics**: Framer analytics → Vercel Analytics (can't migrate).
+4. **"Made in Framer" badge** removed.
+5. **Hotlinked Framer assets** → self-hosted, AVIF/WebP re-encoded from originals.
+6. *(Proposed, pending approval)* add `rel="noopener noreferrer"` to `_blank` links (original leaves `rel` empty; modern browsers imply noopener anyway) — invisible security hardening.
+7. *(Proposed, pending approval)* GIF→animated-WebP/video swap (R4).
+
+## 7b. Remaining questions (do not block Phase 2; needed before/within Phase 3)
+1. **Two-cards-same-Figma discrepancy:** ANSWERS §7 says the design-system and "Other projects" cards both point to `E3jWyZ8…/Auction-new-listing-B2B`. **The live site shows neither** — design-system → `iBOEPZ…` and card 4 is **not linked**. I'll reproduce the **live** state (design-system→`iBOEPZ…`, card 4 unlinked) and list it as a deviation. Confirm, or give the intended targets.
+2. **Résumé footer link:** the `1Ks4l8…` file isn't in the live DOM. Confirm the footer should link the same `1g0gHmhit…` file (I'll do that per R5).
+3. **`rel` on `_blank` links:** OK to add `rel="noopener noreferrer"` (7a-6), or reproduce the empty `rel` exactly?
+4. **Résumé URL form:** live uses `?usp=sharing`; you gave the bare `/view`. I'll use `/view` unless you want the suffix preserved.
+5. **Testimonial marquee behaviour** (autoplay/direction/speed/pause-on-hover/wrap): I'll capture the live behaviour precisely in Phase 3 and match it; will flag if ambiguous.
 
 ---
 
