@@ -1,0 +1,140 @@
+{
+  "product": {
+    "tag": "PRODUCT",
+    "x": 16,
+    "y": 179,
+    "w": 358,
+    "h": 81,
+    "fs": "74px",
+    "opacity": "1",
+    "color": "rgb(238, 238, 255)",
+    "z": "auto"
+  },
+  "roles": [
+    {
+      "tag": "DESIGNER",
+      "x": 18,
+      "y": 290,
+      "w": 354,
+      "h": 79,
+      "fs": "72px",
+      "opacity": "1",
+      "color": "rgb(238, 238, 255)",
+      "z": "auto"
+    },
+    {
+      "tag": "STRATEGIST",
+      "x": 44,
+      "y": 401,
+      "w": 301,
+      "h": 53,
+      "fs": "48px",
+      "opacity": "1",
+      "color": "rgb(238, 238, 255)",
+      "z": "auto"
+    },
+    {
+      "tag": "RESEARCHER",
+      "x": 65,
+      "y": 478,
+      "w": 260,
+      "h": 44,
+      "fs": "40px",
+      "opacity": "1",
+      "color": "rgb(238, 238, 255)",
+      "z": "auto"
+    },
+    {
+      "tag": "STORYTELLER",
+      "x": 87,
+      "y": 546,
+      "w": 216,
+      "h": 35,
+      "fs": "32px",
+      "opacity": "1",
+      "color": "rgb(238, 238, 255)",
+      "z": "auto"
+    },
+    {
+      "tag": "COPY WRITER",
+      "x": 106,
+      "y": 605,
+      "w": 178,
+      "h": 31,
+      "fs": "28px",
+      "opacity": "1",
+      "color": "rgb(238, 238, 255)",
+      "z": "auto"
+    },
+    {
+      "tag": "ANIMATOR",
+      "x": 126,
+      "y": 660,
+      "w": 138,
+      "h": 31,
+      "fs": "28px",
+      "opacity": "1",
+      "color": "rgb(238, 238, 255)",
+      "z": "auto"
+    }
+  ],
+  "portrait": {
+    "tag": "portrait",
+    "x": 42,
+    "y": 119,
+    "w": 306,
+    "h": 396,
+    "fs": "12px",
+    "opacity": "1",
+    "color": "rgb(0, 0, 0)",
+    "z": "auto"
+  },
+  "graffiti": {
+    "tag": "graffiti",
+    "x": 80,
+    "y": 361,
+    "w": 231,
+    "h": 140,
+    "fs": "12px",
+    "opacity": "1",
+    "color": "rgb(0, 0, 0)",
+    "z": "auto"
+  },
+  "badge": null,
+  "yellows": [
+    {
+      "w": 493,
+      "h": 347,
+      "x": -51,
+      "y": 136,
+      "bi": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000"
+    },
+    {
+      "w": 360,
+      "h": 935,
+      "x": 15,
+      "y": 759,
+      "bi": "none"
+    },
+    {
+      "w": 93,
+      "h": 40,
+      "x": 270,
+      "y": 27,
+      "bi": "radial-gradient(50% 100%, rgb(255, 182, 1) 0%, rgba(255, 182"
+    },
+    {
+      "w": 93,
+      "h": 40,
+      "x": 270,
+      "y": 27,
+      "bi": "radial-gradient(49.266% 119%, rgb(255, 182, 1) 0%, rgba(255,"
+    }
+  ],
+  "heroSection": {
+    "name": "Website Wrapper",
+    "radius": "0px",
+    "bg": "rgb(12, 12, 31)",
+    "h": 8858
+  }
+}

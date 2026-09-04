@@ -129,6 +129,92 @@
 }
 .hero__graffiti img { width: 100%; height: auto; }
 
+/* Mobile-only elements hidden on desktop */
+.hero__roles-m { display: none; }
+.hero__accent { display: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .badge__svg { animation: none; }
+}
+
+/* ================= Phone hero (<= 809.98px) ================= */
+@media (max-width: 809.98px) {
+  .hero {
+    height: auto;
+    padding: 0 16px 28px;
+    background: var(--bg-dark-3);
+  }
+  .hero__aurora {
+    background:
+      radial-gradient(42% 16% at 60% 12%, rgba(180, 110, 255, 0.72) 0%, rgba(120, 55, 210, 0.2) 55%, rgba(12, 12, 31, 0) 80%),
+      radial-gradient(64% 22% at 22% 9%, rgba(150, 60, 255, 0.5) 0%, rgba(12, 12, 31, 0) 72%),
+      var(--bg-dark-3);
+  }
+  /* portrait fills the hero behind the text */
+  /* yellow diagonal accent behind STRATEGIST */
+  .hero__accent {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    left: -20px;
+    right: -20px;
+    top: 388px;
+    height: 96px;
+    background: repeating-linear-gradient(118deg, var(--gold) 0 16px, transparent 16px 74px);
+    -webkit-mask-image: linear-gradient(90deg, #000 0 24%, transparent 32% 66%, #000 76% 100%);
+    mask-image: linear-gradient(90deg, #000 0 24%, transparent 32% 66%, #000 76% 100%);
+  }
+  .hero__portrait {
+    left: 0;
+    top: 88px;
+    width: 100%;
+    height: 720px;
+    transform: none;
+    z-index: 1;
+  }
+  .hero__text { z-index: 3; }
+  .hero__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .hero__face { display: none; }
+  .hero__graffiti { display: none; } /* not shown in the phone hero viewport */
+
+  /* text over the portrait */
+  .hero__text {
+    position: relative;
+    top: auto; left: auto; width: 100%;
+    z-index: 2;
+    padding-top: 160px;
+  }
+  .hero__product {
+    font-size: 19vw;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0;
+  }
+  .badge { display: none; } /* no rotating badge on phone */
+  .role { display: none; }  /* desktop cycler hidden */
+  .hero__roles-m {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, rgba(0, 0, 0, 0.2) 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 45%, rgba(0, 0, 0, 0.2) 100%);
+  }
+  .hero__roles-m li {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.5;
+    background: linear-gradient(0deg, #d6d6ff 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero__roles-m li:nth-child(1) { font-size: 18.5vw; text-align: left; }  /* DESIGNER (aligns under PRODUCT) */
+  .hero__roles-m li:nth-child(2) { font-size: 12.3vw; }  /* STRATEGIST */
+  .hero__roles-m li:nth-child(3) { font-size: 10.3vw; }  /* RESEARCHER */
+  .hero__roles-m li:nth-child(4) { font-size: 8.2vw; }   /* STORYTELLER */
+  .hero__roles-m li:nth-child(5) { font-size: 7.2vw; }   /* COPY WRITER */
+  .hero__roles-m li:nth-child(6) { font-size: 7.2vw; }   /* ANIMATOR */
 }

@@ -1,11 +1,13 @@
 import './hero.css';
-import { RoleTicker } from './RoleTicker';
+import { RoleTicker, ROLES } from './RoleTicker';
 import { RotatingBadge } from './RotatingBadge';
 
 export function Hero() {
   return (
     <section className="hero" id="home">
       <div className="hero__aurora" aria-hidden="true" />
+      {/* Yellow diagonal accent (phone only) */}
+      <div className="hero__accent" aria-hidden="true" />
 
       {/* Foreground media */}
       <picture className="hero__portrait">
@@ -25,6 +27,12 @@ export function Hero() {
           PR<span className="hero__o">O<RotatingBadge /></span>DUCT
         </h1>
         <RoleTicker />
+        {/* Mobile: full role list, decreasing size, fading downward */}
+        <ul className="hero__roles-m" aria-hidden="true">
+          {ROLES.map((r) => (
+            <li key={r}>{r}</li>
+          ))}
+        </ul>
       </div>
 
       {/* graffiti wordmark (front, over portrait chest) */}
