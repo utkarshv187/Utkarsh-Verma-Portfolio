@@ -91,16 +91,31 @@
   white-space: nowrap;
   position: relative;
   z-index: 1; /* behind portrait */
+  transform-origin: 0 0; /* shared skew origin with .hero__o and role */
 }
+.hero__o-spacer { visibility: hidden; } /* reserves the O's width in the word; real O is the overlay below */
+
+/* The O is a separate layer IN FRONT of the portrait, positioned over the spacer,
+   skewing around the same origin as PRODUCT so it tracks the word on scroll. */
 .hero__o {
-  position: relative;
-  display: inline-block;
-  /* keep the gradient text fill on the O even though it's a link */
+  position: absolute;
+  left: calc(366 * var(--u));
+  top: 0;
+  width: calc(210 * var(--u));
+  height: calc(282 * var(--u));
+  z-index: 5; /* above the portrait */
+  font-size: calc(282 * var(--u));
+  transform-origin: calc(-366 * var(--u)) 0; /* = .hero__text top-left */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* gradient text fill on the O letter */
   background: linear-gradient(0deg, #d6d6ff 0%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+  line-height: 1;
 }
 /* ---------------------------------------------------------------------------
    O children are centred on the O's COUNTER and sized in em (relative to the O's
@@ -109,7 +124,7 @@
    --------------------------------------------------------------------------- */
 .hero__o {
   --o-cx: 0em;
-  --o-cy: -0.055em;
+  --o-cy: 0em; /* O letter is flex-centred in its box, so counter centre = box centre */
 }
 .hero__o > .hero__o-fill,
 .hero__o > .badge,
@@ -187,8 +202,8 @@
 
 /* Rotating badge over the O (ring text) */
 .badge {
-  width: 0.72em;
-  height: 0.72em;
+  width: 0.62em;
+  height: 0.62em;
   z-index: 3;
   pointer-events: none;
 }
@@ -208,8 +223,12 @@
 }
 @keyframes badge-spin { to { transform: rotate(360deg); } }
 
-/* role + badge group shifted down 64px (directed), moving together */
-.hero__role-shift { transform: translateY(64px); }
+/* role group: in front of the portrait (z4), skews around the shared origin; +64px via motion */
+.hero__role-shift {
+  position: relative;
+  z-index: 4;
+  transform-origin: 0 calc(-354 * var(--u)); /* = .hero__text top-left */
+}
 
 /* Role ticker */
 .role {
@@ -394,6 +413,9 @@
     margin: 0;
   }
   .badge { display: none; } /* no rotating badge on phone */
+  .hero__o { display: none; } /* overlay off; show the inline O instead */
+  .hero__o-spacer { visibility: visible; } /* inline O in PRODUCT on phone */
+  .hero__role-shift { transform: none !important; z-index: auto; } /* no skew/shift on phone */
   .role { display: none; }  /* desktop cycler hidden */
   .hero__roles-m {
     display: block;

@@ -31,36 +31,46 @@ export function Hero() {
         <img src="/images/face.webp" alt="" width={300} height={642} />
       </picture>
 
-      {/* Wordmark + role ticker — skews with scroll */}
-      <motion.div className="hero__text" style={{ skewX, x }}>
-        <h1 className="hero__product">
-          PR
-          <a className="hero__o" href={LINKS.whatsapp} {...EXTERNAL} aria-label="Chat on WhatsApp">
-            O
-            <span className="hero__o-fill" aria-hidden="true" />
-            <RotatingBadge />
-            <span className="hero__o-wa" aria-hidden="true">
-              <span className="hero__ripple" />
-              <span className="hero__ripple" />
-              <span className="hero__ripple" />
-              <span className="hero__ripple" />
-              <span className="hero__wa">
-                <WhatsAppIcon size={54} />
-              </span>
+      {/* Wordmark + role ticker. Each piece skews with scroll around the SAME origin
+          (.hero__text top-left) so they shear as one, but layer independently vs the portrait:
+          PR/DUCT behind (z1), the O and role in front (z5/z4). */}
+      <div className="hero__text">
+        <motion.h1 className="hero__product" style={{ skewX, x }}>
+          PR<span className="hero__o-spacer" aria-hidden="true">O</span>DUCT
+        </motion.h1>
+
+        <motion.a
+          className="hero__o"
+          href={LINKS.whatsapp}
+          {...EXTERNAL}
+          aria-label="Chat on WhatsApp"
+          style={{ skewX, x }}
+        >
+          O
+          <span className="hero__o-fill" aria-hidden="true" />
+          <RotatingBadge />
+          <span className="hero__o-wa" aria-hidden="true">
+            <span className="hero__ripple" />
+            <span className="hero__ripple" />
+            <span className="hero__ripple" />
+            <span className="hero__ripple" />
+            <span className="hero__wa">
+              <WhatsAppIcon size={54} />
             </span>
-          </a>
-          DUCT
-        </h1>
-        <div className="hero__role-shift">
+          </span>
+        </motion.a>
+
+        <motion.div className="hero__role-shift" style={{ skewX, x, y: 64 }}>
           <RoleTicker />
-        </div>
+        </motion.div>
+
         {/* Mobile: full role list, decreasing size, fading downward */}
         <ul className="hero__roles-m" aria-hidden="true">
           {ROLES.map((r) => (
             <li key={r}>{r}</li>
           ))}
         </ul>
-      </motion.div>
+      </div>
 
       {/* bottom ramp: fades the portrait's lower edge + the background into black */}
       <div className="hero__fade" aria-hidden="true" />
