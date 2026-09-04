@@ -5,9 +5,12 @@ export function RotatingBadge() {
   return (
     <span className="badge" aria-hidden="true">
       <svg className="badge__svg" viewBox="0 0 100 100" overflow="visible">
+        {/* Clean circle r=50 centred at (50,50) — geometrically identical to live's ring
+            (same radius/circumference) but without live's redundant zero-length segments,
+            so every glyph rests evenly on one continuous path. */}
         <path
           id="badge-curve"
-          d="M 0 50 L 0 50 A 1 1 0 0 1 100 50 L 100 50 L 100 50 A 1 1 0 0 1 0 50 L 0 50"
+          d="M 0 50 A 50 50 0 1 1 100 50 A 50 50 0 1 1 0 50"
           fill="transparent"
         />
         <text>

@@ -39,6 +39,8 @@ export function Hero() {
           PR<span className="hero__o-spacer" aria-hidden="true">O</span>DUCT
         </motion.h1>
 
+        {/* The O letter + rotating ring sit BEHIND the portrait (like live). The anchor's
+            exposed edges are the hover/click target for the WhatsApp link. */}
         <motion.a
           className="hero__o"
           href={LINKS.whatsapp}
@@ -47,18 +49,8 @@ export function Hero() {
           style={{ skewX, x }}
         >
           O
-          <span className="hero__o-fill" aria-hidden="true" />
           <span className="hero__o-dot" aria-hidden="true" />
           <RotatingBadge />
-          <span className="hero__o-wa" aria-hidden="true">
-            <span className="hero__ripple" />
-            <span className="hero__ripple" />
-            <span className="hero__ripple" />
-            <span className="hero__ripple" />
-            <span className="hero__wa">
-              <WhatsAppIcon size={54} />
-            </span>
-          </span>
         </motion.a>
 
         <motion.div className="hero__role-shift" style={{ skewX, x, y: 64 }}>
@@ -71,6 +63,20 @@ export function Hero() {
             <li key={r}>{r}</li>
           ))}
         </ul>
+
+        {/* WhatsApp icon + ripples — a separate layer IN FRONT of the portrait (like live),
+            centred on the O counter, revealed on O hover. Same box/skew as .hero__o so it tracks. */}
+        <motion.div className="hero__wa-layer" aria-hidden="true" style={{ skewX, x }}>
+          <span className="hero__o-wa">
+            <span className="hero__ripple" />
+            <span className="hero__ripple" />
+            <span className="hero__ripple" />
+            <span className="hero__ripple" />
+            <span className="hero__wa">
+              <WhatsAppIcon size={54} />
+            </span>
+          </span>
+        </motion.div>
       </div>
 
       {/* bottom ramp: fades the portrait's lower edge + the background into black */}

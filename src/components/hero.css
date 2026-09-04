@@ -95,7 +95,7 @@
 }
 .hero__o-spacer { visibility: hidden; } /* reserves the O's width in the word; real O is the overlay below */
 
-/* The O is a separate layer IN FRONT of the portrait, positioned over the spacer,
+/* The O letter + ring sit BEHIND the portrait (z1, like live). Positioned over the spacer,
    skewing around the same origin as PRODUCT so it tracks the word on scroll. */
 .hero__o {
   position: absolute;
@@ -103,7 +103,7 @@
   top: 0;
   width: calc(210 * var(--u));
   height: calc(282 * var(--u));
-  z-index: 5; /* above the portrait */
+  z-index: 1; /* BEHIND the portrait (z2) */
   font-family: var(--font-display); /* MUST match PRODUCT (Clash Display 700), not inherit Satoshi */
   font-weight: 700;
   font-size: calc(282 * var(--u));
@@ -119,38 +119,43 @@
   -webkit-text-fill-color: transparent;
   line-height: 1;
 }
+
+/* WhatsApp + ripple layer: IN FRONT of the portrait (z5, like live), same box + skew as .hero__o
+   so it stays centred on the O counter. Revealed on O hover; the counter itself shows the portrait. */
+.hero__wa-layer {
+  position: absolute;
+  left: calc(366 * var(--u));
+  top: 0;
+  width: calc(210 * var(--u));
+  height: calc(282 * var(--u));
+  z-index: 5; /* IN FRONT of the portrait (z2) */
+  font-size: calc(282 * var(--u));
+  transform-origin: calc(-366 * var(--u)) 0; /* = .hero__text top-left, matches .hero__o */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
 /* ---------------------------------------------------------------------------
-   O children are centred on the O's COUNTER and sized in em (relative to the O's
-   font-size) so they scale with the O and stay concentric at every width/DPR.
-   --o-cx/--o-cy tune the counter centre vs the text box (glyph metrics), in em.
+   O children (ring, dot) and the whatsapp group are centred on the O's COUNTER and
+   sized in em (relative to the O font-size) so they scale and stay concentric at every
+   width/DPR. --o-cx/--o-cy tune the counter centre vs the text box (glyph metrics), in em.
    --------------------------------------------------------------------------- */
-.hero__o {
-  /* Counter centre sits slightly above the O box centre (Clash Display metrics, measured);
+.hero__o,
+.hero__wa-layer {
+  /* Counter centre sits slightly above the box centre (Clash Display metrics, measured);
      matches live's ring offset of -0.016em. Keeps ring/whatsapp/dot concentric at every width. */
   --o-cx: 0em;
   --o-cy: -0.0165em;
 }
-.hero__o > .hero__o-fill,
 .hero__o > .badge,
 .hero__o > .hero__o-dot,
-.hero__o > .hero__o-wa {
+.hero__wa-layer > .hero__o-wa {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(calc(-50% + var(--o-cx)), calc(-50% + var(--o-cy)));
-}
-
-/* counter fill: O reads as a solid shape on hover */
-.hero__o-fill {
-  /* matches the Clash Display O counter (~97x92 at 282 => 0.345em x 0.33em), rounded-square */
-  width: 0.35em;
-  height: 0.335em;
-  border-radius: 34%;
-  background: var(--display);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  z-index: 1;
-  pointer-events: none;
 }
 
 /* WhatsApp reveal on hover */
@@ -192,14 +197,15 @@
   opacity: 0;
   will-change: width, height, opacity;
 }
+/* Hover the O (its exposed edges — the rest is under the portrait) reveals the front
+   whatsapp layer. Sibling selector because .hero__wa-layer follows .hero__o in the DOM. */
 @media (hover: hover) and (pointer: fine) {
-  .hero__o:hover .hero__o-fill { opacity: 1; }
-  .hero__o:hover .hero__o-wa { opacity: 1; }
-  .hero__o:hover .hero__wa { transform: scale(1); }
-  .hero__o:hover .hero__ripple { animation: o-ripple 1.6s ease-out infinite; }
-  .hero__o:hover .hero__ripple:nth-child(2) { animation-delay: 0.4s; }
-  .hero__o:hover .hero__ripple:nth-child(3) { animation-delay: 0.8s; }
-  .hero__o:hover .hero__ripple:nth-child(4) { animation-delay: 1.2s; }
+  .hero__o:hover ~ .hero__wa-layer .hero__o-wa { opacity: 1; }
+  .hero__o:hover ~ .hero__wa-layer .hero__wa { transform: scale(1); }
+  .hero__o:hover ~ .hero__wa-layer .hero__ripple { animation: o-ripple 1.6s ease-out infinite; }
+  .hero__o:hover ~ .hero__wa-layer .hero__ripple:nth-child(2) { animation-delay: 0.4s; }
+  .hero__o:hover ~ .hero__wa-layer .hero__ripple:nth-child(3) { animation-delay: 0.8s; }
+  .hero__o:hover ~ .hero__wa-layer .hero__ripple:nth-child(4) { animation-delay: 1.2s; }
 }
 @keyframes o-ripple {
   0% { width: 0.16em; height: 0.16em; opacity: 0.9; }
@@ -374,7 +380,7 @@
 @media (prefers-reduced-motion: reduce) {
   .badge__svg { animation: none; }
   .hero__aurora::before, .hero__aurora::after { animation: none; }
-  .hero__o:hover .hero__ripple { animation: none; }
+  .hero__o:hover ~ .hero__wa-layer .hero__ripple { animation: none; }
   .hero__graffiti-img, .hero__thatsme { transition: none; }
 }
 
@@ -433,6 +439,7 @@
   }
   .badge { display: none; } /* no rotating badge on phone */
   .hero__o { display: none; } /* overlay off; show the inline O instead */
+  .hero__wa-layer { display: none; } /* no whatsapp/ripple on phone (matches live) */
   .hero__o-spacer { visibility: visible; } /* inline O in PRODUCT on phone */
   .hero__role-shift { transform: none !important; z-index: auto; } /* no skew/shift on phone */
   .role { display: none; }  /* desktop cycler hidden */
