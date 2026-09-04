@@ -37,8 +37,10 @@ export function Hero() {
           PR
           <a className="hero__o" href={LINKS.whatsapp} {...EXTERNAL} aria-label="Chat on WhatsApp">
             O
+            <span className="hero__o-fill" aria-hidden="true" />
             <RotatingBadge />
             <span className="hero__o-wa" aria-hidden="true">
+              <span className="hero__ripple" />
               <span className="hero__ripple" />
               <span className="hero__ripple" />
               <span className="hero__ripple" />

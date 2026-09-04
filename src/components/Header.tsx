@@ -33,7 +33,7 @@ export function Header() {
             <div className="contact__reveal" aria-hidden="true">
               <a href={LINKS.email} className="contact__item contact__item--mail" tabIndex={-1}>
                 <MailIcon size={20} />
-                <span>utkarshv187@gmail.com</span>
+                <span className="contact__email">utkarshv187@gmail.com</span>
               </a>
               <span className="contact__divider" />
               <a href={LINKS.whatsapp} {...EXTERNAL} className="contact__item contact__item--wa" tabIndex={-1}>

@@ -99,7 +99,8 @@
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 24px; color: var(--white);
 }
-.contact__phone { text-decoration: underline; text-decoration-color: var(--link-phone); text-underline-offset: 4px; }
+.contact__phone { text-decoration: underline; text-decoration-color: var(--link-phone); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.contact__email { text-decoration: underline; text-decoration-color: var(--link-email); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .contact__divider { width: 1px; height: 22px; background: rgba(226, 226, 240, 0.22); }
 
 /* ---- Résumé button (orbiting gold border-beam + hover) ---- */
