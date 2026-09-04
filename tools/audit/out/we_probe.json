@@ -1,0 +1,82 @@
+{
+  "section": {
+    "name": "Solid Part",
+    "h": 1242,
+    "bg": "rgb(255, 183, 5)",
+    "radius": "0px",
+    "y": 1067
+  },
+  "heading": {
+    "text": "WORK  EXPERIENCE",
+    "fontSize": "80px",
+    "color": "rgb(14, 12, 32)"
+  },
+  "rows": [
+    {
+      "role": "Senior Product Designer",
+      "found": true,
+      "y": 1523,
+      "fontSize": "28px",
+      "color": "rgb(12, 12, 31)",
+      "x": 520
+    },
+    {
+      "role": "UX UI Designer",
+      "found": true,
+      "y": 1660,
+      "fontSize": "28px",
+      "color": "rgb(12, 12, 31)",
+      "x": 520
+    },
+    {
+      "role": "UI Design Intern",
+      "found": true,
+      "y": 1828,
+      "fontSize": "28px",
+      "color": "rgb(12, 12, 31)",
+      "x": 520
+    }
+  ],
+  "groups": [
+    {
+      "label": "CURRENTLY",
+      "y": 1635,
+      "fontSize": "18px",
+      "ls": "0.72px"
+    },
+    {
+      "label": "A  WHILE  BACK",
+      "y": 2191,
+      "fontSize": "18px",
+      "ls": "0.72px"
+    },
+    {
+      "label": "JOINED  AS  THE  FOUNDING  DESIGNER",
+      "y": 2547,
+      "fontSize": "18px",
+      "ls": "0.72px"
+    }
+  ],
+  "italics": [
+    "",
+    "Hiring key design talent",
+    "weekly design sprints",
+    "data-driven decisions",
+    "2x increase in NPS",
+    "13% more user retention, 9% growth in revenue & 40% drop in auctions missed",
+    "30% increase in revenue",
+    "in just 11 days",
+    "expenses drop by 50%",
+    "Designed 20+ A/B tests in 6 months",
+    "improve conversion",
+    "by almost 2x",
+    "11% increase in online sales",
+    "1+ million car listings annually",
+    "increased engagement by 13%",
+    "design systems & guidelines",
+    "",
+    "Designed consumer web & mobile app from 0 to 1 & 1 to 10",
+    "",
+    "increased the NPS by 4x, human errors to almost 0"
+  ]
+}

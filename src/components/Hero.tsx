@@ -50,24 +50,22 @@ export function Hero() {
         </ul>
       </div>
 
-      {/* graffiti wordmark (front, over portrait chest) — hover reveals the info card */}
+      {/* bottom ramp: fades the portrait's lower edge + the background into black */}
+      <div className="hero__fade" aria-hidden="true" />
+
+      {/* graffiti "UTKARSH VERMA" badge — top-most. On hover it lifts 80px, revealing the card below it. */}
       <div className="hero__graffiti">
-        <picture>
+        <div className="hero__graffiti-card" aria-hidden="true">
+          <p className="hero__gcard-title">ENGINEER TURNED ARTIST</p>
+          <p className="hero__gcard-body">
+            7+ years of shaping ideas into sleek digital realities with intent, speed, functionality, business &amp; visual clarity
+          </p>
+        </div>
+        <picture className="hero__graffiti-img">
           <source srcSet="/images/graffiti.avif" type="image/avif" />
           <img src="/images/graffiti.webp" alt="Utkarsh Verma" width={700} height={424} />
         </picture>
         <span className="hero__thatsme" aria-hidden="true">That&rsquo;s me</span>
-      </div>
-
-      {/* bottom ramp: fades the portrait's lower edge + the background into black */}
-      <div className="hero__fade" aria-hidden="true" />
-
-      {/* graffiti-hover info card (bottom of hero) */}
-      <div className="hero__tooltip" aria-hidden="true">
-        <p className="hero__tooltip-title">ENGINEER TURNED ARTIST</p>
-        <p className="hero__tooltip-body">
-          7+ years of shaping ideas into sleek digital realities with intent, speed, functionality, business &amp; visual clarity
-        </p>
       </div>
     </section>
   );

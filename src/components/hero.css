@@ -10,22 +10,51 @@
 }
 
 /* Purple aurora background */
+/* Living aurora: a base wash + two independently-drifting blob layers (GPU transforms). */
 .hero__aurora {
   position: absolute;
-  inset: -12%;
+  inset: 0;
   z-index: 0;
+  overflow: hidden;
   background:
-    radial-gradient(38% 34% at 55% 20%, rgba(180, 110, 255, 0.75) 0%, rgba(140, 70, 235, 0.3) 45%, rgba(12, 12, 31, 0) 72%),
-    radial-gradient(44% 46% at 14% 30%, rgba(150, 60, 255, 0.8) 0%, rgba(110, 45, 210, 0.25) 44%, rgba(12, 12, 31, 0) 70%),
-    radial-gradient(50% 50% at 78% 22%, rgba(160, 80, 255, 0.72) 0%, rgba(110, 50, 195, 0.22) 46%, rgba(12, 12, 31, 0) 74%);
-  background-color: var(--bg-dark-3);
-  animation: aurora-drift 18s ease-in-out infinite alternate;
-  will-change: transform;
+    radial-gradient(46% 40% at 52% 16%, rgba(150, 70, 240, 0.5) 0%, rgba(90, 40, 180, 0.18) 46%, rgba(12, 12, 31, 0) 74%),
+    var(--bg-dark-3);
 }
-@keyframes aurora-drift {
-  0% { transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
-  50% { transform: translate3d(2%, 1.5%, 0) scale(1.08); }
-  100% { transform: translate3d(-1%, 2%, 0) scale(1.04); }
+.hero__aurora::before,
+.hero__aurora::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  filter: blur(10px);
+}
+/* upper-left violet blob */
+.hero__aurora::before {
+  width: 70%;
+  height: 80%;
+  left: -12%;
+  top: -22%;
+  background: radial-gradient(closest-side, rgba(150, 60, 255, 0.7) 0%, rgba(120, 50, 220, 0.25) 42%, rgba(12, 12, 31, 0) 72%);
+  animation: aurora-a 19s ease-in-out infinite alternate;
+}
+/* upper-right magenta/violet blob */
+.hero__aurora::after {
+  width: 66%;
+  height: 74%;
+  right: -14%;
+  top: -18%;
+  background: radial-gradient(closest-side, rgba(175, 95, 255, 0.65) 0%, rgba(120, 55, 210, 0.22) 44%, rgba(12, 12, 31, 0) 74%);
+  animation: aurora-b 24s ease-in-out infinite alternate;
+}
+@keyframes aurora-a {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+  50% { transform: translate3d(14%, 8%, 0) scale(1.18); opacity: 1; }
+  100% { transform: translate3d(6%, -6%, 0) scale(1.05); opacity: 0.85; }
+}
+@keyframes aurora-b {
+  0% { transform: translate3d(0, 0, 0) scale(1.05); opacity: 0.8; }
+  50% { transform: translate3d(-12%, 10%, 0) scale(0.92); opacity: 1; }
+  100% { transform: translate3d(-4%, 4%, 0) scale(1.12); opacity: 0.88; }
 }
 /* bottom ramp to black (fades portrait bottom + bg) */
 .hero__fade {
@@ -40,12 +69,13 @@
 }
 
 /* Wordmark + role ticker */
+/* .hero__text is not a stacking context, so PRODUCT (z1, behind portrait) and the
+   role ticker (z4, above portrait) can layer independently. */
 .hero__text {
   position: absolute;
   top: calc(196 * var(--u));
   left: calc(44 * var(--u));
   width: calc(1353 * var(--u));
-  z-index: 1;
 }
 .hero__product,
 .role__word {
@@ -62,6 +92,8 @@
   margin: 0;
   font-size: calc(282 * var(--u));
   white-space: nowrap;
+  position: relative;
+  z-index: 1; /* behind portrait */
 }
 .hero__o {
   position: relative;
@@ -76,7 +108,7 @@
 /* WhatsApp reveal on hover (over the O counter) */
 .hero__o-wa {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   width: calc(150 * var(--u));
   height: calc(150 * var(--u));
@@ -107,29 +139,30 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(60 * var(--u));
-  height: calc(60 * var(--u));
-  margin: calc(-30 * var(--u)) 0 0 calc(-30 * var(--u));
+  width: calc(72 * var(--u));
+  height: calc(72 * var(--u));
+  margin: calc(-36 * var(--u)) 0 0 calc(-36 * var(--u));
   border-radius: 50%;
-  border: 2px solid rgba(37, 211, 102, 0.7);
+  border: calc(3 * var(--u)) dashed rgba(37, 211, 102, 0.85);
   opacity: 0;
+  will-change: transform, opacity;
 }
 @media (hover: hover) and (pointer: fine) {
   .hero__o:hover .hero__o-wa { opacity: 1; }
   .hero__o:hover .hero__wa { transform: scale(1); }
-  .hero__o:hover .hero__ripple { animation: o-ripple 1.8s ease-out infinite; }
-  .hero__o:hover .hero__ripple:nth-child(2) { animation-delay: 0.6s; }
-  .hero__o:hover .hero__ripple:nth-child(3) { animation-delay: 1.2s; }
+  .hero__o:hover .hero__ripple { animation: o-ripple 1.1s ease-out infinite; }
+  .hero__o:hover .hero__ripple:nth-child(2) { animation-delay: 0.37s; }
+  .hero__o:hover .hero__ripple:nth-child(3) { animation-delay: 0.74s; }
 }
 @keyframes o-ripple {
-  0% { transform: scale(0.6); opacity: 0.75; }
-  100% { transform: scale(2.6); opacity: 0; }
+  0% { transform: scale(0.45); opacity: 0.85; }
+  100% { transform: scale(3.8); opacity: 0; }
 }
 
 /* Rotating badge over the O */
 .badge {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   width: calc(224 * var(--u));
   height: calc(224 * var(--u));
@@ -157,6 +190,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  z-index: 4; /* above the portrait */
 }
 .role__stack { display: flex; flex-direction: column; will-change: transform; }
 .role__word {
@@ -198,19 +232,27 @@
 }
 .hero__face img { width: 100%; height: auto; }
 
-/* Graffiti wordmark */
+/* Graffiti "UTKARSH VERMA" badge — top-most; lifts 80px on hover to reveal the card below */
 .hero__graffiti {
   position: absolute;
-  z-index: 4;
+  z-index: 6; /* top-most */
   left: calc(605 * var(--u));
   top: calc(623 * var(--u));
   width: calc(231 * var(--u));
 }
-.hero__graffiti img { width: 100%; height: auto; display: block; }
+.hero__graffiti-img {
+  position: relative;
+  z-index: 2; /* above the card, so it covers/reveals it */
+  display: block;
+  transform: translateY(0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); /* ~approx; distance = 80px per direction */
+}
+.hero__graffiti-img img { width: 100%; height: auto; display: block; }
 .hero__thatsme {
   position: absolute;
   right: calc(-18 * var(--u));
   bottom: calc(-14 * var(--u));
+  z-index: 3;
   font-family: var(--font-script-2);
   font-size: calc(20 * var(--u));
   color: var(--white);
@@ -220,33 +262,33 @@
   white-space: nowrap;
   pointer-events: none;
 }
-/* graffiti-hover info card at the bottom of the hero */
-.hero__tooltip {
+/* info card revealed below the badge when it lifts */
+.hero__graffiti-card {
   position: absolute;
-  z-index: 5;
+  z-index: 1; /* behind the badge img */
+  top: calc(74 * var(--u));
   left: 50%;
-  bottom: calc(292 * var(--u));
-  transform: translate(-50%, 8px);
-  width: calc(1000 * var(--u));
-  max-width: 92%;
+  transform: translate(-50%, 0);
+  width: calc(660 * var(--u));
+  max-width: 88vw;
   padding: calc(16 * var(--u)) calc(28 * var(--u));
   border-radius: calc(16 * var(--u));
-  background: rgba(236, 236, 245, 0.86);
+  background: rgba(236, 236, 245, 0.88);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   text-align: center;
   opacity: 0;
-  transition: opacity 0.28s ease, transform 0.28s ease;
+  transition: opacity 0.35s ease;
   pointer-events: none;
 }
-.hero__tooltip-title {
+.hero__gcard-title {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: calc(20 * var(--u));
   color: var(--bg-dark-3);
   margin-bottom: calc(6 * var(--u));
 }
-.hero__tooltip-body {
+.hero__gcard-body {
   font-family: var(--font-body);
   font-weight: 700;
   font-size: calc(20 * var(--u));
@@ -254,8 +296,9 @@
   line-height: 1.3;
 }
 @media (hover: hover) and (pointer: fine) {
-  .hero__graffiti:hover .hero__thatsme { opacity: 1; transform: translateY(0); }
-  .hero__graffiti:hover ~ .hero__tooltip { opacity: 1; transform: translate(-50%, 0); }
+  .hero__graffiti:hover .hero__graffiti-img { transform: translateY(-80px); }
+  .hero__graffiti:hover .hero__thatsme { opacity: 1; transform: translateY(-80px); }
+  .hero__graffiti:hover .hero__graffiti-card { opacity: 1; }
 }
 
 /* Mobile-only elements hidden on desktop */
@@ -264,8 +307,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .badge__svg { animation: none; }
-  .hero__aurora { animation: none; }
+  .hero__aurora::before, .hero__aurora::after { animation: none; }
   .hero__o:hover .hero__ripple { animation: none; }
+  .hero__graffiti-img, .hero__thatsme { transition: none; }
 }
 
 /* ================= Phone hero (<= 809.98px) ================= */
