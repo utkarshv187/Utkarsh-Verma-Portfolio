@@ -12,13 +12,31 @@
 /* Purple aurora background */
 .hero__aurora {
   position: absolute;
-  inset: 0;
+  inset: -12%;
   z-index: 0;
   background:
     radial-gradient(38% 34% at 55% 20%, rgba(180, 110, 255, 0.75) 0%, rgba(140, 70, 235, 0.3) 45%, rgba(12, 12, 31, 0) 72%),
     radial-gradient(44% 46% at 14% 30%, rgba(150, 60, 255, 0.8) 0%, rgba(110, 45, 210, 0.25) 44%, rgba(12, 12, 31, 0) 70%),
-    radial-gradient(50% 50% at 78% 22%, rgba(160, 80, 255, 0.72) 0%, rgba(110, 50, 195, 0.22) 46%, rgba(12, 12, 31, 0) 74%),
-    var(--bg-dark-3);
+    radial-gradient(50% 50% at 78% 22%, rgba(160, 80, 255, 0.72) 0%, rgba(110, 50, 195, 0.22) 46%, rgba(12, 12, 31, 0) 74%);
+  background-color: var(--bg-dark-3);
+  animation: aurora-drift 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes aurora-drift {
+  0% { transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
+  50% { transform: translate3d(2%, 1.5%, 0) scale(1.08); }
+  100% { transform: translate3d(-1%, 2%, 0) scale(1.04); }
+}
+/* bottom ramp to black (fades portrait bottom + bg) */
+.hero__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(360 * var(--u));
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(7, 7, 15, 0) 0%, rgba(7, 7, 15, 0.75) 55%, rgb(7, 7, 15) 100%);
 }
 
 /* Wordmark + role ticker */
@@ -48,6 +66,64 @@
 .hero__o {
   position: relative;
   display: inline-block;
+  /* keep the gradient text fill on the O even though it's a link */
+  background: linear-gradient(0deg, #d6d6ff 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+/* WhatsApp reveal on hover (over the O counter) */
+.hero__o-wa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(150 * var(--u));
+  height: calc(150 * var(--u));
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+  z-index: 4;
+}
+.hero__wa {
+  position: relative;
+  z-index: 2;
+  width: calc(60 * var(--u));
+  height: calc(60 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgb(37, 211, 102);
+  transform: scale(0.5);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hero__wa svg { width: 62%; height: 62%; }
+.hero__ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(60 * var(--u));
+  height: calc(60 * var(--u));
+  margin: calc(-30 * var(--u)) 0 0 calc(-30 * var(--u));
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.7);
+  opacity: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__o:hover .hero__o-wa { opacity: 1; }
+  .hero__o:hover .hero__wa { transform: scale(1); }
+  .hero__o:hover .hero__ripple { animation: o-ripple 1.8s ease-out infinite; }
+  .hero__o:hover .hero__ripple:nth-child(2) { animation-delay: 0.6s; }
+  .hero__o:hover .hero__ripple:nth-child(3) { animation-delay: 1.2s; }
+}
+@keyframes o-ripple {
+  0% { transform: scale(0.6); opacity: 0.75; }
+  100% { transform: scale(2.6); opacity: 0; }
 }
 
 /* Rotating badge over the O */
@@ -64,7 +140,7 @@
   width: 100%;
   height: 100%;
   overflow: visible;
-  animation: badge-spin 18s linear infinite;
+  animation: badge-spin 25s linear infinite; /* measured ~25s/rev clockwise on live */
   transform-origin: center;
 }
 .badge__text {
@@ -106,6 +182,9 @@
   top: calc(95 * var(--u));
   width: calc(631 * var(--u));
   height: calc(770 * var(--u));
+  pointer-events: none; /* let the O (beneath) receive hover */
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 99%);
 }
 .hero__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 
@@ -122,12 +201,62 @@
 /* Graffiti wordmark */
 .hero__graffiti {
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   left: calc(605 * var(--u));
   top: calc(623 * var(--u));
   width: calc(231 * var(--u));
 }
-.hero__graffiti img { width: 100%; height: auto; }
+.hero__graffiti img { width: 100%; height: auto; display: block; }
+.hero__thatsme {
+  position: absolute;
+  right: calc(-18 * var(--u));
+  bottom: calc(-14 * var(--u));
+  font-family: var(--font-script-2);
+  font-size: calc(20 * var(--u));
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+/* graffiti-hover info card at the bottom of the hero */
+.hero__tooltip {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: calc(292 * var(--u));
+  transform: translate(-50%, 8px);
+  width: calc(1000 * var(--u));
+  max-width: 92%;
+  padding: calc(16 * var(--u)) calc(28 * var(--u));
+  border-radius: calc(16 * var(--u));
+  background: rgba(236, 236, 245, 0.86);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  pointer-events: none;
+}
+.hero__tooltip-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: calc(20 * var(--u));
+  color: var(--bg-dark-3);
+  margin-bottom: calc(6 * var(--u));
+}
+.hero__tooltip-body {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: calc(20 * var(--u));
+  color: var(--bg-dark-3);
+  line-height: 1.3;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__graffiti:hover .hero__thatsme { opacity: 1; transform: translateY(0); }
+  .hero__graffiti:hover ~ .hero__tooltip { opacity: 1; transform: translate(-50%, 0); }
+}
 
 /* Mobile-only elements hidden on desktop */
 .hero__roles-m { display: none; }
@@ -135,6 +264,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .badge__svg { animation: none; }
+  .hero__aurora { animation: none; }
+  .hero__o:hover .hero__ripple { animation: none; }
 }
 
 /* ================= Phone hero (<= 809.98px) ================= */

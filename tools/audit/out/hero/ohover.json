@@ -1,0 +1,25 @@
+{
+  "oCenter": {
+    "x": 520.5,
+    "y": 349.5,
+    "href": null
+  },
+  "reveal": {
+    "items": [],
+    "keyframes": {}
+  },
+  "graffiti": {
+    "default": {
+      "transform": "none",
+      "filter": "none",
+      "transition": "all",
+      "opacity": "1"
+    },
+    "hover": {
+      "transform": "none",
+      "filter": "none",
+      "opacity": "1"
+    }
+  },
+  "fade": []
+}

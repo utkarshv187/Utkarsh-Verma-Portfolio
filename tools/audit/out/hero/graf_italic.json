@@ -1,0 +1,140 @@
+{
+  "graffiti": {
+    "default": [
+      {
+        "tag": "IMG",
+        "name": "",
+        "transform": "none",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "transform": "none",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      },
+      {
+        "tag": "DIV",
+        "name": "Image 27",
+        "transform": "none",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      },
+      {
+        "tag": "DIV",
+        "name": "Variant 1",
+        "transform": "none",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      },
+      {
+        "tag": "DIV",
+        "name": "Intro",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      }
+    ],
+    "hover": [
+      {
+        "tag": "IMG",
+        "name": "",
+        "transform": "none",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "transform": "none",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      },
+      {
+        "tag": "DIV",
+        "name": "Image 27",
+        "transform": "none",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      },
+      {
+        "tag": "DIV",
+        "name": "Variant 1",
+        "transform": "none",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      },
+      {
+        "tag": "DIV",
+        "name": "Intro",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "filter": "none",
+        "opacity": "1",
+        "transition": "all"
+      }
+    ]
+  },
+  "italicFound": {
+    "text": "Hiring key design talent",
+    "docY": 1790,
+    "count": 17
+  },
+  "italicSamples": [
+    {
+      "scrollY": 1090,
+      "fontStyle": "italic",
+      "transform": "none",
+      "a": 1,
+      "b": 0,
+      "c": 0,
+      "d": 1
+    },
+    {
+      "scrollY": 1290,
+      "fontStyle": "italic",
+      "transform": "none",
+      "a": 1,
+      "b": 0,
+      "c": 0,
+      "d": 1
+    },
+    {
+      "scrollY": 1490,
+      "fontStyle": "italic",
+      "transform": "none",
+      "a": 1,
+      "b": 0,
+      "c": 0,
+      "d": 1
+    },
+    {
+      "scrollY": 1690,
+      "fontStyle": "italic",
+      "transform": "none",
+      "a": 1,
+      "b": 0,
+      "c": 0,
+      "d": 1
+    },
+    {
+      "scrollY": 1890,
+      "fontStyle": "italic",
+      "transform": "none",
+      "a": 1,
+      "b": 0,
+      "c": 0,
+      "d": 1
+    }
+  ]
+}

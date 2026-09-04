@@ -31,7 +31,7 @@ export function RoleTicker() {
 
   useEffect(() => {
     if (reduced) return;
-    const id = window.setInterval(() => setI((v) => v + 1), 2800);
+    const id = window.setInterval(() => setI((v) => v + 1), 1500); // measured: 1.5s/step on live
     return () => window.clearInterval(id);
   }, [reduced]);
 

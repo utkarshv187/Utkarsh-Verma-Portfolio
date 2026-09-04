@@ -1,0 +1,14 @@
+import { chromium } from 'playwright';
+import { fileURLToPath } from 'node:url'; import { dirname, join } from 'node:path';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const OUT=join(__dirname,'out','hero');
+const b = await chromium.launch({ headless:true });
+const ctx = await b.newContext({ viewport:{width:1440,height:900}, deviceScaleFactor:2 });
+const p = await ctx.newPage();
+await p.goto('http://localhost:5199/', { waitUntil:'networkidle', timeout:30000 });
+await p.waitForTimeout(1000);
+const gc = await p.evaluate(()=>{ const g=document.querySelector('.hero__graffiti'); const r=g.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2}; });
+await p.mouse.move(gc.x, gc.y); await p.waitForTimeout(700);
+await p.screenshot({ path: join(OUT,'mine_grafhover.png'), clip:{x:0,y:0,width:1440,height:900} });
+console.log('graffiti hover captured', JSON.stringify(gc));
+await b.close();
