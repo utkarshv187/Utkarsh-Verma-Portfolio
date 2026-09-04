@@ -1,13 +1,19 @@
 // Circular "LET'S • WORK • TOGETHER •" text that rotates continuously, sitting on the O of PRODUCT.
+// SVG geometry copied 1:1 from the live site: viewBox 0 0 100 100, text runs on a circle at the
+// viewBox edge (r=50) with a hanging baseline so glyphs hang inward toward the counter.
 export function RotatingBadge() {
   return (
     <span className="badge" aria-hidden="true">
-      <svg className="badge__svg" viewBox="0 0 100 100">
-        <defs>
-          <path id="badge-curve" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="none" />
-        </defs>
-        <text className="badge__text">
-          <textPath href="#badge-curve" startOffset="0">LET'S&nbsp;&nbsp;•&nbsp;&nbsp;WORK&nbsp;&nbsp;•&nbsp;&nbsp;TOGETHER&nbsp;&nbsp;•&nbsp;&nbsp;</textPath>
+      <svg className="badge__svg" viewBox="0 0 100 100" overflow="visible">
+        <path
+          id="badge-curve"
+          d="M 0 50 L 0 50 A 1 1 0 0 1 100 50 L 100 50 L 100 50 A 1 1 0 0 1 0 50 L 0 50"
+          fill="transparent"
+        />
+        <text>
+          <textPath className="badge__text" href="#badge-curve" startOffset="0" dominantBaseline="hanging">
+            LET'S • WORK • TOGETHER •
+          </textPath>
         </text>
       </svg>
     </span>

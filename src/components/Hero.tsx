@@ -48,6 +48,7 @@ export function Hero() {
         >
           O
           <span className="hero__o-fill" aria-hidden="true" />
+          <span className="hero__o-dot" aria-hidden="true" />
           <RotatingBadge />
           <span className="hero__o-wa" aria-hidden="true">
             <span className="hero__ripple" />
@@ -76,7 +77,7 @@ export function Hero() {
       <div className="hero__fade" aria-hidden="true" />
 
       {/* graffiti "UTKARSH VERMA" badge — top-most. Hover: lifts 80px revealing the card; cursor → "That's me" pill. */}
-      <div className="hero__graffiti" data-cursor-label={"That’s me"}>
+      <div className="hero__graffiti" data-cursor-label={"That's me"}>
         <div className="hero__graffiti-card" aria-hidden="true">
           <p className="hero__gcard-title">ENGINEER TURNED ARTIST</p>
           <p className="hero__gcard-body">

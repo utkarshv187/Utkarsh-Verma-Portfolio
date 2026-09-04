@@ -104,6 +104,8 @@
   width: calc(210 * var(--u));
   height: calc(282 * var(--u));
   z-index: 5; /* above the portrait */
+  font-family: var(--font-display); /* MUST match PRODUCT (Clash Display 700), not inherit Satoshi */
+  font-weight: 700;
   font-size: calc(282 * var(--u));
   transform-origin: calc(-366 * var(--u)) 0; /* = .hero__text top-left */
   display: flex;
@@ -123,11 +125,14 @@
    --o-cx/--o-cy tune the counter centre vs the text box (glyph metrics), in em.
    --------------------------------------------------------------------------- */
 .hero__o {
+  /* Counter centre sits slightly above the O box centre (Clash Display metrics, measured);
+     matches live's ring offset of -0.016em. Keeps ring/whatsapp/dot concentric at every width. */
   --o-cx: 0em;
-  --o-cy: 0em; /* O letter is flex-centred in its box, so counter centre = box centre */
+  --o-cy: -0.0165em;
 }
 .hero__o > .hero__o-fill,
 .hero__o > .badge,
+.hero__o > .hero__o-dot,
 .hero__o > .hero__o-wa {
   position: absolute;
   top: 50%;
@@ -137,9 +142,10 @@
 
 /* counter fill: O reads as a solid shape on hover */
 .hero__o-fill {
-  width: 0.5em;
-  height: 0.5em;
-  border-radius: 32%;
+  /* matches the Clash Display O counter (~97x92 at 282 => 0.345em x 0.33em), rounded-square */
+  width: 0.35em;
+  height: 0.335em;
+  border-radius: 34%;
   background: var(--display);
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -200,10 +206,12 @@
   100% { width: 0.92em; height: 0.92em; opacity: 0; }
 }
 
-/* Rotating badge over the O (ring text) */
+/* Rotating badge over the O (ring text). Sized 1:1 from live: ring diameter 176px at O=282px
+   => 0.624em; the SVG (viewBox 100) scales to fill this, so the ring text hugs the O counter
+   at every width/DPR. */
 .badge {
-  width: 0.62em;
-  height: 0.62em;
+  width: 0.624em;
+  height: 0.624em;
   z-index: 3;
   pointer-events: none;
 }
@@ -214,14 +222,25 @@
   animation: badge-spin 25s linear infinite; /* measured ~25s/rev clockwise on live */
   transform-origin: center;
 }
+/* font-size is in SVG user units (viewBox 100), matching live's inline 16px on the textPath */
 .badge__text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.01em;
-  fill: var(--purple-deep);
+  font-size: 16px;
+  letter-spacing: 0.21em;
+  fill: rgb(108, 55, 178); /* live ring fill #6C37B2 */
 }
 @keyframes badge-spin { to { transform: rotate(360deg); } }
+
+/* tiny centre dot inside the counter (measured ~1.5px, #E3E3FF on live) */
+.hero__o-dot {
+  width: 0.0055em;
+  height: 0.0055em;
+  border-radius: 50%;
+  background: #e3e3ff;
+  z-index: 2;
+  pointer-events: none;
+}
 
 /* role group: in front of the portrait (z4), skews around the shared origin; +64px via motion */
 .hero__role-shift {
