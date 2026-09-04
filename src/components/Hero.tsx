@@ -1,10 +1,18 @@
 import './hero.css';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { RoleTicker, ROLES } from './RoleTicker';
 import { RotatingBadge } from './RotatingBadge';
 import { WhatsAppIcon } from './Icons';
 import { LINKS, EXTERNAL } from '../config/site';
+import { usePrefersReducedMotion } from '../lib/hooks';
 
 export function Hero() {
+  const reduced = usePrefersReducedMotion();
+  const { scrollY } = useScroll();
+  // Scroll-linked skew + X-shift on PRODUCT + role (measured on live: ~0.0094°/px, ~-0.0245px/px)
+  const skewX = useTransform(scrollY, [0, 1000], [0, reduced ? 0 : 9.4]);
+  const x = useTransform(scrollY, [0, 1000], [0, reduced ? 0 : -24]);
+
   return (
     <section className="hero" id="home">
       <div className="hero__aurora" aria-hidden="true" />
@@ -23,8 +31,8 @@ export function Hero() {
         <img src="/images/face.webp" alt="" width={300} height={642} />
       </picture>
 
-      {/* Wordmark + role ticker (behind the portrait) */}
-      <div className="hero__text">
+      {/* Wordmark + role ticker — skews with scroll */}
+      <motion.div className="hero__text" style={{ skewX, x }}>
         <h1 className="hero__product">
           PR
           <a className="hero__o" href={LINKS.whatsapp} {...EXTERNAL} aria-label="Chat on WhatsApp">
@@ -41,20 +49,22 @@ export function Hero() {
           </a>
           DUCT
         </h1>
-        <RoleTicker />
+        <div className="hero__role-shift">
+          <RoleTicker />
+        </div>
         {/* Mobile: full role list, decreasing size, fading downward */}
         <ul className="hero__roles-m" aria-hidden="true">
           {ROLES.map((r) => (
             <li key={r}>{r}</li>
           ))}
         </ul>
-      </div>
+      </motion.div>
 
       {/* bottom ramp: fades the portrait's lower edge + the background into black */}
       <div className="hero__fade" aria-hidden="true" />
 
-      {/* graffiti "UTKARSH VERMA" badge — top-most. On hover it lifts 80px, revealing the card below it. */}
-      <div className="hero__graffiti">
+      {/* graffiti "UTKARSH VERMA" badge — top-most. Hover: lifts 80px revealing the card; cursor → "That's me" pill. */}
+      <div className="hero__graffiti" data-cursor-label={"That’s me"}>
         <div className="hero__graffiti-card" aria-hidden="true">
           <p className="hero__gcard-title">ENGINEER TURNED ARTIST</p>
           <p className="hero__gcard-body">
@@ -65,7 +75,6 @@ export function Hero() {
           <source srcSet="/images/graffiti.avif" type="image/avif" />
           <img src="/images/graffiti.webp" alt="Utkarsh Verma" width={700} height={424} />
         </picture>
-        <span className="hero__thatsme" aria-hidden="true">That&rsquo;s me</span>
       </div>
     </section>
   );

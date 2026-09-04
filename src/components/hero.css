@@ -135,17 +135,18 @@
   transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .hero__wa svg { width: 62%; height: 62%; }
+/* Ripple rings: animate width/height (not scale) so the dashed border stays fine — short dashes */
 .hero__ripple {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(72 * var(--u));
-  height: calc(72 * var(--u));
-  margin: calc(-36 * var(--u)) 0 0 calc(-36 * var(--u));
+  width: calc(48 * var(--u));
+  height: calc(48 * var(--u));
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  border: calc(3 * var(--u)) dashed rgba(37, 211, 102, 0.85);
+  border: 2px dashed rgba(37, 211, 102, 0.9);
   opacity: 0;
-  will-change: transform, opacity;
+  will-change: width, height, opacity;
 }
 @media (hover: hover) and (pointer: fine) {
   .hero__o:hover .hero__o-wa { opacity: 1; }
@@ -155,8 +156,8 @@
   .hero__o:hover .hero__ripple:nth-child(3) { animation-delay: 0.74s; }
 }
 @keyframes o-ripple {
-  0% { transform: scale(0.45); opacity: 0.85; }
-  100% { transform: scale(3.8); opacity: 0; }
+  0% { width: calc(40 * var(--u)); height: calc(40 * var(--u)); opacity: 0.9; }
+  100% { width: calc(230 * var(--u)); height: calc(230 * var(--u)); opacity: 0; }
 }
 
 /* Rotating badge over the O */
@@ -184,6 +185,9 @@
   fill: var(--purple-deep);
 }
 @keyframes badge-spin { to { transform: rotate(360deg); } }
+
+/* role + badge group shifted down 64px (directed), moving together */
+.hero__role-shift { transform: translateY(64px); }
 
 /* Role ticker */
 .role {
@@ -239,6 +243,7 @@
   left: calc(605 * var(--u));
   top: calc(623 * var(--u));
   width: calc(231 * var(--u));
+  transform: translateY(64px); /* directed: badge group shifted down 64px */
 }
 .hero__graffiti-img {
   position: relative;
@@ -269,8 +274,8 @@
   top: calc(74 * var(--u));
   left: 50%;
   transform: translate(-50%, 0);
-  width: calc(660 * var(--u));
-  max-width: 88vw;
+  width: max-content;
+  max-width: 96vw;
   padding: calc(16 * var(--u)) calc(28 * var(--u));
   border-radius: calc(16 * var(--u));
   background: rgba(236, 236, 245, 0.88);
@@ -294,6 +299,7 @@
   font-size: calc(20 * var(--u));
   color: var(--bg-dark-3);
   line-height: 1.3;
+  white-space: nowrap; /* body stays a single line (matches live) */
 }
 @media (hover: hover) and (pointer: fine) {
   .hero__graffiti:hover .hero__graffiti-img { transform: translateY(-80px); }
@@ -336,14 +342,14 @@
     top: 388px;
     height: 96px;
     background: repeating-linear-gradient(118deg, var(--gold) 0 16px, transparent 16px 74px);
-    -webkit-mask-image: linear-gradient(90deg, #000 0 24%, transparent 32% 66%, #000 76% 100%);
-    mask-image: linear-gradient(90deg, #000 0 24%, transparent 32% 66%, #000 76% 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000 0 12%, transparent 22% 60%, #000 70% 100%);
+    mask-image: linear-gradient(90deg, #000 0 12%, transparent 22% 60%, #000 70% 100%);
   }
   .hero__portrait {
     left: 0;
-    top: 88px;
+    top: 150px;
     width: 100%;
-    height: 720px;
+    height: 640px;
     transform: none;
     z-index: 1;
   }

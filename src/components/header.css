@@ -39,7 +39,11 @@
 
 /* Intro block: default (Designing for + counter) crossfades to hover (memoji + script). */
 .intro { position: relative; display: inline-block; }
-.intro__default { display: flex; flex-direction: column; gap: 4px; transition: opacity 0.25s ease; }
+.intro__default {
+  display: flex; flex-direction: column; gap: 4px;
+  transform-origin: left center;
+  transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
 .intro__label {
   font-family: var(--font-display); font-weight: 500; font-size: 14px; line-height: 1.2; color: var(--gold-2);
 }
@@ -49,7 +53,9 @@
 }
 .intro__hover {
   position: absolute; inset: 0; display: flex; align-items: center; gap: 10px;
-  opacity: 0; transition: opacity 0.25s ease; pointer-events: none;
+  opacity: 0; transform: scale(0.82); transform-origin: left center;
+  transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 .intro__memoji { width: 41px; height: 48px; object-fit: contain; }
 .intro__script {
@@ -136,8 +142,8 @@
 
 /* ================= HOVER (fine pointer only) ================= */
 @media (hover: hover) and (pointer: fine) {
-  .intro:hover .intro__default { opacity: 0; }
-  .intro:hover .intro__hover { opacity: 1; }
+  .intro:hover .intro__default { opacity: 0; transform: scale(0.82); }
+  .intro:hover .intro__hover { opacity: 1; transform: scale(1); }
 
   .nav-link:hover .nav-link__arrow { max-width: 20px; opacity: 1; transform: translateY(0); }
 

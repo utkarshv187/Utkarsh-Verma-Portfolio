@@ -1,17 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { usePointerFine, usePrefersReducedMotion } from '../lib/hooks';
+import './cursor.css';
 
-// Custom cursor: 20px translucent-dark dot that follows the pointer (exact size/color from the live site).
-// - Only on fine pointers that can hover (touch devices keep native behaviour).
-// - Reduced motion: 1:1 tracking, no follow-lag.
+// Custom cursor: 20px translucent-dark dot that follows the pointer (exact size/color from live).
+// Over elements with [data-cursor-label] it morphs into a labelled pill (e.g. the "That's me"
+// pill over the UTKARSH badge). Fine pointers only; native cursor stays hidden.
 export function Cursor() {
   const fine = usePointerFine();
   const reduced = usePrefersReducedMotion();
+  const [label, setLabel] = useState<string | null>(null);
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  // Slight spring lag normally; near-instant under reduced motion.
   const spring = { stiffness: reduced ? 1500 : 550, damping: reduced ? 90 : 34, mass: 0.4 };
   const sx = useSpring(x, spring);
   const sy = useSpring(y, spring);
@@ -22,6 +23,8 @@ export function Cursor() {
     const move = (e: PointerEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
+      const el = (e.target as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
+      setLabel(el ? el.getAttribute('data-cursor-label') : null);
     };
     window.addEventListener('pointermove', move, { passive: true });
     return () => {
@@ -34,22 +37,11 @@ export function Cursor() {
 
   return (
     <motion.div
+      className={`cursor ${label ? 'cursor--label' : ''}`}
       aria-hidden="true"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: 20,
-        height: 20,
-        borderRadius: '100px',
-        backgroundColor: 'rgba(14, 12, 32, 0.4)',
-        pointerEvents: 'none',
-        zIndex: 13,
-        x: sx,
-        y: sy,
-        translateX: '-50%',
-        translateY: '-50%',
-      }}
-    />
+      style={{ x: sx, y: sy }}
+    >
+      <span className="cursor__label">{label}</span>
+    </motion.div>
   );
 }

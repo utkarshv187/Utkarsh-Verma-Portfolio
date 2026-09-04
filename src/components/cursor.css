@@ -1,0 +1,42 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 13;
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px; /* centre the dot on the pointer */
+  border-radius: 100px;
+  background: rgba(14, 12, 32, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.22s ease, height 0.22s ease, background-color 0.22s ease, margin 0.22s ease;
+}
+.cursor__label {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  line-height: 1.05;
+  color: #000;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  white-space: normal;
+  width: 44px;
+}
+/* labelled pill state (e.g. "That's me" over the UTKARSH badge) */
+.cursor--label {
+  width: 72px;
+  height: 54px;
+  margin: -27px 0 0 -36px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 40px / 30px;
+}
+.cursor--label .cursor__label { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { transition: none; }
+}
