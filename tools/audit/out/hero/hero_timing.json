@@ -1,0 +1,17 @@
+{
+  "samples": [
+    {
+      "t": 0,
+      "role": "DESIGNER",
+      "stackTf": "matrix(1, 0, 0, 1, -674.164, 0",
+      "badgeTf": "matrix(0.870308, 0.492509, -0.492509, 0."
+    },
+    {
+      "t": 14511,
+      "role": "STRATEGIST",
+      "stackTf": "matrix(1, 0, 0, 1, -674.164, 0",
+      "badgeTf": "matrix(-0.552694, -0.833385, 0.833385, -"
+    }
+  ],
+  "badgeFound": true
+}

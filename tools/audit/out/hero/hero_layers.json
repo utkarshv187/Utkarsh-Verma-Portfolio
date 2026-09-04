@@ -1,0 +1,269 @@
+{
+  "portrait": {
+    "mixBlend": "normal",
+    "mask": "none",
+    "webkitMask": "none",
+    "filter": "none",
+    "objectFit": "cover",
+    "opacity": "1"
+  },
+  "portraitAncestors": [
+    {
+      "name": "DIV",
+      "w": 631,
+      "h": 770,
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImage": "none",
+      "mixBlend": "normal",
+      "filter": "none",
+      "borderRadius": "0px",
+      "overflow": "visible"
+    },
+    {
+      "name": "DIV",
+      "w": 631,
+      "h": 770,
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImage": "none",
+      "mixBlend": "normal",
+      "filter": "none",
+      "borderRadius": "0px",
+      "overflow": "visible"
+    },
+    {
+      "name": "DIV",
+      "w": 0,
+      "h": 0,
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImage": "none",
+      "mixBlend": "normal",
+      "filter": "none",
+      "borderRadius": "0px",
+      "overflow": "visible"
+    },
+    {
+      "name": "Intro",
+      "w": 1440,
+      "h": 1067,
+      "bg": "rgb(12, 12, 31)",
+      "bgImage": "none",
+      "mixBlend": "normal",
+      "filter": "none",
+      "borderRadius": "0px",
+      "overflow": "hidden"
+    },
+    {
+      "name": "DIV",
+      "w": 0,
+      "h": 0,
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImage": "none",
+      "mixBlend": "normal",
+      "filter": "none",
+      "borderRadius": "0px",
+      "overflow": "visible"
+    }
+  ],
+  "glow": [],
+  "hits": {
+    "graffiti": [
+      {
+        "tag": "DIV",
+        "name": "Variant 1",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "IMG",
+        "name": "",
+        "img": "IWdo08dy1SBtkPucLvwPp046Fug.png",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "SPAN",
+        "name": "",
+        "img": "",
+        "bgImage": "linear-gradient(0deg, rgb(214, 214, 255) 0%, rgb(2",
+        "text": "PR       DUCT"
+      }
+    ],
+    "graffiti2": [
+      {
+        "tag": "SPAN",
+        "name": "",
+        "img": "",
+        "bgImage": "linear-gradient(0deg, rgb(214, 214, 255) 0%, rgb(2",
+        "text": "DESIGNER"
+      },
+      {
+        "tag": "H1",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "Variant 1",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      }
+    ],
+    "badge": [
+      {
+        "tag": "DIV",
+        "name": "Variant 1",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "SPAN",
+        "name": "",
+        "img": "",
+        "bgImage": "linear-gradient(0deg, rgb(214, 214, 255) 0%, rgb(2",
+        "text": "O"
+      },
+      {
+        "tag": "A",
+        "name": "Variant 1",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      }
+    ],
+    "portraitHead": [
+      {
+        "tag": "A",
+        "name": "Variant 1",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "IMG",
+        "name": "",
+        "img": "IWdo08dy1SBtkPucLvwPp046Fug.png",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "name": "",
+        "img": "",
+        "bgImage": "none",
+        "text": ""
+      }
+    ]
+  },
+  "imagesInHero": [
+    {
+      "src": "IWdo08dy1SBtkPucLvwPp046Fug.png",
+      "x": 426,
+      "y": 95,
+      "w": 631,
+      "h": 770
+    },
+    {
+      "src": "7nuBCHYzW4t5TCODcz3ifgeAc.png",
+      "x": 549,
+      "y": 190,
+      "w": 112,
+      "h": 240
+    },
+    {
+      "src": "eNT4XgzhjkW7AqGWTXtlFa3a230.png",
+      "x": 605,
+      "y": 623,
+      "w": 231,
+      "h": 140
+    }
+  ]
+}

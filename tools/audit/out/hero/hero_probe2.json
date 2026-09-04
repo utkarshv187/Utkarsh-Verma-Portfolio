@@ -1,0 +1,200 @@
+{
+  "geo": {
+    "product": {
+      "tag": "PRODUCT",
+      "x": 44,
+      "y": 196,
+      "w": 1353,
+      "h": 310,
+      "z": "1",
+      "pos": "absolute",
+      "fontSize": "12px",
+      "color": "rgb(0, 0, 0)",
+      "transform": "matrix(1, 0, 0, 1, -676.383, 0)",
+      "borderRadius": "0px"
+    },
+    "role": {
+      "tag": "role",
+      "x": 42,
+      "y": 479,
+      "w": 1344,
+      "h": 292,
+      "z": "auto",
+      "pos": "static",
+      "fontSize": "265px",
+      "color": "rgb(238, 238, 255)",
+      "transform": "none",
+      "borderRadius": "0px"
+    },
+    "tickerContainer": {
+      "tag": "tickerContainer",
+      "x": -232,
+      "y": 429,
+      "w": 1892,
+      "h": 396,
+      "z": "auto",
+      "pos": "relative",
+      "fontSize": "12px",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "borderRadius": "0px"
+    },
+    "portrait": {
+      "tag": "portrait",
+      "x": 426,
+      "y": 95,
+      "w": 631,
+      "h": 770,
+      "z": "auto",
+      "pos": "static",
+      "fontSize": "12px",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "borderRadius": "0px"
+    },
+    "wordmark": {
+      "tag": "wordmark",
+      "x": 549,
+      "y": 190,
+      "w": 112,
+      "h": 240,
+      "z": "auto",
+      "pos": "static",
+      "fontSize": "12px",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "borderRadius": "0px"
+    },
+    "wordmarkSrc": "https://framerusercontent.com/images/7nuBCHYzW4t5TCODcz3ifgeAc.png?width=284&height=608",
+    "badge": {
+      "tag": "badge",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 18019,
+      "z": "auto",
+      "pos": "static",
+      "fontSize": "16px",
+      "color": "rgb(0, 0, 0)",
+      "transform": "none",
+      "borderRadius": "0px"
+    },
+    "docBg": "rgb(14, 12, 32)"
+  },
+  "bg": [
+    {
+      "name": "DIV",
+      "w": 1440,
+      "h": 18019,
+      "x": 0,
+      "y": 0,
+      "bgColor": "rgb(14, 12, 32)",
+      "bgImage": "none",
+      "z": "auto",
+      "filter": "none",
+      "opacity": "1"
+    },
+    {
+      "name": "Website Wrapper",
+      "w": 1440,
+      "h": 18019,
+      "x": 0,
+      "y": 0,
+      "bgColor": "rgb(12, 12, 31)",
+      "bgImage": "none",
+      "z": "auto",
+      "filter": "none",
+      "opacity": "1"
+    },
+    {
+      "name": "Intro",
+      "w": 1440,
+      "h": 1067,
+      "x": 0,
+      "y": 40,
+      "bgColor": "rgb(12, 12, 31)",
+      "bgImage": "none",
+      "z": "1",
+      "filter": "none",
+      "opacity": "1"
+    },
+    {
+      "name": "graphic",
+      "w": 1309,
+      "h": 941,
+      "x": 66,
+      "y": 121,
+      "bgColor": "rgba(0, 0, 0, 0)",
+      "bgImage": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://",
+      "z": "auto",
+      "filter": "none",
+      "opacity": "1"
+    },
+    {
+      "name": "SPAN",
+      "w": 1353,
+      "h": 310,
+      "x": 44,
+      "y": 196,
+      "bgColor": "rgba(0, 0, 0, 0)",
+      "bgImage": "linear-gradient(0deg, rgb(214, 214, 255) 0%, rgb(255, 255, 255) 100%)",
+      "z": "auto",
+      "filter": "none",
+      "opacity": "1"
+    }
+  ],
+  "ticker": [
+    {
+      "t": 2,
+      "words": [
+        "DESIGNER",
+        "STRATEGIST"
+      ]
+    },
+    {
+      "t": 11391,
+      "words": [
+        "DESIGNER",
+        "STRATEGIST",
+        "RESEARCHER"
+      ]
+    }
+  ],
+  "badgeRot": {
+    "found": true,
+    "samples": [
+      {
+        "t": 0,
+        "tf": []
+      },
+      {
+        "t": 723,
+        "tf": []
+      },
+      {
+        "t": 1412,
+        "tf": []
+      },
+      {
+        "t": 2162,
+        "tf": []
+      },
+      {
+        "t": 2849,
+        "tf": []
+      },
+      {
+        "t": 3543,
+        "tf": []
+      },
+      {
+        "t": 4227,
+        "tf": []
+      },
+      {
+        "t": 4895,
+        "tf": []
+      }
+    ]
+  }
+}

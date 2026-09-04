@@ -1,0 +1,134 @@
+/* Desktop hero scales uniformly with width: 1 design-px (@1440) = var(--u). */
+.hero {
+  --u: calc(100vw / 1440);
+  position: relative;
+  width: 100%;
+  height: calc(1067 * var(--u));
+  overflow: hidden;
+  background: var(--bg-dark-3);
+  isolation: isolate;
+}
+
+/* Purple aurora background */
+.hero__aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(38% 34% at 55% 20%, rgba(180, 110, 255, 0.75) 0%, rgba(140, 70, 235, 0.3) 45%, rgba(12, 12, 31, 0) 72%),
+    radial-gradient(44% 46% at 14% 30%, rgba(150, 60, 255, 0.8) 0%, rgba(110, 45, 210, 0.25) 44%, rgba(12, 12, 31, 0) 70%),
+    radial-gradient(50% 50% at 78% 22%, rgba(160, 80, 255, 0.72) 0%, rgba(110, 50, 195, 0.22) 46%, rgba(12, 12, 31, 0) 74%),
+    var(--bg-dark-3);
+}
+
+/* Wordmark + role ticker */
+.hero__text {
+  position: absolute;
+  top: calc(196 * var(--u));
+  left: calc(44 * var(--u));
+  width: calc(1353 * var(--u));
+  z-index: 1;
+}
+.hero__product,
+.role__word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(0deg, #d6d6ff 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero__product {
+  margin: 0;
+  font-size: calc(282 * var(--u));
+  white-space: nowrap;
+}
+.hero__o {
+  position: relative;
+  display: inline-block;
+}
+
+/* Rotating badge over the O */
+.badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(224 * var(--u));
+  height: calc(224 * var(--u));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.badge__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: badge-spin 18s linear infinite;
+  transform-origin: center;
+}
+.badge__text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  fill: var(--purple-deep);
+}
+@keyframes badge-spin { to { transform: rotate(360deg); } }
+
+/* Role ticker */
+.role {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.role__stack { display: flex; flex-direction: column; will-change: transform; }
+.role__word {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.role__meas {
+  position: absolute;
+  visibility: hidden;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+/* Portrait (transparent cutout) */
+.hero__portrait {
+  position: absolute;
+  z-index: 2;
+  left: calc(426 * var(--u));
+  top: calc(95 * var(--u));
+  width: calc(631 * var(--u));
+  height: calc(770 * var(--u));
+}
+.hero__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+/* Small cropped-face accent */
+.hero__face {
+  position: absolute;
+  z-index: 1;
+  left: calc(549 * var(--u));
+  top: calc(190 * var(--u));
+  width: calc(112 * var(--u));
+}
+.hero__face img { width: 100%; height: auto; }
+
+/* Graffiti wordmark */
+.hero__graffiti {
+  position: absolute;
+  z-index: 3;
+  left: calc(605 * var(--u));
+  top: calc(623 * var(--u));
+  width: calc(231 * var(--u));
+}
+.hero__graffiti img { width: 100%; height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .badge__svg { animation: none; }
+}

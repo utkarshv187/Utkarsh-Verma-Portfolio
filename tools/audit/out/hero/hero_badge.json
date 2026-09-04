@@ -1,0 +1,65 @@
+{
+  "badge": {
+    "x": 433,
+    "y": 255,
+    "w": 176,
+    "h": 188,
+    "href": null
+  },
+  "rotating": [
+    {
+      "name": "DIV",
+      "anim": "none",
+      "tf": "matrix(1, 0, 0, 1, -88, -94.10"
+    },
+    {
+      "name": "DIV",
+      "anim": "none",
+      "tf": "none"
+    },
+    {
+      "name": "svg",
+      "anim": "none",
+      "tf": "none"
+    },
+    {
+      "name": "path",
+      "anim": "none",
+      "tf": "none"
+    },
+    {
+      "name": "text",
+      "anim": "none",
+      "tf": "none"
+    },
+    {
+      "name": "textPath",
+      "anim": "none",
+      "tf": "none"
+    }
+  ],
+  "svg": "<svg class=\"transform-origin-center-center\" viewBox=\"0 0 100 100\" overflow=\"visible\" style=\"width:100%;height:100%;position:absolute;inset:0;transform-origin:center;will-change:transform\"><path id=\"curve-wnxkz4\" d=\"M 0 50 L 0 50 A 1 1 0 0 1 100 50 L 100 50 L 100 50 A 1 1 0 0 1 0 50 L 0 50\" stroke-width=\"none\" fill=\"transparent\"></path><text><textPath href=\"#curve-wnxkz4\" startOffset=\"0\" dominant-baseline=\"Hanging\" style=\"font-family:&quot;Clash Display&quot;, &quot;Clash Display Placeholder&quot;, sans-serif;font-size:16px;font-style:normal;font-weight:700;letter-spacing:0.21em;line-height:1em",
+  "badgeText": "LET'S • WORK • TOGETHER •",
+  "product": {
+    "text": "PR       DUCT",
+    "x": 44,
+    "y": 196,
+    "w": 1353,
+    "h": 310,
+    "fs": "282px",
+    "ls": "-11.28px",
+    "bgClip": "text",
+    "bgImage": "linear-gradient(0deg, rgb(214, 214, 255) 0%, rgb(255, 255, 255) 100%)"
+  },
+  "O": {
+    "text": "O",
+    "x": 342,
+    "y": 131,
+    "w": 346,
+    "h": 445,
+    "fs": "282px",
+    "ls": "-11.28px",
+    "bgClip": "text",
+    "bgImage": "linear-gradient(0deg, rgb(214, 214, 255) 0%, rgb(255, 255, 255) 100%)"
+  }
+}
