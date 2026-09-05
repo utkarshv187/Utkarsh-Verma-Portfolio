@@ -248,7 +248,8 @@
   pointer-events: none;
 }
 
-/* role group: in front of the portrait (z4), skews around the shared origin; +64px via motion */
+/* role group: in front of the portrait (z4), skews around the shared origin.
+   Sits at its natural position (moved up 64px with the graffiti as one group). */
 .hero__role-shift {
   position: relative;
   z-index: 4;
@@ -302,14 +303,16 @@
 }
 .hero__face img { width: 100%; height: auto; }
 
-/* Graffiti "UTKARSH VERMA" badge — top-most; lifts 80px on hover to reveal the card below */
+/* Graffiti "UTKARSH VERMA" badge — top-most; lifts 80px on hover to reveal the card below.
+   Moved up 64px (transform only, no reflow) so it groups with the role cycler; the hover
+   card (child) and the "That's me" pill (cursor over this element) follow to the new position. */
 .hero__graffiti {
   position: absolute;
   z-index: 6; /* top-most */
   left: calc(605 * var(--u));
   top: calc(623 * var(--u));
   width: calc(231 * var(--u));
-  transform: translateY(64px); /* directed: badge group shifted down 64px */
+  transform: translateY(0);
 }
 .hero__graffiti-img {
   position: relative;

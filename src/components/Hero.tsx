@@ -53,7 +53,7 @@ export function Hero() {
           <RotatingBadge />
         </motion.a>
 
-        <motion.div className="hero__role-shift" style={{ skewX, x, y: 64 }}>
+        <motion.div className="hero__role-shift" style={{ skewX, x, y: 0 }}>
           <RoleTicker />
         </motion.div>
 
