@@ -144,10 +144,11 @@
    --------------------------------------------------------------------------- */
 .hero__o,
 .hero__wa-layer {
-  /* Counter centre sits slightly above the box centre (Clash Display metrics, measured);
-     matches live's ring offset of -0.016em. Keeps ring/whatsapp/dot concentric at every width. */
+  /* The O glyph sits high in its line box, so its counter centre is ~60px above the box
+     centre at 282px (measured by overlay diff vs the pixel-detected counter). This offset
+     (in em) keeps the ring / whatsapp / dot concentric with the counter at every width. */
   --o-cx: 0em;
-  --o-cy: -0.0165em;
+  --o-cy: -0.2119em;
 }
 .hero__o > .badge,
 .hero__o > .hero__o-dot,
