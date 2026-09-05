@@ -67,6 +67,7 @@ export function Hero() {
         {/* WhatsApp icon + ripples — a separate layer IN FRONT of the portrait (like live),
             centred on the O counter, revealed on O hover. Same box/skew as .hero__o so it tracks. */}
         <motion.div className="hero__wa-layer" aria-hidden="true" style={{ skewX, x }}>
+          <span className="hero__o-fill" />
           <span className="hero__o-wa">
             <span className="hero__ripple" />
             <span className="hero__ripple" />

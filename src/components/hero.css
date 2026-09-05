@@ -144,19 +144,36 @@
    --------------------------------------------------------------------------- */
 .hero__o,
 .hero__wa-layer {
-  /* The O glyph sits high in its line box, so its counter centre is ~60px above the box
-     centre at 282px (measured by overlay diff vs the pixel-detected counter). This offset
-     (in em) keeps the ring / whatsapp / dot concentric with the counter at every width. */
+  /* Counter centre vs the O box centre, measured by pixel detection (per-row dark counter of the
+     flex-centred O glyph): essentially box centre, a hair high. Keeps ring / whatsapp / fill / dot
+     concentric with the counter at every width. (An earlier -0.2119em came from getScreenCTM, which
+     ignores the ancestor CSS translate and was wrong — it lifted the group ~59px above the counter.) */
   --o-cx: 0em;
-  --o-cy: -0.2119em;
+  --o-cy: -0.014em;
 }
+/* fill, ripple group and whatsapp icon ALL share the counter centre by construction:
+   absolutely centred children of the front layer, offset by --o-cx/--o-cy. */
 .hero__o > .badge,
 .hero__o > .hero__o-dot,
+.hero__wa-layer > .hero__o-fill,
 .hero__wa-layer > .hero__o-wa {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(calc(-50% + var(--o-cx)), calc(-50% + var(--o-cy)));
+}
+
+/* Solid fill: on hover the counter reads as a filled part of the O (nothing shows through).
+   Same gradient as the O glyph so it blends seamlessly; sized to cover the counter (~96x92
+   at 282 => 0.4em) without reaching the ring text (inner edge ~0.49em). */
+.hero__o-fill {
+  width: 0.4em;
+  height: 0.38em;
+  border-radius: 34%;
+  background: linear-gradient(0deg, #d6d6ff 0%, #ffffff 100%);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  z-index: 1;
 }
 
 /* WhatsApp reveal on hover */
@@ -174,8 +191,9 @@
 .hero__wa {
   position: relative;
   z-index: 2;
-  width: 0.34em;
-  height: 0.34em;
+  /* live's whatsapp icon is 52px at O=282 => 0.184em (measured off the live O-hover) */
+  width: 0.184em;
+  height: 0.184em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,6 +219,7 @@
 /* Hover the O (its exposed edges — the rest is under the portrait) reveals the front
    whatsapp layer. Sibling selector because .hero__wa-layer follows .hero__o in the DOM. */
 @media (hover: hover) and (pointer: fine) {
+  .hero__o:hover ~ .hero__wa-layer .hero__o-fill { opacity: 1; }
   .hero__o:hover ~ .hero__wa-layer .hero__o-wa { opacity: 1; }
   .hero__o:hover ~ .hero__wa-layer .hero__wa { transform: scale(1); }
   .hero__o:hover ~ .hero__wa-layer .hero__ripple { animation: o-ripple 1.6s ease-out infinite; }
