@@ -2,7 +2,6 @@ import './hero.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { RoleTicker, ROLES } from './RoleTicker';
 import { RotatingBadge } from './RotatingBadge';
-import { WhatsAppIcon } from './Icons';
 import { LINKS, EXTERNAL } from '../config/site';
 import { usePrefersReducedMotion } from '../lib/hooks';
 
@@ -33,7 +32,7 @@ export function Hero() {
 
       {/* Wordmark + role ticker. Each piece skews with scroll around the SAME origin
           (.hero__text top-left) so they shear as one, but layer independently vs the portrait:
-          PR/DUCT behind (z1), the O and role in front (z5/z4). */}
+          PR/DUCT and the O (with its ring) sit BEHIND the portrait (z1); the role is in front (z4). */}
       <div className="hero__text">
         <motion.h1 className="hero__product" style={{ skewX, x }}>
           PR<span className="hero__o-spacer" aria-hidden="true">O</span>DUCT
@@ -63,21 +62,6 @@ export function Hero() {
             <li key={r}>{r}</li>
           ))}
         </ul>
-
-        {/* WhatsApp icon + ripples — a separate layer IN FRONT of the portrait (like live),
-            centred on the O counter, revealed on O hover. Same box/skew as .hero__o so it tracks. */}
-        <motion.div className="hero__wa-layer" aria-hidden="true" style={{ skewX, x }}>
-          <span className="hero__o-fill" />
-          <span className="hero__o-wa">
-            <span className="hero__ripple" />
-            <span className="hero__ripple" />
-            <span className="hero__ripple" />
-            <span className="hero__ripple" />
-            <span className="hero__wa">
-              <WhatsAppIcon size={54} />
-            </span>
-          </span>
-        </motion.div>
       </div>
 
       {/* bottom ramp: fades the portrait's lower edge + the background into black */}
