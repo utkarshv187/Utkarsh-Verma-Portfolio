@@ -123,8 +123,9 @@
 /* Ring + centre dot are centred on the O's counter, sized in em so they scale and stay
    concentric at every width/DPR. --o-cx/--o-cy tune the counter centre vs the O box centre. */
 .hero__o {
+  /* counter centre measured by pixel overlay diff (ring vs counter) — concentric at this offset */
   --o-cx: 0em;
-  --o-cy: -0.014em;
+  --o-cy: -0.03em;
 }
 .hero__o > .badge,
 .hero__o > .hero__o-dot {
@@ -144,6 +145,8 @@
   pointer-events: none;
 }
 .badge__svg {
+  display: block; /* NOT inline — an inline svg is baseline-aligned and the badge's line-height
+                     strut pushes it (and the ring circle) ~55px down, off the counter. */
   width: 100%;
   height: 100%;
   overflow: visible;
