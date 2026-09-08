@@ -39,12 +39,14 @@
   border-radius: 138.889% / 185.185%;
 }
 .cursor--label .cursor__label { opacity: 1; }
-/* wider two-line variant — reuses the same pill look for the Spinny image
-   ("highlights" / "at Spinny"); sized to fit the longer copy on two explicit lines */
+/* wider two-line variant for the Spinny image ("Highlights" / "at Spinny").
+   Identical to the hero pill in every way (height, radius, bg, blur, font, and the
+   11px horizontal padding) — only the width grows for the longer copy:
+   width = widest line (79px "Highlights") + 2x11px padding = 101px. */
 .cursor--label-lg {
-  width: 116px;
-  height: 56px;
-  margin: -28px 0 0 -58px;
+  width: 101px;
+  height: 54px;
+  margin: -27px 0 0 -50.5px; /* centre on the pointer: -height/2, -width/2 */
 }
 .cursor--label-lg .cursor__label {
   width: auto;

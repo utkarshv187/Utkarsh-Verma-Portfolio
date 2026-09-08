@@ -111,7 +111,7 @@ export function WorkExperience() {
                 <div className="we__reveal">
                   <div
                     className="we__reveal-inner"
-                    data-cursor-label={'highlights\nat Spinny'}
+                    data-cursor-label={'Highlights\nat Spinny'}
                     data-cursor-size="lg"
                   >
                     <picture>
