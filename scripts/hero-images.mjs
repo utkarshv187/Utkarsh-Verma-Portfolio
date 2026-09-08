@@ -6,6 +6,7 @@ const jobs = [
   ['IWdo08dy1SBtkPucLvwPp046Fug.png','portrait', 1300],   // hero portrait (alpha)
   ['eNT4XgzhjkW7AqGWTXtlFa3a230.png','graffiti', 700],     // UTKARSH VERMA graffiti (alpha)
   ['7nuBCHYzW4t5TCODcz3ifgeAc.png','face', 300],           // small face accent (alpha)
+  ['9nOKk7NPO5r64IdSZUYH6bkEw3I.png','spinny-highlights', 2400], // Spinny row hover-reveal bento (2x for the 1200 display)
 ];
 for (const [src,name,w] of jobs){
   const inp = join(O,src);

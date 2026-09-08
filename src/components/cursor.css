@@ -27,6 +27,7 @@
   white-space: normal;
   width: 50px; /* forces "That's me" to wrap onto two lines like live */
 }
+.cursor__line { display: block; }
 /* labelled pill state (e.g. "That's me" over the UTKARSH badge) — live values 1:1 */
 .cursor--label {
   width: 72px;
@@ -38,6 +39,17 @@
   border-radius: 138.889% / 185.185%;
 }
 .cursor--label .cursor__label { opacity: 1; }
+/* wider two-line variant — reuses the same pill look for the Spinny image
+   ("highlights" / "at Spinny"); sized to fit the longer copy on two explicit lines */
+.cursor--label-lg {
+  width: 116px;
+  height: 56px;
+  margin: -28px 0 0 -58px;
+}
+.cursor--label-lg .cursor__label {
+  width: auto;
+  white-space: nowrap;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .cursor { transition: none; }

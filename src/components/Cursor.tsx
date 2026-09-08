@@ -10,6 +10,7 @@ export function Cursor() {
   const fine = usePointerFine();
   const reduced = usePrefersReducedMotion();
   const [label, setLabel] = useState<string | null>(null);
+  const [size, setSize] = useState<string>('sm');
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
@@ -25,6 +26,7 @@ export function Cursor() {
       y.set(e.clientY);
       const el = (e.target as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
       setLabel(el ? el.getAttribute('data-cursor-label') : null);
+      setSize(el ? el.getAttribute('data-cursor-size') || 'sm' : 'sm');
     };
     window.addEventListener('pointermove', move, { passive: true });
     return () => {
@@ -37,11 +39,17 @@ export function Cursor() {
 
   return (
     <motion.div
-      className={`cursor ${label ? 'cursor--label' : ''}`}
+      className={`cursor ${label ? 'cursor--label' : ''} ${label && size === 'lg' ? 'cursor--label-lg' : ''}`}
       aria-hidden="true"
       style={{ x: sx, y: sy }}
     >
-      <span className="cursor__label">{label}</span>
+      <span className="cursor__label">
+        {label?.split('\n').map((line, i) => (
+          <span className="cursor__line" key={i}>
+            {line}
+          </span>
+        ))}
+      </span>
     </motion.div>
   );
 }

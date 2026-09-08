@@ -31,10 +31,11 @@ function ScrambleValue({ final, active }: { final: string; active: boolean }) {
   const reduced = usePrefersReducedMotion();
   const [text, setText] = useState(reduced ? final : final.replace(/./g, ' '));
   useEffect(() => {
-    if (!active) return;
     if (reduced) { setText(final); return; }
+    // live re-runs the scramble each time the stats re-enter view; blank it while out of view
+    if (!active) { setText(final.replace(/./g, ' ')); return; }
     const chars = final.split('');
-    const DURATION = 950;
+    const DURATION = 1000;
     const start = performance.now();
     let raf = 0;
     const tick = (now: number) => {
@@ -65,7 +66,7 @@ export function WorkExperience() {
     const el = statsRef.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { setStatsIn(true); io.disconnect(); } }); },
+      (entries) => { entries.forEach((e) => setStatsIn(e.isIntersecting)); },
       { threshold: 0.4 },
     );
     io.observe(el);
@@ -95,7 +96,7 @@ export function WorkExperience() {
 
         <ul className="we__list">
           {ROWS.map((r, i) => (
-            <li className="we__row we-reveal" key={i}>
+            <li className={`we__row we-reveal${r.company === 'spinny' ? ' we__row--spinny' : ''}`} key={i}>
               <div className="we__company">
                 {r.company === 'spinny' ? <SpinnyLogo className="we__spinny" /> : <span>{r.company}</span>}
               </div>
@@ -104,6 +105,29 @@ export function WorkExperience() {
                 <span className="we__role-short">{r.roleShort}</span>
               </div>
               <div className="we__date">{r.date}</div>
+              {r.company === 'spinny' && (
+                // hover-reveal bento (only the Spinny row has one on live). Over the image the
+                // custom cursor becomes the two-line "highlights / at Spinny" pill.
+                <div className="we__reveal">
+                  <div
+                    className="we__reveal-inner"
+                    data-cursor-label={'highlights\nat Spinny'}
+                    data-cursor-size="lg"
+                  >
+                    <picture>
+                      <source srcSet="/images/spinny-highlights.avif" type="image/avif" />
+                      <img
+                        className="we__reveal-img"
+                        src="/images/spinny-highlights.webp"
+                        alt="Highlights at Spinny"
+                        width={1200}
+                        height={612}
+                        loading="lazy"
+                      />
+                    </picture>
+                  </div>
+                </div>
+              )}
             </li>
           ))}
         </ul>

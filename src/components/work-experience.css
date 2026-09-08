@@ -89,6 +89,37 @@
   text-align: right;
 }
 
+/* ---- Spinny row hover-reveal (bento image) ----
+   Live: hovering the Spinny row expands it and reveals a 1200x612 image 32px below the
+   row text, pushing the rows/stats below it down. framer-motion drives it on live; here
+   the height animates via grid-template-rows 0fr->1fr (exact spring not recoverable, so a
+   ~0.45s ease is used). Hover-capable pointers only — touch devices never see it, per live. */
+.we__reveal {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.45s ease, opacity 0.35s ease;
+  pointer-events: none;
+}
+.we__reveal-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.we__reveal-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 32px; /* live gap between the role text and the revealed image */
+}
+@media (hover: hover) and (pointer: fine) {
+  .we__row--spinny:hover .we__reveal {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 /* ---- stat cards ---- */
 .we__stats {
   display: flex;
