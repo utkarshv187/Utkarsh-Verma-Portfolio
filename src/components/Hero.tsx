@@ -8,16 +8,17 @@ import { usePrefersReducedMotion } from '../lib/hooks';
 export function Hero() {
   const reduced = usePrefersReducedMotion();
   const { scrollY } = useScroll();
-  // Pure scroll-POSITION → transform mapping (timeline scrub), measured 1:1 from live:
-  // it is bound to scroll offset, so it HOLDS when you stop and unwinds as you scroll back up
-  // (no velocity, no spring, no settle). Directions are opposite:
-  //   PRODUCT (+ the O): skews & shifts LEFT  as you scroll down  (skewX 0->+9.35deg, x 0->-24.5px)
-  //   ROLE text        : skews & shifts RIGHT as you scroll down  (skewX 0->-5.84deg, x 0->+70.1px)
-  // Rates: PRODUCT 0.00935deg/px & -0.0245px/px; ROLE -0.00584deg/px & +0.0701px/px (over scroll 0->1000).
-  const productSkew = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 9.35], { clamp: true });
-  const productX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -24.5], { clamp: true });
-  const roleSkew = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -5.84], { clamp: true });
-  const roleX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 70.1], { clamp: true });
+  // Pure scroll-POSITION → transform mapping (timeline scrub): bound to scroll offset, so it
+  // HOLDS when you stop and unwinds as you scroll back up (no velocity/spring/settle). Both a
+  // skew AND a real translateX are applied together, in opposite directions:
+  //   PRODUCT (+ the O): skews LEFT  + shifts LEFT   (skewX 0->+18.7deg, x 0->-60px)
+  //   ROLE text        : skews RIGHT + shifts RIGHT  (skewX 0->-11.68deg, x 0->+70px)
+  // Skew is 2x the live-measured lean (per request). The transform-origins are kept clean
+  // (cy = 0) so the skew never cancels the translateX — the X-shift is genuinely visible.
+  const productSkew = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 18.7], { clamp: true });
+  const productX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -60], { clamp: true });
+  const roleSkew = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -11.68], { clamp: true });
+  const roleX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 70], { clamp: true });
 
   return (
     <section className="hero" id="home">

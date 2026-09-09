@@ -102,7 +102,10 @@
   white-space: nowrap;
   position: relative;
   z-index: 1; /* behind portrait */
-  transform-origin: 0 0; /* shared skew origin with .hero__o and role */
+  /* pivot skew at the line's vertical centre (~half the 282u cap) so the skew stays symmetric
+     and does NOT drag the body sideways — the translateX slide then reads cleanly. Shared with
+     .hero__o (same top + font-size) so the O tracks the word. */
+  transform-origin: 0 calc(141 * var(--u));
 }
 .hero__o-spacer { visibility: hidden; } /* reserves the O's width in the word; real O is the overlay below */
 
@@ -118,7 +121,7 @@
   font-family: var(--font-display); /* MUST match PRODUCT (Clash Display 700), not inherit Satoshi */
   font-weight: 700;
   font-size: calc(282 * var(--u));
-  transform-origin: calc(-366 * var(--u)) 0; /* = .hero__text top-left */
+  transform-origin: 0 calc(141 * var(--u)); /* shared line-centre pivot with .hero__product */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,7 +192,8 @@
 .hero__role-shift {
   position: relative;
   z-index: 4;
-  transform-origin: 0 calc(-354 * var(--u)); /* = .hero__text top-left */
+  /* pivot at its own vertical centre so the skew stays symmetric and the translateX slide reads cleanly */
+  transform-origin: 0 50%;
 }
 
 /* Role ticker */
