@@ -47,7 +47,8 @@
   width: 101px;
   height: 54px;
   margin: -27px 0 0 -50.5px; /* centre on the pointer: -height/2, -width/2 */
-  border-radius: 50%; /* rectangular box with 50% corner radius (not a stadium/pill capsule) */
+  /* radius/bg/blur/font inherited from .cursor--label — pixel-identical to the hero
+     "That's me" pill (fully-rounded stadium). Only the width differs, for the longer text. */
 }
 .cursor--label-lg .cursor__label {
   width: auto;
