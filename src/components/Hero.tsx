@@ -24,7 +24,20 @@ export function Hero() {
 
   return (
     <section className="hero" id="home">
-      <div className="hero__aurora" aria-hidden="true" />
+      {/* Living aurora — driven by framer-motion (same JS/rAF as the scroll skew) so it renders
+          the motion reliably; two soft purple blobs sweep the upper band + breathe on fast loops. */}
+      <div className="hero__aurora" aria-hidden="true">
+        <motion.div
+          className="hero__aurora-blob hero__aurora-blob--a"
+          animate={reduced ? undefined : { x: [-60, 420], y: [-10, 90], scale: [0.8, 1.42], opacity: [0.72, 1] }}
+          transition={reduced ? undefined : { duration: 3, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="hero__aurora-blob hero__aurora-blob--b"
+          animate={reduced ? undefined : { x: [380, -120], y: [20, 150], scale: [1.32, 0.72], opacity: [0.5, 0.95] }}
+          transition={reduced ? undefined : { duration: 2.4, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+        />
+      </div>
       {/* Yellow diagonal accent (phone only) */}
       <div className="hero__accent" aria-hidden="true" />
 
