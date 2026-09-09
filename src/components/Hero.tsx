@@ -1,5 +1,5 @@
 import './hero.css';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useVelocity, useSpring, useTransform } from 'framer-motion';
 import { RoleTicker, ROLES } from './RoleTicker';
 import { RotatingBadge } from './RotatingBadge';
 import { LINKS, EXTERNAL } from '../config/site';
@@ -8,11 +8,14 @@ import { usePrefersReducedMotion } from '../lib/hooks';
 export function Hero() {
   const reduced = usePrefersReducedMotion();
   const { scrollY } = useScroll();
-  // Scroll-POSITION-linked skew + X-shift on PRODUCT + role, measured 1:1 from live:
-  // effective skew is linear 0 -> 9.35deg over scrollY 0 -> 1000 (0.00935 deg/px), and
-  // translateX 0 -> -24.5px, and it HOLDS at each scroll position (not velocity/direction based).
-  const skewX = useTransform(scrollY, [0, 1000], [0, reduced ? 0 : 9.35]);
-  const x = useTransform(scrollY, [0, 1000], [0, reduced ? 0 : -24.5]);
+  // VELOCITY / direction-linked skew + X-shift on PRODUCT + role (per direction: this is a
+  // deliberate step beyond live, which only leans by scroll position). Scrolling DOWN shears
+  // the text strongly one way, scrolling UP the other; a spring returns it to upright when the
+  // scroll stops. Spring-smooth the raw scroll velocity, then map it to a pronounced skew/X.
+  const scrollVel = useVelocity(scrollY);
+  const smoothVel = useSpring(scrollVel, { damping: 38, stiffness: 350, mass: 1 });
+  const skewX = useTransform(smoothVel, [-1400, 1400], reduced ? [0, 0] : [16, -16], { clamp: true });
+  const x = useTransform(smoothVel, [-1400, 1400], reduced ? [0, 0] : [36, -36], { clamp: true });
 
   return (
     <section className="hero" id="home">
