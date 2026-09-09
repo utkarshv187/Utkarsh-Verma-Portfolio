@@ -1,0 +1,16 @@
+import { chromium } from 'playwright';
+import { fileURLToPath } from 'node:url'; import { dirname, join } from 'node:path';
+const OUT = join(dirname(fileURLToPath(import.meta.url)), 'out', 'we');
+const b = await chromium.launch({ headless: true });
+const ctx = await b.newContext({ viewport: { width: 390, height: 780 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+const p = await ctx.newPage();
+await p.goto('http://localhost:5199/', { waitUntil: 'load', timeout: 60000 }).catch(() => {});
+await p.waitForTimeout(900);
+await p.evaluate(() => window.scrollTo(0, 100)); await p.waitForTimeout(200);
+await p.evaluate(() => window.scrollBy(0, 400)); await p.waitForTimeout(120);
+const t = await p.evaluate(() => { const e = document.querySelector('.hero__product'); return { tf: getComputedStyle(e).transform }; });
+console.log('phone hero__product transform during scroll:', JSON.stringify(t));
+await p.evaluate(() => window.scrollTo(0, 0)); await p.waitForTimeout(300);
+await p.screenshot({ path: join(OUT, 'phone_hero.png') });
+console.log('wrote phone_hero.png');
+await b.close();

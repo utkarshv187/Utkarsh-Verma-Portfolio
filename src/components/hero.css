@@ -13,6 +13,12 @@
   background: var(--bg-dark-3);
   isolation: isolate;
 }
+/* Tablet (810–1279.98): live still pins the hero, but at top:25 (vs 40 on desktop). */
+@media (max-width: 1279.98px) {
+  .hero {
+    top: 25px;
+  }
+}
 
 /* Purple aurora background */
 /* Living aurora: a base wash + two independently-drifting blob layers (GPU transforms). */
@@ -319,6 +325,9 @@
 /* ================= Phone hero (<= 809.98px) ================= */
 @media (max-width: 809.98px) {
   .hero {
+    /* phone: live does NOT pin the hero here — scroll normally (no sticky/overlap) */
+    position: relative;
+    top: auto;
     height: auto;
     padding: 0 16px 28px;
     background: var(--bg-dark-3);
@@ -368,6 +377,7 @@
     line-height: 1.5;
     text-align: left;
     margin: 0;
+    transform: none !important; /* no scroll skew/shift on phone (matches role-shift) */
   }
   .badge { display: none; } /* no rotating badge on phone */
   .hero__o { display: none; } /* overlay off; show the inline O instead */
