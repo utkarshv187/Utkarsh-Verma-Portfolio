@@ -1,5 +1,5 @@
 import './hero.css';
-import { motion, useScroll, useVelocity, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { RoleTicker, ROLES } from './RoleTicker';
 import { RotatingBadge } from './RotatingBadge';
 import { LINKS, EXTERNAL } from '../config/site';
@@ -8,14 +8,16 @@ import { usePrefersReducedMotion } from '../lib/hooks';
 export function Hero() {
   const reduced = usePrefersReducedMotion();
   const { scrollY } = useScroll();
-  // VELOCITY / direction-linked skew + X-shift on PRODUCT + role (per direction: this is a
-  // deliberate step beyond live, which only leans by scroll position). Scrolling DOWN shears
-  // the text strongly one way, scrolling UP the other; a spring returns it to upright when the
-  // scroll stops. Spring-smooth the raw scroll velocity, then map it to a pronounced skew/X.
-  const scrollVel = useVelocity(scrollY);
-  const smoothVel = useSpring(scrollVel, { damping: 38, stiffness: 350, mass: 1 });
-  const skewX = useTransform(smoothVel, [-1400, 1400], reduced ? [0, 0] : [16, -16], { clamp: true });
-  const x = useTransform(smoothVel, [-1400, 1400], reduced ? [0, 0] : [36, -36], { clamp: true });
+  // Pure scroll-POSITION → transform mapping (timeline scrub), measured 1:1 from live:
+  // it is bound to scroll offset, so it HOLDS when you stop and unwinds as you scroll back up
+  // (no velocity, no spring, no settle). Directions are opposite:
+  //   PRODUCT (+ the O): skews & shifts LEFT  as you scroll down  (skewX 0->+9.35deg, x 0->-24.5px)
+  //   ROLE text        : skews & shifts RIGHT as you scroll down  (skewX 0->-5.84deg, x 0->+70.1px)
+  // Rates: PRODUCT 0.00935deg/px & -0.0245px/px; ROLE -0.00584deg/px & +0.0701px/px (over scroll 0->1000).
+  const productSkew = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 9.35], { clamp: true });
+  const productX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -24.5], { clamp: true });
+  const roleSkew = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -5.84], { clamp: true });
+  const roleX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 70.1], { clamp: true });
 
   return (
     <section className="hero" id="home">
@@ -39,7 +41,7 @@ export function Hero() {
           (.hero__text top-left) so they shear as one, but layer independently vs the portrait:
           PR/DUCT and the O (with its ring) sit BEHIND the portrait (z1); the role is in front (z4). */}
       <div className="hero__text">
-        <motion.h1 className="hero__product" style={{ skewX, x }}>
+        <motion.h1 className="hero__product" style={{ skewX: productSkew, x: productX }}>
           PR<span className="hero__o-spacer" aria-hidden="true">O</span>DUCT
         </motion.h1>
 
@@ -50,14 +52,14 @@ export function Hero() {
           href={LINKS.whatsapp}
           {...EXTERNAL}
           aria-label="Chat on WhatsApp"
-          style={{ skewX, x }}
+          style={{ skewX: productSkew, x: productX }}
         >
           O
           <span className="hero__o-dot" aria-hidden="true" />
           <RotatingBadge />
         </motion.a>
 
-        <motion.div className="hero__role-shift" style={{ skewX, x, y: 0 }}>
+        <motion.div className="hero__role-shift" style={{ skewX: roleSkew, x: roleX, y: 0 }}>
           <RoleTicker />
         </motion.div>
 
