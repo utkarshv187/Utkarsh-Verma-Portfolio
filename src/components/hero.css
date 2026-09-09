@@ -39,36 +39,37 @@
   position: absolute;
   border-radius: 50%;
   will-change: transform, opacity;
-  filter: blur(48px);
+  filter: blur(45px);
 }
-/* dominant violet glow — sits upper-LEFT-of-centre (like live) and slowly wanders across
-   the upper band + breathes; its wide travel makes the whole glow visibly reflow */
+/* dominant violet glow — a defined blob that SWEEPS a big horizontal distance across the
+   upper band (so the glow visibly travels) + breathes hard, on a fast eased loop */
 .hero__aurora::before {
-  width: 95%;
-  height: 88%;
-  left: -25%;
-  top: -30%;
-  background: radial-gradient(closest-side, rgba(150, 45, 235, 0.9) 0%, rgba(105, 26, 185, 0.34) 44%, rgba(12, 12, 31, 0) 70%);
-  animation: aurora-a 24s ease-in-out infinite alternate;
+  width: 64%;
+  height: 70%;
+  left: -6%;
+  top: -22%;
+  background: radial-gradient(closest-side, rgba(155, 50, 240, 0.95) 0%, rgba(110, 30, 192, 0.42) 42%, rgba(12, 12, 31, 0) 68%);
+  animation: aurora-a 10s ease-in-out infinite alternate;
 }
-/* secondary magenta glow — offset in space + time, adds the organic diagonal reflow */
+/* secondary magenta glow — sweeps the OTHER way on an offset faster loop, for organic reflow */
 .hero__aurora::after {
-  width: 72%;
-  height: 72%;
-  left: 26%;
-  top: -12%;
-  background: radial-gradient(closest-side, rgba(182, 55, 210, 0.62) 0%, rgba(122, 40, 178, 0.22) 46%, rgba(12, 12, 31, 0) 72%);
-  animation: aurora-b 31s ease-in-out infinite alternate;
+  width: 56%;
+  height: 60%;
+  left: 24%;
+  top: -8%;
+  background: radial-gradient(closest-side, rgba(190, 58, 216, 0.85) 0%, rgba(126, 42, 182, 0.32) 44%, rgba(12, 12, 31, 0) 70%);
+  animation: aurora-b 8s ease-in-out infinite alternate;
 }
+/* travel is a large share of the blob width -> the glow moves a clearly visible distance */
 @keyframes aurora-a {
-  0%   { transform: translate3d(-2%, 2%, 0) scale(0.86); opacity: 0.68; }
-  50%  { transform: translate3d(24%, 8%, 0) scale(1.28); opacity: 1; }
-  100% { transform: translate3d(8%, -4%, 0) scale(1.02); opacity: 0.84; }
+  0%   { transform: translate3d(-8%, 0%, 0) scale(0.8); opacity: 0.72; }
+  50%  { transform: translate3d(58%, 13%, 0) scale(1.38); opacity: 1; }
+  100% { transform: translate3d(18%, -6%, 0) scale(0.98); opacity: 0.86; }
 }
 @keyframes aurora-b {
-  0%   { transform: translate3d(10%, 4%, 0) scale(1.14); opacity: 0.5; }
-  50%  { transform: translate3d(-22%, 14%, 0) scale(0.82); opacity: 0.9; }
-  100% { transform: translate3d(-4%, 2%, 0) scale(1.18); opacity: 0.66; }
+  0%   { transform: translate3d(34%, 4%, 0) scale(1.28); opacity: 0.55; }
+  50%  { transform: translate3d(-44%, 18%, 0) scale(0.72); opacity: 0.96; }
+  100% { transform: translate3d(2%, 8%, 0) scale(1.12); opacity: 0.72; }
 }
 /* bottom ramp to black (fades portrait bottom + bg) */
 .hero__fade {
