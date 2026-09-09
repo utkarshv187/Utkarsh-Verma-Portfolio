@@ -4,6 +4,9 @@
 .we {
   background: #ffb705;
   color: #0c0c1f;
+  /* sits above the pinned/sticky hero and scrolls up over it (see .hero) */
+  position: relative;
+  z-index: 1;
 }
 
 /* fade-up reveal on scroll-in (per element), matching live's appear animation.

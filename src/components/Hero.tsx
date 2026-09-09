@@ -8,9 +8,11 @@ import { usePrefersReducedMotion } from '../lib/hooks';
 export function Hero() {
   const reduced = usePrefersReducedMotion();
   const { scrollY } = useScroll();
-  // Scroll-linked skew + X-shift on PRODUCT + role (measured on live: ~0.0094°/px, ~-0.0245px/px)
-  const skewX = useTransform(scrollY, [0, 1000], [0, reduced ? 0 : 9.4]);
-  const x = useTransform(scrollY, [0, 1000], [0, reduced ? 0 : -24]);
+  // Scroll-POSITION-linked skew + X-shift on PRODUCT + role, measured 1:1 from live:
+  // effective skew is linear 0 -> 9.35deg over scrollY 0 -> 1000 (0.00935 deg/px), and
+  // translateX 0 -> -24.5px, and it HOLDS at each scroll position (not velocity/direction based).
+  const skewX = useTransform(scrollY, [0, 1000], [0, reduced ? 0 : 9.35]);
+  const x = useTransform(scrollY, [0, 1000], [0, reduced ? 0 : -24.5]);
 
   return (
     <section className="hero" id="home">

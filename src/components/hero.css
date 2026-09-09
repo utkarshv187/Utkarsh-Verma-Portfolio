@@ -1,7 +1,12 @@
 /* Desktop hero scales uniformly with width: 1 design-px (@1440) = var(--u). */
 .hero {
   --u: calc(100vw / 1440);
-  position: relative;
+  /* Pinned/sticky like live: the hero stays put (top:40, under the fixed 80px navbar)
+     while the next section (Work Experience) scrolls UP and OVER it. Both are z-index:1;
+     WE is later in the DOM with a solid background, so it paints over the pinned hero. */
+  position: sticky;
+  top: 40px;
+  z-index: 1;
   width: 100%;
   height: calc(1067 * var(--u));
   overflow: hidden;
