@@ -47,6 +47,7 @@
   width: 101px;
   height: 54px;
   margin: -27px 0 0 -50.5px; /* centre on the pointer: -height/2, -width/2 */
+  border-radius: 50%; /* rectangular box with 50% corner radius (not a stadium/pill capsule) */
 }
 .cursor--label-lg .cursor__label {
   width: auto;

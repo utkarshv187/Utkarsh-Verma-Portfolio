@@ -154,6 +154,18 @@
   height: auto;
   z-index: 1;
   overflow: visible;
+  /* live animates the zigzag on hover (see hover block below) */
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+/* ---- hover: the zigzag slides down into the box (matches live) ----
+   Live moves the zigzag from its resting spot (overflowing above the top-right) down
+   ~40px and ~13px left when the box is hovered, springing back on leave. It plays once
+   per hover (not a loop); nothing else on the box changes (no bg/scale/border). */
+@media (hover: hover) and (pointer: fine) {
+  .we-card:hover .we-card__z {
+    transform: translate(-13px, 40px);
+  }
 }
 .we-card__label {
   position: absolute;
