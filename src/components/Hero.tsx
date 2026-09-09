@@ -11,14 +11,16 @@ export function Hero() {
   // Pure scroll-POSITION → transform mapping (timeline scrub): bound to scroll offset, so it
   // HOLDS when you stop and unwinds as you scroll back up (no velocity/spring/settle). Both a
   // skew AND a real translateX are applied together, in opposite directions:
-  //   PRODUCT (+ the O): skews LEFT  + shifts LEFT   (skewX 0->+18.7deg, x 0->-60px)
-  //   ROLE text        : skews RIGHT + shifts RIGHT  (skewX 0->-11.68deg, x 0->+70px)
-  // Skew is 2x the live-measured lean (per request). The transform-origins are kept clean
-  // (cy = 0) so the skew never cancels the translateX — the X-shift is genuinely visible.
+  //   PRODUCT (+ the O): skews LEFT  + shifts LEFT   (skewX 0->+18.7deg, x 0->-160px)
+  //   ROLE text        : skews RIGHT + shifts RIGHT  (skewX 0->-11.68deg, x 0->+160px)
+  // The skew pivots at each element's vertical line-centre (see hero.css transform-origins) so it
+  // is symmetric and NEVER cancels the translateX. The X-shift is deliberately large so the slide
+  // is unmistakable on these full-width words (a small shift is imperceptible when the word
+  // overflows both screen edges). Skew is 2x the live-measured lean.
   const productSkew = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 18.7], { clamp: true });
-  const productX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -60], { clamp: true });
+  const productX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -160], { clamp: true });
   const roleSkew = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, -11.68], { clamp: true });
-  const roleX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 70], { clamp: true });
+  const roleX = useTransform(scrollY, [0, 1000], reduced ? [0, 0] : [0, 160], { clamp: true });
 
   return (
     <section className="hero" id="home">
