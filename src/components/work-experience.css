@@ -92,11 +92,12 @@
   text-align: right;
 }
 
-/* ---- Spinny row scroll-reveal (bento image) ----
-   Scroll-triggered (was hover): JS adds .we__reveal--open when the row crosses 25% up from the
-   viewport bottom, then it stays open. The image sits 32px below the row text and expands via
-   grid-template-rows 0fr->1fr, pushing the rows/stats below it down. pointer-events flip to auto
-   once open so the two-line "Highlights / at Spinny" pill cursor works while hovering the image. */
+/* ---- Spinny row hover-latch reveal (bento image) ----
+   The first hover of the Work Experience section (JS adds .we__reveal--open) reveals the image
+   and it STAYS — never hides on mouse-leave/scroll (in-memory latch; reload resets it). The image
+   sits 32px below the row text and expands via grid-template-rows 0fr->1fr, pushing the rows/stats
+   below it down. pointer-events flip to auto once open so the two-line "Highlights / at Spinny"
+   pill cursor works while hovering the image. */
 .we__reveal {
   grid-column: 1 / -1;
   display: grid;

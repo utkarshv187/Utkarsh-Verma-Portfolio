@@ -4,11 +4,20 @@
   left: 0;
   z-index: 13;
   pointer-events: none;
+  /* Invert against whatever is behind the pointer so the cursor stays in contrast over ANY
+     backdrop (light purple, dark navy, white text, the portrait...). The cursor is a top-level
+     child painted last (z-index 13), and no ancestor isolates it, so it blends against the full
+     page composite — not just its container. */
+  mix-blend-mode: difference;
   width: 20px;
   height: 20px;
   margin: -10px 0 0 -10px; /* centre the dot on the pointer */
   border-radius: 100px;
-  background: rgba(14, 12, 32, 0.4);
+  /* Light fill is REQUIRED for mix-blend-mode:difference to stay visible on ANY backdrop: a
+     dark fill barely differs from dark navy and vanishes there. White inverts to full contrast
+     over dark, light, purple and yellow alike. (The pill state overrides this with its own
+     translucent-white bg — see .cursor--label.) */
+  background: rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;

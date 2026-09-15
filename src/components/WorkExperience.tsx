@@ -59,25 +59,12 @@ function ScrambleValue({ final, active }: { final: string; active: boolean }) {
 export function WorkExperience() {
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  const spinnyRef = useRef<HTMLLIElement>(null);
   const [statsIn, setStatsIn] = useState(false);
+  // Spinny bento is a one-way latch: the FIRST hover of the Work Experience section (which
+  // includes the Spinny row) flips this true and it stays true for the rest of the session —
+  // the image never hides on mouse-leave/scroll. It's in-memory only, so a page reload resets it.
   const [spinnyOpen, setSpinnyOpen] = useState(false);
   const reduced = usePrefersReducedMotion();
-
-  // Spinny bento is scroll-triggered (was hover): reveal it when the row crosses 25% up from
-  // the bottom of the viewport. rootMargin bottom -25% pulls the trigger line to 75vh, so the
-  // row "intersects" once its top passes that line. Reveals once, then stays open (matches the
-  // section's other scroll reveals — one-way, no hide on scroll-back).
-  useEffect(() => {
-    const el = spinnyRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { setSpinnyOpen(true); io.unobserve(e.target); } }); },
-      { rootMargin: '0px 0px -25% 0px', threshold: 0 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   useEffect(() => {
     const el = statsRef.current;
@@ -106,14 +93,19 @@ export function WorkExperience() {
   }, [reduced]);
 
   return (
-    <section className="we" id="work-experience" ref={sectionRef}>
+    <section
+      className="we"
+      id="work-experience"
+      ref={sectionRef}
+      onMouseEnter={() => setSpinnyOpen(true)}
+    >
       <div className="we__inner">
         <h2 className="we__heading we-reveal">WORK EXPERIENCE</h2>
         <p className="we__subtitle we-reveal">BASED IN DELHI NCR, INDIA&nbsp;&nbsp;•&nbsp;&nbsp;AVAILABLE WORLDWIDE</p>
 
         <ul className="we__list">
           {ROWS.map((r, i) => (
-            <li className={`we__row we-reveal${r.company === 'spinny' ? ' we__row--spinny' : ''}`} key={i} ref={r.company === 'spinny' ? spinnyRef : undefined}>
+            <li className={`we__row we-reveal${r.company === 'spinny' ? ' we__row--spinny' : ''}`} key={i}>
               <div className="we__company">
                 {r.company === 'spinny' ? <SpinnyLogo className="we__spinny" /> : <span>{r.company}</span>}
               </div>
