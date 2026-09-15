@@ -38,18 +38,30 @@ export function Cursor() {
   if (!fine) return null;
 
   return (
-    <motion.div
-      className={`cursor ${label ? 'cursor--label' : ''} ${label && size === 'lg' ? 'cursor--label-lg' : ''}`}
-      aria-hidden="true"
-      style={{ x: sx, y: sy }}
-    >
-      <span className="cursor__label">
-        {label?.split('\n').map((line, i) => (
-          <span className="cursor__line" key={i}>
-            {line}
-          </span>
-        ))}
-      </span>
-    </motion.div>
+    <>
+      {/* Layer 1: the dot / pill BACKGROUND — mix-blend-mode:difference so it inverts against
+          any backdrop. No text lives here (text in a blended layer would invert too). */}
+      <motion.div
+        className={`cursor ${label ? 'cursor--label' : ''} ${label && size === 'lg' ? 'cursor--label-lg' : ''}`}
+        aria-hidden="true"
+        style={{ x: sx, y: sy }}
+      />
+      {/* Layer 2: the pill TEXT — a top-level sibling (NOT a child of .cursor, whose stacking
+          context would trap the blend), tracking the same pointer spring, with NORMAL blend so
+          it renders as true solid black over the (difference-blended) pill background. */}
+      <motion.div
+        className={`cursor-text ${label ? 'cursor-text--show' : ''} ${label && size === 'lg' ? 'cursor-text--lg' : ''}`}
+        aria-hidden="true"
+        style={{ x: sx, y: sy }}
+      >
+        <span className="cursor-text__label">
+          {label?.split('\n').map((line, i) => (
+            <span className="cursor__line" key={i}>
+              {line}
+            </span>
+          ))}
+        </span>
+      </motion.div>
+    </>
   );
 }
