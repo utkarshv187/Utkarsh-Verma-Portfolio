@@ -41,21 +41,30 @@
   border-radius: 50%;
   will-change: transform, opacity;
 }
-/* dominant violet glow */
+/* Three blobs at DIFFERENT radii for an organic (non-uniform) glow. */
+/* dominant violet glow — largest */
 .hero__aurora-blob--a {
-  width: 70%;
-  height: 78%;
-  left: -8%;
-  top: -26%;
+  width: 78%;
+  height: 84%;
+  left: -10%;
+  top: -28%;
   background: radial-gradient(closest-side, rgba(155, 52, 240, 0.9) 0%, rgba(112, 32, 194, 0.42) 38%, rgba(90, 26, 170, 0.14) 62%, rgba(12, 12, 31, 0) 80%);
 }
-/* secondary magenta glow */
+/* secondary magenta glow — medium */
 .hero__aurora-blob--b {
-  width: 60%;
-  height: 64%;
-  left: 22%;
-  top: -10%;
+  width: 56%;
+  height: 60%;
+  left: 24%;
+  top: -8%;
   background: radial-gradient(closest-side, rgba(192, 60, 218, 0.78) 0%, rgba(128, 44, 184, 0.32) 40%, rgba(12, 12, 31, 0) 78%);
+}
+/* deep indigo-violet accent — smallest, drifts on the longest loop */
+.hero__aurora-blob--c {
+  width: 44%;
+  height: 50%;
+  left: 6%;
+  top: 2%;
+  background: radial-gradient(closest-side, rgba(138, 70, 236, 0.72) 0%, rgba(96, 40, 190, 0.3) 42%, rgba(12, 12, 31, 0) 76%);
 }
 /* bottom ramp to black (fades portrait bottom + bg) */
 .hero__fade {

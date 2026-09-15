@@ -92,11 +92,11 @@
   text-align: right;
 }
 
-/* ---- Spinny row hover-reveal (bento image) ----
-   Live: hovering the Spinny row expands it and reveals a 1200x612 image 32px below the
-   row text, pushing the rows/stats below it down. framer-motion drives it on live; here
-   the height animates via grid-template-rows 0fr->1fr (exact spring not recoverable, so a
-   ~0.45s ease is used). Hover-capable pointers only — touch devices never see it, per live. */
+/* ---- Spinny row scroll-reveal (bento image) ----
+   Scroll-triggered (was hover): JS adds .we__reveal--open when the row crosses 25% up from the
+   viewport bottom, then it stays open. The image sits 32px below the row text and expands via
+   grid-template-rows 0fr->1fr, pushing the rows/stats below it down. pointer-events flip to auto
+   once open so the two-line "Highlights / at Spinny" pill cursor works while hovering the image. */
 .we__reveal {
   grid-column: 1 / -1;
   display: grid;
@@ -115,12 +115,13 @@
   height: auto;
   margin-top: 32px; /* live gap between the role text and the revealed image */
 }
-@media (hover: hover) and (pointer: fine) {
-  .we__row--spinny:hover .we__reveal {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    pointer-events: auto;
-  }
+.we__reveal--open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .we__reveal { transition: none; } /* snap open, no sliding-height animation */
 }
 
 /* ---- stat cards ---- */

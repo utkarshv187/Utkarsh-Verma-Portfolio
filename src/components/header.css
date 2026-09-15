@@ -99,8 +99,14 @@
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 24px; color: var(--white);
 }
-.contact__phone { text-decoration: underline; text-decoration-color: var(--link-phone); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-.contact__email { text-decoration: underline; text-decoration-color: var(--link-email); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+/* Underlines are hidden by default (revealed but not hovering either line): the color fades
+   in only while that specific line is hovered — green under the number, blue under the email —
+   the other stays plain. text-decoration-color animates cleanly (thickness/offset unchanged). */
+.contact__phone, .contact__email {
+  text-decoration: underline; text-decoration-color: transparent;
+  text-decoration-thickness: 2px; text-underline-offset: 4px;
+  transition: text-decoration-color 0.25s ease;
+}
 .contact__divider { width: 1px; height: 22px; background: rgba(226, 226, 240, 0.22); }
 
 /* ---- Résumé button (orbiting gold border-beam + hover) ---- */
@@ -151,6 +157,9 @@
   .contact:hover, .contact:focus-within { padding: 12px 24px; }
   .contact:hover .contact__label, .contact:focus-within .contact__label { max-width: 0; opacity: 0; }
   .contact:hover .contact__reveal, .contact:focus-within .contact__reveal { max-width: 520px; opacity: 1; }
+  /* underline only the line under the cursor */
+  .contact__item--wa:hover .contact__phone { text-decoration-color: var(--link-phone); }
+  .contact__item--mail:hover .contact__email { text-decoration-color: var(--link-email); }
 
   .resume:hover { transform: scaleX(0.93); background: #5d3097; }
   .resume:hover .resume__ring { opacity: 1; }

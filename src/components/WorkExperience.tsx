@@ -59,8 +59,25 @@ function ScrambleValue({ final, active }: { final: string; active: boolean }) {
 export function WorkExperience() {
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const spinnyRef = useRef<HTMLLIElement>(null);
   const [statsIn, setStatsIn] = useState(false);
+  const [spinnyOpen, setSpinnyOpen] = useState(false);
   const reduced = usePrefersReducedMotion();
+
+  // Spinny bento is scroll-triggered (was hover): reveal it when the row crosses 25% up from
+  // the bottom of the viewport. rootMargin bottom -25% pulls the trigger line to 75vh, so the
+  // row "intersects" once its top passes that line. Reveals once, then stays open (matches the
+  // section's other scroll reveals — one-way, no hide on scroll-back).
+  useEffect(() => {
+    const el = spinnyRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { setSpinnyOpen(true); io.unobserve(e.target); } }); },
+      { rootMargin: '0px 0px -25% 0px', threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = statsRef.current;
@@ -96,7 +113,7 @@ export function WorkExperience() {
 
         <ul className="we__list">
           {ROWS.map((r, i) => (
-            <li className={`we__row we-reveal${r.company === 'spinny' ? ' we__row--spinny' : ''}`} key={i}>
+            <li className={`we__row we-reveal${r.company === 'spinny' ? ' we__row--spinny' : ''}`} key={i} ref={r.company === 'spinny' ? spinnyRef : undefined}>
               <div className="we__company">
                 {r.company === 'spinny' ? <SpinnyLogo className="we__spinny" /> : <span>{r.company}</span>}
               </div>
@@ -108,7 +125,7 @@ export function WorkExperience() {
               {r.company === 'spinny' && (
                 // hover-reveal bento (only the Spinny row has one on live). Over the image the
                 // custom cursor becomes the two-line "highlights / at Spinny" pill.
-                <div className="we__reveal">
+                <div className={`we__reveal${spinnyOpen ? ' we__reveal--open' : ''}`}>
                   <div
                     className="we__reveal-inner"
                     data-cursor-label={'Highlights\nat Spinny'}

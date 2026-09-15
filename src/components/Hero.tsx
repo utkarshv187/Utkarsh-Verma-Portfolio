@@ -25,17 +25,24 @@ export function Hero() {
   return (
     <section className="hero" id="home">
       {/* Living aurora — driven by framer-motion (same JS/rAF as the scroll skew) so it renders
-          the motion reliably; two soft purple blobs sweep the upper band + breathe on fast loops. */}
+          the motion reliably. Three soft purple blobs of DIFFERENT sizes sweep the upper band +
+          breathe, each on its own longer eased loop (6s / 4.8s / 9s) so they drift independently
+          and never sync. Durations are 2x the earlier pass = half the speed, still clearly moving. */}
       <div className="hero__aurora" aria-hidden="true">
         <motion.div
           className="hero__aurora-blob hero__aurora-blob--a"
           animate={reduced ? undefined : { x: [-60, 420], y: [-10, 90], scale: [0.8, 1.42], opacity: [0.72, 1] }}
-          transition={reduced ? undefined : { duration: 3, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+          transition={reduced ? undefined : { duration: 6, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
         />
         <motion.div
           className="hero__aurora-blob hero__aurora-blob--b"
           animate={reduced ? undefined : { x: [380, -120], y: [20, 150], scale: [1.32, 0.72], opacity: [0.5, 0.95] }}
-          transition={reduced ? undefined : { duration: 2.4, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+          transition={reduced ? undefined : { duration: 4.8, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="hero__aurora-blob hero__aurora-blob--c"
+          animate={reduced ? undefined : { x: [140, -220], y: [70, -20], scale: [0.9, 1.5], opacity: [0.42, 0.82] }}
+          transition={reduced ? undefined : { duration: 9, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
         />
       </div>
       {/* Yellow diagonal accent (phone only) */}
