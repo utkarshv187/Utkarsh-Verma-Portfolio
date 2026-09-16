@@ -1,6 +1,6 @@
 import './recent-work.css';
-import { useEffect, useRef, useState, useCallback } from 'react';
-import { motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'framer-motion';
 import { usePrefersReducedMotion } from '../lib/hooks';
 
 type Stat = { num: string; label: [string, string] };
@@ -88,56 +88,44 @@ function ScrambleNum({ final, active }: { final: string; active: boolean }) {
   return <span className="rw-stat__num" aria-label={final}>{text}</span>;
 }
 
-// Card 1: draggable before/after comparison (clip-path wipe), matching live.
+// Card 1: before/after comparison that FOLLOWS the mouse on hover (spring), with a rippling
+// divider that animates by default and halts on hover — matching live's slider.
 function BeforeAfter() {
-  const [pct, setPct] = useState(50); // divider position from left, %
+  const [hovering, setHovering] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
-  const draggingRef = useRef(false);
-  const movedRef = useRef(false);
+  const target = useMotionValue(50); // divider %, from left
+  const pct = useSpring(target, { stiffness: 170, damping: 24, mass: 0.55 }); // springy trail (matches live's lag)
+  const oldClip = useTransform(pct, (v) => `inset(0 ${100 - v}% 0 0)`);
+  const left = useTransform(pct, (v) => `${v}%`);
 
-  const setFromClientX = useCallback((clientX: number) => {
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!hovering) return;
     const box = boxRef.current;
     if (!box) return;
     const r = box.getBoundingClientRect();
-    const p = ((clientX - r.left) / r.width) * 100;
-    setPct(Math.max(0, Math.min(100, p)));
-  }, []);
-
-  const onPointerDown = (e: React.PointerEvent) => {
-    draggingRef.current = true;
-    movedRef.current = false;
-    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
-    e.preventDefault();
-    setFromClientX(e.clientX);
+    target.set(Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)));
   };
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!draggingRef.current) return;
-    movedRef.current = true;
-    setFromClientX(e.clientX);
-  };
-  const endDrag = () => { draggingRef.current = false; };
-  const onClickCapture = (e: React.MouseEvent) => { if (movedRef.current) { e.preventDefault(); e.stopPropagation(); movedRef.current = false; } };
 
   return (
-    <div className="rw-card__media rw-ba" ref={boxRef} onClickCapture={onClickCapture}>
+    <div
+      className="rw-card__media rw-ba"
+      ref={boxRef}
+      onPointerEnter={() => setHovering(true)}
+      onPointerLeave={() => { setHovering(false); target.set(50); }}
+      onPointerMove={onPointerMove}
+    >
       <div className="rw-ba__layer rw-ba__new" />
-      <div className="rw-ba__layer rw-ba__old" style={{ clipPath: `inset(0 ${100 - pct}% 0 0)` }} />
-      <div
-        className="rw-ba__divider"
-        style={{ left: `${pct}%` }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-      >
-        <div className="rw-ba__handle">
+      <motion.div className="rw-ba__layer rw-ba__old" style={{ clipPath: oldClip }} />
+      <motion.div className={`rw-ba__divider${hovering ? '' : ' rw-ba__divider--idle'}`} style={{ left }}>
+        <div className="rw-ba__bar" aria-hidden="true" />
+        {/* two-sided arrow control — suppress the card's "View" pill here (empty cursor label) */}
+        <div className="rw-ba__handle" data-cursor-label="">
           <span className="rw-ba__arrows" aria-hidden="true">
             <svg viewBox="0 0 16 16" width="15" height="15"><path d="M10 3.5 5.5 8 10 12.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
             <svg viewBox="0 0 16 16" width="15" height="15"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </span>
-          <span className="rw-ba__see" aria-hidden="true">View&nbsp;↗</span>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

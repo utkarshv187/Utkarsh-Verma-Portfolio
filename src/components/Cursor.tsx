@@ -22,17 +22,32 @@ export function Cursor() {
   useEffect(() => {
     if (!fine) return;
     document.body.classList.add('custom-cursor');
-    const move = (e: PointerEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
+    // Position follows the pointer; the LABEL (pill) is driven by pointerENTER/LEAVE (via the
+    // bubbling pointerover/pointerout) so it switches the instant the pointer enters a labelled
+    // element and resets the instant it leaves — never dependent on continuous movement.
+    const move = (e: PointerEvent) => { x.set(e.clientX); y.set(e.clientY); };
+    const apply = (el: HTMLElement | null) => {
+      const lbl = el ? el.getAttribute('data-cursor-label') : null; // empty string => suppress pill
+      setLabel(lbl || null);
+      setSize(el && lbl ? el.getAttribute('data-cursor-size') || 'sm' : 'sm');
+      setArrow(el && lbl ? el.getAttribute('data-cursor-arrow') : null);
+    };
+    const over = (e: PointerEvent) => {
       const el = (e.target as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
-      setLabel(el ? el.getAttribute('data-cursor-label') : null);
-      setSize(el ? el.getAttribute('data-cursor-size') || 'sm' : 'sm');
-      setArrow(el ? el.getAttribute('data-cursor-arrow') : null);
+      if (el) apply(el);
+    };
+    const out = (e: PointerEvent) => {
+      const el = (e.target as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
+      const to = (e.relatedTarget as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
+      if (el && el !== to) apply(to); // left this labelled element -> whatever we entered (or none)
     };
     window.addEventListener('pointermove', move, { passive: true });
+    window.addEventListener('pointerover', over, { passive: true });
+    window.addEventListener('pointerout', out, { passive: true });
     return () => {
       window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerover', over);
+      window.removeEventListener('pointerout', out);
       document.body.classList.remove('custom-cursor');
     };
   }, [fine, x, y]);

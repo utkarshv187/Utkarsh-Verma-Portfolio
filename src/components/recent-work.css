@@ -140,8 +140,7 @@
   overflow: hidden;
 }
 
-/* Card 1 — before/after comparison wipe */
-.rw-ba { touch-action: none; }
+/* Card 1 — before/after comparison (mouse-follow sweeper + rippling divider) */
 .rw-ba__layer {
   position: absolute;
   inset: 0;
@@ -154,15 +153,29 @@
 /* fallback for browsers without image-set */
 .rw-ba__new { background-image: url('/images/rw-plp-new.webp'); }
 .rw-ba__old { background-image: url('/images/rw-plp-old.webp'); }
+/* divider column at the current % (left set inline via framer-motion spring). Holds a soft white
+   bar that RIPPLES (shimmies horizontally) by default and HALTS on hover, plus the round handle. */
 .rw-ba__divider {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 2px;
-  margin-left: -1px;
-  background: rgba(255, 255, 255, 0.9);
-  cursor: ew-resize;
+  width: 16px;
+  margin-left: -8px; /* centre the 16px column on the divider % */
   z-index: 2;
+}
+.rw-ba__bar {
+  position: absolute;
+  inset: 0;
+  /* soft white line, brightest at the centre (the seam glow between old/new) */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(255, 255, 255, 0) 100%);
+  will-change: transform;
+}
+.rw-ba__divider--idle .rw-ba__bar { animation: rw-ripple 1.3s ease-in-out infinite; }
+@keyframes rw-ripple {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  50% { transform: translateX(5px); }
+  80% { transform: translateX(-3px); }
 }
 .rw-ba__handle {
   position: absolute;
@@ -171,7 +184,6 @@
   transform: translate(-50%, -50%);
   width: 34px;
   height: 34px;
-  padding: 0;
   border-radius: 100px;
   background: rgba(20, 18, 40, 0.72);
   backdrop-filter: blur(4px);
@@ -180,22 +192,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
+  cursor: ew-resize;
 }
 .rw-ba__arrows { display: inline-flex; align-items: center; }
 .rw-ba__arrows svg:first-child { margin-right: -3px; }
 .rw-ba__arrows svg { display: block; }
-.rw-ba__see {
-  display: none;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-}
-@media (hover: hover) and (pointer: fine) {
-  .rw-ba__divider:hover .rw-ba__handle { width: auto; padding: 0 12px; }
-  .rw-ba__divider:hover .rw-ba__arrows { display: none; }
-  .rw-ba__divider:hover .rw-ba__see { display: inline; }
-}
 
 /* Card 2 — two gamification GIF phones (rotated) on a dotted panel */
 .rw-gamify__bg {

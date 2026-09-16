@@ -97,7 +97,7 @@ export function WorkExperience() {
       className="we"
       id="work-experience"
       ref={sectionRef}
-      onMouseEnter={() => setSpinnyOpen(true)}
+      onPointerEnter={() => setSpinnyOpen(true)}
     >
       <div className="we__inner">
         <h2 className="we__heading we-reveal">WORK EXPERIENCE</h2>
