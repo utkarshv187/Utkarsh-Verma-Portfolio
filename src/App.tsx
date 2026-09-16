@@ -3,6 +3,7 @@ import { Cursor } from './components/Cursor';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { WorkExperience } from './components/WorkExperience';
+import { RecentWork } from './components/RecentWork';
 import './app.css';
 
 export function App() {
@@ -13,6 +14,7 @@ export function App() {
       <main>
         <Hero />
         <WorkExperience />
+        <RecentWork />
         {/* Temporary spacer so the page scrolls while later sections are built. */}
         <section className="dev-spacer" />
       </main>
