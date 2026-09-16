@@ -166,8 +166,8 @@
 .rw-ba__bar {
   position: absolute;
   inset: 0;
-  /* soft white line, brightest at the centre (the seam glow between old/new) */
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(255, 255, 255, 0) 100%);
+  /* white seam line — bright at the centre, quick falloff (matches live's thin divider) */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 32%, rgba(255, 255, 255, 0.92) 50%, rgba(255, 255, 255, 0) 68%);
   will-change: transform;
 }
 .rw-ba__divider--idle .rw-ba__bar { animation: rw-ripple 1.3s ease-in-out infinite; }
