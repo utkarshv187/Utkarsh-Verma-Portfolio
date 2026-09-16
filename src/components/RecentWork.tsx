@@ -242,9 +242,9 @@ const STEP_T = 300; // px over which each shrink step scrubs, ending as the next
 // (like live) and continues through the pinned window.
 const PAN: [number, number, number][] = [
   [0, 0, 0],         // auction (before/after) — no pan
-  [0.3, 520, 640],   // gamification (back phone) — subtle
-  [0.45, 640, 820],  // design system (figma board)
-  [0.67, 740, 1040], // beyond (long listing) — matches live's 0.67x
+  [0.3, 520, 640],   // gamification (back phone) — subtle (max ~192)
+  [0.4, 640, 300],   // design system — max ~120, clamped so the image always covers the box
+  [0.72, 740, 1360], // beyond (long listing) — long smooth travel (max ~979; base -20 => ~40px cover margin)
 ];
 function useStack(count: number): { scales: MotionValue<number>[]; pans: MotionValue<number>[] } {
   const scrollY = useMotionValue(0);
@@ -255,10 +255,19 @@ function useStack(count: number): { scales: MotionValue<number>[]; pans: MotionV
   reducedRef.current = reduced;
 
   useEffect(() => {
-    const onScroll = () => scrollY.set(window.scrollY);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    // Sync scroll via rAF rather than a 'scroll' event: the body is the scroll container here
+    // (overflow-x:hidden makes overflow-y computed auto), so window 'scroll' events don't fire
+    // reliably. Polling window.scrollY each frame tracks it regardless, and useTransform only
+    // recomputes when the value actually changes.
+    let raf = 0;
+    let last = -1;
+    const tick = () => {
+      const y = window.scrollY;
+      if (y !== last) { last = y; scrollY.set(y); }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [scrollY]);
 
   useEffect(() => {

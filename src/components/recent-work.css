@@ -53,12 +53,10 @@
      transform-origin ABOVE the card top, so the card's top edge shifts up ~7px per 0.1 as it
      shrinks (card3 lands at top 153 @ .9, matching live) and each receding card peeks + narrows. */
   transform-origin: 50% -70px;
-  /* entrance: fade in as the card scrolls into view (scale handled by framer-motion) */
-  opacity: 0;
-  transition: opacity 0.55s ease;
-  will-change: transform, opacity;
+  /* cards are always fully opaque — no fade-in (only the scale/stack transform animates) */
+  opacity: 1;
+  will-change: transform;
 }
-.rw-card--in { opacity: 1; }
 .rw-card--navy { background: #0f0c20; }
 .rw-card--purple { background: #56239a; }
 /* pin offsets + paint order (later card on top) — live values 132/146/160/204 */
@@ -219,7 +217,7 @@
 .rw-figma picture {
   position: absolute;
   left: -22px;
-  top: -261px;
+  top: -140px; /* base crop; the 814-tall image pans within [-290,0] so the 524 box stays covered */
   width: 674px;
   height: 814px;
   display: block;
@@ -231,7 +229,7 @@
 .rw-collage { border-radius: 8px; background: #ececf5; } /* light panel behind the collage (from live) */
 .rw-collage__scene { position: absolute; top: 0; left: 0; width: 524px; height: 524px; transform-origin: top left; }
 .rw-collage__scene img { position: absolute; display: block; }
-.rw-collage__a { left: 334px; top: -287px; width: 180px; height: 1563px; border-radius: 12px; } /* tall right */
+.rw-collage__a { left: 334px; top: -20px; width: 180px; height: 1563px; border-radius: 12px; } /* tall right listing — pans a long way, stays covered */
 .rw-collage__b { left: 16px; top: 16px; width: 306px; height: 175px; border-radius: 12px; }      /* wide top-left */
 .rw-collage__c { left: 156px; top: 136px; width: 171px; height: 274px; }                          /* middle gif */
 .rw-collage__d { left: 16px; top: 202px; width: 131px; height: 306px; }                           /* left */
@@ -254,7 +252,7 @@
   .rw-stat__label { font-size: 16px; line-height: 1.2; }
   .rw-card__media { left: 29px; top: 29px; width: 362px; height: 362px; border-radius: 12px; }
   .rw-gamify__scene, .rw-collage__scene { transform: scale(0.6908); }
-  .rw-figma picture { left: -90px; top: 0; width: 452px; height: 546px; }
+  .rw-figma picture { left: -90px; top: -40px; width: 452px; height: 546px; } /* -40..-160 keeps the 362 box covered */
   .rw-figma img { width: 452px; height: 546px; }
   /* card 4 pair stats (tablet) */
   .rw-card__stats--pair { left: 420px; top: 262px; grid-template-columns: 128px 128px; grid-template-rows: 100px; }
