@@ -12,6 +12,11 @@ const stills = [
   ['eKISVOiUdQcSF8TrYhBxq1COg.jpg', 'rw-plp-old', 1048],     // card1 before/after — OLD scene
   ['upit0LYDKKJSw1HtFId1F3CeUM.jpg', 'rw-designsystem', 1348], // card3 figma screenshot (674 display)
   ['BeRbTT6Zpf9Eybwmy9WStsO0hGg.jpg', 'rw-dots', 1050],      // card2 dotted panel bg
+  // card4 collage (2x display sizes)
+  ['Hc8qhenVvOzLFygH7bRBkqgUo.jpg', 'rw-c4-a', 360],   // tall right screenshot
+  ['O7otRCPpiunRfMOoFypvX76Zw.png', 'rw-c4-b', 612],   // wide top-left
+  ['w1Uk2Z8nPI65mdCgH1IKeD5A.jpg', 'rw-c4-d', 262],    // left
+  ['ekzcQGySZuDI6aO6napaJLM7l4.jpg', 'rw-c4-e', 326],  // bottom
 ];
 for (const [src, name, w] of stills) {
   await sharp(join(O, src)).resize({ width: w }).webp({ quality: 90 }).toFile(join(P, name + '.webp'));
@@ -23,6 +28,7 @@ for (const [src, name, w] of stills) {
 const gifs = [
   ['bAXnzVrKeF5riTiESNxjpvqOWWM.gif', 'rw-gamify-a.gif'], // front phone
   ['xkzkmWXB2AV2EIqCliUZyQEHw.gif', 'rw-gamify-b.gif'],   // back phone
+  ['wJSpzHHWPlexbIf1wtaEMsSiKjM.gif', 'rw-c4-c.gif'],     // card4 collage middle gif
 ];
 for (const [src, name] of gifs) {
   await copyFile(join(O, src), join(P, name));

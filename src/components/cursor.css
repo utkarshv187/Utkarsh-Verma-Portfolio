@@ -85,6 +85,28 @@
   /* radius/bg/blur/font inherited from .cursor--label — pixel-identical to the hero
      "That's me" pill (fully-rounded stadium). Only the width differs, for the longer text. */
 }
+/* "View ↗" pill over the Recent Work cards (live's card cursor: Clash 20/600, stadium,
+   translucent white). bg/blur/radius inherited from .cursor--label; only width + text differ. */
+.cursor--label-view {
+  width: 92px;
+  height: 54px;
+  margin: -27px 0 0 -46px;
+}
+.cursor-text--view {
+  width: 92px;
+  height: 54px;
+  margin: -27px 0 0 -46px;
+}
+.cursor-text--view .cursor-text__label {
+  width: auto;
+  white-space: nowrap;
+  font-size: 20px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.cursor-text__arrow { display: block; flex: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .cursor { transition: none; }

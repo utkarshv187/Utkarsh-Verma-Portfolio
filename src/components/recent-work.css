@@ -38,8 +38,8 @@
   gap: 120px; /* scroll distance between one card pinning and the next stacking */
 }
 /* real element (not padding) so it's part of the sticky containing block's content box,
-   giving the last card scroll range so all three stay pinned before releasing together. */
-.rw__spacer { height: 60vh; flex: none; }
+   giving the last card scroll range so all cards stay pinned before releasing together. */
+.rw__spacer { height: 70vh; flex: none; }
 .rw-card {
   position: sticky;
   display: block;
@@ -48,19 +48,24 @@
   border-radius: 24px;
   overflow: hidden;
   color: #fff;
-  /* entrance: fade + rise as the card scrolls into view */
+  /* scale down as later cards stack on top (framer-motion drives style.scale). Live pairs a
+     centre-origin scale with a compensating translateY; the identical NET result is a single
+     transform-origin ABOVE the card top, so the card's top edge shifts up ~7px per 0.1 as it
+     shrinks (card3 lands at top 153 @ .9, matching live) and each receding card peeks + narrows. */
+  transform-origin: 50% -70px;
+  /* entrance: fade in as the card scrolls into view (scale handled by framer-motion) */
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-  will-change: opacity, transform;
+  transition: opacity 0.55s ease;
+  will-change: transform, opacity;
 }
-.rw-card--in { opacity: 1; transform: none; }
+.rw-card--in { opacity: 1; }
 .rw-card--navy { background: #0f0c20; }
 .rw-card--purple { background: #56239a; }
-/* pin offsets + paint order (later card on top), ~16px peeks */
-.rw__cards > .rw-card:nth-of-type(1) { top: 120px; z-index: 1; }
-.rw__cards > .rw-card:nth-of-type(2) { top: 136px; z-index: 2; }
-.rw__cards > .rw-card:nth-of-type(3) { top: 152px; z-index: 3; }
+/* pin offsets + paint order (later card on top) — live values 132/146/160/204 */
+.rw-card--auction { top: 132px; z-index: 1; }
+.rw-card--gamification { top: 146px; z-index: 2; }
+.rw-card--designsystem { top: 160px; z-index: 3; }
+.rw-card--beyond { top: 204px; z-index: 4; }
 
 /* ---- right column: title (top) + stats (below) — absolute on desktop/tablet ---- */
 .rw-card__title {
@@ -116,6 +121,13 @@
 .rw-card--teal .rw-stat__label { color: var(--teal); }
 .rw-card--gold .rw-stat { background: rgba(255, 182, 1, 0.16); }
 .rw-card--gold .rw-stat__label { color: var(--gold); }
+/* card 4: two taller tiles in one row (150+ / 0 to 10) */
+.rw-card__stats--pair {
+  top: 455px;
+  grid-template-columns: 254px 254px;
+  grid-template-rows: 117px;
+}
+.rw-card--beyond .rw-stat { background: rgba(255, 182, 1, 0.1); }
 
 /* ---- media (left) ---- */
 .rw-card__media {
@@ -213,8 +225,20 @@
 }
 .rw-figma img { width: 674px; height: 814px; display: block; }
 
-/* scene scale (card 2 rotated phones) — 1 on desktop */
-.rw-gamify__scene { transform: scale(1); }
+/* Card 4 — collage of 5 overlapping screenshots in a 524-coord scene (scaled per breakpoint).
+   The media box has 8px radius (matches live); z-order = DOM order (a bottom -> e top). */
+.rw-collage { border-radius: 8px; }
+.rw-collage__scene { position: absolute; top: 0; left: 0; width: 524px; height: 524px; transform-origin: top left; }
+.rw-collage__scene img { position: absolute; display: block; }
+.rw-collage__a { left: 334px; top: -287px; width: 180px; height: 1563px; border-radius: 12px; } /* tall right */
+.rw-collage__b { left: 16px; top: 16px; width: 306px; height: 175px; border-radius: 12px; }      /* wide top-left */
+.rw-collage__c { left: 156px; top: 136px; width: 171px; height: 274px; }                          /* middle gif */
+.rw-collage__d { left: 16px; top: 202px; width: 131px; height: 306px; }                           /* left */
+.rw-collage__e { left: 160px; top: 352px; width: 163px; height: 433px; border-radius: 16px; }     /* bottom */
+.rw-collage picture { display: contents; }
+
+/* scene scale (card 2 phones / card 4 collage) — 1 on desktop */
+.rw-gamify__scene, .rw-collage__scene { transform: scale(1); }
 
 /* ================= TABLET (810–1279.98) — same left/right layout at 720x420 ================= */
 @media (max-width: 1279.98px) and (min-width: 810px) {
@@ -228,9 +252,11 @@
   .rw-stat__num { font-size: 24px; }
   .rw-stat__label { font-size: 16px; line-height: 1.2; }
   .rw-card__media { left: 29px; top: 29px; width: 362px; height: 362px; border-radius: 12px; }
-  .rw-gamify__scene { transform: scale(0.6908); }
+  .rw-gamify__scene, .rw-collage__scene { transform: scale(0.6908); }
   .rw-figma picture { left: -90px; top: 0; width: 452px; height: 546px; }
   .rw-figma img { width: 452px; height: 546px; }
+  /* card 4 pair stats (tablet) */
+  .rw-card__stats--pair { left: 420px; top: 262px; grid-template-columns: 128px 128px; grid-template-rows: 100px; }
 }
 
 /* ================= PHONE (<= 809.98) — vertical stack, non-sticky ================= */
@@ -285,7 +311,9 @@
   .rw-stat { border-radius: 6px; padding: 8px 4px; gap: 2px; }
   .rw-stat__num { font-size: 20px; }
   .rw-stat__label { font-size: 10px; line-height: 1.2; }
-  .rw-gamify__scene { transform: scale(0.5802); }
+  /* card 4: two tiles (not four) below the media */
+  .rw-card__stats--pair { grid-template-columns: repeat(2, 1fr); }
+  .rw-gamify__scene, .rw-collage__scene { transform: scale(0.6); }
   /* card 3 figma: keep it in the square media box (positioned crop) */
   .rw-figma picture { left: -40px; top: -30px; width: 380px; height: 459px; }
   .rw-figma img { width: 380px; height: 459px; }

@@ -11,6 +11,7 @@ export function Cursor() {
   const reduced = usePrefersReducedMotion();
   const [label, setLabel] = useState<string | null>(null);
   const [size, setSize] = useState<string>('sm');
+  const [arrow, setArrow] = useState<string | null>(null);
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
@@ -27,6 +28,7 @@ export function Cursor() {
       const el = (e.target as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
       setLabel(el ? el.getAttribute('data-cursor-label') : null);
       setSize(el ? el.getAttribute('data-cursor-size') || 'sm' : 'sm');
+      setArrow(el ? el.getAttribute('data-cursor-arrow') : null);
     };
     window.addEventListener('pointermove', move, { passive: true });
     return () => {
@@ -42,7 +44,7 @@ export function Cursor() {
       {/* Layer 1: the dot / pill BACKGROUND — mix-blend-mode:difference so it inverts against
           any backdrop. No text lives here (text in a blended layer would invert too). */}
       <motion.div
-        className={`cursor ${label ? 'cursor--label' : ''} ${label && size === 'lg' ? 'cursor--label-lg' : ''}`}
+        className={`cursor ${label ? 'cursor--label' : ''} ${label && size !== 'sm' ? 'cursor--label-' + size : ''}`}
         aria-hidden="true"
         style={{ x: sx, y: sy }}
       />
@@ -50,7 +52,7 @@ export function Cursor() {
           context would trap the blend), tracking the same pointer spring, with NORMAL blend so
           it renders as true solid black over the (difference-blended) pill background. */}
       <motion.div
-        className={`cursor-text ${label ? 'cursor-text--show' : ''} ${label && size === 'lg' ? 'cursor-text--lg' : ''}`}
+        className={`cursor-text ${label ? 'cursor-text--show' : ''} ${label && size !== 'sm' ? 'cursor-text--' + size : ''}`}
         aria-hidden="true"
         style={{ x: sx, y: sy }}
       >
@@ -60,6 +62,11 @@ export function Cursor() {
               {line}
             </span>
           ))}
+          {arrow === 'up-right' && (
+            <svg className="cursor-text__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+              <path d="M3.5 8.5 8.5 3.5M4.2 3.5h4.3v4.3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          )}
         </span>
       </motion.div>
     </>

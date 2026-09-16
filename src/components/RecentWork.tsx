@@ -1,5 +1,6 @@
 import './recent-work.css';
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion';
 import { usePrefersReducedMotion } from '../lib/hooks';
 
 type Stat = { num: string; label: [string, string] };
@@ -8,14 +9,15 @@ type Card = {
   bg: 'navy' | 'purple';
   accent: 'teal' | 'gold';
   title: string;
-  href: string;
-  media: 'beforeafter' | 'gamify' | 'figma';
+  href?: string;
+  cursor: string; // custom-cursor pill label
+  media: 'beforeafter' | 'gamify' | 'figma' | 'collage';
   stats: Stat[];
 };
 
 const CARDS: Card[] = [
   {
-    key: 'auction', bg: 'navy', accent: 'teal', media: 'beforeafter',
+    key: 'auction', bg: 'navy', accent: 'teal', media: 'beforeafter', cursor: 'View',
     title: "Spinny's car auction app PLP redesign",
     href: 'https://auction-plp-redesign-by-uv.vercel.app/',
     stats: [
@@ -26,7 +28,7 @@ const CARDS: Card[] = [
     ],
   },
   {
-    key: 'gamification', bg: 'purple', accent: 'gold', media: 'gamify',
+    key: 'gamification', bg: 'purple', accent: 'gold', media: 'gamify', cursor: 'View',
     title: 'Introduced a tier based gamification',
     href: 'https://gamification-by-uv.vercel.app/',
     stats: [
@@ -37,7 +39,7 @@ const CARDS: Card[] = [
     ],
   },
   {
-    key: 'designsystem', bg: 'navy', accent: 'teal', media: 'figma',
+    key: 'designsystem', bg: 'navy', accent: 'teal', media: 'figma', cursor: 'View',
     title: 'Established the Spinny design system',
     href: 'https://www.figma.com/design/iBOEPZFnnHc4BZ3FtVsQZ7/Spinny-Design-System---Styles---Components?node-id=2-4101',
     stats: [
@@ -45,6 +47,14 @@ const CARDS: Card[] = [
       { num: '1/3', label: ['DESIGN', 'BANDWIDTH SAVED'] },
       { num: '1/4', label: ['DEVELOPMENT TIME', 'REDUCED'] },
       { num: 'MAX', label: ['CONSISTENCY', 'ACHIEVED'] },
+    ],
+  },
+  {
+    key: 'beyond', bg: 'purple', accent: 'gold', media: 'collage', cursor: 'View',
+    title: 'Other small & big projects with big & BIG impact',
+    stats: [
+      { num: '150+', label: ['PROJECTS', 'DONE'] },
+      { num: '0 to 10', label: ['AND', 'BEYOND'] },
     ],
   },
 ];
@@ -106,16 +116,12 @@ function BeforeAfter() {
     setFromClientX(e.clientX);
   };
   const endDrag = () => { draggingRef.current = false; };
-  // prevent the card link from firing when the drag ends on the handle
   const onClickCapture = (e: React.MouseEvent) => { if (movedRef.current) { e.preventDefault(); e.stopPropagation(); movedRef.current = false; } };
 
   return (
     <div className="rw-card__media rw-ba" ref={boxRef} onClickCapture={onClickCapture}>
-      {/* bottom: NEW scene (full) */}
       <div className="rw-ba__layer rw-ba__new" />
-      {/* top: OLD scene, clipped so its right side is hidden past the divider */}
       <div className="rw-ba__layer rw-ba__old" style={{ clipPath: `inset(0 ${100 - pct}% 0 0)` }} />
-      {/* divider + handle */}
       <div
         className="rw-ba__divider"
         style={{ left: `${pct}%` }}
@@ -129,7 +135,7 @@ function BeforeAfter() {
             <svg viewBox="0 0 16 16" width="15" height="15"><path d="M10 3.5 5.5 8 10 12.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
             <svg viewBox="0 0 16 16" width="15" height="15"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </span>
-          <span className="rw-ba__see" aria-hidden="true">See&nbsp;↗</span>
+          <span className="rw-ba__see" aria-hidden="true">View&nbsp;↗</span>
         </div>
       </div>
     </div>
@@ -142,10 +148,23 @@ function CardMedia({ media }: { media: Card['media'] }) {
     return (
       <div className="rw-card__media rw-gamify">
         <div className="rw-gamify__bg" />
-        {/* 524x524 scene scaled to the media box per breakpoint (keeps the rotated composition exact) */}
         <div className="rw-gamify__scene">
           <div className="rw-gamify__wrap rw-gamify__b"><img src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></div>
           <div className="rw-gamify__wrap rw-gamify__a"><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></div>
+        </div>
+      </div>
+    );
+  }
+  if (media === 'collage') {
+    // 5 overlapping screenshots in a 524-coord scene (scaled per breakpoint), z-order = DOM order
+    return (
+      <div className="rw-card__media rw-collage">
+        <div className="rw-collage__scene">
+          <img className="rw-collage__a" src="/images/rw-c4-a.webp" alt="" loading="lazy" />
+          <picture><source srcSet="/images/rw-c4-b.avif" type="image/avif" /><img className="rw-collage__b" src="/images/rw-c4-b.webp" alt="" loading="lazy" /></picture>
+          <img className="rw-collage__c" src="/images/rw-c4-c.gif" alt="" loading="lazy" />
+          <picture><source srcSet="/images/rw-c4-d.avif" type="image/avif" /><img className="rw-collage__d" src="/images/rw-c4-d.webp" alt="" loading="lazy" /></picture>
+          <picture><source srcSet="/images/rw-c4-e.avif" type="image/avif" /><img className="rw-collage__e" src="/images/rw-c4-e.webp" alt="" loading="lazy" /></picture>
         </div>
       </div>
     );
@@ -160,31 +179,26 @@ function CardMedia({ media }: { media: Card['media'] }) {
   );
 }
 
-function ProjectCard({ card, index }: { card: Card; index: number }) {
-  const ref = useRef<HTMLAnchorElement>(null);
+function ProjectCard({ card, scale }: { card: Card; scale: MotionValue<number> }) {
+  const ref = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) setInView(true); }),
-      { threshold: 0.35 },
+      { threshold: 0.3 },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  return (
-    <a
-      ref={ref}
-      className={`rw-card rw-card--${card.bg} rw-card--${card.accent}${inView ? ' rw-card--in' : ''}`}
-      href={card.href}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+  const className = `rw-card rw-card--${card.bg} rw-card--${card.accent} rw-card--${card.key}${inView ? ' rw-card--in' : ''}`;
+  const inner = (
+    <>
       <CardMedia media={card.media} />
       <h3 className="rw-card__title">{card.title}</h3>
-      <div className="rw-card__stats">
+      <div className={`rw-card__stats${card.stats.length === 2 ? ' rw-card__stats--pair' : ''}`}>
         {card.stats.map((s, i) => (
           <div className="rw-stat" key={i}>
             <ScrambleNum final={s.num} active={inView} />
@@ -192,11 +206,101 @@ function ProjectCard({ card, index }: { card: Card; index: number }) {
           </div>
         ))}
       </div>
-    </a>
+    </>
+  );
+
+  // cards 1–3 are links; card 4 is a display card (no href), like live
+  if (card.href) {
+    return (
+      <motion.a
+        ref={ref as React.RefObject<HTMLAnchorElement>}
+        className={className}
+        style={{ scale }}
+        href={card.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor-label={card.cursor}
+        data-cursor-arrow="up-right"
+        data-cursor-size="view"
+      >
+        {inner}
+      </motion.a>
+    );
+  }
+  return (
+    <motion.div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className={className}
+      style={{ scale }}
+      data-cursor-label={card.cursor}
+      data-cursor-arrow="up-right"
+      data-cursor-size="view"
+    >
+      {inner}
+    </motion.div>
   );
 }
 
+// Progressive shrink: each card scales down 0.1 for every card that stacks on top of it
+// (final: card1 .7, card2 .8, card3 .9, card4 1.0), scrubbed to scroll, transform-origin center.
+const STEP_T = 300; // px over which each shrink step scrubs, ending as the next card pins
+function useStackScales(count: number): MotionValue<number>[] {
+  const scrollY = useMotionValue(0);
+  const reduced = usePrefersReducedMotion();
+  const pinsRef = useRef<number[]>([]);
+  const phoneRef = useRef(false);
+  const reducedRef = useRef(reduced);
+  reducedRef.current = reduced;
+
+  useEffect(() => {
+    const onScroll = () => scrollY.set(window.scrollY);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [scrollY]);
+
+  useEffect(() => {
+    const measure = () => {
+      phoneRef.current = window.matchMedia('(max-width: 809.98px)').matches; // phone: cards don't shrink (non-sticky)
+      const container = document.querySelector<HTMLElement>('.rw__cards');
+      const cards = [...document.querySelectorAll<HTMLElement>('.rw__cards > .rw-card')];
+      if (!container) return;
+      // The container is NOT sticky, so its rect top is always the natural doc position; sum each
+      // card's layout height + the flex gap to get each card's natural top (scroll-independent).
+      const gap = parseFloat(getComputedStyle(container).rowGap) || 0;
+      let y = container.getBoundingClientRect().top + window.scrollY;
+      pinsRef.current = cards.map((c) => {
+        const st = parseFloat(getComputedStyle(c).top) || 0;
+        const pin = y - st;
+        y += c.offsetHeight + gap;
+        return pin;
+      });
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    const t = setTimeout(measure, 600);
+    return () => { window.removeEventListener('resize', measure); clearTimeout(t); };
+  }, []);
+
+  // one transform per card (hooks must be unconditional; count is fixed)
+  const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
+  const make = (i: number) => useTransform(scrollY, (v) => {
+    if (reducedRef.current || phoneRef.current) return 1;
+    const pins = pinsRef.current;
+    let s = 1;
+    for (let j = i + 1; j < count; j++) {
+      const p = pins[j];
+      if (p == null) continue;
+      s -= 0.1 * clamp((v - (p - STEP_T)) / STEP_T, 0, 1);
+    }
+    return s;
+  });
+  // fixed 4 cards
+  return [make(0), make(1), make(2), make(3)];
+}
+
 export function RecentWork() {
+  const scales = useStackScales(CARDS.length);
   return (
     <section className="rw" id="recent-work">
       <div className="rw__inner">
@@ -204,9 +308,9 @@ export function RecentWork() {
         <p className="rw__subtitle">I LOVE BLENDING ART &amp; TECHNOLOGY</p>
         <div className="rw__cards">
           {CARDS.map((c, i) => (
-            <ProjectCard card={c} index={i} key={c.key} />
+            <ProjectCard card={c} scale={scales[i]} key={c.key} />
           ))}
-          {/* scroll room so all three cards can stay pinned together before the stack releases */}
+          {/* scroll room so all cards can stay pinned together before the stack releases */}
           <div className="rw__spacer" aria-hidden="true" />
         </div>
       </div>
