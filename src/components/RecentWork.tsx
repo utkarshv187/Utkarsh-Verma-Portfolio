@@ -142,8 +142,11 @@ function CardMedia({ media }: { media: Card['media'] }) {
     return (
       <div className="rw-card__media rw-gamify">
         <div className="rw-gamify__bg" />
-        <div className="rw-gamify__wrap rw-gamify__b"><img src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></div>
-        <div className="rw-gamify__wrap rw-gamify__a"><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></div>
+        {/* 524x524 scene scaled to the media box per breakpoint (keeps the rotated composition exact) */}
+        <div className="rw-gamify__scene">
+          <div className="rw-gamify__wrap rw-gamify__b"><img src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></div>
+          <div className="rw-gamify__wrap rw-gamify__a"><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></div>
+        </div>
       </div>
     );
   }
@@ -175,22 +178,19 @@ function ProjectCard({ card, index }: { card: Card; index: number }) {
     <a
       ref={ref}
       className={`rw-card rw-card--${card.bg} rw-card--${card.accent}${inView ? ' rw-card--in' : ''}`}
-      style={{ top: `${120 + index * 16}px`, zIndex: index + 1 }}
       href={card.href}
       target="_blank"
       rel="noopener noreferrer"
     >
       <CardMedia media={card.media} />
-      <div className="rw-card__content">
-        <h3 className="rw-card__title">{card.title}</h3>
-        <div className="rw-card__stats">
-          {card.stats.map((s, i) => (
-            <div className="rw-stat" key={i}>
-              <ScrambleNum final={s.num} active={inView} />
-              <p className="rw-stat__label">{s.label[0]}<br />{s.label[1]}</p>
-            </div>
-          ))}
-        </div>
+      <h3 className="rw-card__title">{card.title}</h3>
+      <div className="rw-card__stats">
+        {card.stats.map((s, i) => (
+          <div className="rw-stat" key={i}>
+            <ScrambleNum final={s.num} active={inView} />
+            <p className="rw-stat__label">{s.label[0]}<br />{s.label[1]}</p>
+          </div>
+        ))}
       </div>
     </a>
   );

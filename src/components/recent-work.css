@@ -42,7 +42,6 @@
 .rw__spacer { height: 60vh; flex: none; }
 .rw-card {
   position: sticky;
-  /* top + z-index set inline per index (120/136/152; later card on top) */
   display: block;
   width: 1200px;
   height: 620px;
@@ -58,20 +57,18 @@
 .rw-card--in { opacity: 1; transform: none; }
 .rw-card--navy { background: #0f0c20; }
 .rw-card--purple { background: #56239a; }
+/* pin offsets + paint order (later card on top), ~16px peeks */
+.rw__cards > .rw-card:nth-of-type(1) { top: 120px; z-index: 1; }
+.rw__cards > .rw-card:nth-of-type(2) { top: 136px; z-index: 2; }
+.rw__cards > .rw-card:nth-of-type(3) { top: 152px; z-index: 3; }
 
-/* ---- right content column (title + stats) ---- */
-.rw-card__content {
+/* ---- right column: title (top) + stats (below) — absolute on desktop/tablet ---- */
+.rw-card__title {
   position: absolute;
   left: 620px;
   top: 48px;
   width: 532px;
-  height: 524px;
   z-index: 1; /* above the media (card 3's screenshot bleeds under the title) */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.rw-card__title {
   margin: 0;
   font-family: var(--font-body);
   font-weight: 900;
@@ -80,6 +77,11 @@
   color: #fff;
 }
 .rw-card__stats {
+  position: absolute;
+  left: 620px;
+  top: 378px;
+  width: 532px;
+  z-index: 1;
   display: grid;
   grid-template-columns: 254px 254px;
   grid-template-rows: 85px 85px;
@@ -191,6 +193,8 @@
   background-size: cover;
   background-position: 50% 50%;
 }
+/* scene defined in desktop (524) coords; scaled to the media box per breakpoint */
+.rw-gamify__scene { position: absolute; top: 0; left: 0; width: 524px; height: 524px; transform-origin: top left; }
 .rw-gamify__wrap { position: absolute; transform-origin: center; }
 .rw-gamify__wrap img { display: block; width: 100%; height: 100%; }
 /* back phone (rotated -12deg + shifted left), then front phone (rotated +20deg) — exact from live */
@@ -208,6 +212,84 @@
   display: block;
 }
 .rw-figma img { width: 674px; height: 814px; display: block; }
+
+/* scene scale (card 2 rotated phones) — 1 on desktop */
+.rw-gamify__scene { transform: scale(1); }
+
+/* ================= TABLET (810–1279.98) — same left/right layout at 720x420 ================= */
+@media (max-width: 1279.98px) and (min-width: 810px) {
+  .rw__inner { max-width: 720px; padding-top: 120px; }
+  .rw__heading { font-size: 60px; line-height: 72px; }
+  .rw__subtitle { font-size: 30px; line-height: 42px; margin-top: 10px; }
+  .rw__cards { margin-top: 56px; gap: 80px; }
+  .rw-card { width: 720px; height: 420px; border-radius: 20px; }
+  .rw-card__title { left: 420px; top: 29px; width: 271px; font-size: 38px; line-height: 53.2px; }
+  .rw-card__stats { left: 420px; top: 220px; width: 271px; grid-template-columns: 128px 128px; grid-template-rows: 78px 78px; gap: 15px; }
+  .rw-stat__num { font-size: 24px; }
+  .rw-stat__label { font-size: 16px; line-height: 1.2; }
+  .rw-card__media { left: 29px; top: 29px; width: 362px; height: 362px; border-radius: 12px; }
+  .rw-gamify__scene { transform: scale(0.6908); }
+  .rw-figma picture { left: -90px; top: 0; width: 452px; height: 546px; }
+  .rw-figma img { width: 452px; height: 546px; }
+}
+
+/* ================= PHONE (<= 809.98) — vertical stack, non-sticky ================= */
+@media (max-width: 809.98px) {
+  .rw__inner { max-width: none; margin: 0; padding: 96px 16px 40px; }
+  .rw__heading { font-size: 40px; line-height: 48px; }
+  .rw__subtitle { font-size: 22px; line-height: 30px; margin-top: 8px; }
+  .rw__cards { margin-top: 40px; gap: 24px; }
+  .rw__spacer { display: none; }
+  .rw-card {
+    position: relative;
+    top: auto !important;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  /* order inside the card: title, media, stats */
+  .rw-card__title {
+    position: static;
+    order: 0;
+    left: auto;
+    top: auto;
+    width: 100%;
+    font-size: 24px;
+    line-height: 33.6px;
+  }
+  .rw-card__media {
+    position: relative;
+    order: 1;
+    left: auto;
+    top: auto;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 12px;
+  }
+  .rw-card__stats {
+    position: static;
+    order: 2;
+    left: auto;
+    top: auto;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .rw-stat { border-radius: 6px; padding: 8px 4px; gap: 2px; }
+  .rw-stat__num { font-size: 20px; }
+  .rw-stat__label { font-size: 10px; line-height: 1.2; }
+  .rw-gamify__scene { transform: scale(0.5802); }
+  /* card 3 figma: keep it in the square media box (positioned crop) */
+  .rw-figma picture { left: -40px; top: -30px; width: 380px; height: 459px; }
+  .rw-figma img { width: 380px; height: 459px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .rw-card { opacity: 1; transform: none; transition: none; }
