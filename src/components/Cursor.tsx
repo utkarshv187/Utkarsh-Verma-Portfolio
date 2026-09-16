@@ -25,29 +25,33 @@ export function Cursor() {
     // Position follows the pointer; the LABEL (pill) is driven by pointerENTER/LEAVE (via the
     // bubbling pointerover/pointerout) so it switches the instant the pointer enters a labelled
     // element and resets the instant it leaves — never dependent on continuous movement.
-    const move = (e: PointerEvent) => { x.set(e.clientX); y.set(e.clientY); };
+    const pos = { x: -1, y: -1 }; // last known pointer position (viewport coords)
+    const move = (e: PointerEvent) => { pos.x = e.clientX; pos.y = e.clientY; x.set(e.clientX); y.set(e.clientY); };
     const apply = (el: HTMLElement | null) => {
       const lbl = el ? el.getAttribute('data-cursor-label') : null; // empty string => suppress pill
       setLabel(lbl || null);
       setSize(el && lbl ? el.getAttribute('data-cursor-size') || 'sm' : 'sm');
       setArrow(el && lbl ? el.getAttribute('data-cursor-arrow') : null);
     };
-    const over = (e: PointerEvent) => {
-      const el = (e.target as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
-      if (el) apply(el);
-    };
+    const labelled = (el: Element | null | undefined) => (el?.closest?.('[data-cursor-label]') as HTMLElement | null) ?? null;
+    const over = (e: PointerEvent) => { const el = labelled(e.target as Element); if (el) apply(el); };
     const out = (e: PointerEvent) => {
-      const el = (e.target as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
-      const to = (e.relatedTarget as Element | null)?.closest?.('[data-cursor-label]') as HTMLElement | null;
+      const el = labelled(e.target as Element);
+      const to = labelled(e.relatedTarget as Element);
       if (el && el !== to) apply(to); // left this labelled element -> whatever we entered (or none)
     };
+    // On SCROLL the page moves under a stationary cursor, so re-evaluate what's under the last
+    // pointer position (no mouse-move needed) — pill appears/disappears from scrolling alone.
+    const onScroll = () => { if (pos.x < 0) return; apply(labelled(document.elementFromPoint(pos.x, pos.y))); };
     window.addEventListener('pointermove', move, { passive: true });
     window.addEventListener('pointerover', over, { passive: true });
     window.addEventListener('pointerout', out, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true, capture: true });
     return () => {
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerover', over);
       window.removeEventListener('pointerout', out);
+      window.removeEventListener('scroll', onScroll, { capture: true } as EventListenerOptions);
       document.body.classList.remove('custom-cursor');
     };
   }, [fine, x, y]);

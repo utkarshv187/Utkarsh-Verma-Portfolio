@@ -228,7 +228,7 @@
 
 /* Card 4 — collage of 5 overlapping screenshots in a 524-coord scene (scaled per breakpoint).
    The media box has 8px radius (matches live); z-order = DOM order (a bottom -> e top). */
-.rw-collage { border-radius: 8px; }
+.rw-collage { border-radius: 8px; background: #ececf5; } /* light panel behind the collage (from live) */
 .rw-collage__scene { position: absolute; top: 0; left: 0; width: 524px; height: 524px; transform-origin: top left; }
 .rw-collage__scene img { position: absolute; display: block; }
 .rw-collage__a { left: 334px; top: -287px; width: 180px; height: 1563px; border-radius: 12px; } /* tall right */

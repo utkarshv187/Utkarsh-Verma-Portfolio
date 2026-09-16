@@ -130,25 +130,27 @@ function BeforeAfter() {
   );
 }
 
-function CardMedia({ media }: { media: Card['media'] }) {
+function CardMedia({ media, pan }: { media: Card['media']; pan: MotionValue<number> }) {
   if (media === 'beforeafter') return <BeforeAfter />;
   if (media === 'gamify') {
+    // the tall back phone pans slightly with scroll (matches live's subtle drift)
     return (
       <div className="rw-card__media rw-gamify">
         <div className="rw-gamify__bg" />
         <div className="rw-gamify__scene">
-          <div className="rw-gamify__wrap rw-gamify__b"><img src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></div>
+          <div className="rw-gamify__wrap rw-gamify__b"><motion.img style={{ y: pan }} src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></div>
           <div className="rw-gamify__wrap rw-gamify__a"><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></div>
         </div>
       </div>
     );
   }
   if (media === 'collage') {
-    // 5 overlapping screenshots in a 524-coord scene (scaled per breakpoint), z-order = DOM order
+    // 5 overlapping screenshots in a 524-coord scene (scaled per breakpoint), z-order = DOM order.
+    // The tall listing (rw-c4-a) pans up with scroll — live's 0.67x scroll-linked effect.
     return (
       <div className="rw-card__media rw-collage">
         <div className="rw-collage__scene">
-          <img className="rw-collage__a" src="/images/rw-c4-a.webp" alt="" loading="lazy" />
+          <motion.img className="rw-collage__a" style={{ y: pan }} src="/images/rw-c4-a.webp" alt="" loading="lazy" />
           <picture><source srcSet="/images/rw-c4-b.avif" type="image/avif" /><img className="rw-collage__b" src="/images/rw-c4-b.webp" alt="" loading="lazy" /></picture>
           <img className="rw-collage__c" src="/images/rw-c4-c.gif" alt="" loading="lazy" />
           <picture><source srcSet="/images/rw-c4-d.avif" type="image/avif" /><img className="rw-collage__d" src="/images/rw-c4-d.webp" alt="" loading="lazy" /></picture>
@@ -157,17 +159,18 @@ function CardMedia({ media }: { media: Card['media'] }) {
       </div>
     );
   }
+  // figma design-system board pans up with scroll
   return (
     <div className="rw-card__media rw-figma">
       <picture>
         <source srcSet="/images/rw-designsystem.avif" type="image/avif" />
-        <img src="/images/rw-designsystem.webp" alt="" width={674} height={814} loading="lazy" />
+        <motion.img style={{ y: pan }} src="/images/rw-designsystem.webp" alt="" width={674} height={814} loading="lazy" />
       </picture>
     </div>
   );
 }
 
-function ProjectCard({ card, scale }: { card: Card; scale: MotionValue<number> }) {
+function ProjectCard({ card, scale, pan }: { card: Card; scale: MotionValue<number>; pan: MotionValue<number> }) {
   const ref = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -184,7 +187,7 @@ function ProjectCard({ card, scale }: { card: Card; scale: MotionValue<number> }
   const className = `rw-card rw-card--${card.bg} rw-card--${card.accent} rw-card--${card.key}${inView ? ' rw-card--in' : ''}`;
   const inner = (
     <>
-      <CardMedia media={card.media} />
+      <CardMedia media={card.media} pan={pan} />
       <h3 className="rw-card__title">{card.title}</h3>
       <div className={`rw-card__stats${card.stats.length === 2 ? ' rw-card__stats--pair' : ''}`}>
         {card.stats.map((s, i) => (
@@ -232,7 +235,18 @@ function ProjectCard({ card, scale }: { card: Card; scale: MotionValue<number> }
 // Progressive shrink: each card scales down 0.1 for every card that stacks on top of it
 // (final: card1 .7, card2 .8, card3 .9, card4 1.0), scrubbed to scroll, transform-origin center.
 const STEP_T = 300; // px over which each shrink step scrubs, ending as the next card pins
-function useStackScales(count: number): MotionValue<number>[] {
+// Scroll-pan on each card's tall image [rate, offset, maxPan] — the image pans up as you scroll
+// past the card (like live; card 4's listing = 0.67x). Card 0 (before/after) has no pan.
+// [rate, startOffset, maxPan]: pan = -rate * clamp((scrollY - pin) + startOffset, 0, maxPan).
+// startOffset ~ the entrance distance so the image begins panning as the card scrolls into view
+// (like live) and continues through the pinned window.
+const PAN: [number, number, number][] = [
+  [0, 0, 0],         // auction (before/after) — no pan
+  [0.3, 520, 640],   // gamification (back phone) — subtle
+  [0.45, 640, 820],  // design system (figma board)
+  [0.67, 740, 1040], // beyond (long listing) — matches live's 0.67x
+];
+function useStack(count: number): { scales: MotionValue<number>[]; pans: MotionValue<number>[] } {
   const scrollY = useMotionValue(0);
   const reduced = usePrefersReducedMotion();
   const pinsRef = useRef<number[]>([]);
@@ -270,9 +284,9 @@ function useStackScales(count: number): MotionValue<number>[] {
     return () => { window.removeEventListener('resize', measure); clearTimeout(t); };
   }, []);
 
-  // one transform per card (hooks must be unconditional; count is fixed)
   const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
-  const make = (i: number) => useTransform(scrollY, (v) => {
+  // one transform per card (hooks must be unconditional; count is fixed)
+  const scale = (i: number) => useTransform(scrollY, (v) => {
     if (reducedRef.current || phoneRef.current) return 1;
     const pins = pinsRef.current;
     let s = 1;
@@ -283,12 +297,21 @@ function useStackScales(count: number): MotionValue<number>[] {
     }
     return s;
   });
-  // fixed 4 cards
-  return [make(0), make(1), make(2), make(3)];
+  const pan = (i: number) => useTransform(scrollY, (v) => {
+    if (reducedRef.current || phoneRef.current) return 0;
+    const p = pinsRef.current[i];
+    if (p == null) return 0;
+    const [rate, offset, maxPan] = PAN[i];
+    return -rate * clamp((v - p) + offset, 0, maxPan);
+  });
+  return {
+    scales: [scale(0), scale(1), scale(2), scale(3)],
+    pans: [pan(0), pan(1), pan(2), pan(3)],
+  };
 }
 
 export function RecentWork() {
-  const scales = useStackScales(CARDS.length);
+  const { scales, pans } = useStack(CARDS.length);
   return (
     <section className="rw" id="recent-work">
       <div className="rw__inner">
@@ -296,7 +319,7 @@ export function RecentWork() {
         <p className="rw__subtitle">I LOVE BLENDING ART &amp; TECHNOLOGY</p>
         <div className="rw__cards">
           {CARDS.map((c, i) => (
-            <ProjectCard card={c} scale={scales[i]} key={c.key} />
+            <ProjectCard card={c} scale={scales[i]} pan={pans[i]} key={c.key} />
           ))}
           {/* scroll room so all cards can stay pinned together before the stack releases */}
           <div className="rw__spacer" aria-hidden="true" />
