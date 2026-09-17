@@ -77,12 +77,13 @@
    are absolutely positioned off it, so neither pushes the bio's line-wrapping (matches live, whose
    annotations float free of the text flow). Both the caret and phrase are the SAME script font and
    reveal TOGETHER, one insert at a time in reading order (sequential --delay). */
-.about__ins { position: relative; }
+.about__anchor { position: relative; } /* positioning context for its own caret + phrase */
+.about__ins { position: static; } /* transparent wrapper — children position vs the WORD */
 .about__caret {
   position: absolute;
-  left: 0;
-  top: -6px;
-  font-family: var(--font-script); /* same script font as the phrase (not a plain caret) */
+  left: calc(100% + 1px); /* right after the anchor word */
+  top: 50px;
+  font-family: var(--font-script-2); /* Caveat Brush — same as the phrase */
   font-weight: 400;
   font-size: 32px;
   line-height: 1;
@@ -94,9 +95,7 @@
 }
 .about__ins-text {
   position: absolute;
-  left: 0;
-  top: 0;
-  font-family: var(--font-script); /* Square Peg */
+  font-family: var(--font-script-2); /* Caveat Brush */
   font-weight: 400;
   font-size: 32px;
   line-height: 1;
@@ -114,18 +113,19 @@
   opacity: 1;
   transform: translateY(0) rotate(var(--rot, 0deg));
 }
-/* one-at-a-time: each insert reveals after the per-word body reveal (~0.85s), spaced ~0.4s apart */
-.about__ins--1 { --delay: 0.9s; }
-.about__ins--2 { --delay: 1.3s; }
-.about__ins--3 { --delay: 1.7s; }
-.about__ins--4 { --delay: 2.1s; }
-.about__ins--5 { --delay: 2.5s; }
-/* per-insert placement (relative to its inline caret) + tilt — tuned to live */
-.about__ins--1 .about__ins-text { left: -84px; top: -52px; --rot: 6deg; }
-.about__ins--2 .about__ins-text { left: -46px; top: 40px; --rot: 10deg; }
-.about__ins--3 .about__ins-text { left: -150px; top: -50px; --rot: 4deg; }
-.about__ins--4 .about__ins-text { left: -104px; top: 44px; --rot: -5deg; }
-.about__ins--5 .about__ins-text { left: -232px; top: 40px; --rot: 0deg; }
+/* one-at-a-time: each annotation reveals after the per-word body reveal (~0.85s), ~0.4s apart */
+.about__anchor--1 { --delay: 0.9s; }
+.about__anchor--2 { --delay: 1.3s; }
+.about__anchor--3 { --delay: 1.7s; }
+.about__anchor--4 { --delay: 2.1s; }
+.about__anchor--5 { --delay: 2.5s; }
+/* per-anchor phrase placement RELATIVE TO ITS WORD (left = from the word's right edge) + tilt.
+   Because these are anchored to the word, they follow it at every wrap/size. Mapped from live. */
+.about__anchor--1 .about__ins-text { left: calc(100% - 91px); top: 10px; --rot: 6deg; }   /* designer */
+.about__anchor--2 .about__ins-text { left: calc(100% - 44px); top: 5px; --rot: 10deg; }   /* building */
+.about__anchor--3 .about__ins-text { left: calc(100% - 84px); top: 5px; --rot: 4deg; }    /* experiences */
+.about__anchor--4 .about__ins-text { left: calc(100% - 92px); top: 55px; --rot: -5deg; }  /* thoughtful */
+.about__anchor--5 .about__ins-text { left: calc(100% - 149px); top: 74px; --rot: 0deg; }  /* work */
 
 /* ---- skill icon marquee ---- */
 .about__marquee {
@@ -186,11 +186,12 @@
   .about__portrait img { width: 260px; height: 329px; }
   .about__bio { width: 436px; font-size: 26px; line-height: 58px; }
   .about__ins-text, .about__caret { font-size: 22px; }
-  .about__ins--1 .about__ins-text { left: -56px; top: -34px; }
-  .about__ins--2 .about__ins-text { left: -30px; top: 26px; }
-  .about__ins--3 .about__ins-text { left: -100px; top: -32px; }
-  .about__ins--4 .about__ins-text { left: -70px; top: 28px; }
-  .about__ins--5 .about__ins-text { left: -150px; top: 26px; }
+  .about__caret { top: 33px; }
+  .about__anchor--1 .about__ins-text { left: calc(100% - 59px); top: 7px; }
+  .about__anchor--2 .about__ins-text { left: calc(100% - 29px); top: 3px; }
+  .about__anchor--3 .about__ins-text { left: calc(100% - 55px); top: 3px; }
+  .about__anchor--4 .about__ins-text { left: calc(100% - 60px); top: 36px; }
+  .about__anchor--5 .about__ins-text { left: calc(100% - 97px); top: 49px; }
 }
 
 /* ================= PHONE (<=809.98) ================= */
@@ -203,12 +204,13 @@
   .about__portrait { width: 200px; align-self: center; }
   .about__portrait img { width: 200px; height: 253px; }
   .about__bio { width: 100%; font-size: 22px; line-height: 46px; }
-  .about__ins-text, .about__caret { font-size: 18px; }
-  .about__ins--1 .about__ins-text { left: -46px; top: -26px; }
-  .about__ins--2 .about__ins-text { left: -24px; top: 22px; }
-  .about__ins--3 .about__ins-text { left: -80px; top: -26px; }
-  .about__ins--4 .about__ins-text { left: -58px; top: 22px; }
-  .about__ins--5 .about__ins-text { left: -120px; top: 22px; }
+  .about__ins-text, .about__caret { font-size: 16px; } /* match live's mobile script size */
+  .about__caret { top: 26px; }
+  .about__anchor--1 .about__ins-text { left: calc(100% - 50px); top: 5px; }
+  .about__anchor--2 .about__ins-text { left: calc(100% - 24px); top: 3px; }
+  .about__anchor--3 .about__ins-text { left: calc(100% - 46px); top: 3px; }
+  .about__anchor--4 .about__ins-text { left: calc(100% - 51px); top: 29px; }
+  .about__anchor--5 .about__ins-text { left: calc(100% - 82px); top: 38px; }
   .about__marquee { margin-top: 56px; }
 }
 
