@@ -1,7 +1,7 @@
 import './work-experience.css';
 import { useEffect, useRef, useState } from 'react';
 import { SpinnyLogo } from './SpinnyLogo';
-import { usePrefersReducedMotion } from '../lib/hooks';
+import { usePointerWithin, usePrefersReducedMotion } from '../lib/hooks';
 
 type Row = { company: 'spinny' | string; roleFull: string; roleShort: string; date: string };
 const ROWS: Row[] = [
@@ -66,6 +66,10 @@ export function WorkExperience() {
   const [spinnyOpen, setSpinnyOpen] = useState(false);
   const reduced = usePrefersReducedMotion();
 
+  // Reveal the instant the pointer is over the section — driven by pointer move AND scroll, so
+  // holding the mouse still and scrolling the section under it triggers the reveal (no jiggle).
+  usePointerWithin(sectionRef, (inside) => { if (inside) setSpinnyOpen(true); });
+
   useEffect(() => {
     const el = statsRef.current;
     if (!el) return;
@@ -97,7 +101,6 @@ export function WorkExperience() {
       className="we"
       id="work-experience"
       ref={sectionRef}
-      onPointerEnter={() => setSpinnyOpen(true)}
     >
       <div className="we__inner">
         <h2 className="we__heading we-reveal">WORK EXPERIENCE</h2>

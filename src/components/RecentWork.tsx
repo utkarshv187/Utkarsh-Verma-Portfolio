@@ -52,6 +52,7 @@ const CARDS: Card[] = [
   {
     key: 'beyond', bg: 'purple', accent: 'gold', media: 'collage', cursor: 'View',
     title: 'Other small & big projects with big & BIG impact',
+    href: 'https://www.figma.com/design/6opGa7ReycSavcFyuBy5ic/Spinny-Redesign?node-id=0-1',
     stats: [
       { num: '150+', label: ['PROJECTS', 'DONE'] },
       { num: '0 to 10', label: ['AND', 'BEYOND'] },
@@ -130,16 +131,22 @@ function BeforeAfter() {
   );
 }
 
-function CardMedia({ media, pan }: { media: Card['media']; pan: MotionValue<number> }) {
+function CardMedia({ media, pan, spin }: { media: Card['media']; pan: MotionValue<number>; spin: MotionValue<number> }) {
+  // card 2: the two phones START stacked (smaller behind the bigger) and ROTATE APART as the card
+  // scrolls in — smaller swings right to +20°, bigger swings left to -12° (live's exact angles),
+  // pivoting on a shared bottom point so it's rotation-only (no vertical drift). spin = 0→1 progress.
+  const rotSmall = useTransform(spin, (p) => p * 20);
+  const rotBig = useTransform(spin, (p) => p * -12);
   if (media === 'beforeafter') return <BeforeAfter />;
   if (media === 'gamify') {
-    // the tall back phone pans slightly with scroll (matches live's subtle drift)
     return (
       <div className="rw-card__media rw-gamify">
         <div className="rw-gamify__bg" />
         <div className="rw-gamify__scene">
-          <div className="rw-gamify__wrap rw-gamify__b"><motion.img style={{ y: pan }} src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></div>
-          <div className="rw-gamify__wrap rw-gamify__a"><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></div>
+          {/* smaller phone — BEHIND, rotates RIGHT (+20°) */}
+          <motion.div className="rw-gamify__wrap rw-gamify__a" style={{ rotate: rotSmall }}><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></motion.div>
+          {/* bigger phone — ON TOP, rotates LEFT (-12°) */}
+          <motion.div className="rw-gamify__wrap rw-gamify__b" style={{ rotate: rotBig }}><img src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></motion.div>
         </div>
       </div>
     );
@@ -170,29 +177,32 @@ function CardMedia({ media, pan }: { media: Card['media']; pan: MotionValue<numb
   );
 }
 
-function ProjectCard({ card, scale, pan }: { card: Card; scale: MotionValue<number>; pan: MotionValue<number> }) {
-  const ref = useRef<HTMLElement>(null);
-  const [inView, setInView] = useState(false);
+function ProjectCard({ card, scale, pan, spin }: { card: Card; scale: MotionValue<number>; pan: MotionValue<number>; spin: MotionValue<number> }) {
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [statsIn, setStatsIn] = useState(false);
+  // Trigger the number scramble off the STATS row's own visibility (not the whole card): the card
+  // is tall + sticky, so a card-level trigger fires long before the stats are on screen and they'd
+  // finish resolving before you see them. This starts the ~1s scramble as the stats enter view.
   useEffect(() => {
-    const el = ref.current;
+    const el = statsRef.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) setInView(true); }),
-      { threshold: 0.3 },
+      (entries) => entries.forEach((e) => setStatsIn(e.isIntersecting)),
+      { threshold: 0.6 },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  const className = `rw-card rw-card--${card.bg} rw-card--${card.accent} rw-card--${card.key}${inView ? ' rw-card--in' : ''}`;
+  const className = `rw-card rw-card--${card.bg} rw-card--${card.accent} rw-card--${card.key}`;
   const inner = (
     <>
-      <CardMedia media={card.media} pan={pan} />
+      <CardMedia media={card.media} pan={pan} spin={spin} />
       <h3 className="rw-card__title">{card.title}</h3>
-      <div className={`rw-card__stats${card.stats.length === 2 ? ' rw-card__stats--pair' : ''}`}>
+      <div className={`rw-card__stats${card.stats.length === 2 ? ' rw-card__stats--pair' : ''}`} ref={statsRef}>
         {card.stats.map((s, i) => (
           <div className="rw-stat" key={i}>
-            <ScrambleNum final={s.num} active={inView} />
+            <ScrambleNum final={s.num} active={statsIn} />
             <p className="rw-stat__label">{s.label[0]}<br />{s.label[1]}</p>
           </div>
         ))}
@@ -200,11 +210,10 @@ function ProjectCard({ card, scale, pan }: { card: Card; scale: MotionValue<numb
     </>
   );
 
-  // cards 1–3 are links; card 4 is a display card (no href), like live
+  // every card is a link (opens in a new tab); the whole card is the click target
   if (card.href) {
     return (
       <motion.a
-        ref={ref as React.RefObject<HTMLAnchorElement>}
         className={className}
         style={{ scale }}
         href={card.href}
@@ -220,7 +229,6 @@ function ProjectCard({ card, scale, pan }: { card: Card; scale: MotionValue<numb
   }
   return (
     <motion.div
-      ref={ref as React.RefObject<HTMLDivElement>}
       className={className}
       style={{ scale }}
       data-cursor-label={card.cursor}
@@ -242,11 +250,15 @@ const STEP_T = 300; // px over which each shrink step scrubs, ending as the next
 // (like live) and continues through the pinned window.
 const PAN: [number, number, number][] = [
   [0, 0, 0],         // auction (before/after) — no pan
-  [0.3, 520, 640],   // gamification (back phone) — subtle (max ~192)
+  [0, 0, 0],         // gamification — NO pan; card 2 is rotation-only (phones fan apart, see spin)
   [0.4, 640, 300],   // design system — max ~120, clamped so the image always covers the box
   [0.72, 740, 1360], // beyond (long listing) — long smooth travel (max ~979; base -20 => ~40px cover margin)
 ];
-function useStack(count: number): { scales: MotionValue<number>[]; pans: MotionValue<number>[] } {
+// Card 2 rotation scrub: the fan (0→full angle) plays as the card rises into its pin. spin = 0→1
+// over SPIN_RANGE px, starting SPIN_START px before the pin and completing just before it (live).
+const SPIN_START = 640;
+const SPIN_RANGE = 540;
+function useStack(count: number): { scales: MotionValue<number>[]; pans: MotionValue<number>[]; spins: MotionValue<number>[] } {
   const scrollY = useMotionValue(0);
   const reduced = usePrefersReducedMotion();
   const pinsRef = useRef<number[]>([]);
@@ -313,14 +325,22 @@ function useStack(count: number): { scales: MotionValue<number>[]; pans: MotionV
     const [rate, offset, maxPan] = PAN[i];
     return -rate * clamp((v - p) + offset, 0, maxPan);
   });
+  // 0→1 rotation progress for the card-2 fan; static (fully fanned) when reduced-motion or phone.
+  const spin = (i: number) => useTransform(scrollY, (v) => {
+    if (reducedRef.current || phoneRef.current) return 1;
+    const p = pinsRef.current[i];
+    if (p == null) return 0;
+    return clamp((v - (p - SPIN_START)) / SPIN_RANGE, 0, 1);
+  });
   return {
     scales: [scale(0), scale(1), scale(2), scale(3)],
     pans: [pan(0), pan(1), pan(2), pan(3)],
+    spins: [spin(0), spin(1), spin(2), spin(3)],
   };
 }
 
 export function RecentWork() {
-  const { scales, pans } = useStack(CARDS.length);
+  const { scales, pans, spins } = useStack(CARDS.length);
   return (
     <section className="rw" id="recent-work">
       <div className="rw__inner">
@@ -328,7 +348,7 @@ export function RecentWork() {
         <p className="rw__subtitle">I LOVE BLENDING ART &amp; TECHNOLOGY</p>
         <div className="rw__cards">
           {CARDS.map((c, i) => (
-            <ProjectCard card={c} scale={scales[i]} pan={pans[i]} key={c.key} />
+            <ProjectCard card={c} scale={scales[i]} pan={pans[i]} spin={spins[i]} key={c.key} />
           ))}
           {/* scroll room so all cards can stay pinned together before the stack releases */}
           <div className="rw__spacer" aria-hidden="true" />
