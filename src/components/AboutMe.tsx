@@ -1,5 +1,6 @@
 import './about-me.css';
 import { Fragment, useEffect, useRef, useState } from 'react';
+import { useMarquee } from '../lib/useMarquee';
 
 // The bio: a sequence of words. Five words are ANCHORS — the gold script annotation (caret +
 // phrase) is a child of that word's span, so it always sits right after that exact word, at every
@@ -38,6 +39,8 @@ export function AboutMe() {
     return () => io.disconnect();
   }, []);
   const loop = [...ICONS, ...ICONS];
+  // tools ticker: keep its ~25px/s auto marquee, add grab-drag
+  const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 25 });
 
   return (
     <section className="about" id="more-about-me">
@@ -75,8 +78,8 @@ export function AboutMe() {
         </div>
       </div>
 
-      <div className="about__marquee">
-        <ul className="about__track">
+      <div className="about__marquee" ref={tickerRef} data-cursor-variant="grab">
+        <ul className="about__track" ref={trackRef}>
           {loop.map((n, i) => (
             <li className="about__icon" key={i} aria-hidden={i >= ICONS.length || undefined}>
               <picture>

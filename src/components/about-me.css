@@ -129,19 +129,26 @@
 .about__anchor--4 .about__ins-text { left: calc(100% - 92px); top: 70px; --rot: -5deg; }   /* thoughtful, below */
 .about__anchor--5 .about__ins-text { left: calc(100% - 149px); top: 70px; --rot: 0deg; }   /* work, below */
 
-/* ---- skill icon marquee ---- */
+/* ---- skill icon marquee (auto-scroll + grab-drag via useMarquee) ---- */
 .about__marquee {
   margin-top: 96px;
   width: 100%;
   overflow: hidden;
+  touch-action: pan-y; /* horizontal is our drag; vertical page scroll passes through */
 }
+/* grab affordance — outspecify the global `body.custom-cursor * { cursor: none }` */
+.about__marquee,
+body.custom-cursor .about__marquee,
+body.custom-cursor .about__marquee * { cursor: grab; }
+body.marquee-grabbing .about__marquee,
+body.custom-cursor.marquee-grabbing .about__marquee,
+body.custom-cursor.marquee-grabbing .about__marquee * { cursor: grabbing; }
 .about__track {
   display: flex;
   width: max-content;
   margin: 0;
   padding: 0;
   list-style: none;
-  animation: about-icons 50s linear infinite; /* calm leftward drift, like live */
   will-change: transform;
 }
 .about__icon {
@@ -156,6 +163,9 @@
   width: 100px;
   height: 100px;
   border-radius: 22px; /* squircle, matching live */
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
 }
 /* full-width gold strip across the bottom of the Rive icon (live), inside the 100px box so it is
    never clipped; bottom corners match the icon radius. */
@@ -175,7 +185,6 @@
   padding: 5px 0 6px;
   border-radius: 0 0 22px 22px;
 }
-@keyframes about-icons { to { transform: translateX(-50%); } }
 
 /* ================= TABLET (810–1279.98) ================= */
 @media (max-width: 1279.98px) and (min-width: 810px) {
@@ -217,7 +226,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about__track { animation: none; }
   .about__word { opacity: 1; transform: none; transition: none; }
   .about__caret { opacity: 1; transition: none; }
   .about__ins-text { opacity: 1; transform: rotate(var(--rot, 0deg)); transition: none; }

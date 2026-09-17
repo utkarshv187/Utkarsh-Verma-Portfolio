@@ -65,14 +65,14 @@ export function Cursor() {
       {/* Layer 1: the dot / pill BACKGROUND — mix-blend-mode:difference so it inverts against
           any backdrop. No text lives here (text in a blended layer would invert too). */}
       <motion.div
-        className={`cursor ${label ? 'cursor--label' : ''} ${label && size !== 'sm' ? 'cursor--label-' + size : ''} ${!label && variant === 'link' ? 'cursor--link' : ''}`}
+        className={`cursor ${label ? 'cursor--label' : ''} ${label && size !== 'sm' ? 'cursor--label-' + size : ''} ${!label && variant === 'link' ? 'cursor--link' : ''} ${variant === 'grab' ? 'cursor--off' : ''}`}
         aria-hidden="true"
         style={{ x: sx, y: sy }}
       >
-        {/* link cursor (e.g. testimonial cards): a small up-right arrow inside the dark dot */}
+        {/* link cursor (e.g. testimonial cards): a bold (3px stroke) up-right arrow in the dark dot */}
         {!label && variant === 'link' && (
-          <svg className="cursor__link-arrow" viewBox="0 0 8 8" width="11" height="11" aria-hidden="true">
-            <path d="M 8 0.444 L 8 6.222 C 8 6.467 7.801 6.666 7.556 6.666 C 7.31 6.666 7.111 6.467 7.111 6.222 L 7.111 1.517 L 0.759 7.87 C 0.585 8.043 0.304 8.043 0.13 7.87 C -0.043 7.696 -0.043 7.415 0.13 7.241 L 6.483 0.889 L 1.778 0.889 C 1.533 0.889 1.334 0.69 1.334 0.444 C 1.334 0.199 1.533 0 1.778 0 L 7.556 0 C 7.801 0 8 0.199 8 0.444 Z" fill="#fff" />
+          <svg className="cursor__link-arrow" viewBox="0 0 13 13" width="13" height="13" aria-hidden="true">
+            <path d="M3.8 9.2 L9.2 3.8 M4.8 3.8 H9.2 V8.2" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         )}
       </motion.div>
