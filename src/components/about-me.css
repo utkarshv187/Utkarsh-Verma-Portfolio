@@ -83,7 +83,7 @@
   position: absolute;
   left: calc(100% + 1px); /* right after the anchor word */
   top: 50px;
-  font-family: var(--font-script-2); /* Caveat Brush — same as the phrase */
+  font-family: var(--font-script); /* Square Peg — same as the phrase (live's original) */
   font-weight: 400;
   font-size: 32px;
   line-height: 1;
@@ -95,7 +95,7 @@
 }
 .about__ins-text {
   position: absolute;
-  font-family: var(--font-script-2); /* Caveat Brush */
+  font-family: var(--font-script); /* Square Peg (live's original, 32px desktop / 16px mobile) */
   font-weight: 400;
   font-size: 32px;
   line-height: 1;
@@ -121,11 +121,13 @@
 .about__anchor--5 { --delay: 2.5s; }
 /* per-anchor phrase placement RELATIVE TO ITS WORD (left = from the word's right edge) + tilt.
    Because these are anchored to the word, they follow it at every wrap/size. Mapped from live. */
-.about__anchor--1 .about__ins-text { left: calc(100% - 91px); top: 10px; --rot: 6deg; }   /* designer */
-.about__anchor--2 .about__ins-text { left: calc(100% - 44px); top: 5px; --rot: 10deg; }   /* building */
-.about__anchor--3 .about__ins-text { left: calc(100% - 84px); top: 5px; --rot: 4deg; }    /* experiences */
-.about__anchor--4 .about__ins-text { left: calc(100% - 92px); top: 55px; --rot: -5deg; }  /* thoughtful */
-.about__anchor--5 .about__ins-text { left: calc(100% - 149px); top: 74px; --rot: 0deg; }  /* work */
+/* tops centre each phrase in the inter-line GAP (line-height 88 gives ~48px gaps) so it never
+   sits on the white text: 1/2/3 in the gap ABOVE their line, 4/5 in the gap BELOW. */
+.about__anchor--1 .about__ins-text { left: calc(100% - 91px); top: -18px; --rot: 6deg; }   /* designer, above */
+.about__anchor--2 .about__ins-text { left: calc(100% - 44px); top: -18px; --rot: 10deg; }  /* building, above */
+.about__anchor--3 .about__ins-text { left: calc(100% - 84px); top: -18px; --rot: 4deg; }   /* experiences, above */
+.about__anchor--4 .about__ins-text { left: calc(100% - 92px); top: 70px; --rot: -5deg; }   /* thoughtful, below */
+.about__anchor--5 .about__ins-text { left: calc(100% - 149px); top: 70px; --rot: 0deg; }   /* work, below */
 
 /* ---- skill icon marquee ---- */
 .about__marquee {
@@ -187,11 +189,11 @@
   .about__bio { width: 436px; font-size: 26px; line-height: 58px; }
   .about__ins-text, .about__caret { font-size: 22px; }
   .about__caret { top: 33px; }
-  .about__anchor--1 .about__ins-text { left: calc(100% - 59px); top: 7px; }
-  .about__anchor--2 .about__ins-text { left: calc(100% - 29px); top: 3px; }
-  .about__anchor--3 .about__ins-text { left: calc(100% - 55px); top: 3px; }
-  .about__anchor--4 .about__ins-text { left: calc(100% - 60px); top: 36px; }
-  .about__anchor--5 .about__ins-text { left: calc(100% - 97px); top: 49px; }
+  .about__anchor--1 .about__ins-text { left: calc(100% - 59px); top: -12px; }
+  .about__anchor--2 .about__ins-text { left: calc(100% - 29px); top: -12px; }
+  .about__anchor--3 .about__ins-text { left: calc(100% - 55px); top: -12px; }
+  .about__anchor--4 .about__ins-text { left: calc(100% - 60px); top: 46px; }
+  .about__anchor--5 .about__ins-text { left: calc(100% - 97px); top: 46px; }
 }
 
 /* ================= PHONE (<=809.98) ================= */
@@ -203,14 +205,14 @@
   .about__row { flex-direction: column; align-items: flex-start; gap: 24px; margin-top: 28px; }
   .about__portrait { width: 200px; align-self: center; }
   .about__portrait img { width: 200px; height: 253px; }
-  .about__bio { width: 100%; font-size: 22px; line-height: 46px; }
+  .about__bio { width: 100%; font-size: 24px; line-height: 52.8px; } /* match live mobile */
   .about__ins-text, .about__caret { font-size: 16px; } /* match live's mobile script size */
   .about__caret { top: 26px; }
-  .about__anchor--1 .about__ins-text { left: calc(100% - 50px); top: 5px; }
-  .about__anchor--2 .about__ins-text { left: calc(100% - 24px); top: 3px; }
-  .about__anchor--3 .about__ins-text { left: calc(100% - 46px); top: 3px; }
-  .about__anchor--4 .about__ins-text { left: calc(100% - 51px); top: 29px; }
-  .about__anchor--5 .about__ins-text { left: calc(100% - 82px); top: 38px; }
+  .about__anchor--1 .about__ins-text { left: calc(100% - 50px); top: -11px; }
+  .about__anchor--2 .about__ins-text { left: calc(100% - 24px); top: -11px; }
+  .about__anchor--3 .about__ins-text { left: calc(100% - 46px); top: -11px; }
+  .about__anchor--4 .about__ins-text { left: calc(100% - 51px); top: 42px; }
+  .about__anchor--5 .about__ins-text { left: calc(100% - 82px); top: 42px; }
   .about__marquee { margin-top: 56px; }
 }
 
