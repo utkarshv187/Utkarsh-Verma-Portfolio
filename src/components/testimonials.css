@@ -1,0 +1,94 @@
+/* ================= THINGS THEY SAY =================
+   Live: purple (#9B50FF) section; white heading + dark subhead; a full-bleed leftward marquee
+   of 3 white LinkedIn recommendation cards (500x300, 24px radius), each linking to the profile. */
+.tts {
+  position: relative;
+  z-index: 1;
+  background: var(--purple); /* #9B50FF */
+  padding: 140px 0 150px;
+  overflow: hidden;
+}
+.tts__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.tts__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 96px;
+  color: var(--white);
+}
+.tts__subtitle {
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: #0f0c20;
+}
+
+/* full-bleed marquee viewport */
+.tts__marquee {
+  margin-top: 56px;
+  width: 100%;
+  overflow: hidden;
+}
+.tts__track {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: tts-scroll 72s linear infinite; /* calm leftward drift, like live */
+  will-change: transform;
+}
+.tts__item {
+  flex: none;
+  margin-right: 40px; /* card 500 + 40 gap = 540 pitch */
+}
+.tts__card {
+  display: block;
+  width: 500px;
+  height: 300px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(24, 8, 60, 0.22);
+}
+.tts__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@keyframes tts-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ================= TABLET (810–1279.98) ================= */
+@media (max-width: 1279.98px) and (min-width: 810px) {
+  .tts { padding: 120px 0 120px; }
+  .tts__inner { max-width: 720px; }
+  .tts__heading { font-size: 48px; line-height: 57.6px; }
+  .tts__subtitle { font-size: 24px; line-height: 33.6px; margin-top: 10px; }
+  .tts__track { animation-duration: 45s; }
+  .tts__card { width: 380px; height: 228px; border-radius: 18px; }
+  .tts__item { margin-right: 32px; }
+}
+
+/* ================= PHONE (<=809.98) ================= */
+@media (max-width: 809.98px) {
+  .tts { padding: 80px 0 80px; }
+  .tts__inner { max-width: none; padding: 0 20px; }
+  .tts__heading { font-size: 31px; line-height: 37.2px; }
+  .tts__subtitle { font-size: 16px; line-height: 24px; margin-top: 8px; }
+  .tts__marquee { margin-top: 36px; }
+  .tts__track { animation-duration: 38s; }
+  .tts__card { width: 300px; height: 180px; border-radius: 16px; }
+  .tts__item { margin-right: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tts__track { animation: none; }
+}

@@ -1,0 +1,192 @@
+/* ================= MORE ABOUT ME =================
+   Live: dark navy (#0F0C20); gold heading + white subhead; portrait (left) + a big Satoshi bio
+   (right) annotated with gold handwritten "caret" inserts that fade+slide up on scroll-in; below,
+   a leftward marquee of skill/tool icons with a "LEARNING" badge on Rive. */
+.about {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-dark); /* #0F0C20 */
+  padding: 140px 0 130px;
+  overflow: hidden;
+}
+.about__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.about__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 96px;
+  color: var(--gold-2); /* #FFB705 */
+}
+.about__subtitle {
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: var(--white);
+}
+
+/* ---- portrait + bio row ---- */
+.about__row {
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.about__portrait {
+  flex: none;
+  width: 395px;
+}
+.about__portrait img {
+  display: block;
+  width: 395px;
+  height: 500px;
+  object-fit: contain;
+}
+
+.about__bio {
+  position: relative;
+  flex: none;
+  width: 775px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 88px; /* generous — the gold inserts live in the space between lines */
+  color: var(--white);
+}
+
+/* ---- gold caret inserts ----
+   The insert is a ZERO-WIDTH inline anchor at the insertion point: both the caret and the phrase
+   are absolutely positioned off it, so neither pushes the bio's line-wrapping (matches live, whose
+   annotations float free of the text flow). */
+.about__ins { position: relative; }
+.about__caret {
+  position: absolute;
+  left: 1px;
+  top: -2px;
+  color: var(--gold-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+.about__ins-text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-script); /* Square Peg */
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--gold-2);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(18px) rotate(var(--rot, 0deg));
+  transform-origin: left center;
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition-delay: var(--delay, 0s);
+  pointer-events: none;
+}
+.about__bio--in .about__ins-text {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--rot, 0deg));
+}
+/* per-insert placement (relative to its inline caret) + tilt + stagger — tuned to live */
+.about__ins--1 .about__ins-text { left: -84px; top: -52px; --rot: 6deg; --delay: 0s; }
+.about__ins--2 .about__ins-text { left: -46px; top: 40px; --rot: 10deg; --delay: 0.08s; }
+.about__ins--3 .about__ins-text { left: -150px; top: -50px; --rot: 4deg; --delay: 0.16s; }
+.about__ins--4 .about__ins-text { left: -104px; top: 44px; --rot: -5deg; --delay: 0.24s; }
+.about__ins--5 .about__ins-text { left: -232px; top: 40px; --rot: 0deg; --delay: 0.32s; }
+
+/* ---- skill icon marquee ---- */
+.about__marquee {
+  margin-top: 96px;
+  width: 100%;
+  overflow: hidden;
+}
+.about__track {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: about-icons 50s linear infinite; /* calm leftward drift, like live */
+  will-change: transform;
+}
+.about__icon {
+  position: relative;
+  flex: none;
+  width: 100px;
+  height: 100px;
+  margin-right: 40px; /* 100 + 40 = 140 pitch */
+}
+.about__icon img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 22px; /* squircle, matching live */
+}
+.about__learning {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  background: var(--gold-2);
+  color: #0f0c20;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+@keyframes about-icons { to { transform: translateX(-50%); } }
+
+/* ================= TABLET (810–1279.98) ================= */
+@media (max-width: 1279.98px) and (min-width: 810px) {
+  .about { padding: 120px 0 110px; }
+  .about__inner { max-width: 720px; }
+  .about__heading { font-size: 48px; line-height: 57.6px; }
+  .about__subtitle { font-size: 24px; line-height: 33.6px; margin-top: 10px; }
+  .about__row { gap: 24px; margin-top: 36px; }
+  .about__portrait { width: 260px; }
+  .about__portrait img { width: 260px; height: 329px; }
+  .about__bio { width: 436px; font-size: 26px; line-height: 58px; }
+  .about__ins-text { font-size: 22px; }
+  .about__ins--1 .about__ins-text { left: -56px; top: -34px; }
+  .about__ins--2 .about__ins-text { left: -30px; top: 26px; }
+  .about__ins--3 .about__ins-text { left: -100px; top: -32px; }
+  .about__ins--4 .about__ins-text { left: -70px; top: 28px; }
+  .about__ins--5 .about__ins-text { left: -150px; top: 26px; }
+}
+
+/* ================= PHONE (<=809.98) ================= */
+@media (max-width: 809.98px) {
+  .about { padding: 80px 0 72px; }
+  .about__inner { max-width: none; padding: 0 20px; }
+  .about__heading { font-size: 31px; line-height: 37.2px; }
+  .about__subtitle { font-size: 16px; line-height: 24px; margin-top: 8px; }
+  .about__row { flex-direction: column; align-items: flex-start; gap: 24px; margin-top: 28px; }
+  .about__portrait { width: 200px; align-self: center; }
+  .about__portrait img { width: 200px; height: 253px; }
+  .about__bio { width: 100%; font-size: 22px; line-height: 46px; }
+  .about__ins-text { font-size: 18px; }
+  .about__ins--1 .about__ins-text { left: -46px; top: -26px; }
+  .about__ins--2 .about__ins-text { left: -24px; top: 22px; }
+  .about__ins--3 .about__ins-text { left: -80px; top: -26px; }
+  .about__ins--4 .about__ins-text { left: -58px; top: 22px; }
+  .about__ins--5 .about__ins-text { left: -120px; top: 22px; }
+  .about__marquee { margin-top: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__track { animation: none; }
+  .about__ins-text { transition: none; }
+}
