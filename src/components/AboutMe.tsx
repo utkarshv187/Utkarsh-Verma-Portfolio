@@ -1,16 +1,23 @@
 import './about-me.css';
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
-// One gold caret-insert: an inline caret (^) in the bio, plus the gold handwritten phrase that
-// fades + slides up into place when the bio scrolls into view.
-function Ins({ n, children }: { n: number; children: React.ReactNode }) {
-  return (
-    <span className={`about__ins about__ins--${n}`}>
-      <span className="about__caret">^</span>
-      <span className="about__ins-text">{children}</span>
-    </span>
-  );
-}
+// The bio: a flat sequence of words + gold caret-inserts. Words reveal per-word (staggered
+// fade-up) as the bio scrolls in; then the inserts pop in ONE AT A TIME (each caret + its script
+// phrase together). Live's Satoshi body + Square Peg annotations.
+type Seg = { w: string } | { ins: number; text: string };
+const BIO: Seg[] = [
+  { w: 'Result,' }, { w: 'impact' }, { w: '&' }, { w: 'delight' }, { w: 'driven' }, { w: 'designer' },
+  { ins: 1, text: ', mentor, storyteller' },
+  { w: 'with' }, { w: '7+' }, { w: 'years' }, { w: 'of' }, { w: 'expertise' }, { w: 'in' }, { w: 'building' },
+  { ins: 2, text: '& improving' },
+  { w: 'human' }, { w: 'experiences' },
+  { ins: 3, text: ', products & businesses' },
+  { w: 'by' }, { w: 'thoughtful' },
+  { ins: 4, text: 'sometimes unconventional' },
+  { w: 'interfaces' }, { w: '&' }, { w: 'ideas' }, { w: 'which' }, { w: 'work' },
+  { ins: 5, text: 'if not, then we correct & make it work' },
+  { w: '&' }, { w: 'thrive' },
+];
 
 // 9 skill/tool icons (about-icon-1..9). #5 is Rive — the one being LEARNED (gold badge).
 const ICONS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -43,12 +50,27 @@ export function AboutMe() {
           </picture>
 
           <p className={`about__bio${revealed ? ' about__bio--in' : ''}`} ref={bioRef}>
-            Result, impact &amp; delight driven designer
-            <Ins n={1}>, mentor, storyteller</Ins> with 7+ years of expertise in building
-            <Ins n={2}>&amp; improving</Ins> human experiences
-            <Ins n={3}>, products &amp; businesses</Ins> by thoughtful
-            <Ins n={4}>sometimes unconventional</Ins> interfaces &amp; ideas which work
-            <Ins n={5}>if not, then we correct &amp; make it work</Ins> &amp; thrive
+            {(() => {
+              let wi = -1; // running word index (for the per-word stagger delay)
+              return BIO.map((seg, i) => {
+                if ('ins' in seg) {
+                  return (
+                    <span className={`about__ins about__ins--${seg.ins}`} key={i}>
+                      <span className="about__caret">^</span>
+                      <span className="about__ins-text">{seg.text}</span>
+                    </span>
+                  );
+                }
+                wi += 1;
+                // real space text node after each word so it COLLAPSES at line ends (a margin
+                // wouldn't, which would push the wrap and change live's line breaks)
+                return (
+                  <Fragment key={i}>
+                    <span className="about__word" style={{ ['--wd' as string]: `${(wi * 0.03).toFixed(2)}s` }}>{seg.w}</span>{' '}
+                  </Fragment>
+                );
+              });
+            })()}
           </p>
         </div>
       </div>

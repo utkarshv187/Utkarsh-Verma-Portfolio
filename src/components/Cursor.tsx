@@ -12,6 +12,7 @@ export function Cursor() {
   const [label, setLabel] = useState<string | null>(null);
   const [size, setSize] = useState<string>('sm');
   const [arrow, setArrow] = useState<string | null>(null);
+  const [variant, setVariant] = useState<string | null>(null);
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
@@ -31,9 +32,10 @@ export function Cursor() {
       const lbl = el ? el.getAttribute('data-cursor-label') : null; // empty string => suppress pill
       setLabel(lbl || null);
       setSize(el && lbl ? el.getAttribute('data-cursor-size') || 'sm' : 'sm');
-      setArrow(el && lbl ? el.getAttribute('data-cursor-arrow') : null);
+      setArrow(el ? el.getAttribute('data-cursor-arrow') : null);
+      setVariant(el ? el.getAttribute('data-cursor-variant') : null); // e.g. "link" => dark dot + ↗
     };
-    const labelled = (el: Element | null | undefined) => (el?.closest?.('[data-cursor-label]') as HTMLElement | null) ?? null;
+    const labelled = (el: Element | null | undefined) => (el?.closest?.('[data-cursor-label], [data-cursor-variant]') as HTMLElement | null) ?? null;
     const over = (e: PointerEvent) => { const el = labelled(e.target as Element); if (el) apply(el); };
     const out = (e: PointerEvent) => {
       const el = labelled(e.target as Element);
@@ -63,10 +65,17 @@ export function Cursor() {
       {/* Layer 1: the dot / pill BACKGROUND — mix-blend-mode:difference so it inverts against
           any backdrop. No text lives here (text in a blended layer would invert too). */}
       <motion.div
-        className={`cursor ${label ? 'cursor--label' : ''} ${label && size !== 'sm' ? 'cursor--label-' + size : ''}`}
+        className={`cursor ${label ? 'cursor--label' : ''} ${label && size !== 'sm' ? 'cursor--label-' + size : ''} ${!label && variant === 'link' ? 'cursor--link' : ''}`}
         aria-hidden="true"
         style={{ x: sx, y: sy }}
-      />
+      >
+        {/* link cursor (e.g. testimonial cards): a small up-right arrow inside the dark dot */}
+        {!label && variant === 'link' && (
+          <svg className="cursor__link-arrow" viewBox="0 0 8 8" width="11" height="11" aria-hidden="true">
+            <path d="M 8 0.444 L 8 6.222 C 8 6.467 7.801 6.666 7.556 6.666 C 7.31 6.666 7.111 6.467 7.111 6.222 L 7.111 1.517 L 0.759 7.87 C 0.585 8.043 0.304 8.043 0.13 7.87 C -0.043 7.696 -0.043 7.415 0.13 7.241 L 6.483 0.889 L 1.778 0.889 C 1.533 0.889 1.334 0.69 1.334 0.444 C 1.334 0.199 1.533 0 1.778 0 L 7.556 0 C 7.801 0 8 0.199 8 0.444 Z" fill="#fff" />
+          </svg>
+        )}
+      </motion.div>
       {/* Layer 2: the pill TEXT — a top-level sibling (NOT a child of .cursor, whose stacking
           context would trap the blend), tracking the same pointer spring, with NORMAL blend so
           it renders as true solid black over the (difference-blended) pill background. */}

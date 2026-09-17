@@ -22,7 +22,7 @@ export function Testimonials() {
         <ul className="tts__track">
           {loop.map((c, i) => (
             <li className="tts__item" key={i} aria-hidden={i >= CARDS.length || undefined}>
-              <a className="tts__card" href={HREF} target="_blank" rel="noopener noreferrer" tabIndex={i >= CARDS.length ? -1 : undefined}>
+              <a className="tts__card" href={HREF} target="_blank" rel="noopener noreferrer" tabIndex={i >= CARDS.length ? -1 : undefined} data-cursor-variant="link" data-cursor-arrow="up-right">
                 <picture>
                   <source srcSet={`/images/${c.src}.avif`} type="image/avif" />
                   <img src={`/images/${c.src}.webp`} alt={i >= CARDS.length ? '' : c.alt} width={500} height={300} loading="lazy" />

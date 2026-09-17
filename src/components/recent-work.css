@@ -7,6 +7,7 @@
   z-index: 1; /* paints over the pinned hero, like the WE section */
   background: #ececf5;
   color: #0e0c20;
+  padding-bottom: 120px; /* light whitespace below card 4 before the next section (live) */
 }
 .rw__inner {
   max-width: 1200px;
@@ -244,6 +245,7 @@
 
 /* ================= TABLET (810–1279.98) — same left/right layout at 720x420 ================= */
 @media (max-width: 1279.98px) and (min-width: 810px) {
+  .rw { padding-bottom: 90px; }
   .rw__inner { max-width: 720px; padding-top: 120px; }
   .rw__heading { font-size: 48px; line-height: 57.6px; }
   .rw__subtitle { font-size: 24px; line-height: 33.6px; margin-top: 10px; }
@@ -263,6 +265,7 @@
 
 /* ================= PHONE (<= 809.98) — vertical stack, non-sticky ================= */
 @media (max-width: 809.98px) {
+  .rw { padding-bottom: 48px; }
   .rw__inner { max-width: none; margin: 0; padding: 96px 20px 40px; }
   .rw__heading { font-size: 31px; line-height: 37.2px; }
   .rw__subtitle { font-size: 16px; line-height: 24px; margin-top: 8px; }

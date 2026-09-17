@@ -59,20 +59,37 @@
   line-height: 88px; /* generous — the gold inserts live in the space between lines */
   color: var(--white);
 }
+/* per-word entrance: each word fades + slides up, staggered, when the bio scrolls in (live) */
+.about__word {
+  display: inline-block; /* enables translateY; spaces sit between words as text nodes */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: var(--wd, 0s);
+}
+.about__bio--in .about__word {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ---- gold caret inserts ----
    The insert is a ZERO-WIDTH inline anchor at the insertion point: both the caret and the phrase
    are absolutely positioned off it, so neither pushes the bio's line-wrapping (matches live, whose
-   annotations float free of the text flow). */
+   annotations float free of the text flow). Both the caret and phrase are the SAME script font and
+   reveal TOGETHER, one insert at a time in reading order (sequential --delay). */
 .about__ins { position: relative; }
 .about__caret {
   position: absolute;
-  left: 1px;
-  top: -2px;
-  color: var(--gold-2);
-  font-family: var(--font-display);
-  font-weight: 700;
+  left: 0;
+  top: -6px;
+  font-family: var(--font-script); /* same script font as the phrase (not a plain caret) */
+  font-weight: 400;
+  font-size: 32px;
   line-height: 1;
+  color: var(--gold-2);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  transition-delay: var(--delay, 0s);
   pointer-events: none;
 }
 .about__ins-text {
@@ -86,22 +103,29 @@
   color: var(--gold-2);
   white-space: nowrap;
   opacity: 0;
-  transform: translateY(18px) rotate(var(--rot, 0deg));
+  transform: translateY(14px) rotate(var(--rot, 0deg));
   transform-origin: left center;
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
   transition-delay: var(--delay, 0s);
   pointer-events: none;
 }
+.about__bio--in .about__caret { opacity: 1; }
 .about__bio--in .about__ins-text {
   opacity: 1;
   transform: translateY(0) rotate(var(--rot, 0deg));
 }
-/* per-insert placement (relative to its inline caret) + tilt + stagger — tuned to live */
-.about__ins--1 .about__ins-text { left: -84px; top: -52px; --rot: 6deg; --delay: 0s; }
-.about__ins--2 .about__ins-text { left: -46px; top: 40px; --rot: 10deg; --delay: 0.08s; }
-.about__ins--3 .about__ins-text { left: -150px; top: -50px; --rot: 4deg; --delay: 0.16s; }
-.about__ins--4 .about__ins-text { left: -104px; top: 44px; --rot: -5deg; --delay: 0.24s; }
-.about__ins--5 .about__ins-text { left: -232px; top: 40px; --rot: 0deg; --delay: 0.32s; }
+/* one-at-a-time: each insert reveals after the per-word body reveal (~0.85s), spaced ~0.4s apart */
+.about__ins--1 { --delay: 0.9s; }
+.about__ins--2 { --delay: 1.3s; }
+.about__ins--3 { --delay: 1.7s; }
+.about__ins--4 { --delay: 2.1s; }
+.about__ins--5 { --delay: 2.5s; }
+/* per-insert placement (relative to its inline caret) + tilt — tuned to live */
+.about__ins--1 .about__ins-text { left: -84px; top: -52px; --rot: 6deg; }
+.about__ins--2 .about__ins-text { left: -46px; top: 40px; --rot: 10deg; }
+.about__ins--3 .about__ins-text { left: -150px; top: -50px; --rot: 4deg; }
+.about__ins--4 .about__ins-text { left: -104px; top: 44px; --rot: -5deg; }
+.about__ins--5 .about__ins-text { left: -232px; top: 40px; --rot: 0deg; }
 
 /* ---- skill icon marquee ---- */
 .about__marquee {
@@ -131,11 +155,13 @@
   height: 100px;
   border-radius: 22px; /* squircle, matching live */
 }
+/* full-width gold strip across the bottom of the Rive icon (live), inside the 100px box so it is
+   never clipped; bottom corners match the icon radius. */
 .about__learning {
   position: absolute;
-  left: 50%;
-  bottom: -6px;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: var(--gold-2);
   color: #0f0c20;
   font-family: var(--font-display);
@@ -143,9 +169,9 @@
   font-size: 10px;
   letter-spacing: 0.04em;
   line-height: 1;
-  padding: 4px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
+  text-align: center;
+  padding: 5px 0 6px;
+  border-radius: 0 0 22px 22px;
 }
 @keyframes about-icons { to { transform: translateX(-50%); } }
 
@@ -159,7 +185,7 @@
   .about__portrait { width: 260px; }
   .about__portrait img { width: 260px; height: 329px; }
   .about__bio { width: 436px; font-size: 26px; line-height: 58px; }
-  .about__ins-text { font-size: 22px; }
+  .about__ins-text, .about__caret { font-size: 22px; }
   .about__ins--1 .about__ins-text { left: -56px; top: -34px; }
   .about__ins--2 .about__ins-text { left: -30px; top: 26px; }
   .about__ins--3 .about__ins-text { left: -100px; top: -32px; }
@@ -177,7 +203,7 @@
   .about__portrait { width: 200px; align-self: center; }
   .about__portrait img { width: 200px; height: 253px; }
   .about__bio { width: 100%; font-size: 22px; line-height: 46px; }
-  .about__ins-text { font-size: 18px; }
+  .about__ins-text, .about__caret { font-size: 18px; }
   .about__ins--1 .about__ins-text { left: -46px; top: -26px; }
   .about__ins--2 .about__ins-text { left: -24px; top: 22px; }
   .about__ins--3 .about__ins-text { left: -80px; top: -26px; }
@@ -188,5 +214,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .about__track { animation: none; }
-  .about__ins-text { transition: none; }
+  .about__word { opacity: 1; transform: none; transition: none; }
+  .about__caret { opacity: 1; transition: none; }
+  .about__ins-text { opacity: 1; transform: rotate(var(--rot, 0deg)); transition: none; }
 }

@@ -109,6 +109,20 @@
 }
 .cursor-text__arrow { display: block; flex: none; }
 
+/* link cursor over the testimonial cards — live's exact treatment: a small dark-translucent
+   blurred circle with a white up-right arrow (NOT the difference-blended dot or a text pill). */
+.cursor--link {
+  mix-blend-mode: normal;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  background: rgba(14, 12, 32, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 100px;
+}
+.cursor__link-arrow { display: block; }
+
 @media (prefers-reduced-motion: reduce) {
   .cursor { transition: none; }
 }
