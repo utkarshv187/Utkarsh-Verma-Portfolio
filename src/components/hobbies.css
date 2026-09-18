@@ -26,10 +26,12 @@
 
 /* ---- three fanned photo piles ---- */
 .hob__stacks {
-  margin-top: 40px;
+  max-width: 1360px;
+  margin: 40px auto 0;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
 }
 .hob__col {
   flex: 1 1 0;
@@ -40,24 +42,30 @@
 }
 .hob__pile {
   position: relative;
-  width: 300px;
-  height: 400px;
+  width: 280px;
+  height: 380px;
+  border: 0;
+  background: none;
+  padding: 0;
+  touch-action: pan-y; /* horizontal drag = swipe; vertical scroll passes through */
 }
 .hob__card {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 286px;
-  height: 356px;
-  margin: -178px 0 0 -143px; /* centre the card on the pile centre */
+  width: 262px;
+  height: 326px;
+  margin: -163px 0 0 -131px; /* centre the card on the pile centre */
   transform-origin: 50% 50%;
   will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); /* animate the swipe re-order */
 }
 .hob__card img {
   display: block;
-  width: 286px;
-  height: 356px;
+  width: 262px;
+  height: 326px;
   object-fit: cover;
+  border-radius: 16px; /* live rounds the stack photos 16px */
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
   user-select: none;
   -webkit-user-drag: none;
@@ -115,6 +123,12 @@
 .hob__grid-cell {
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
 }
 .hob__grid-cell img {
   display: block;
@@ -123,7 +137,78 @@
   object-fit: cover;
   user-select: none;
   -webkit-user-drag: none;
+  /* scale 0.5 -> 1 + fade in as the cell enters view (live) */
+  opacity: 0;
+  transform: scale(0.5);
+  transform-origin: 50% 50%;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
 }
+.hob__grid-cell--in img { opacity: 1; transform: scale(1); }
+
+/* ---- lightbox / popup (photo carousel + hobby all-four) ---- */
+.hob__lb {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(8, 6, 20, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.26s ease;
+}
+.hob__lb--open { opacity: 1; }
+.hob__lb-photo {
+  position: relative;
+  transform: scale(0.94);
+  transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hob__lb--open .hob__lb-photo { transform: scale(1); }
+.hob__lb-photo img {
+  display: block;
+  max-width: min(90vw, 1180px);
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+.hob__lb-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease;
+}
+.hob__lb-arrow:hover { background: rgba(255, 255, 255, 0.28); }
+.hob__lb-arrow--prev { left: -72px; }
+.hob__lb-arrow--next { right: -72px; }
+.hob__lb-set {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 92vw;
+  transform: scale(0.94);
+  transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hob__lb--open .hob__lb-set { transform: scale(1); }
+.hob__lb-set-img img { display: block; width: 100%; height: auto; border-radius: 12px; }
 
 /* ================= TABLET (810–1279.98) ================= */
 @media (max-width: 1279.98px) and (min-width: 810px) {
@@ -156,4 +241,14 @@
   .hob__photo-title { font-size: 34px; line-height: 40.8px; }
   .hob__amp { font-size: 34px; }
   .hob__grid { grid-template-columns: repeat(2, 1fr); margin-top: 36px; }
+  .hob__lb { padding: 16px; }
+  .hob__lb-arrow--prev { left: 4px; }
+  .hob__lb-arrow--next { right: 4px; }
+  .hob__lb-set { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hob__grid-cell img { opacity: 1; transform: none; transition: none; }
+  .hob__card { transition: none; }
+  .hob__lb, .hob__lb-photo, .hob__lb-set { transition: none; }
 }

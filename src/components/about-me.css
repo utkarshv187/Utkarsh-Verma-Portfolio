@@ -128,6 +128,8 @@
 .about__anchor--3 .about__ins-text { left: calc(100% - 84px); top: -18px; --rot: 4deg; }   /* experiences, above */
 .about__anchor--4 .about__ins-text { left: calc(100% - 92px); top: 70px; --rot: -5deg; }   /* thoughtful, below */
 .about__anchor--5 .about__ins-text { left: calc(100% - 149px); top: 70px; --rot: 0deg; }   /* work, below */
+/* the last caret points DOWN (flip the ^ 180deg) */
+.about__anchor--5 .about__caret { transform: rotate(180deg); transform-origin: 50% 50%; }
 
 /* ---- skill icon marquee (auto-scroll + grab-drag via useMarquee) ---- */
 .about__marquee {
