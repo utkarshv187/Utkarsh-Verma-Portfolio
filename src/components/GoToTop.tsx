@@ -2,10 +2,11 @@ import './go-to-top.css';
 import { useEffect, useState } from 'react';
 import { smoothScrollTo } from '../lib/scroll';
 
-// "GO TO TOP" — a fixed white circle with a dark up-arrow (live: 80px circle, right:40 bottom:32).
-// It slides IN from the right edge once the MORE ABOUT ME section is reached and stays visible
-// through every section below; sliding back OUT to the right when scrolled up above that section.
-// Clicking it smooth-scrolls to the top (#home).
+// "GO TO TOP" — fixed white circle with a dark up-arrow (live: 80px circle, right:40 bottom:32).
+// On hover it matches live's variant swap: the arrow shrinks + slides up and the straight two-line
+// label "GO TO / TOP" fades in below it (Clash Display 16px/700, dark). No circular/curved text.
+// It slides IN from the right once MORE ABOUT ME is reached and stays visible through every section
+// below; slides back OUT to the right when scrolled up above that section. Click smooth-scrolls home.
 export function GoToTop() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -39,17 +40,7 @@ export function GoToTop() {
         <svg className="gtt__arrow" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
           <path d="M12 20 V5 M6 11 L12 4.5 L18 11" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-      </span>
-      {/* circular "GO TO TOP" text (same textPath treatment as the hero O ring). Hidden by default,
-          fades in on hover; no spin (matches live). Dark text hugging the white circle so it stays
-          legible over any section behind it. */}
-      <span className="gtt__ring" aria-hidden="true">
-        <svg viewBox="0 0 100 100" overflow="visible">
-          <path id="gtt-ring-curve" d="M 4 50 A 46 46 0 1 1 96 50 A 46 46 0 1 1 4 50" fill="transparent" />
-          <text>
-            <textPath className="gtt__ring-text" href="#gtt-ring-curve" startOffset="0" dominantBaseline="hanging" textLength="289.0" lengthAdjust="spacing" xmlSpace="preserve">{"GO TO TOP "}</textPath>
-          </text>
-        </svg>
+        <span className="gtt__label" aria-hidden="true">GO TO<br />TOP</span>
       </span>
     </button>
   );

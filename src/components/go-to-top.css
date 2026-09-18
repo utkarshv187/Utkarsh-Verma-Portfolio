@@ -21,43 +21,46 @@
   pointer-events: auto;
 }
 .gtt__circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  display: block; /* span defaults to inline, which would ignore width/height */
   width: 80px;
   height: 80px;
   border-radius: 50%;
   background: #fff;
-  color: #0f0c20; /* dark arrow */
+  color: #0f0c20; /* dark arrow + label */
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
   transition: box-shadow 0.28s ease;
 }
-.gtt__arrow { display: block; transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
-
-/* circular "GO TO TOP" ring — hidden until hover, fades + eases in (no spin), centred on the button */
-.gtt__ring {
+/* arrow: centred by default; on hover it shrinks a touch + slides up to make room for the label */
+.gtt__arrow {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 80px;
-  height: 80px;
-  transform: translate(-50%, -50%) scale(0.82);
+  transform: translate(-50%, -50%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* straight two-line label "GO TO / TOP" — hidden by default, fades + slides in on hover (live) */
+.gtt__label {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  transform: translate(-50%, 6px);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px; /* 100%, matching live */
+  text-align: center;
+  color: #0f0c20;
+  white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.gtt__ring svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.gtt__ring-text {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 12.5px; /* SVG user units (viewBox 100 == 80px box); hugs the circle edge */
-  letter-spacing: 0.02em;
-  fill: #0f0c20;
+  transition: opacity 0.26s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .gtt:hover .gtt__ring { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  .gtt:hover .gtt__arrow { transform: translateY(-2px); } /* tiny nudge so the arrow feels alive */
+  .gtt:hover .gtt__arrow { transform: translate(-50%, -50%) translateY(-18px) scale(0.86); }
+  .gtt:hover .gtt__label { opacity: 1; transform: translate(-50%, 0); }
 }
 
 /* phone: a touch smaller and tucked closer to the corner */

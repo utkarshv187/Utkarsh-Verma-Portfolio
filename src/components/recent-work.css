@@ -213,12 +213,15 @@
 /* scene defined in desktop (524) coords; scaled to the media box per breakpoint */
 .rw-gamify__scene { position: absolute; top: 0; left: 0; width: 524px; height: 524px; transform-origin: top left; }
 .rw-gamify__wrap { position: absolute; }
-.rw-gamify__wrap img { display: block; width: 100%; height: 100%; border-radius: 16px; }
-/* The two phones share a bottom pivot (both bottoms at y=500, both centred at x=262) so at rest
-   they're stacked (smaller fully behind the bigger) and a PURE rotation fans them apart — the
-   framer-motion `rotate` (0→+20° smaller / 0→-12° bigger) is scrubbed to scroll. No translation. */
+.rw-gamify__wrap img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+/* Both phones pivot at y=500 (their shared rest-bottom) and fan apart by PURE rotation on scroll
+   (+20° smaller / -12° bigger). The BIGGER phone is made tall (610) and shifted so it overflows the
+   media box's bottom (bottom 562 > 524) while its top stays above the box top (-48 < 0) — the box's
+   bottom edge is always covered, overflow clipped, never a gap. Its box-relative pivot 89.8% keeps
+   the rotation origin at y=500 so the fan looks unchanged. object-fit:cover fills the taller box
+   without stretching. These bounds hold at every rotation angle (verified 0° and full 12°). */
 .rw-gamify__a { left: 162px; top: 63px; width: 200px; height: 437px; transform-origin: 50% 100%; } /* smaller, behind */
-.rw-gamify__b { left: 135.5px; top: -52px; width: 253px; height: 552px; transform-origin: 50% 100%; } /* bigger, on top */
+.rw-gamify__b { left: 135.5px; top: -48px; width: 253px; height: 610px; transform-origin: 50% 89.8%; } /* bigger, on top — overflows bottom */
 
 /* Card 3 — single Figma design-system screenshot inside the 524 media box, positioned so it
    bleeds (top/left) and is clipped to the left region (never reaches the title). */
