@@ -133,20 +133,25 @@ function BeforeAfter() {
 
 function CardMedia({ media, pan, spin }: { media: Card['media']; pan: MotionValue<number>; spin: MotionValue<number> }) {
   // card 2: the two phones START stacked (smaller behind the bigger) and ROTATE APART as the card
-  // scrolls in — smaller swings right to +20°, bigger swings left to -12° (live's exact angles),
-  // pivoting on a shared bottom point so it's rotation-only (no vertical drift). spin = 0→1 progress.
+  // scrolls in — smaller swings right to +20°, bigger swings left to -12° — AND slide apart
+  // horizontally (smaller +100px right, bigger -100px left), both scrubbed 1:1 to scroll (spin
+  // 0→1) and unwinding on scroll up. framer-motion composes x + rotate into ONE transform
+  // (translateX(...) rotate(...)), so the horizontal slide is in screen space and neither overrides
+  // the other. Horizontal only — no vertical movement (top stays visible, overflow only at bottom).
   const rotSmall = useTransform(spin, (p) => p * 20);
   const rotBig = useTransform(spin, (p) => p * -12);
+  const xSmall = useTransform(spin, (p) => p * 100);  // 0 → +100px (right)
+  const xBig = useTransform(spin, (p) => p * -100);   // 0 → -100px (left)
   if (media === 'beforeafter') return <BeforeAfter />;
   if (media === 'gamify') {
     return (
       <div className="rw-card__media rw-gamify">
         <div className="rw-gamify__bg" />
         <div className="rw-gamify__scene">
-          {/* smaller phone — BEHIND, rotates RIGHT (+20°) */}
-          <motion.div className="rw-gamify__wrap rw-gamify__a" style={{ rotate: rotSmall }}><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></motion.div>
-          {/* bigger phone — ON TOP, rotates LEFT (-12°) */}
-          <motion.div className="rw-gamify__wrap rw-gamify__b" style={{ rotate: rotBig }}><img src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></motion.div>
+          {/* smaller phone — BEHIND, rotates RIGHT (+20°) + slides RIGHT (+100px) */}
+          <motion.div className="rw-gamify__wrap rw-gamify__a" style={{ x: xSmall, rotate: rotSmall }}><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></motion.div>
+          {/* bigger phone — ON TOP, rotates LEFT (-12°) + slides LEFT (-100px) */}
+          <motion.div className="rw-gamify__wrap rw-gamify__b" style={{ x: xBig, rotate: rotBig }}><img src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></motion.div>
         </div>
       </div>
     );
