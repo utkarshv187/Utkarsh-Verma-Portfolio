@@ -123,9 +123,6 @@
 }
 .cursor__link-arrow { display: block; }
 
-/* grab variant (draggable ticker): hide the custom dot so the native grab/grabbing cursor shows */
-.cursor--off { opacity: 0 !important; }
-
 @media (prefers-reduced-motion: reduce) {
   .cursor { transition: none; }
 }

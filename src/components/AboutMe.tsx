@@ -39,8 +39,8 @@ export function AboutMe() {
     return () => io.disconnect();
   }, []);
   const loop = [...ICONS, ...ICONS];
-  // tools ticker: keep its ~25px/s auto marquee, add grab-drag
-  const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 25 });
+  // tools ticker: 50px/s auto (2x the old ~25), eases to half (~25) on hover; drag-scrollable
+  const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 50, hoverFactor: 0.5 });
 
   return (
     <section className="about" id="more-about-me">
@@ -78,7 +78,7 @@ export function AboutMe() {
         </div>
       </div>
 
-      <div className="about__marquee" ref={tickerRef} data-cursor-variant="grab">
+      <div className="about__marquee" ref={tickerRef}>
         <ul className="about__track" ref={trackRef}>
           {loop.map((n, i) => (
             <li className="about__icon" key={i} aria-hidden={i >= ICONS.length || undefined}>

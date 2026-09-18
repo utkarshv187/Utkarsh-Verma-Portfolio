@@ -151,6 +151,10 @@
   white-space: nowrap;
   z-index: 2;
 }
+/* the ghost (final value, hidden) reserves the exact box; the live scramble overlays it, so the
+   value never resizes or reflows — it only resolves in place. */
+.we-card__value-ghost { visibility: hidden; }
+.we-card__value-live { position: absolute; left: 0; top: 0; }
 .we-card__z {
   position: absolute;
   top: -16px;

@@ -24,16 +24,17 @@ function ZBolt() {
   );
 }
 
-const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-// scramble/decode the final value (e.g. "7+") when it scrolls into view — matches live's
-// stat count-up (random alphanumerics resolving left-to-right to the final value).
+// Only the DIGITS scramble (letters/symbols like "M"/"+" stay fixed); with tabular figures every
+// digit is the same width, so the value never changes size while scrambling.
+const rndDigit = () => '0123456789'[(Math.random() * 10) | 0];
+const scrambleStr = (final: string) => final.replace(/[0-9]/g, rndDigit);
 function ScrambleValue({ final, active }: { final: string; active: boolean }) {
   const reduced = usePrefersReducedMotion();
   const [text, setText] = useState(reduced ? final : final.replace(/./g, ' '));
   useEffect(() => {
     if (reduced) { setText(final); return; }
     // live re-runs the scramble each time the stats re-enter view; blank it while out of view
-    if (!active) { setText(final.replace(/./g, ' ')); return; }
+    if (!active) { setText(scrambleStr(final)); return; }
     const chars = final.split('');
     const DURATION = 1000;
     const start = performance.now();
@@ -41,19 +42,20 @@ function ScrambleValue({ final, active }: { final: string; active: boolean }) {
     const tick = (now: number) => {
       const p = Math.min(1, (now - start) / DURATION);
       const locked = Math.floor(p * chars.length + 0.0001); // chars resolve left→right
-      const out = chars.map((c, i) => {
-        if (i < locked || p >= 1) return c;
-        if (c === ' ') return ' ';
-        return SCRAMBLE_CHARS[(Math.random() * SCRAMBLE_CHARS.length) | 0];
-      });
-      setText(out.join(''));
+      setText(chars.map((c, i) => (i < locked || p >= 1 || !/[0-9]/.test(c) ? c : rndDigit())).join(''));
       if (p < 1) raf = requestAnimationFrame(tick);
       else setText(final);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [active, final, reduced]);
-  return <span className="we-card__value" aria-label={final}>{text}</span>;
+  return (
+    <span className="we-card__value" aria-label={final}>
+      {/* invisible ghost of the FINAL value reserves the exact box; the live scramble overlays it */}
+      <span className="we-card__value-ghost" aria-hidden="true">{final}</span>
+      <span className="we-card__value-live" aria-hidden="true">{text}</span>
+    </span>
+  );
 }
 
 export function WorkExperience() {

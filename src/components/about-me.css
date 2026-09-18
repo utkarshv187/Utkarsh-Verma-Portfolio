@@ -136,13 +136,7 @@
   overflow: hidden;
   touch-action: pan-y; /* horizontal is our drag; vertical page scroll passes through */
 }
-/* grab affordance — outspecify the global `body.custom-cursor * { cursor: none }` */
-.about__marquee,
-body.custom-cursor .about__marquee,
-body.custom-cursor .about__marquee * { cursor: grab; }
-body.marquee-grabbing .about__marquee,
-body.custom-cursor.marquee-grabbing .about__marquee,
-body.custom-cursor.marquee-grabbing .about__marquee * { cursor: grabbing; }
+/* drag-scrollable but NO grab/pointer hand — keep the site's custom cursor over it */
 .about__track {
   display: flex;
   width: max-content;

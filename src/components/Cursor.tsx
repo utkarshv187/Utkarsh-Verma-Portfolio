@@ -65,7 +65,7 @@ export function Cursor() {
       {/* Layer 1: the dot / pill BACKGROUND — mix-blend-mode:difference so it inverts against
           any backdrop. No text lives here (text in a blended layer would invert too). */}
       <motion.div
-        className={`cursor ${label ? 'cursor--label' : ''} ${label && size !== 'sm' ? 'cursor--label-' + size : ''} ${!label && variant === 'link' ? 'cursor--link' : ''} ${variant === 'grab' ? 'cursor--off' : ''}`}
+        className={`cursor ${label ? 'cursor--label' : ''} ${label && size !== 'sm' ? 'cursor--label-' + size : ''} ${!label && variant === 'link' ? 'cursor--link' : ''}`}
         aria-hidden="true"
         style={{ x: sx, y: sy }}
       >
