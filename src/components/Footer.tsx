@@ -1,0 +1,49 @@
+import './footer.css';
+import { LINKS, EXTERNAL } from '../config/site';
+import { WhatsAppIcon, MailIcon, LinkedInIcon } from './Icons';
+
+// FOOTER / CONTACT — the gold (#FFB705) closing CTA. A sticky CTA pins as the section scrolls up
+// over the hobbies grid: a pale question heading + a white CTA heading (both swap by breakpoint —
+// "SCROLLED THIS FAR? / LET'S WORK TOGETHER" ≥1280, "CAME THIS FAR? / LET'S TALK WORK" below), then
+// three white stadium contact pills (green WhatsApp / blue email / blue LinkedIn), and the glossy
+// "Wall Of Portfolios 2026" badge (top-right on desktop, below the pills on tablet/mobile).
+export function Footer() {
+  return (
+    <footer className="footer" id="contact">
+      <div className="footer__pin">
+        <div className="footer__inner">
+          <div className="footer__copy">
+            <h2 className="footer__q">
+              <span className="footer__t footer__t--wide">SCROLLED THIS FAR?</span>
+              <span className="footer__t footer__t--narrow">CAME THIS FAR?</span>
+            </h2>
+            <h2 className="footer__cta">
+              <span className="footer__t footer__t--wide">LET&rsquo;S WORK TOGETHER</span>
+              <span className="footer__t footer__t--narrow">LET&rsquo;S TALK WORK</span>
+            </h2>
+
+            <div className="footer__pills">
+              <a className="footer__pill footer__pill--wa" href={LINKS.whatsapp} {...EXTERNAL} aria-label="Chat on WhatsApp">
+                <WhatsAppIcon size={22} />
+                <span>+91 8869808079</span>
+              </a>
+              <a className="footer__pill footer__pill--mail" href={LINKS.email} {...EXTERNAL} aria-label="Email Utkarsh">
+                <MailIcon size={22} />
+                <span>utkarshv187@gmail.com</span>
+              </a>
+              <a className="footer__pill footer__pill--in" href={LINKS.linkedin} {...EXTERNAL} aria-label="Connect on LinkedIn">
+                <LinkedInIcon size={22} />
+                <span>Connect</span>
+              </a>
+            </div>
+          </div>
+
+          <picture className="footer__badge">
+            <source srcSet="/images/footer-badge.avif" type="image/avif" />
+            <img src="/images/footer-badge.webp" alt="Featured on Wall of Portfolios · 2026" width={112} height={212} loading="lazy" />
+          </picture>
+        </div>
+      </div>
+    </footer>
+  );
+}

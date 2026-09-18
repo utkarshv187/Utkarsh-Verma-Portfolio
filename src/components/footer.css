@@ -1,0 +1,128 @@
+/* ================= FOOTER / CONTACT =================
+   Gold closing CTA. On desktop the section is taller than the viewport and a sticky inner pins the
+   CTA centred for ~one screen as the gold rises over the hobbies grid. On tablet/phone the huge
+   heading can't share a screen with the pills, so the section flows normally (centred, all visible). */
+.footer {
+  position: relative;
+  z-index: 1;
+  background: var(--gold-2); /* #FFB705 */
+  height: 172vh; /* scroll runway for the sticky pin */
+}
+.footer__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+.footer__inner {
+  position: relative;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---- CTA copy (left-aligned on desktop) ---- */
+.footer__copy { position: relative; z-index: 1; }
+.footer__q,
+.footer__cta {
+  margin: 0;
+  max-width: 960px; /* wrap "SCROLLED" / "THIS FAR?" and "LET'S WORK" / "TOGETHER" like live */
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 140px;
+  line-height: 0.92;
+  color: #fff;
+}
+.footer__q {
+  color: rgba(255, 255, 255, 0.56); /* pale question */
+  letter-spacing: -0.02em;
+}
+.footer__cta {
+  color: #fff;
+  line-height: 1;
+  margin-top: 8px;
+}
+/* heading text swaps by breakpoint (wide = SCROLLED/WORK TOGETHER, narrow = CAME/TALK WORK) */
+.footer__t { display: block; }
+.footer__t--narrow { display: none; }
+
+/* ---- contact pills ---- */
+.footer__pills {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  height: 42px;
+  padding: 0 18px 0 14px;
+  border-radius: 100px; /* stadium */
+  background: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.footer__pill svg { flex: none; }
+.footer__pill span { display: inline-block; }
+.footer__pill--wa { color: var(--link-phone); }   /* green  #3EC14F */
+.footer__pill--mail { color: var(--link-email); }  /* blue   #1C9DF7 */
+.footer__pill--in { color: rgb(40, 104, 178); }    /* LinkedIn blue */
+
+/* ---- Wall Of Portfolios badge (top-right on desktop) ---- */
+.footer__badge {
+  position: absolute;
+  top: 130px;
+  right: 0;
+  width: 112px;
+}
+.footer__badge img { display: block; width: 112px; height: 212px; }
+
+/* ================= TABLET / PHONE (<=1279.98) — centred, flows (not pinned) ================= */
+@media (max-width: 1279.98px) {
+  .footer { height: auto; }
+  .footer__pin { position: static; height: auto; overflow: visible; }
+  .footer__inner {
+    max-width: 680px;
+    height: auto;
+    padding: 150px 20px 120px; /* clears the fixed header; room below */
+    align-items: center;
+    text-align: center;
+  }
+  .footer__copy { width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .footer__q, .footer__cta { max-width: none; font-size: 180px; line-height: 0.9; }
+  .footer__cta { line-height: 0.95; }
+  .footer__t--wide { display: none; }
+  .footer__t--narrow { display: block; }
+  /* stacked, full-width pills with CENTRED + underlined text (live) */
+  .footer__pills { flex-direction: column; align-items: stretch; gap: 14px; margin-top: 48px; width: 604px; max-width: 100%; }
+  .footer__pill { justify-content: center; width: 100%; height: 40px; padding: 0 18px; }
+  .footer__pill span { text-decoration: underline; text-decoration-color: currentColor; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .footer__badge { position: relative; top: auto; right: auto; margin: 44px 0 0; width: 80px; }
+  .footer__badge img { width: 80px; height: 151px; }
+}
+
+/* ================= PHONE (<=809.98) ================= */
+@media (max-width: 809.98px) {
+  .footer__inner { max-width: none; padding: 120px 20px 90px; }
+  .footer__q, .footer__cta { font-size: 100px; line-height: 0.9; }
+  .footer__cta { line-height: 1; }
+  .footer__pills { width: 100%; gap: 12px; margin-top: 36px; }
+  .footer__pill { font-size: 18px; }
+  .footer__badge { margin-top: 36px; }
+}
+
+/* very small phones: keep the huge heading from overflowing horribly */
+@media (max-width: 400px) {
+  .footer__q, .footer__cta { font-size: 84px; }
+}
