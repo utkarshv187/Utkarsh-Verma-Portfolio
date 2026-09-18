@@ -45,7 +45,7 @@ export function AboutMe() {
   return (
     <section className="about" id="more-about-me">
       <div className="about__inner">
-        <h2 className="about__heading">MORE ABOUT ME</h2>
+        <h2 className="about__heading" id="about">MORE ABOUT ME</h2>
         <p className="about__subtitle">ENGINEER TURNED ARTIST</p>
 
         <div className="about__row">

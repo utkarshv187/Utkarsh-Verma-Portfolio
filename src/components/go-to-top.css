@@ -1,0 +1,54 @@
+/* GO TO TOP — fixed white circle, dark up-arrow. Slides in from / out to the RIGHT edge. */
+.gtt {
+  position: fixed;
+  right: 40px;
+  bottom: 32px;
+  z-index: 12; /* under the custom cursor (13/14) + the hobbies lightbox (2000) */
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  border: 0;
+  background: none;
+  /* hidden state: pushed off the right edge + faded out */
+  transform: translateX(140px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.42s ease;
+}
+.gtt--show {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.gtt__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fff;
+  color: #0f0c20; /* dark arrow */
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+}
+.gtt__arrow { display: block; }
+
+@media (hover: hover) and (pointer: fine) {
+  /* live shows no hover change on the button itself (only the site cursor reacts); this is a light,
+     easily-removable affordance layered on top. */
+  .gtt:hover .gtt__circle { transform: scale(1.06); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34); }
+}
+
+/* phone: a touch smaller and tucked closer to the corner */
+@media (max-width: 809.98px) {
+  .gtt { right: 18px; bottom: 18px; width: 60px; height: 60px; }
+  .gtt__circle { width: 60px; height: 60px; }
+  .gtt__arrow { width: 22px; height: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gtt { transition: opacity 0.2s ease; transform: none; }
+  .gtt:not(.gtt--show) { transform: translateX(140px); }
+  .gtt__circle { transition: none; }
+}

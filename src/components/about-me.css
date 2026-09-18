@@ -102,23 +102,25 @@
   color: var(--gold-2);
   white-space: nowrap;
   opacity: 0;
-  transform: translateY(14px) rotate(var(--rot, 0deg));
+  /* starts small + low, then springs up past 1.0 and settles (bounce/overshoot) */
+  transform: translateY(16px) scale(0.7) rotate(var(--rot, 0deg));
   transform-origin: left center;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.3s ease, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition-delay: var(--delay, 0s);
   pointer-events: none;
 }
 .about__bio--in .about__caret { opacity: 1; }
 .about__bio--in .about__ins-text {
   opacity: 1;
-  transform: translateY(0) rotate(var(--rot, 0deg));
+  transform: translateY(0) scale(1) rotate(var(--rot, 0deg));
 }
-/* one-at-a-time: each annotation reveals after the per-word body reveal (~0.85s), ~0.4s apart */
-.about__anchor--1 { --delay: 0.9s; }
-.about__anchor--2 { --delay: 1.3s; }
-.about__anchor--3 { --delay: 1.7s; }
-.about__anchor--4 { --delay: 2.1s; }
-.about__anchor--5 { --delay: 2.5s; }
+/* one-at-a-time: each reveals after the per-word body reveal (~0.9s), then ~0.27s apart — the
+   inter-phrase gap is 1.5x faster than before (0.4s / 1.5 ≈ 0.267s). */
+.about__anchor--1 { --delay: 0.90s; }
+.about__anchor--2 { --delay: 1.17s; }
+.about__anchor--3 { --delay: 1.43s; }
+.about__anchor--4 { --delay: 1.70s; }
+.about__anchor--5 { --delay: 1.97s; }
 /* per-anchor phrase placement RELATIVE TO ITS WORD (left = from the word's right edge) + tilt.
    Because these are anchored to the word, they follow it at every wrap/size. Mapped from live. */
 /* tops centre each phrase in the inter-line GAP (line-height 88 gives ~48px gaps) so it never

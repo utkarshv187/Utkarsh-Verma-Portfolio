@@ -7,6 +7,7 @@ import { RecentWork } from './components/RecentWork';
 import { Testimonials } from './components/Testimonials';
 import { AboutMe } from './components/AboutMe';
 import { Hobbies } from './components/Hobbies';
+import { GoToTop } from './components/GoToTop';
 import './app.css';
 
 export function App() {
@@ -24,6 +25,7 @@ export function App() {
         {/* Temporary spacer so the page scrolls while later sections are built. */}
         <section className="dev-spacer" />
       </main>
+      <GoToTop />
       <Analytics />
     </>
   );

@@ -5,6 +5,10 @@ import { WhatsAppIcon, MailIcon, ArrowDown } from './Icons';
 import { HeaderIntro } from './HeaderIntro';
 import { ResumeButton } from './ResumeButton';
 import { ScrollProgress } from './ScrollProgress';
+import { smoothScrollToId } from '../lib/scroll';
+
+// header height (80px) + a small gap, so the MORE ABOUT ME heading lands just under the fixed header
+const ABOUT_OFFSET = 112;
 
 export function Header() {
   return (
@@ -22,7 +26,11 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav className="header__nav header__nav--desktop" aria-label="Primary">
-          <a href="#about" className="nav-link">
+          <a
+            href="#about"
+            className="nav-link"
+            onClick={(e) => { e.preventDefault(); smoothScrollToId('about', ABOUT_OFFSET); }}
+          >
             <span>About</span>
             <span className="nav-link__arrow" aria-hidden="true"><ArrowDown size={16} /></span>
           </a>

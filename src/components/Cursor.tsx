@@ -19,6 +19,10 @@ export function Cursor() {
   const spring = { stiffness: reduced ? 1500 : 550, damping: reduced ? 90 : 34, mass: 0.4 };
   const sx = useSpring(x, spring);
   const sy = useSpring(y, spring);
+  // Global press-shrink: while the mouse button is held, the whole cursor (dot / any pill + its
+  // text) smoothly scales to 75%, then back to 100% on release. Composed with the x/y translate by
+  // framer-motion into one transform, so it never clashes with the pill's blend/centring.
+  const pressScale = useSpring(1, { stiffness: 700, damping: 32, mass: 0.35 });
 
   useEffect(() => {
     if (!fine) return;
@@ -45,18 +49,29 @@ export function Cursor() {
     // On SCROLL the page moves under a stationary cursor, so re-evaluate what's under the last
     // pointer position (no mouse-move needed) — pill appears/disappears from scrolling alone.
     const onScroll = () => { if (pos.x < 0) return; apply(labelled(document.elementFromPoint(pos.x, pos.y))); };
+    // press-shrink to 75% on button-down, back to 100% on release/cancel
+    const press = () => pressScale.set(0.75);
+    const release = () => pressScale.set(1);
     window.addEventListener('pointermove', move, { passive: true });
     window.addEventListener('pointerover', over, { passive: true });
     window.addEventListener('pointerout', out, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true, capture: true });
+    window.addEventListener('pointerdown', press, { passive: true });
+    window.addEventListener('pointerup', release, { passive: true });
+    window.addEventListener('pointercancel', release, { passive: true });
+    window.addEventListener('blur', release);
     return () => {
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerover', over);
       window.removeEventListener('pointerout', out);
       window.removeEventListener('scroll', onScroll, { capture: true } as EventListenerOptions);
+      window.removeEventListener('pointerdown', press);
+      window.removeEventListener('pointerup', release);
+      window.removeEventListener('pointercancel', release);
+      window.removeEventListener('blur', release);
       document.body.classList.remove('custom-cursor');
     };
-  }, [fine, x, y]);
+  }, [fine, x, y, pressScale]);
 
   if (!fine) return null;
 
@@ -67,7 +82,7 @@ export function Cursor() {
       <motion.div
         className={`cursor ${label ? 'cursor--label' : ''} ${label && size !== 'sm' ? 'cursor--label-' + size : ''} ${!label && variant === 'link' ? 'cursor--link' : ''}`}
         aria-hidden="true"
-        style={{ x: sx, y: sy }}
+        style={{ x: sx, y: sy, scale: pressScale }}
       >
         {/* link cursor (e.g. testimonial cards): a bold (3px stroke) up-right arrow in the dark dot */}
         {!label && variant === 'link' && (
@@ -82,7 +97,7 @@ export function Cursor() {
       <motion.div
         className={`cursor-text ${label ? 'cursor-text--show' : ''} ${label && size !== 'sm' ? 'cursor-text--' + size : ''}`}
         aria-hidden="true"
-        style={{ x: sx, y: sy }}
+        style={{ x: sx, y: sy, scale: pressScale }}
       >
         <span className="cursor-text__label">
           {label?.split('\n').map((line, i) => (
