@@ -1,7 +1,9 @@
 /* ================= WHEN I AM NOT DESIGNING (hobbies) =================
    Dark (#0F0C20) section: intro heading, three fanned photo piles (GAMING / SOCIALIZING /
    ADVENTURING) with gold Square Peg captions, then a full-bleed "& PHOTOGRAPHING" landscape grid.
-   Static — scrolls with the page (live has no drag/hover/parallax here). */
+   Each pile fans by PURE ROTATION about its own centre (no horizontal scatter) so it sits centred
+   over its title; the three columns use a fixed centre-pitch so stacks never collide. Swipe any
+   direction to cycle; tap a pile to open its four photos in a 2×2 popup. */
 .hob {
   position: relative;
   z-index: 1;
@@ -24,17 +26,19 @@
   color: #fff;
 }
 
-/* ---- three fanned photo piles ---- */
+/* ---- three fanned photo piles ----
+   fixed-pitch, centred group: 3 columns of 300px at 126px gap => 426px centre-pitch (matches live).
+   The group is centred in the viewport and the section clips any overflow, so the inter-stack gaps
+   stay constant at every width and the stacks never overlap. */
 .hob__stacks {
-  max-width: 1360px;
-  margin: 40px auto 0;
-  padding: 0 20px;
   display: flex;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: center;
+  gap: 126px;
+  margin: 74px auto 0;
+  padding: 0 20px;
 }
 .hob__col {
-  flex: 1 1 0;
+  flex: 0 0 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,36 +46,37 @@
 }
 .hob__pile {
   position: relative;
-  width: 280px;
-  height: 380px;
+  width: 300px;
+  height: 400px;
   border: 0;
   background: none;
   padding: 0;
-  touch-action: pan-y; /* horizontal drag = swipe; vertical scroll passes through */
+  touch-action: none; /* any-direction swipe is ours; the pile is small so the page still scrolls */
 }
 .hob__card {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 262px;
-  height: 326px;
-  margin: -163px 0 0 -131px; /* centre the card on the pile centre */
+  width: 300px;
+  height: 400px;
   transform-origin: 50% 50%;
   will-change: transform;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); /* animate the swipe re-order */
+  /* springy settle for the swipe re-order + drag release */
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.3, 1.12);
 }
+.hob__card--drag { transition: none; } /* front card tracks the pointer 1:1 while dragging */
 .hob__card img {
   display: block;
-  width: 262px;
-  height: 326px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px; /* live rounds the stack photos 16px */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  border-radius: 16px; /* live rounds every stack photo 16px */
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
   user-select: none;
   -webkit-user-drag: none;
 }
 .hob__title {
-  margin: 14px 0 0;
+  margin: 18px 0 0;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 28px;
@@ -145,7 +150,7 @@
 }
 .hob__grid-cell--in img { opacity: 1; transform: scale(1); }
 
-/* ---- lightbox / popup (photo carousel + hobby all-four) ---- */
+/* ---- lightbox / popup (photo carousel + hobby 2×2) ---- */
 .hob__lb {
   position: fixed;
   inset: 0;
@@ -199,42 +204,48 @@
 .hob__lb-arrow:hover { background: rgba(255, 255, 255, 0.28); }
 .hob__lb-arrow--prev { left: -72px; }
 .hob__lb-arrow--next { right: -72px; }
+/* four hobby photos in a 2×2 grid, bounded to the viewport so both rows stay visible */
 .hob__lb-set {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  max-width: 92vw;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 14px;
+  width: min(92vw, 600px);
+  height: min(84vh, 820px);
   transform: scale(0.94);
   transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hob__lb--open .hob__lb-set { transform: scale(1); }
-.hob__lb-set-img img { display: block; width: 100%; height: auto; border-radius: 12px; }
+.hob__lb-set-img { min-height: 0; min-width: 0; }
+.hob__lb-set-img img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
 
-/* ================= TABLET (810–1279.98) ================= */
-@media (max-width: 1279.98px) and (min-width: 810px) {
+/* ================= SINGLE COLUMN (≤1199.98) — one hobby per row, bigger cards ================= */
+@media (max-width: 1199.98px) {
   .hob__inner { max-width: 760px; }
   .hob__intro-a { display: none; } /* only "WHEN I AM NOT DESIGNING" shows */
-  .hob__intro { font-size: 40px; }
-  .hob__stacks { gap: 12px; }
-  .hob__pile { width: 220px; height: 320px; }
-  .hob__card { width: 210px; height: 264px; margin: -132px 0 0 -105px; }
-  .hob__card img { width: 210px; height: 264px; }
-  .hob__title { font-size: 22px; }
-  .hob__caption { font-size: 26px; }
+  .hob__stacks {
+    flex-direction: column;
+    align-items: center;
+    gap: 44px;
+    margin-top: 48px;
+  }
+  .hob__col { flex: 0 0 auto; }
+  .hob__pile { width: 350px; height: 500px; }
+  .hob__card { width: 350px; height: 500px; }
+  .hob__title { font-size: 26px; }
+  .hob__caption { font-size: 30px; }
   .hob__photo-title { font-size: 56px; line-height: 67px; }
   .hob__amp { font-size: 44px; }
 }
 
-/* ================= PHONE (<=809.98) — single column, smaller ================= */
+/* ================= PHONE (<=809.98) — smaller cards, 2-col grid ================= */
 @media (max-width: 809.98px) {
   .hob { padding: 64px 0 64px; }
   .hob__inner { padding: 0 20px; }
-  .hob__intro-a { display: none; }
   .hob__intro { font-size: 24px; line-height: 33.6px; }
-  .hob__stacks { flex-direction: column; align-items: center; gap: 40px; margin-top: 32px; }
-  .hob__pile { width: 260px; height: 340px; }
-  .hob__card { width: 240px; height: 300px; margin: -150px 0 0 -120px; }
-  .hob__card img { width: 240px; height: 300px; }
+  .hob__stacks { gap: 32px; margin-top: 32px; }
+  .hob__pile { width: 260px; height: 372px; }
+  .hob__card { width: 260px; height: 372px; }
   .hob__title { font-size: 22px; }
   .hob__caption { font-size: 20px; }
   .hob__photo { margin-top: 48px; }
