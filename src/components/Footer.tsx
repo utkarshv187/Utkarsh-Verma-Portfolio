@@ -1,6 +1,6 @@
 import './footer.css';
 import { LINKS, EXTERNAL } from '../config/site';
-import { WhatsAppIcon, MailIcon, LinkedInIcon } from './Icons';
+import { WhatsAppIcon, MailIcon, LinkedInIcon, ArrowUpRight } from './Icons';
 
 // FOOTER / CONTACT — the gold (#FFB705) closing CTA. A sticky CTA pins as the section scrolls up
 // over the hobbies grid: a pale question heading + a white CTA heading (both swap by breakpoint —
@@ -25,15 +25,18 @@ export function Footer() {
             <div className="footer__pills">
               <a className="footer__pill footer__pill--wa" href={LINKS.whatsapp} {...EXTERNAL} aria-label="Chat on WhatsApp">
                 <WhatsAppIcon size={22} />
-                <span>+91 8869808079</span>
+                <span className="footer__pill-text">+91 8869808079</span>
+                <span className="footer__pill-arrow" aria-hidden="true"><ArrowUpRight size={13} /></span>
               </a>
               <a className="footer__pill footer__pill--mail" href={LINKS.email} {...EXTERNAL} aria-label="Email Utkarsh">
                 <MailIcon size={22} />
-                <span>utkarshv187@gmail.com</span>
+                <span className="footer__pill-text">utkarshv187@gmail.com</span>
+                <span className="footer__pill-arrow" aria-hidden="true"><ArrowUpRight size={13} /></span>
               </a>
               <a className="footer__pill footer__pill--in" href={LINKS.linkedin} {...EXTERNAL} aria-label="Connect on LinkedIn">
                 <LinkedInIcon size={22} />
-                <span>Connect</span>
+                <span className="footer__pill-text">Connect</span>
+                <span className="footer__pill-arrow" aria-hidden="true"><ArrowUpRight size={13} /></span>
               </a>
             </div>
           </div>
