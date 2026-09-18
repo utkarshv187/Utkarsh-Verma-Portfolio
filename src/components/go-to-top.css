@@ -30,14 +30,34 @@
   background: #fff;
   color: #0f0c20; /* dark arrow */
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+  transition: box-shadow 0.28s ease;
 }
-.gtt__arrow { display: block; }
+.gtt__arrow { display: block; transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* circular "GO TO TOP" ring — hidden until hover, fades + eases in (no spin), centred on the button */
+.gtt__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%) scale(0.82);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.gtt__ring svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.gtt__ring-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12.5px; /* SVG user units (viewBox 100 == 80px box); hugs the circle edge */
+  letter-spacing: 0.02em;
+  fill: #0f0c20;
+}
 
 @media (hover: hover) and (pointer: fine) {
-  /* live shows no hover change on the button itself (only the site cursor reacts); this is a light,
-     easily-removable affordance layered on top. */
-  .gtt:hover .gtt__circle { transform: scale(1.06); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34); }
+  .gtt:hover .gtt__ring { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .gtt:hover .gtt__arrow { transform: translateY(-2px); } /* tiny nudge so the arrow feels alive */
 }
 
 /* phone: a touch smaller and tucked closer to the corner */

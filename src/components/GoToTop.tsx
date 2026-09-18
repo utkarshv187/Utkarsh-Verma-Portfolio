@@ -40,6 +40,17 @@ export function GoToTop() {
           <path d="M12 20 V5 M6 11 L12 4.5 L18 11" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </span>
+      {/* circular "GO TO TOP" text (same textPath treatment as the hero O ring). Hidden by default,
+          fades in on hover; no spin (matches live). Dark text hugging the white circle so it stays
+          legible over any section behind it. */}
+      <span className="gtt__ring" aria-hidden="true">
+        <svg viewBox="0 0 100 100" overflow="visible">
+          <path id="gtt-ring-curve" d="M 4 50 A 46 46 0 1 1 96 50 A 46 46 0 1 1 4 50" fill="transparent" />
+          <text>
+            <textPath className="gtt__ring-text" href="#gtt-ring-curve" startOffset="0" dominantBaseline="hanging" textLength="289.0" lengthAdjust="spacing" xmlSpace="preserve">{"GO TO TOP "}</textPath>
+          </text>
+        </svg>
+      </span>
     </button>
   );
 }

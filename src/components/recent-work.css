@@ -83,7 +83,10 @@
 .rw-card__stats {
   position: absolute;
   left: 620px;
-  top: 378px;
+  /* bottom row aligns with the media bottom (media: top 48 + 524 = 572): with rows 101 + gap 24 +
+     row 101 = 226 tall, top 346 => bottom 572, so the stats' bottom padding-below equals the
+     image's (both 48px above the card's bottom edge). Matches live. */
+  top: 346px;
   width: 532px;
   z-index: 1;
   display: grid;
@@ -121,9 +124,10 @@
 .rw-card--teal .rw-stat__label { color: var(--teal); }
 .rw-card--gold .rw-stat { background: rgba(255, 182, 1, 0.16); }
 .rw-card--gold .rw-stat__label { color: var(--gold); }
-/* card 4: two taller tiles in one row (150+ / 0 to 10) */
+/* card 4: two taller tiles in one row (150+ / 0 to 10) — bottom aligns with the media bottom (572):
+   row 133, top 439 => bottom 572, so its bottom spacing equals the image's. */
 .rw-card__stats--pair {
-  top: 455px;
+  top: 439px;
   grid-template-columns: 254px 254px;
   grid-template-rows: 133px; /* 117 + 16 (matches the +8/+8 vertical padding) */
 }
@@ -252,15 +256,16 @@
   .rw__cards { margin-top: 56px; gap: 80px; }
   .rw-card { width: 720px; height: 420px; border-radius: 20px; }
   .rw-card__title { left: 420px; top: 29px; width: 271px; font-size: 38px; line-height: 53.2px; }
-  .rw-card__stats { left: 420px; top: 220px; width: 271px; grid-template-columns: 128px 128px; grid-template-rows: 94px 94px; gap: 15px; } /* 78 + 16 */
+  /* bottom row aligns with media bottom (media: 29 + 362 = 391): rows 94 + gap 15 + 94 = 203, top 188 => bottom 391 */
+  .rw-card__stats { left: 420px; top: 188px; width: 271px; grid-template-columns: 128px 128px; grid-template-rows: 94px 94px; gap: 15px; } /* 78 + 16 */
   .rw-stat__num { font-size: 24px; }
   .rw-stat__label { font-size: 16px; line-height: 1.2; }
   .rw-card__media { left: 29px; top: 29px; width: 362px; height: 362px; border-radius: 12px; }
   .rw-gamify__scene, .rw-collage__scene { transform: scale(0.6908); }
   .rw-figma picture { left: -90px; top: -40px; width: 452px; height: 546px; } /* -40..-160 keeps the 362 box covered */
   .rw-figma img { width: 452px; height: 546px; }
-  /* card 4 pair stats (tablet) */
-  .rw-card__stats--pair { left: 420px; top: 262px; grid-template-columns: 128px 128px; grid-template-rows: 116px; } /* 100 + 16 */
+  /* card 4 pair stats (tablet) — bottom aligns with media bottom (391): row 116, top 275 => bottom 391 */
+  .rw-card__stats--pair { left: 420px; top: 275px; grid-template-columns: 128px 128px; grid-template-rows: 116px; } /* 100 + 16 */
 }
 
 /* ================= PHONE (<= 809.98) — vertical stack, non-sticky ================= */
