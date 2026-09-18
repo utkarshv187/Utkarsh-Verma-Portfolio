@@ -1,0 +1,159 @@
+/* ================= WHEN I AM NOT DESIGNING (hobbies) =================
+   Dark (#0F0C20) section: intro heading, three fanned photo piles (GAMING / SOCIALIZING /
+   ADVENTURING) with gold Square Peg captions, then a full-bleed "& PHOTOGRAPHING" landscape grid.
+   Static — scrolls with the page (live has no drag/hover/parallax here). */
+.hob {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-dark); /* #0F0C20 */
+  color: #fff;
+  padding: 90px 0 90px;
+  overflow: hidden;
+}
+.hob__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.hob__intro {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: #fff;
+}
+
+/* ---- three fanned photo piles ---- */
+.hob__stacks {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.hob__col {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hob__pile {
+  position: relative;
+  width: 300px;
+  height: 400px;
+}
+.hob__card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 286px;
+  height: 356px;
+  margin: -178px 0 0 -143px; /* centre the card on the pile centre */
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.hob__card img {
+  display: block;
+  width: 286px;
+  height: 356px;
+  object-fit: cover;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.hob__title {
+  margin: 14px 0 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.2;
+  color: #fff;
+}
+.hob__caption {
+  margin: 4px 0 0;
+  font-family: var(--font-script); /* Square Peg */
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--gold-2); /* #FFB705 */
+}
+
+/* ---- & PHOTOGRAPHING ---- */
+.hob__photo {
+  margin-top: 64px;
+  text-align: center;
+}
+.hob__amp {
+  display: block;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--gold-2);
+}
+.hob__photo-title {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 96px;
+  letter-spacing: 0.01em;
+  color: #fff;
+}
+
+/* ---- full-bleed landscape grid ---- */
+.hob__grid {
+  margin-top: 56px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.hob__grid-cell {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.hob__grid-cell img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ================= TABLET (810–1279.98) ================= */
+@media (max-width: 1279.98px) and (min-width: 810px) {
+  .hob__inner { max-width: 760px; }
+  .hob__intro-a { display: none; } /* only "WHEN I AM NOT DESIGNING" shows */
+  .hob__intro { font-size: 40px; }
+  .hob__stacks { gap: 12px; }
+  .hob__pile { width: 220px; height: 320px; }
+  .hob__card { width: 210px; height: 264px; margin: -132px 0 0 -105px; }
+  .hob__card img { width: 210px; height: 264px; }
+  .hob__title { font-size: 22px; }
+  .hob__caption { font-size: 26px; }
+  .hob__photo-title { font-size: 56px; line-height: 67px; }
+  .hob__amp { font-size: 44px; }
+}
+
+/* ================= PHONE (<=809.98) — single column, smaller ================= */
+@media (max-width: 809.98px) {
+  .hob { padding: 64px 0 64px; }
+  .hob__inner { padding: 0 20px; }
+  .hob__intro-a { display: none; }
+  .hob__intro { font-size: 24px; line-height: 33.6px; }
+  .hob__stacks { flex-direction: column; align-items: center; gap: 40px; margin-top: 32px; }
+  .hob__pile { width: 260px; height: 340px; }
+  .hob__card { width: 240px; height: 300px; margin: -150px 0 0 -120px; }
+  .hob__card img { width: 240px; height: 300px; }
+  .hob__title { font-size: 22px; }
+  .hob__caption { font-size: 20px; }
+  .hob__photo { margin-top: 48px; }
+  .hob__photo-title { font-size: 34px; line-height: 40.8px; }
+  .hob__amp { font-size: 34px; }
+  .hob__grid { grid-template-columns: repeat(2, 1fr); margin-top: 36px; }
+}

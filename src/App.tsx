@@ -6,6 +6,7 @@ import { WorkExperience } from './components/WorkExperience';
 import { RecentWork } from './components/RecentWork';
 import { Testimonials } from './components/Testimonials';
 import { AboutMe } from './components/AboutMe';
+import { Hobbies } from './components/Hobbies';
 import './app.css';
 
 export function App() {
@@ -19,6 +20,7 @@ export function App() {
         <RecentWork />
         <Testimonials />
         <AboutMe />
+        <Hobbies />
         {/* Temporary spacer so the page scrolls while later sections are built. */}
         <section className="dev-spacer" />
       </main>
