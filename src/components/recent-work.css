@@ -221,7 +221,7 @@
    at -12° the top corners land at ~+11/+63 (never above 0, no top crop) and the bottom corners at
    ~+550/+603 (always past 524, box bottom stays covered). Overflow/clip only ever at the bottom. */
 .rw-gamify__a { left: 152px; top: 102px; width: 200px; height: 438px; transform-origin: 50% 50%; } /* smaller, behind */
-.rw-gamify__b { left: 136px; top: 31px; width: 253px; height: 552px; transform-origin: 50% 50%; } /* bigger, on top */
+.rw-gamify__b { left: 162px; top: 31px; width: 253px; height: 552px; transform-origin: 50% 50%; } /* bigger, on top — nudged +26px right of live's 136 */
 
 /* Card 3 — single Figma design-system screenshot inside the 524 media box, positioned so it
    bleeds (top/left) and is clipped to the left region (never reaches the title). */
