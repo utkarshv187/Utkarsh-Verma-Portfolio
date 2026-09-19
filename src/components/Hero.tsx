@@ -84,14 +84,15 @@ export function Hero() {
 
         <motion.div className="hero__role-shift" style={{ skewX: roleSkew, x: roleX, y: 0 }}>
           <RoleTicker />
+          {/* Tablet/phone: full role list, decreasing size, fading downward. Living inside
+              .hero__role-shift means the tablet waterfall inherits the same scroll skew+shift as
+              the desktop cycler (the phone overrides role-shift's transform to none). */}
+          <ul className="hero__roles-m" aria-hidden="true">
+            {ROLES.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ul>
         </motion.div>
-
-        {/* Mobile: full role list, decreasing size, fading downward */}
-        <ul className="hero__roles-m" aria-hidden="true">
-          {ROLES.map((r) => (
-            <li key={r}>{r}</li>
-          ))}
-        </ul>
       </div>
 
       {/* bottom ramp: fades the portrait's lower edge + the background into black */}

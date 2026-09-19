@@ -265,7 +265,10 @@
   /* bottom row aligns with media bottom (media: 29 + 362 = 391): rows 94 + gap 15 + 94 = 203, top 188 => bottom 391 */
   .rw-card__stats { left: 420px; top: 188px; width: 271px; grid-template-columns: 128px 128px; grid-template-rows: 94px 94px; gap: 15px; } /* 78 + 16 */
   .rw-stat__num { font-size: 24px; }
-  .rw-stat__label { font-size: 16px; line-height: 1.2; }
+  .rw-stat__label { font-size: 12px; line-height: 1.2; } /* -4px (was 16); fits every label in <=2 lines within its 128px tile */
+  /* design-system card has the longest labels ("VARIANTS DESIGNED", "DEVELOPMENT TIME") which fill the
+     tile exactly at 12px — drop to 11px so they keep a safe margin and never wrap past 2 lines. */
+  .rw-card--designsystem .rw-stat__label { font-size: 11px; }
   .rw-card__media { left: 29px; top: 29px; width: 362px; height: 362px; border-radius: 12px; }
   .rw-gamify__scene, .rw-collage__scene { transform: scale(0.6908); }
   .rw-figma picture { left: -90px; top: -40px; width: 452px; height: 546px; } /* -40..-160 keeps the 362 box covered */

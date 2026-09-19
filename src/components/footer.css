@@ -138,4 +138,16 @@
   .footer__badge { margin-top: 36px; }
 }
 
+/* ================= TABLET-ONLY (810–1279.98) — LEFT-align the heading + buttons; badge to the RIGHT.
+   Placed last so it overrides the centred max-width:1279.98 block above; phone (<=809) stays centred. */
+@media (min-width: 810px) and (max-width: 1279.98px) {
+  .footer__inner { align-items: flex-start; text-align: left; }
+  .footer__copy { align-items: flex-start; }
+  /* buttons: left-aligned column, each sized to its content (not stretched/centred) */
+  .footer__pills { align-items: flex-start; width: auto; max-width: 100%; }
+  .footer__pill { justify-content: flex-start; width: auto; }
+  /* Wall Of Portfolios badge stays on the RIGHT: absolute, top-right of the inner */
+  .footer__badge { position: absolute; top: 150px; right: 0; margin: 0; }
+}
+
 /* very small phones: keep the huge heading from overflowing horribly */

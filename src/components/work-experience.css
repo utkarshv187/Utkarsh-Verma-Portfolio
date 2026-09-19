@@ -107,14 +107,17 @@
   pointer-events: none;
 }
 .we__reveal-inner {
-  overflow: hidden;
+  overflow: hidden; /* clips the pinch-zoom to the image's own frame — the page/UI never scales */
   min-height: 0;
+  touch-action: pan-y; /* one finger still scrolls the page; two fingers pinch-zoom the image (JS) */
 }
 .we__reveal-img {
   display: block;
   width: 100%;
   height: auto;
   margin-top: 32px; /* live gap between the role text and the revealed image */
+  transform-origin: center center; /* pinch-zoom grows from the image centre */
+  will-change: transform;
 }
 .we__reveal--open {
   grid-template-rows: 1fr;
@@ -245,6 +248,13 @@
   .we-card__value { top: -16px; left: 24px; font-size: 64px; }
   .we-card__z { display: block; width: 104px; height: auto; top: -14px; right: 0; left: auto; bottom: auto; transform: none; }
   .we-card__label { left: 24px; top: 48px; right: auto; bottom: auto; text-align: left; font-size: 20px; line-height: 26px; }
+}
+
+/* ================= TABLET-ONLY tweaks (810–1279.98) — placed last so they win on source order
+   over the max-width:1279.98 block above (which also covers phone); phone (<=809) is untouched. ===== */
+@media (min-width: 810px) and (max-width: 1279.98px) {
+  /* stat-card labels (YEARS OF EXPERIENCE / SUCCESSFUL PRODUCTS / DIVERSIFIED USERS): -4px (20 -> 16) */
+  .we-card__label { font-size: 16px; }
 }
 
 /* ================= reduced motion handled in the component (value renders final) ================= */

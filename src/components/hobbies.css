@@ -257,6 +257,16 @@
   .hob__lb-set { grid-template-columns: repeat(2, 1fr); gap: 8px; }
 }
 
+/* ================= TABLET-ONLY (810–1279.98) — placed last so it wins on source order ================= */
+@media (min-width: 810px) and (max-width: 1279.98px) {
+  /* +40px between each hobby caption and the element below it (next pile / the PHOTOGRAPHING block) */
+  .hob__caption { margin-bottom: 40px; }
+  /* PHOTOGRAPHING grid: 2 per row (not 3). Drop the 1st image so the count is even (15 -> 14) and
+     rows stay a clean 2-up with no orphan. */
+  .hob__grid { grid-template-columns: repeat(2, 1fr); }
+  .hob__grid-cell:first-child { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hob__grid-cell img { opacity: 1; transform: none; transition: none; }
   .hob__card { transition: none; }

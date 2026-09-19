@@ -61,6 +61,8 @@ function ScrambleValue({ final, active }: { final: string; active: boolean }) {
 export function WorkExperience() {
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const spinnyFrameRef = useRef<HTMLDivElement>(null);
+  const spinnyImgRef = useRef<HTMLImageElement>(null);
   const [statsIn, setStatsIn] = useState(false);
   // Spinny bento is a one-way latch: the FIRST hover of the Work Experience section (which
   // includes the Spinny row) flips this true and it stays true for the rest of the session —
@@ -82,6 +84,54 @@ export function WorkExperience() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  // Pinch-to-zoom the Spinny highlights image (touch/pen only — mouse users are unaffected). Two
+  // fingers scale ONLY the <img> within its clipped frame (.we__reveal-inner has overflow:hidden, so
+  // the whole page/UI never scales); lifting the fingers snaps it back to 1. One finger still scrolls
+  // the page (touch-action: pan-y on the frame), so the gesture never traps the scroll.
+  useEffect(() => {
+    const frame = spinnyFrameRef.current;
+    const img = spinnyImgRef.current;
+    if (!frame || !img) return;
+    const pts = new Map<number, { x: number; y: number }>();
+    let startDist = 0;
+    const twoDist = () => {
+      const [a, b] = [...pts.values()];
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    };
+    const setScale = (s: number, animate: boolean) => {
+      img.style.transition = animate ? 'transform 0.32s cubic-bezier(0.22, 1, 0.36, 1)' : 'none';
+      img.style.transform = `scale(${s})`;
+    };
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse') return; // pinch is a touch/pen gesture only
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pts.size === 2) startDist = twoDist();
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!pts.has(e.pointerId)) return;
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pts.size === 2 && startDist > 0) {
+        e.preventDefault(); // don't let the browser pan/zoom the page while pinching the image
+        setScale(Math.max(1, Math.min(3, twoDist() / startDist)), false);
+      }
+    };
+    const onUp = (e: PointerEvent) => {
+      if (!pts.has(e.pointerId)) return;
+      pts.delete(e.pointerId);
+      if (pts.size < 2) { startDist = 0; setScale(1, true); } // fingers lifted -> snap back
+    };
+    frame.addEventListener('pointerdown', onDown);
+    frame.addEventListener('pointermove', onMove, { passive: false });
+    frame.addEventListener('pointerup', onUp);
+    frame.addEventListener('pointercancel', onUp);
+    return () => {
+      frame.removeEventListener('pointerdown', onDown);
+      frame.removeEventListener('pointermove', onMove);
+      frame.removeEventListener('pointerup', onUp);
+      frame.removeEventListener('pointercancel', onUp);
+    };
+  }, [spinnyOpen]);
 
   // fade-up reveal on scroll-in, per element (matches live's appear animation)
   useEffect(() => {
@@ -125,6 +175,7 @@ export function WorkExperience() {
                 <div className={`we__reveal${spinnyOpen ? ' we__reveal--open' : ''}`}>
                   <div
                     className="we__reveal-inner"
+                    ref={spinnyFrameRef}
                     data-cursor-label={'Highlights\nat Spinny'}
                     data-cursor-size="lg"
                   >
@@ -132,6 +183,7 @@ export function WorkExperience() {
                       <source srcSet="/images/spinny-highlights.avif" type="image/avif" />
                       <img
                         className="we__reveal-img"
+                        ref={spinnyImgRef}
                         src="/images/spinny-highlights.webp"
                         alt="Highlights at Spinny"
                         width={1200}

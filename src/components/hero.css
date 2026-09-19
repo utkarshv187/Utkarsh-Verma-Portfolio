@@ -36,10 +36,11 @@
   /* text block dropped to live's PRODUCT position; live's viewport-top 191 minus the hero's own sticky
      top:25 => 166 within the hero. left/width stay --u-scaled so the O overlay tracks PRODUCT. */
   .hero .hero__text { top: 166px; }
-  /* Tablet role = live's WATERFALL, not the desktop single-word cycler. Hide the cycler; show
-     .hero__roles-m at tablet sizes, centred (text-align centre within the 1353u-wide text block =>
-     centre = viewport centre) and in FRONT of the portrait (z above portrait z2, like live). */
-  .hero__role-shift { display: none; }
+  /* Tablet role = a WATERFALL, not the desktop single-word cycler. Hide only the cycler (.role) —
+     KEEP .hero__role-shift so the waterfall (which now lives inside it) inherits the scroll skew+shift.
+     Show .hero__roles-m at tablet sizes, centred (text-align centre within the 1353u-wide text block =>
+     centre = viewport centre) and in FRONT of the portrait (z above portrait z2). */
+  .hero__role-shift .role { display: none; }
   /* .hero prefix so these out-specify the base `.hero__roles-m { display:none }` / positions, which
      are later in the file (media queries add no specificity, so source order would otherwise win). */
   .hero .hero__roles-m {
@@ -63,23 +64,33 @@
     background-clip: text;
     color: transparent;
   }
-  .hero__roles-m li + li { margin-top: 20px; } /* ~20px inter-word gap (live) */
+  .hero__roles-m li + li { margin-top: 20px; } /* ~20px inter-word gap */
   .hero__roles-m li:nth-child(1) { font-size: 160px; }                          /* DESIGNER */
   .hero__roles-m li:nth-child(2) { font-size: 112px; letter-spacing: -0.02em; } /* STRATEGIST */
-  .hero__roles-m li:nth-child(3) { font-size: 96px; letter-spacing: -0.02em; margin-top: 41px; } /* RESEARCHER (live's larger last gap) */
-  .hero__roles-m li:nth-child(n + 4) { display: none; } /* live renders only the first 3 at tablet */
-  /* bigger portrait behind, centred +43px right of viewport centre (live @1024: 508x579, cx 555) */
+  .hero__roles-m li:nth-child(n + 3) { display: none; } /* show only DESIGNER + STRATEGIST (RESEARCHER removed) */
+  /* bigger portrait behind, centred +43px right of viewport centre (live @1024: 508x579, cx 555).
+     object-position:center (like live) crops the head so it does NOT poke above PRODUCT as a floating
+     sliver — the base uses `top center`, which is what left the stray photo edge at the top on tablet. */
   .hero .hero__portrait {
     width: 508px;
     height: 579px;
     left: calc(50% - 211px); /* 50% - w/2 + 43 */
     top: 76px; /* live viewport-top 101 - hero sticky top 25 */
+    /* fade the TOP ~17% (down to PRODUCT's top) so the head never floats above PRODUCT as a stray
+       sliver — our source image frames the head high (aspect ~= the box, so object-position can't crop
+       it away); keep the existing bottom fade. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 13%, #000 18%, #000 78%, transparent 99%);
+    mask-image: linear-gradient(to bottom, transparent 0%, transparent 13%, #000 18%, #000 78%, transparent 99%);
   }
-  /* graffiti badge: bottom-centre (live @1024: 231x140, cx 505, viewport-top 878 => 853 within hero) */
+  .hero .hero__portrait img { object-position: center; }
+  /* the small cropped-face accent sits at the top (z1); with the portrait's top now faded it would
+     show through as a stray photo sliver — hide it at tablet (it was only ever a behind-portrait accent). */
+  .hero .hero__face { display: none; }
+  /* graffiti "UTKARSH VERMA" badge: centred, sits higher (moved up ~155px now RESEARCHER is gone) */
   .hero .hero__graffiti {
     width: 231px;
     left: calc(50% - 116px);
-    top: 853px;
+    top: 698px;
   }
 }
 
