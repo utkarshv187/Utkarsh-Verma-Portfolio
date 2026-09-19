@@ -134,7 +134,9 @@
   .footer__q, .footer__cta { font-size: 100px; line-height: 0.9; }
   .footer__q { letter-spacing: -0.02em; } /* live phone: -2px @100 */
   .footer__cta { line-height: 1; }
-  .footer__pills { width: 100%; gap: 12px; margin-top: 36px; }
+  /* pills: content-width, centred (live), not full-width/stretched */
+  .footer__pills { width: 100%; gap: 12px; margin-top: 36px; align-items: center; }
+  .footer__pill { width: auto; }
   .footer__badge { margin-top: 36px; }
 }
 

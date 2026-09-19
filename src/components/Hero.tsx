@@ -51,7 +51,9 @@ export function Hero() {
       {/* Foreground media */}
       <picture className="hero__portrait">
         <source srcSet="/images/portrait.avif" type="image/avif" />
-        <img src="/images/portrait.webp" alt="Utkarsh Verma" width={1300} height={1503} fetchPriority="high" />
+        {/* lowercase `fetchpriority` (spread) is the DOM attribute React passes through cleanly — the
+            camelCase `fetchPriority` prop isn't recognised by this React version and logs a console warning */}
+        <img src="/images/portrait.webp" alt="Utkarsh Verma" width={1300} height={1503} {...({ fetchpriority: 'high' } as any)} />
       </picture>
 
       {/* small cropped-face accent (behind portrait, upper-left over PRODUCT) */}

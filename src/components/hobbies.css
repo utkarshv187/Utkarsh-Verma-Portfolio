@@ -241,16 +241,18 @@
 @media (max-width: 809.98px) {
   .hob { padding: 64px 0 64px; }
   .hob__inner { padding: 0 20px; }
-  .hob__intro { font-size: 24px; line-height: 33.6px; }
+  .hob__intro { font-size: 16px; line-height: 24px; } /* live phone: 16px/700/lh24 (was 24) */
   .hob__stacks { gap: 32px; margin-top: 32px; }
   .hob__pile { width: 260px; height: 372px; }
   .hob__card { width: 260px; height: 372px; }
   .hob__title { font-size: 22px; }
   .hob__caption { font-size: 20px; }
   .hob__photo { margin-top: 48px; }
-  .hob__photo-title { font-size: 40px; line-height: 48px; font-weight: 600; } /* live phone: 40px/600 */
+  .hob__photo-title { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: normal; } /* live phone: 40px/600, no tracking */
   .hob__amp { font-size: 34px; }
+  /* 2-up grid; drop the 1st image so the count is even (15 -> 14) with no orphan (matches live) */
   .hob__grid { grid-template-columns: repeat(2, 1fr); margin-top: 36px; }
+  .hob__grid-cell:first-child { display: none; }
   .hob__lb { padding: 16px; }
   .hob__lb-arrow--prev { left: 4px; }
   .hob__lb-arrow--next { right: 4px; }

@@ -189,7 +189,7 @@
   .header__logo { width: 42px; color: #e2e2ff; }
   .header__nav--desktop { display: none; }
   .header__nav--mobile { display: flex; }
-  .resume--mobile { font-size: 14px; padding: 8px 20px; }
+  .resume--mobile { font-size: 14px; padding: 8px 16px; } /* ~93px like live (was 20px padding -> ~101) */
   .scroll-progress { display: none; }
 }
 

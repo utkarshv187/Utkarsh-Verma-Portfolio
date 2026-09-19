@@ -225,8 +225,11 @@
 /* ================= Phone (<= 809.98px) — Framer phone breakpoint ================= */
 @media (max-width: 809.98px) {
   .we__inner { max-width: none; padding: 110px 33px 72px; }
-  .we__heading { font-size: 31px; line-height: 1.15; }
-  .we__subtitle { font-size: 16px; line-height: 1.4; margin-top: 12px; }
+  /* live does NOT show the Spinny "Highlights" reveal image on mobile — hide it below the phone
+     breakpoint (kept on tablet/desktop) */
+  .we__reveal { display: none; }
+  .we__heading { font-size: 31px; line-height: 1.2; } /* live phone lh 37.2 (1.2) */
+  .we__subtitle { font-size: 16px; line-height: 1.5; margin-top: 12px; } /* live phone lh 24 (1.5) */
   .we__list { margin-top: 48px; }
   /* company on top, then role (left) + date (right) */
   .we__row {
@@ -245,9 +248,9 @@
      cards stack in a single column. */
   .we__stats { flex-direction: column; gap: 20px; margin-top: 96px; }
   .we-card { flex: 0 0 auto; width: 100%; height: 100px; overflow: visible; }
-  .we-card__value { top: -16px; left: 24px; font-size: 64px; }
+  .we-card__value { top: -16px; left: 24px; font-size: 60px; } /* live phone 60px */
   .we-card__z { display: block; width: 104px; height: auto; top: -14px; right: 0; left: auto; bottom: auto; transform: none; }
-  .we-card__label { left: 24px; top: 48px; right: auto; bottom: auto; text-align: left; font-size: 20px; line-height: 26px; }
+  .we-card__label { left: 24px; top: 48px; right: auto; bottom: auto; text-align: left; font-size: 16px; line-height: 1.6; } /* live phone 16px/600/lh25.6 (was 20) */
 }
 
 /* ================= TABLET-ONLY tweaks (810–1279.98) — placed last so they win on source order
