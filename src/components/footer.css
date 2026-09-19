@@ -34,12 +34,12 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 140px;
-  line-height: 0.92;
+  line-height: 1; /* live: desktop lh 1.0, ls normal (tablet/phone step to lh 0.9 + -0.02em) */
   color: #fff;
 }
 .footer__q {
   color: rgba(255, 255, 255, 0.56); /* pale question */
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 .footer__cta {
   color: #fff;
@@ -116,6 +116,7 @@
   }
   .footer__copy { width: 100%; display: flex; flex-direction: column; align-items: center; }
   .footer__q, .footer__cta { max-width: none; font-size: 180px; line-height: 0.9; }
+  .footer__q { letter-spacing: -0.02em; } /* live tablet: -3.6px @180 */
   .footer__cta { line-height: 0.95; }
   .footer__t--wide { display: none; }
   .footer__t--narrow { display: block; }
@@ -131,13 +132,10 @@
 @media (max-width: 809.98px) {
   .footer__inner { max-width: none; padding: 120px 20px 90px; }
   .footer__q, .footer__cta { font-size: 100px; line-height: 0.9; }
+  .footer__q { letter-spacing: -0.02em; } /* live phone: -2px @100 */
   .footer__cta { line-height: 1; }
   .footer__pills { width: 100%; gap: 12px; margin-top: 36px; }
-  .footer__pill { font-size: 18px; }
   .footer__badge { margin-top: 36px; }
 }
 
 /* very small phones: keep the huge heading from overflowing horribly */
-@media (max-width: 400px) {
-  .footer__q, .footer__cta { font-size: 84px; }
-}

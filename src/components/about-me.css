@@ -184,23 +184,17 @@
   border-radius: 0 0 22px 22px;
 }
 
-/* ================= TABLET (810–1279.98) ================= */
+/* ================= TABLET (810–1279.98) =================
+   Live keeps DESKTOP sizes here (heading 80px, ENGINEER 40px, bio 40px) but HIDES the portrait
+   and makes the bio full-width. So we only hide the portrait + widen the bio; everything else
+   inherits the desktop rules (incl. the desktop script-annotation positions — they're word-anchored
+   so they hold at the wider wrap). */
 @media (max-width: 1279.98px) and (min-width: 810px) {
   .about { padding: 120px 0 110px; }
-  .about__inner { max-width: 720px; }
-  .about__heading { font-size: 48px; line-height: 57.6px; }
-  .about__subtitle { font-size: 24px; line-height: 33.6px; margin-top: 10px; }
-  .about__row { gap: 24px; margin-top: 36px; }
-  .about__portrait { width: 260px; }
-  .about__portrait img { width: 260px; height: 329px; }
-  .about__bio { width: 436px; font-size: 26px; line-height: 58px; }
-  .about__ins-text, .about__caret { font-size: 22px; }
-  .about__caret { top: 33px; }
-  .about__anchor--1 .about__ins-text { left: calc(100% - 59px); top: -12px; }
-  .about__anchor--2 .about__ins-text { left: calc(100% - 29px); top: -12px; }
-  .about__anchor--3 .about__ins-text { left: calc(100% - 55px); top: -12px; }
-  .about__anchor--4 .about__ins-text { left: calc(100% - 60px); top: 46px; }
-  .about__anchor--5 .about__ins-text { left: calc(100% - 97px); top: 46px; }
+  .about__inner { max-width: none; margin: 0; padding: 0 25px; } /* full-width, ~25px gutters like live */
+  .about__portrait { display: none; }
+  .about__row { margin-top: 40px; }
+  .about__bio { width: 100%; }
 }
 
 /* ================= PHONE (<=809.98) ================= */
@@ -209,9 +203,8 @@
   .about__inner { max-width: none; padding: 0 20px; }
   .about__heading { font-size: 31px; line-height: 37.2px; }
   .about__subtitle { font-size: 16px; line-height: 24px; margin-top: 8px; }
-  .about__row { flex-direction: column; align-items: flex-start; gap: 24px; margin-top: 28px; }
-  .about__portrait { width: 200px; align-self: center; }
-  .about__portrait img { width: 200px; height: 253px; }
+  .about__row { margin-top: 28px; }
+  .about__portrait { display: none; } /* live hides the portrait on phone too */
   .about__bio { width: 100%; font-size: 24px; line-height: 52.8px; } /* match live mobile */
   .about__ins-text, .about__caret { font-size: 16px; } /* match live's mobile script size */
   .about__caret { top: 26px; }

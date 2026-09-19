@@ -234,8 +234,7 @@
   .hob__card { width: 350px; height: 500px; }
   .hob__title { font-size: 26px; }
   .hob__caption { font-size: 30px; }
-  .hob__photo-title { font-size: 56px; line-height: 67px; }
-  .hob__amp { font-size: 44px; }
+  /* live holds "& PHOTOGRAPHING" at its desktop size (80px/500) through tablet — no shrink here */
 }
 
 /* ================= PHONE (<=809.98) — smaller cards, 2-col grid ================= */
@@ -249,7 +248,7 @@
   .hob__title { font-size: 22px; }
   .hob__caption { font-size: 20px; }
   .hob__photo { margin-top: 48px; }
-  .hob__photo-title { font-size: 34px; line-height: 40.8px; }
+  .hob__photo-title { font-size: 40px; line-height: 48px; font-weight: 600; } /* live phone: 40px/600 */
   .hob__amp { font-size: 34px; }
   .hob__grid { grid-template-columns: repeat(2, 1fr); margin-top: 36px; }
   .hob__lb { padding: 16px; }

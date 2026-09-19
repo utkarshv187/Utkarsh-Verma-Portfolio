@@ -1,6 +1,11 @@
-/* Desktop hero scales uniformly with width: 1 design-px (@1440) = var(--u). */
+/* Live's hero is a FIXED, CENTRED layout that STEPS by breakpoint (it does NOT scale fluidly):
+   PRODUCT 282px @>=1280, 160px @810-1279, 74px phone — the whole design is a fixed 1440-wide frame
+   centred in the viewport. So --u is a fixed STEP (1 desktop, 0.5674 tablet) and --cx centres the
+   design ( (viewport - designWidth) / 2 ); every absolutely-positioned child adds + var(--cx). */
 .hero {
-  --u: calc(100vw / 1440);
+  --u: 1px; /* desktop >=1280: 1 design-px = 1px (fixed 282 PRODUCT, centred). MUST carry a unit so
+               calc(N * var(--u)) yields a length. */
+  --cx: calc((100vw - 1440 * var(--u)) / 2); /* horizontal centre offset of the 1440-wide design frame */
   /* Pinned/sticky like live: the hero stays put (top:40, under the fixed 80px navbar)
      while the next section (Work Experience) scrolls UP and OVER it. Both are z-index:1;
      WE is later in the DOM with a solid background, so it paints over the pinned hero. */
@@ -13,10 +18,68 @@
   background: var(--bg-dark-3);
   isolation: isolate;
 }
-/* Tablet (810–1279.98): live still pins the hero, but at top:25 (vs 40 on desktop). */
-@media (max-width: 1279.98px) {
+/* Tablet (810–1279.98): live steps the whole hero to a fixed 0.5674 scale (PRODUCT 160), still
+   centred; pin moves to top:25 (vs 40 on desktop). */
+/* ================= TABLET (810–1279.98) — live's bespoke, taller hero =================
+   Live does NOT scale the desktop 1:1 here. It steps the type to fixed sizes (PRODUCT 160), keeps the
+   O-ring, swaps the role cycler for a 3-word WATERFALL (DESIGNER 160 / STRATEGIST 112 / RESEARCHER 96),
+   and lays it all out in a taller (~1100px) frame: PRODUCT top 191, waterfall below (~20px gaps), a
+   bigger portrait behind, and the graffiti badge centred near the bottom. Measured off live @1024.
+   We keep the desktop .hero__text (so PRODUCT + the absolute O overlay stay locked together and the
+   frame-centring via --cx keeps the visible PRODUCT centred), and override only what live re-flows. */
+@media (max-width: 1279.98px) and (min-width: 810px) {
   .hero {
+    --u: 0.5674px; /* 282 * 0.5674 = 160 (matches live's tablet PRODUCT exactly) */
     top: 25px;
+    height: 1100px; /* live's tablet frame height (content is fixed-size, so a fixed height) */
+  }
+  /* text block dropped to live's PRODUCT position; live's viewport-top 191 minus the hero's own sticky
+     top:25 => 166 within the hero. left/width stay --u-scaled so the O overlay tracks PRODUCT. */
+  .hero .hero__text { top: 166px; }
+  /* Tablet role = live's WATERFALL, not the desktop single-word cycler. Hide the cycler; show
+     .hero__roles-m at tablet sizes, centred (text-align centre within the 1353u-wide text block =>
+     centre = viewport centre) and in FRONT of the portrait (z above portrait z2, like live). */
+  .hero__role-shift { display: none; }
+  /* .hero prefix so these out-specify the base `.hero__roles-m { display:none }` / positions, which
+     are later in the file (media queries add no specificity, so source order would otherwise win). */
+  .hero .hero__roles-m {
+    display: block;
+    position: relative;
+    z-index: 5; /* in front of the portrait (z2), like live's role */
+    list-style: none;
+    margin: 36px 0 0; /* PRODUCT box (160) + 36 => DESIGNER at ~387, matching live */
+    padding: 0;
+    text-align: center;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 66%, rgba(0, 0, 0, 0.08) 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 66%, rgba(0, 0, 0, 0.08) 100%);
+  }
+  .hero__roles-m li {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1; /* live tablet role lh 1.1 (176/160) */
+    letter-spacing: -0.04em;
+    background: linear-gradient(0deg, #d6d6ff 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero__roles-m li + li { margin-top: 20px; } /* ~20px inter-word gap (live) */
+  .hero__roles-m li:nth-child(1) { font-size: 160px; }                          /* DESIGNER */
+  .hero__roles-m li:nth-child(2) { font-size: 112px; letter-spacing: -0.02em; } /* STRATEGIST */
+  .hero__roles-m li:nth-child(3) { font-size: 96px; letter-spacing: -0.02em; margin-top: 41px; } /* RESEARCHER (live's larger last gap) */
+  .hero__roles-m li:nth-child(n + 4) { display: none; } /* live renders only the first 3 at tablet */
+  /* bigger portrait behind, centred +43px right of viewport centre (live @1024: 508x579, cx 555) */
+  .hero .hero__portrait {
+    width: 508px;
+    height: 579px;
+    left: calc(50% - 211px); /* 50% - w/2 + 43 */
+    top: 76px; /* live viewport-top 101 - hero sticky top 25 */
+  }
+  /* graffiti badge: bottom-centre (live @1024: 231x140, cx 505, viewport-top 878 => 853 within hero) */
+  .hero .hero__graffiti {
+    width: 231px;
+    left: calc(50% - 116px);
+    top: 853px;
   }
 }
 
@@ -84,7 +147,7 @@
 .hero__text {
   position: absolute;
   top: calc(196 * var(--u));
-  left: calc(44 * var(--u));
+  left: calc(44 * var(--u) + var(--cx)); /* + --cx centres the design frame in the viewport */
   width: calc(1353 * var(--u));
 }
 .hero__product,
@@ -208,13 +271,16 @@
   align-items: center;
   white-space: nowrap;
 }
+/* role tracking is -0.02em on live (looser than PRODUCT's -0.04em); the measurer MUST match the
+   word so the fit-to-width font-size lands on live's 265px (a tighter measurer over-sizes it). */
+.role__word { letter-spacing: -0.02em; }
 .role__meas {
   position: absolute;
   visibility: hidden;
   white-space: nowrap;
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   pointer-events: none;
 }
 
@@ -222,7 +288,7 @@
 .hero__portrait {
   position: absolute;
   z-index: 2;
-  left: calc(426 * var(--u));
+  left: calc(426 * var(--u) + var(--cx));
   top: calc(95 * var(--u));
   width: calc(631 * var(--u));
   height: calc(770 * var(--u));
@@ -236,7 +302,7 @@
 .hero__face {
   position: absolute;
   z-index: 1;
-  left: calc(549 * var(--u));
+  left: calc(549 * var(--u) + var(--cx));
   top: calc(190 * var(--u));
   width: calc(112 * var(--u));
 }
@@ -248,7 +314,7 @@
 .hero__graffiti {
   position: absolute;
   z-index: 6; /* top-most */
-  left: calc(605 * var(--u));
+  left: calc(605 * var(--u) + var(--cx));
   top: calc(623 * var(--u));
   width: calc(231 * var(--u));
   transform: translateY(0);
@@ -329,6 +395,8 @@
 @media (max-width: 809.98px) {
   .hero {
     /* phone: live does NOT pin the hero here — scroll normally (no sticky/overlap) */
+    --u: calc(100vw / 1440); /* phone layout is fixed-px; --u only sizes the bottom fade here */
+    --cx: 0px;
     position: relative;
     top: auto;
     height: auto;
@@ -376,7 +444,7 @@
     padding-top: 160px;
   }
   .hero__product {
-    font-size: 19vw;
+    font-size: 74px; /* live: fixed 74px across the whole phone range (not fluid) */
     line-height: 1.5;
     text-align: left;
     margin: 0;
@@ -399,17 +467,18 @@
   .hero__roles-m li {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em; /* live phone role tracking */
     line-height: 1.5;
     background: linear-gradient(0deg, #d6d6ff 0%, #ffffff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  .hero__roles-m li:nth-child(1) { font-size: 18.5vw; text-align: left; }  /* DESIGNER (aligns under PRODUCT) */
-  .hero__roles-m li:nth-child(2) { font-size: 12.3vw; }  /* STRATEGIST */
-  .hero__roles-m li:nth-child(3) { font-size: 10.3vw; }  /* RESEARCHER */
-  .hero__roles-m li:nth-child(4) { font-size: 8.2vw; }   /* STORYTELLER */
-  .hero__roles-m li:nth-child(5) { font-size: 7.2vw; }   /* COPY WRITER */
-  .hero__roles-m li:nth-child(6) { font-size: 7.2vw; }   /* ANIMATOR */
+  /* live: fixed phone sizes (not fluid) — held across the whole phone range so 768 doesn't scale up */
+  .hero__roles-m li:nth-child(1) { font-size: 72px; text-align: left; }  /* DESIGNER (aligns under PRODUCT) */
+  .hero__roles-m li:nth-child(2) { font-size: 48px; }  /* STRATEGIST */
+  .hero__roles-m li:nth-child(3) { font-size: 40px; }  /* RESEARCHER */
+  .hero__roles-m li:nth-child(4) { font-size: 32px; }  /* STORYTELLER */
+  .hero__roles-m li:nth-child(5) { font-size: 28px; }  /* COPY WRITER */
+  .hero__roles-m li:nth-child(6) { font-size: 28px; }  /* ANIMATOR */
 }
