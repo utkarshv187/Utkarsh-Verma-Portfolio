@@ -421,39 +421,41 @@
       var(--bg-dark-3);
   }
   /* portrait fills the hero behind the text */
-  /* yellow diagonal accent behind STRATEGIST */
+  /* live's exact yellow accent: one thick zigzag stroke (SVG), centred, top 136 — behind the role
+     text but OVER the portrait (z3). Not the old "/ /" repeating stripes. */
   .hero__accent {
     display: block;
     position: absolute;
-    z-index: 2;
-    left: -20px;
-    right: -20px;
-    top: 388px;
-    height: 96px;
-    background: repeating-linear-gradient(118deg, var(--gold) 0 16px, transparent 16px 74px);
-    -webkit-mask-image: linear-gradient(90deg, #000 0 12%, transparent 22% 60%, #000 70% 100%);
-    mask-image: linear-gradient(90deg, #000 0 12%, transparent 22% 60%, #000 70% 100%);
+    z-index: 3;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 136px;
+    width: 493px;
+    height: 347px;
+    pointer-events: none;
+    background: url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 493 347%22><path d=%22M 29 327.475 L 504 217 L 533 294 L -22.731 272.012 L -18 360 L 447 335 C 447 335 653.357 400.63 542.5 343%22 fill=%22transparent%22 stroke-width=%2221.37%22 stroke=%22rgb(255, 183, 4)%22 stroke-linejoin=%22bevel%22></path></svg>") no-repeat center / 100% 100%;
   }
   /* live's phone hero is a CENTRED fixed column (not full-bleed): portrait is a fixed 306x396 centred
-     on the viewport, top 119 — not viewport-width x 640 top-anchored. */
+     on the viewport, top 119 — not viewport-width x 640 top-anchored. z-order: PRODUCT behind the
+     portrait (z1), portrait z2, accent z3, role text z4 in front. */
   .hero__portrait {
     left: 50%;
     transform: translateX(-50%);
     top: 119px;
     width: 306px;
     height: 396px;
-    z-index: 1;
+    z-index: 2;
   }
-  .hero__text { z-index: 3; }
   .hero__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
   .hero__face { display: none; }
   .hero__graffiti { display: none; } /* not shown in the phone hero viewport */
 
-  /* text over the portrait — a centred column (matches live: PRODUCT + roles all centred on the vp) */
+  /* text over the portrait — a centred column (matches live: PRODUCT + roles all centred on the vp).
+     z-index:auto so it is NOT a stacking context — its children layer against the portrait directly. */
   .hero__text {
     position: relative;
     top: auto; left: auto; width: 100%;
-    z-index: 2;
+    z-index: auto;
     padding-top: 179px; /* PRODUCT lands at ~179 like live */
     text-align: center;
   }
@@ -462,6 +464,8 @@
     line-height: 1.1; /* live phone PRODUCT lh 1.1 (81.4px), not 1.5 */
     text-align: center; /* live centres PRODUCT on the viewport */
     margin: 0;
+    position: relative;
+    z-index: 1; /* PRODUCT sits BEHIND the portrait (z2) — matches live */
     transform: none !important; /* no scroll skew/shift on phone (matches role-shift) */
   }
   .badge { display: none; } /* no rotating badge on phone */
@@ -471,6 +475,8 @@
   .role { display: none; }  /* desktop cycler hidden */
   .hero__roles-m {
     display: block;
+    position: relative;
+    z-index: 4; /* role text in FRONT of the portrait (z2) + accent (z3) */
     list-style: none;
     margin: 30px 0 0; /* gap under PRODUCT so DESIGNER lands at ~290 like live */
     padding: 0;
@@ -488,11 +494,11 @@
     background-clip: text;
     color: transparent;
   }
-  /* live: fixed phone sizes (not fluid) — held across the whole phone range so 768 doesn't scale up */
-  .hero__roles-m li:nth-child(1) { font-size: 72px; }  /* DESIGNER (centred like the rest, matching live) */
-  .hero__roles-m li:nth-child(2) { font-size: 48px; }  /* STRATEGIST */
-  .hero__roles-m li:nth-child(3) { font-size: 40px; }  /* RESEARCHER */
-  .hero__roles-m li:nth-child(4) { font-size: 32px; }  /* STORYTELLER */
-  .hero__roles-m li:nth-child(5) { font-size: 28px; }  /* COPY WRITER */
-  .hero__roles-m li:nth-child(6) { font-size: 28px; }  /* ANIMATOR */
+  /* live: fixed phone sizes AND a progressive weight fade down the waterfall (700->200) */
+  .hero__roles-m li:nth-child(1) { font-size: 72px; font-weight: 700; }  /* DESIGNER */
+  .hero__roles-m li:nth-child(2) { font-size: 48px; font-weight: 600; }  /* STRATEGIST */
+  .hero__roles-m li:nth-child(3) { font-size: 40px; font-weight: 500; }  /* RESEARCHER */
+  .hero__roles-m li:nth-child(4) { font-size: 32px; font-weight: 400; }  /* STORYTELLER */
+  .hero__roles-m li:nth-child(5) { font-size: 28px; font-weight: 300; }  /* COPY WRITER */
+  .hero__roles-m li:nth-child(6) { font-size: 28px; font-weight: 200; }  /* ANIMATOR */
 }

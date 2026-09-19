@@ -206,8 +206,13 @@
   .about__row { margin-top: 28px; }
   .about__portrait { display: none; } /* live hides the portrait on phone too */
   .about__bio { width: 100%; font-size: 24px; line-height: 52.8px; } /* match live mobile */
-  .about__ins-text, .about__caret { font-size: 16px; } /* match live's mobile script size */
-  .about__caret { top: 26px; }
+  .about__ins-text, .about__caret { font-size: 20px; } /* Square Peg +4px (was 16) */
+  .about__ins-text { letter-spacing: 0.03em; line-height: 1.3; } /* spaced out so the script reads cleanly */
+  .about__caret { top: 30px; }
+  /* #10 tool ticker: smaller icons so >=4 fit the viewport at once (live: 60px icons, 20px gap) */
+  .about__icon { width: 60px; height: 60px; margin-right: 20px; }
+  .about__icon img { width: 60px; height: 60px; border-radius: 14px; }
+  .about__learning { font-size: 7px; padding: 3px 0 4px; border-radius: 0 0 14px 14px; }
   .about__anchor--1 .about__ins-text { left: calc(100% - 50px); top: -11px; }
   .about__anchor--2 .about__ins-text { left: calc(100% - 24px); top: -11px; }
   .about__anchor--3 .about__ins-text { left: calc(100% - 46px); top: -11px; }

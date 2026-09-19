@@ -11,3 +11,22 @@
   height: 180vh;
   background: var(--bg-dark-2);
 }
+
+/* ================= MOBILE LETTERBOX (#0) — content column with dark bars =================
+   Like live, mobile is NOT edge-to-edge: the content sits in a centred column and the dark body
+   colour (#0E0C20) shows as bars on the sides. Live insets its sections to viewport-30 (15px gutters)
+   with no cap; we match that AND add a max-width so wider phones get a proper letterbox. Applied to
+   <main> so every section + its background is inset uniformly (the fixed header/cursor/GoToTop stay
+   full-width, like live). */
+@media (max-width: 809.98px) {
+  body { background: #0e0c20; } /* dark bar colour (already the base) */
+  /* Inset every CONTENT section (the hero stays full-bleed, like live — its aurora fades to the
+     edges). 15px gutters match live's viewport-30; the max-width caps it into a proper letterbox on
+     wider phones. */
+  .we, .rw, .tts, .about, .hob, .footer {
+    width: calc(100% - 30px);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

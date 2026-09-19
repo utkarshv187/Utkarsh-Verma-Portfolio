@@ -82,7 +82,9 @@
   .tts__inner { max-width: none; padding: 0 20px; }
   .tts__heading { font-size: 31px; line-height: 37.2px; }
   .tts__subtitle { font-size: 16px; line-height: 24px; margin-top: 8px; }
+  /* live's mobile layout is one LARGE card per view with the next peeking (not tiny marquee cards).
+     The recommendation screenshots are landscape (750x450), so the card is a big full-width card. */
   .tts__marquee { margin-top: 36px; }
-  .tts__card { width: 300px; height: 180px; border-radius: 16px; }
-  .tts__item { margin-right: 20px; }
+  .tts__card { width: calc(100vw - 66px); max-width: 360px; height: auto; aspect-ratio: 750 / 450; border-radius: 16px; }
+  .tts__item { margin-right: 16px; } /* small gap so the next card peeks in */
 }

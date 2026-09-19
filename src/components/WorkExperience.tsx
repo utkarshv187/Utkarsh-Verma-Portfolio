@@ -204,8 +204,8 @@ export function WorkExperience() {
               <ScrambleValue final={s.value} active={statsIn} />
               <ZBolt />
               <p className="we-card__label">
-                {s.label[0]}
-                <br />
+                {s.label[0]}{' '}
+                <br className="we-card__br" />
                 {s.label[1]}
               </p>
             </div>

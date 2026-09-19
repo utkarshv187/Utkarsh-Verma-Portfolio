@@ -130,14 +130,18 @@
 
 /* ================= PHONE (<=809.98) ================= */
 @media (max-width: 809.98px) {
-  .footer__inner { max-width: none; padding: 120px 20px 90px; }
+  /* #11: LEFT-align the heading + copy (live) */
+  .footer__inner { max-width: none; padding: 120px 20px 90px; align-items: flex-start; text-align: left; }
+  .footer__copy { align-items: stretch; width: 100%; }
   .footer__q, .footer__cta { font-size: 100px; line-height: 0.9; }
   .footer__q { letter-spacing: -0.02em; } /* live phone: -2px @100 */
   .footer__cta { line-height: 1; }
-  /* pills: content-width, centred (live), not full-width/stretched */
-  .footer__pills { width: 100%; gap: 12px; margin-top: 36px; align-items: center; }
-  .footer__pill { width: auto; }
-  .footer__badge { margin-top: 36px; }
+  /* #11 buttons "H2H": full-width stacked pills, icon+text centred + underlined inside (live) */
+  .footer__pills { width: 100%; gap: 12px; margin-top: 36px; align-items: stretch; }
+  .footer__pill { width: 100%; justify-content: center; }
+  .footer__pill-text { text-decoration: underline; text-decoration-color: currentColor; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  /* #11 remove the Wall Of Portfolios stamp on mobile */
+  .footer__badge { display: none; }
 }
 
 /* ================= TABLET-ONLY (810–1279.98) — LEFT-align the heading + buttons; badge to the RIGHT.
