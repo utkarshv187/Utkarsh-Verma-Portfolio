@@ -213,7 +213,8 @@
 /* scene defined in desktop (524) coords; scaled to the media box per breakpoint */
 .rw-gamify__scene { position: absolute; top: 0; left: 0; width: 524px; height: 524px; transform-origin: top left; }
 .rw-gamify__wrap { position: absolute; }
-.rw-gamify__wrap img { display: block; width: 100%; height: 100%; border-radius: 16px; }
+.rw-gamify__wrap img,
+.rw-gamify__wrap video { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
 /* Positions + centre pivots copied 1:1 from live. Both phones rotate about their OWN CENTRE
    (50% 50%) and fan apart on scroll (+20° smaller / -12° bigger). The BIGGER phone sits at top 31
    (BELOW the box top -> its top is fully visible, never cropped) and bottom 583 (overflows the box
@@ -239,7 +240,9 @@
    The media box has 8px radius (matches live); z-order = DOM order (a bottom -> e top). */
 .rw-collage { border-radius: 8px; background: #ececf5; } /* light panel behind the collage (from live) */
 .rw-collage__scene { position: absolute; top: 0; left: 0; width: 524px; height: 524px; transform-origin: top left; }
-.rw-collage__scene img { position: absolute; display: block; }
+.rw-collage__scene img,
+.rw-collage__scene video { position: absolute; display: block; }
+.rw-collage__scene video { object-fit: cover; }
 .rw-collage__a { left: 334px; top: -20px; width: 180px; height: 1563px; border-radius: 12px; } /* tall right listing — pans a long way, stays covered */
 .rw-collage__b { left: 16px; top: 16px; width: 306px; height: 175px; border-radius: 12px; }      /* wide top-left */
 .rw-collage__c { left: 156px; top: 136px; width: 171px; height: 274px; }                          /* middle gif */

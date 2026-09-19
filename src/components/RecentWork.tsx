@@ -131,6 +131,29 @@ function BeforeAfter() {
   );
 }
 
+// The gamification/collage GIFs re-encoded as tiny webm(VP9)+mp4(H.264) videos (~30MB of GIF ->
+// ~1MB). autoplay/muted/loop/playsInline makes them behave exactly like the GIF; poster = the first
+// frame (so iOS Low Power Mode, where video won't autoplay, still shows a still); the <img> is the
+// ultimate fallback (animated webp) for anything without <video>. Same fps/duration/loop as the GIF.
+function GifVideo({ name, className }: { name: string; className?: string }) {
+  return (
+    <video
+      className={className}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      poster={`/images/${name}-poster.webp`}
+      aria-hidden="true"
+    >
+      <source src={`/images/${name}.webm`} type="video/webm" />
+      <source src={`/images/${name}.mp4`} type="video/mp4" />
+      <img src={`/images/${name}-fallback.webp`} alt="" loading="lazy" />
+    </video>
+  );
+}
+
 function CardMedia({ media, pan, spin }: { media: Card['media']; pan: MotionValue<number>; spin: MotionValue<number> }) {
   // card 2: the two phones START stacked (smaller behind the bigger) and ROTATE APART as the card
   // scrolls in — smaller swings right to +20°, bigger swings left to -12° — AND slide apart
@@ -149,9 +172,9 @@ function CardMedia({ media, pan, spin }: { media: Card['media']; pan: MotionValu
         <div className="rw-gamify__bg" />
         <div className="rw-gamify__scene">
           {/* smaller phone — BEHIND, rotates RIGHT (+20°) + slides RIGHT (+100px) */}
-          <motion.div className="rw-gamify__wrap rw-gamify__a" style={{ x: xSmall, rotate: rotSmall }}><img src="/images/rw-gamify-a.gif" alt="" loading="lazy" /></motion.div>
+          <motion.div className="rw-gamify__wrap rw-gamify__a" style={{ x: xSmall, rotate: rotSmall }}><GifVideo name="rw-gamify-a" /></motion.div>
           {/* bigger phone — ON TOP, rotates LEFT (-12°) + slides LEFT (-100px) */}
-          <motion.div className="rw-gamify__wrap rw-gamify__b" style={{ x: xBig, rotate: rotBig }}><img src="/images/rw-gamify-b.gif" alt="" loading="lazy" /></motion.div>
+          <motion.div className="rw-gamify__wrap rw-gamify__b" style={{ x: xBig, rotate: rotBig }}><GifVideo name="rw-gamify-b" /></motion.div>
         </div>
       </div>
     );
@@ -164,7 +187,7 @@ function CardMedia({ media, pan, spin }: { media: Card['media']; pan: MotionValu
         <div className="rw-collage__scene">
           <motion.img className="rw-collage__a" style={{ y: pan }} src="/images/rw-c4-a.webp" alt="" loading="lazy" />
           <picture><source srcSet="/images/rw-c4-b.avif" type="image/avif" /><img className="rw-collage__b" src="/images/rw-c4-b.webp" alt="" loading="lazy" /></picture>
-          <img className="rw-collage__c" src="/images/rw-c4-c.gif" alt="" loading="lazy" />
+          <GifVideo name="rw-c4-c" className="rw-collage__c" />
           <picture><source srcSet="/images/rw-c4-d.avif" type="image/avif" /><img className="rw-collage__d" src="/images/rw-c4-d.webp" alt="" loading="lazy" /></picture>
           <picture><source srcSet="/images/rw-c4-e.avif" type="image/avif" /><img className="rw-collage__e" src="/images/rw-c4-e.webp" alt="" loading="lazy" /></picture>
         </div>
