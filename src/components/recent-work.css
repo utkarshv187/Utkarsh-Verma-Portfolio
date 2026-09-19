@@ -244,7 +244,7 @@
 .rw-collage__scene video { position: absolute; display: block; }
 .rw-collage__scene video { object-fit: cover; }
 .rw-collage__a { left: 334px; top: -20px; width: 180px; height: 1563px; border-radius: 12px; } /* tall right listing — pans a long way, stays covered */
-.rw-collage__b { left: 16px; top: 16px; width: 306px; height: 175px; border-radius: 12px; }      /* wide top-left */
+.rw-collage__b { left: 16px; top: 16px; width: 306px; height: 175px; border-radius: 12px; z-index: 3; } /* wide top-left (Welcome Mr Agarwal) — on top so it isn't clipped by the spin-wheel video (matches live) */
 .rw-collage__c { left: 156px; top: 136px; width: 171px; height: 274px; }                          /* middle gif */
 .rw-collage__d { left: 16px; top: 202px; width: 131px; height: 306px; }                           /* left */
 .rw-collage__e { left: 160px; top: 352px; width: 163px; height: 433px; border-radius: 16px; }     /* bottom */
