@@ -117,6 +117,10 @@
 .contact__email::after { background: var(--link-email); }
 .contact__divider { width: 1px; height: 22px; background: rgba(226, 226, 240, 0.22); }
 
+/* Tap popup — only rendered at the tablet breakpoint (see the tablet block); hidden by default so
+   desktop and mobile are untouched. */
+.contact__popup { display: none; }
+
 /* ---- Résumé button (orbiting gold border-beam + hover) ---- */
 .resume {
   position: relative; isolation: isolate;
@@ -187,6 +191,62 @@
   .header__nav--mobile { display: flex; }
   .resume--mobile { font-size: 14px; padding: 8px 20px; }
   .scroll-progress { display: none; }
+}
+
+/* ================= TABLET (810–1279.98) — About hidden; Contact is a tap-popup, not hover =======
+   Placed after the hover/focus-within rules so it wins on source order for equal specificity. Some
+   tablet-width devices report a fine pointer (e.g. a laptop in a narrow window), so we neutralise the
+   hover reveal here regardless of pointer and drive the popup by tap instead. */
+@media (min-width: 810px) and (max-width: 1279.98px) {
+  /* 1) hide the About link (desktop keeps it) */
+  .header__nav--desktop .nav-link { display: none; }
+
+  /* 2) remove the hover reveal; the popup drops out of the pill instead, so allow overflow */
+  .contact { overflow: visible; cursor: pointer; }
+  .contact__reveal { display: none; }
+  .contact:hover, .contact:focus-within { padding: 12px 32px; } /* no hover shrink */
+  .contact:hover .contact__label, .contact:focus-within .contact__label { max-width: 90px; opacity: 1; }
+  .contact:hover .contact__reveal, .contact:focus-within .contact__reveal { max-width: 0; opacity: 0; }
+
+  /* the tap popup: a small card dropping from the pill, styled like the site (green number / blue email) */
+  .contact__popup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 248px;
+    padding: 8px;
+    border-radius: 16px;
+    background: rgba(12, 12, 31, 0.92);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(226, 226, 240, 0.16);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.42);
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 20;
+  }
+  .contact--open .contact__popup { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .contact__pop-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    white-space: nowrap;
+    transition: background 0.18s ease;
+  }
+  .contact__pop-item--wa { color: var(--link-phone); }   /* green — same as the number elsewhere */
+  .contact__pop-item--mail { color: var(--link-email); }  /* blue  — same as the email elsewhere */
+  .contact__pop-item:hover, .contact__pop-item:active { background: rgba(255, 255, 255, 0.08); }
 }
 
 /* ================= Reduced motion ================= */
