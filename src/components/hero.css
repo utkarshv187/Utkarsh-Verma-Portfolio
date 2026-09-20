@@ -421,12 +421,13 @@
       var(--bg-dark-3);
   }
   /* portrait fills the hero behind the text */
-  /* live's exact yellow accent: one thick zigzag stroke (SVG), centred, top 136 — behind the role
-     text but OVER the portrait (z3). Not the old "/ /" repeating stripes. */
+  /* live's exact yellow accent: one thick zigzag stroke (SVG), centred, top 136 — sits BEHIND the
+     portrait (z1, below the portrait's z2) so the photo covers it where they overlap; it still shows
+     on the sides where it extends past the portrait. Not the old "/ /" repeating stripes. */
   .hero__accent {
     display: block;
     position: absolute;
-    z-index: 3;
+    z-index: 1;
     left: 50%;
     transform: translateX(-50%);
     top: 136px;
