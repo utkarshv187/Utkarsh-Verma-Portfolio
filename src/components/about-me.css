@@ -217,7 +217,14 @@
   .about__anchor--2 .about__ins-text { left: calc(100% - 24px); top: -11px; }
   .about__anchor--3 .about__ins-text { left: calc(100% - 46px); top: -11px; }
   .about__anchor--4 .about__ins-text { left: calc(100% - 51px); top: 42px; }
-  .about__anchor--5 .about__ins-text { left: calc(100% - 82px); top: 42px; }
+  /* phrase 5 ("if not, then we correct & make it work") is long and the word "work" wraps to wildly
+     different x positions per width, so anchoring to the word clips it off either edge. Pin it to the
+     bio instead (bottom-left, 8px in) so it is ALWAYS fully on-screen at every mobile width. The word
+     is also a .about__word whose reveal transform makes it the containing block, so clear that (the
+     word just fades in without the slide) to let the phrase escape to the bio. */
+  .about__anchor--5 { position: static; transform: none !important; }
+  .about__anchor--5 .about__ins-text { left: 8px; top: calc(100% + 4px); }
+  .about__anchor--5 .about__caret { display: none; } /* caret would detach from the moved phrase */
   .about__marquee { margin-top: 56px; }
 }
 

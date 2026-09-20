@@ -316,6 +316,8 @@
     border-radius: 10px;
     margin-top: 12px;
   }
+  /* card 1 before/after: capture touch so the divider DRAGS on mobile (scroll elsewhere on the card) */
+  .rw-ba { touch-action: none; }
   .rw-card__stats {
     position: static;
     order: 2;

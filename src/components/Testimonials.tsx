@@ -28,6 +28,10 @@ export function Testimonials() {
             <li className="tts__item" key={i} aria-hidden={i >= CARDS.length || undefined}>
               <a className="tts__card" href={HREF} target="_blank" rel="noopener noreferrer" tabIndex={i >= CARDS.length ? -1 : undefined} data-cursor-variant="link" data-cursor-arrow="up-right">
                 <picture>
+                  {/* mobile: live's tall PORTRAIT testimonial cards (750x936). desktop/tablet keep the
+                      landscape screenshots. */}
+                  <source media="(max-width: 809.98px)" srcSet={`/images/${c.src}-m.avif`} type="image/avif" />
+                  <source media="(max-width: 809.98px)" srcSet={`/images/${c.src}-m.webp`} type="image/webp" />
                   <source srcSet={`/images/${c.src}.avif`} type="image/avif" />
                   <img src={`/images/${c.src}.webp`} alt={i >= CARDS.length ? '' : c.alt} width={500} height={300} loading="lazy" />
                 </picture>

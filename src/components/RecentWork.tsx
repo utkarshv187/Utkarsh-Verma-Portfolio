@@ -93,19 +93,34 @@ function ScrambleNum({ final, active }: { final: string; active: boolean }) {
 // divider that animates by default and halts on hover — matching live's slider.
 function BeforeAfter() {
   const [hovering, setHovering] = useState(false);
+  const [dragging, setDragging] = useState(false); // touch drag (halts the ripple like hover)
+  const draggingRef = useRef(false);
   const boxRef = useRef<HTMLDivElement>(null);
   const target = useMotionValue(50); // divider %, from left
   const pct = useSpring(target, { stiffness: 170, damping: 24, mass: 0.55 }); // springy trail (matches live's lag)
   const oldClip = useTransform(pct, (v) => `inset(0 ${100 - v}% 0 0)`);
   const left = useTransform(pct, (v) => `${v}%`);
 
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!hovering) return;
+  const setFromClientX = (clientX: number) => {
     const box = boxRef.current;
     if (!box) return;
     const r = box.getBoundingClientRect();
-    target.set(Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)));
+    target.set(Math.max(0, Math.min(100, ((clientX - r.left) / r.width) * 100)));
   };
+  // Mouse: follow on hover (desktop, unchanged). Touch/pen: DRAG the divider (no hover on mobile) —
+  // pointer capture keeps tracking the finger; touch-action:none on the box (mobile) stops it scrolling.
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === 'mouse') return;
+    draggingRef.current = true;
+    setDragging(true);
+    try { boxRef.current?.setPointerCapture(e.pointerId); } catch { /* ignore */ }
+    setFromClientX(e.clientX);
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (e.pointerType === 'mouse') { if (hovering) setFromClientX(e.clientX); return; }
+    if (draggingRef.current) setFromClientX(e.clientX);
+  };
+  const endDrag = () => { draggingRef.current = false; setDragging(false); };
 
   return (
     <div
@@ -113,11 +128,14 @@ function BeforeAfter() {
       ref={boxRef}
       onPointerEnter={() => setHovering(true)}
       onPointerLeave={() => { setHovering(false); target.set(50); }}
+      onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
     >
       <div className="rw-ba__layer rw-ba__new" />
       <motion.div className="rw-ba__layer rw-ba__old" style={{ clipPath: oldClip }} />
-      <motion.div className={`rw-ba__divider${hovering ? '' : ' rw-ba__divider--idle'}`} style={{ left }}>
+      <motion.div className={`rw-ba__divider${hovering || dragging ? '' : ' rw-ba__divider--idle'}`} style={{ left }}>
         <div className="rw-ba__bar" aria-hidden="true" />
         {/* two-sided arrow control — suppress the card's "View" pill here (empty cursor label) */}
         <div className="rw-ba__handle" data-cursor-label="">
