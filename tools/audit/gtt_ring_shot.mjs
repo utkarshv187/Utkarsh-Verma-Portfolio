@@ -1,0 +1,12 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ headless: true });
+const p = await (await b.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' })).newPage();
+await p.goto('http://localhost:5199/', { waitUntil: 'load' }).catch(() => {});
+await p.waitForTimeout(700);
+await p.evaluate(() => { const el = document.getElementById('more-about-me'); const y = el.getBoundingClientRect().top + (window.scrollY||document.body.scrollTop) + 500; document.documentElement.scrollTop=y; document.body.scrollTop=y; });
+await p.waitForTimeout(700);
+const gb = await p.evaluate(() => { const r = document.querySelector('.gtt').getBoundingClientRect(); return { x:r.left+r.width/2, y:r.top+r.height/2, cx:Math.round(r.left)-32, cy:Math.round(r.top)-32 }; });
+await p.mouse.move(gb.x, gb.y); await p.waitForTimeout(600);
+await p.screenshot({ path: 'audit/out/fix5/mine_gtt_ring2.png', clip: { x: gb.cx, y: gb.cy, width: 144, height: 144 } });
+console.log('saved');
+await b.close();

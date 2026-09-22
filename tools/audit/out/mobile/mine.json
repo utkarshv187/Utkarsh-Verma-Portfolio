@@ -1,0 +1,2642 @@
+{
+ "320": {
+  "vw": 327,
+  "overflow": {
+   "scrollWidth": 327,
+   "innerWidth": 327,
+   "overflows": false
+  },
+  "header": {
+   "counter": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 9086
+   },
+   "about": null,
+   "contact": null,
+   "resume": {
+    "fs": "14px",
+    "fw": "600",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 215,
+    "y": 35,
+    "w": 57,
+    "h": 24
+   },
+   "navLinks": 4,
+   "hasHamburger": false
+  },
+  "hero": {
+   "product": {
+    "fs": "74px",
+    "fw": "700",
+    "lh": "111px",
+    "ls": "-2.96px",
+    "ff": "Clash Display",
+    "color": "rgb(238, 238, 255)",
+    "x": 16,
+    "y": 160,
+    "w": 288,
+    "h": 111
+   },
+   "productBg": {
+    "bg": "rgb(12, 12, 31)",
+    "tag": "SECTION",
+    "w": 320
+   },
+   "roles": [
+    {
+     "word": "DESIGNER",
+     "fs": "72px",
+     "y": 271
+    },
+    {
+     "word": "STRATEGIST",
+     "fs": "48px",
+     "y": 379
+    },
+    {
+     "word": "RESEARCHER",
+     "fs": "40px",
+     "y": 451
+    },
+    {
+     "word": "STORYTELLER",
+     "fs": "32px",
+     "y": 511
+    },
+    {
+     "word": "COPY WRITER",
+     "fs": "28px",
+     "y": 559
+    },
+    {
+     "word": "ANIMATOR",
+     "fs": "28px",
+     "y": 601
+    }
+   ],
+   "utkarsh": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 320,
+    "h": 640
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 320,
+    "h": 640,
+    "src": ""
+   },
+   "rotatingBadge": true
+  },
+  "we": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "35.65px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 33,
+    "y": 781,
+    "w": 254,
+    "h": 71
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 9086
+   },
+   "statValues": [
+    {
+     "fs": "24px",
+     "fw": "900",
+     "lh": "52.8px",
+     "ls": "normal",
+     "ff": "Satoshi",
+     "color": "rgb(255, 255, 255)",
+     "x": 263,
+     "y": 4808,
+     "w": 29,
+     "h": 53
+    },
+    null,
+    null
+   ],
+   "statLabels": [
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1508,
+     "w": 127,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1628,
+     "w": 136,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1748,
+     "w": 124,
+     "h": 52
+    }
+   ],
+   "spinnyImg": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(12, 12, 31)",
+    "x": 33,
+    "y": 1121,
+    "w": 254,
+    "h": 130,
+    "vis": true
+   }
+  },
+  "rw": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 20,
+    "y": 1968,
+    "w": 280,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 9086
+   },
+   "cardTitle1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 32,
+    "y": 2113,
+    "w": 256,
+    "h": 67
+   },
+   "statNum": null,
+   "statLabel": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 9086
+   }
+  },
+  "tts": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4151,
+    "w": 280,
+    "h": 74
+   }
+  },
+  "about": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 183, 5)",
+    "x": 20,
+    "y": 4658,
+    "w": 280,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "700",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4703,
+    "w": 280,
+    "h": 24
+   },
+   "bio": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 215,
+    "y": 4755,
+    "w": 81,
+    "h": 53
+   },
+   "script1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 100,
+    "y": 4808,
+    "w": 101,
+    "h": 53
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 232,
+    "y": 3633,
+    "w": 108,
+    "h": 938,
+    "visible": true
+   }
+  },
+  "hob": {
+   "intro": {
+    "fs": "24px",
+    "fw": "700",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 5469,
+    "w": 280,
+    "h": 67
+   },
+   "photoTitle": {
+    "fs": "40px",
+    "fw": "600",
+    "lh": "48px",
+    "ls": "0.4px",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 7044,
+    "w": 320,
+    "h": 48
+   },
+   "gridCols": 18
+  },
+  "footer": {
+   "headingWide": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 4,
+    "y": 8051,
+    "w": 312,
+    "h": 270
+   },
+   "headingNarrow": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 4,
+    "y": 8051,
+    "w": 312,
+    "h": 270
+   },
+   "cta": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "100px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": -7,
+    "y": 8329,
+    "w": 335,
+    "h": 300
+   },
+   "pillPhone": {
+    "fs": "20px",
+    "fw": "600",
+    "lh": "20px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(62, 193, 79)",
+    "x": 20,
+    "y": 8665,
+    "w": 280,
+    "h": 40
+   },
+   "goToTop": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 320,
+    "h": 9086
+   },
+   "bg": {
+    "bg": "rgb(255, 183, 5)",
+    "tag": "FOOTER",
+    "w": 320
+   }
+  },
+  "global": {
+   "cursorEl": false,
+   "cursorVisible": null,
+   "bodyCursor": "auto",
+   "framerBadge": false,
+   "framerBadgeText": false
+  },
+  "consoleErrors": [
+   "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ "360": {
+  "vw": 360,
+  "overflow": {
+   "scrollWidth": 360,
+   "innerWidth": 360,
+   "overflows": false
+  },
+  "header": {
+   "counter": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 360,
+    "h": 9168
+   },
+   "about": null,
+   "contact": null,
+   "resume": {
+    "fs": "14px",
+    "fw": "600",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 248,
+    "y": 35,
+    "w": 57,
+    "h": 24
+   },
+   "navLinks": 4,
+   "hasHamburger": false
+  },
+  "hero": {
+   "product": {
+    "fs": "74px",
+    "fw": "700",
+    "lh": "111px",
+    "ls": "-2.96px",
+    "ff": "Clash Display",
+    "color": "rgb(238, 238, 255)",
+    "x": 16,
+    "y": 160,
+    "w": 328,
+    "h": 111
+   },
+   "productBg": {
+    "bg": "rgb(12, 12, 31)",
+    "tag": "SECTION",
+    "w": 360
+   },
+   "roles": [
+    {
+     "word": "DESIGNER",
+     "fs": "72px",
+     "y": 271
+    },
+    {
+     "word": "STRATEGIST",
+     "fs": "48px",
+     "y": 379
+    },
+    {
+     "word": "RESEARCHER",
+     "fs": "40px",
+     "y": 451
+    },
+    {
+     "word": "STORYTELLER",
+     "fs": "32px",
+     "y": 511
+    },
+    {
+     "word": "COPY WRITER",
+     "fs": "28px",
+     "y": 559
+    },
+    {
+     "word": "ANIMATOR",
+     "fs": "28px",
+     "y": 601
+    }
+   ],
+   "utkarsh": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 360,
+    "h": 640
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 360,
+    "h": 640,
+    "src": ""
+   },
+   "rotatingBadge": true
+  },
+  "we": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "35.65px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 33,
+    "y": 781,
+    "w": 294,
+    "h": 71
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 360,
+    "h": 9168
+   },
+   "statValues": [
+    {
+     "fs": "24px",
+     "fw": "900",
+     "lh": "52.8px",
+     "ls": "normal",
+     "ff": "Satoshi",
+     "color": "rgb(255, 255, 255)",
+     "x": 263,
+     "y": 4853,
+     "w": 29,
+     "h": 53
+    },
+    null,
+    null
+   ],
+   "statLabels": [
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1454,
+     "w": 127,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1574,
+     "w": 136,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1694,
+     "w": 124,
+     "h": 52
+    }
+   ],
+   "spinnyImg": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(12, 12, 31)",
+    "x": 33,
+    "y": 1099,
+    "w": 294,
+    "h": 150,
+    "vis": true
+   }
+  },
+  "rw": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 20,
+    "y": 1914,
+    "w": 320,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 360,
+    "h": 9168
+   },
+   "cardTitle1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 32,
+    "y": 2035,
+    "w": 296,
+    "h": 67
+   },
+   "statNum": null,
+   "statLabel": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 360,
+    "h": 9168
+   }
+  },
+  "tts": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4234,
+    "w": 320,
+    "h": 37
+   }
+  },
+  "about": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 183, 5)",
+    "x": 20,
+    "y": 4703,
+    "w": 320,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "700",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4748,
+    "w": 320,
+    "h": 24
+   },
+   "bio": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 215,
+    "y": 4800,
+    "w": 81,
+    "h": 53
+   },
+   "script1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 100,
+    "y": 4853,
+    "w": 101,
+    "h": 53
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 232,
+    "y": 3676,
+    "w": 108,
+    "h": 938,
+    "visible": true
+   }
+  },
+  "hob": {
+   "intro": {
+    "fs": "24px",
+    "fw": "700",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 5462,
+    "w": 320,
+    "h": 67
+   },
+   "photoTitle": {
+    "fs": "40px",
+    "fw": "600",
+    "lh": "48px",
+    "ls": "0.4px",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 7036,
+    "w": 360,
+    "h": 48
+   },
+   "gridCols": 18
+  },
+  "footer": {
+   "headingWide": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8133,
+    "w": 320,
+    "h": 270
+   },
+   "headingNarrow": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8133,
+    "w": 320,
+    "h": 270
+   },
+   "cta": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "100px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 13,
+    "y": 8411,
+    "w": 335,
+    "h": 300
+   },
+   "pillPhone": {
+    "fs": "20px",
+    "fw": "600",
+    "lh": "20px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(62, 193, 79)",
+    "x": 20,
+    "y": 8747,
+    "w": 320,
+    "h": 40
+   },
+   "goToTop": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 360,
+    "h": 9168
+   },
+   "bg": {
+    "bg": "rgb(255, 183, 5)",
+    "tag": "FOOTER",
+    "w": 360
+   }
+  },
+  "global": {
+   "cursorEl": false,
+   "cursorVisible": null,
+   "bodyCursor": "auto",
+   "framerBadge": false,
+   "framerBadgeText": false
+  },
+  "consoleErrors": [
+   "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ "375": {
+  "vw": 375,
+  "overflow": {
+   "scrollWidth": 375,
+   "innerWidth": 375,
+   "overflows": false
+  },
+  "header": {
+   "counter": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 375,
+    "h": 9142
+   },
+   "about": null,
+   "contact": null,
+   "resume": {
+    "fs": "14px",
+    "fw": "600",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 263,
+    "y": 35,
+    "w": 57,
+    "h": 24
+   },
+   "navLinks": 4,
+   "hasHamburger": false
+  },
+  "hero": {
+   "product": {
+    "fs": "74px",
+    "fw": "700",
+    "lh": "111px",
+    "ls": "-2.96px",
+    "ff": "Clash Display",
+    "color": "rgb(238, 238, 255)",
+    "x": 16,
+    "y": 160,
+    "w": 343,
+    "h": 111
+   },
+   "productBg": {
+    "bg": "rgb(12, 12, 31)",
+    "tag": "SECTION",
+    "w": 375
+   },
+   "roles": [
+    {
+     "word": "DESIGNER",
+     "fs": "72px",
+     "y": 271
+    },
+    {
+     "word": "STRATEGIST",
+     "fs": "48px",
+     "y": 379
+    },
+    {
+     "word": "RESEARCHER",
+     "fs": "40px",
+     "y": 451
+    },
+    {
+     "word": "STORYTELLER",
+     "fs": "32px",
+     "y": 511
+    },
+    {
+     "word": "COPY WRITER",
+     "fs": "28px",
+     "y": 559
+    },
+    {
+     "word": "ANIMATOR",
+     "fs": "28px",
+     "y": 601
+    }
+   ],
+   "utkarsh": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 375,
+    "h": 640
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 375,
+    "h": 640,
+    "src": ""
+   },
+   "rotatingBadge": true
+  },
+  "we": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "35.65px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 33,
+    "y": 781,
+    "w": 309,
+    "h": 71
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 375,
+    "h": 9142
+   },
+   "statValues": [
+    {
+     "fs": "24px",
+     "fw": "900",
+     "lh": "52.8px",
+     "ls": "normal",
+     "ff": "Satoshi",
+     "color": "rgb(255, 255, 255)",
+     "x": 263,
+     "y": 4879,
+     "w": 29,
+     "h": 53
+    },
+    null,
+    null
+   ],
+   "statLabels": [
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1454,
+     "w": 127,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1574,
+     "w": 136,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1694,
+     "w": 124,
+     "h": 52
+    }
+   ],
+   "spinnyImg": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(12, 12, 31)",
+    "x": 33,
+    "y": 1099,
+    "w": 309,
+    "h": 158,
+    "vis": true
+   }
+  },
+  "rw": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 20,
+    "y": 1914,
+    "w": 335,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 375,
+    "h": 9142
+   },
+   "cardTitle1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 32,
+    "y": 2035,
+    "w": 311,
+    "h": 67
+   },
+   "statNum": null,
+   "statLabel": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 375,
+    "h": 9142
+   }
+  },
+  "tts": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4260,
+    "w": 335,
+    "h": 37
+   }
+  },
+  "about": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 183, 5)",
+    "x": 20,
+    "y": 4729,
+    "w": 335,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "700",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4775,
+    "w": 335,
+    "h": 24
+   },
+   "bio": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 215,
+    "y": 4827,
+    "w": 81,
+    "h": 53
+   },
+   "script1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 100,
+    "y": 4879,
+    "w": 101,
+    "h": 53
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 232,
+    "y": 3687,
+    "w": 108,
+    "h": 938,
+    "visible": true
+   }
+  },
+  "hob": {
+   "intro": {
+    "fs": "24px",
+    "fw": "700",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 5435,
+    "w": 335,
+    "h": 34
+   },
+   "photoTitle": {
+    "fs": "40px",
+    "fw": "600",
+    "lh": "48px",
+    "ls": "0.4px",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 6976,
+    "w": 375,
+    "h": 48
+   },
+   "gridCols": 18
+  },
+  "footer": {
+   "headingWide": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8107,
+    "w": 335,
+    "h": 270
+   },
+   "headingNarrow": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8107,
+    "w": 335,
+    "h": 270
+   },
+   "cta": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "100px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 8385,
+    "w": 335,
+    "h": 300
+   },
+   "pillPhone": {
+    "fs": "20px",
+    "fw": "600",
+    "lh": "20px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(62, 193, 79)",
+    "x": 20,
+    "y": 8721,
+    "w": 335,
+    "h": 40
+   },
+   "goToTop": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 375,
+    "h": 9142
+   },
+   "bg": {
+    "bg": "rgb(255, 183, 5)",
+    "tag": "FOOTER",
+    "w": 375
+   }
+  },
+  "global": {
+   "cursorEl": false,
+   "cursorVisible": null,
+   "bodyCursor": "auto",
+   "framerBadge": false,
+   "framerBadgeText": false
+  },
+  "consoleErrors": [
+   "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ "390": {
+  "vw": 390,
+  "overflow": {
+   "scrollWidth": 390,
+   "innerWidth": 390,
+   "overflows": false
+  },
+  "header": {
+   "counter": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 390,
+    "h": 9155
+   },
+   "about": null,
+   "contact": null,
+   "resume": {
+    "fs": "14px",
+    "fw": "600",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 278,
+    "y": 35,
+    "w": 57,
+    "h": 24
+   },
+   "navLinks": 4,
+   "hasHamburger": false
+  },
+  "hero": {
+   "product": {
+    "fs": "74px",
+    "fw": "700",
+    "lh": "111px",
+    "ls": "-2.96px",
+    "ff": "Clash Display",
+    "color": "rgb(238, 238, 255)",
+    "x": 16,
+    "y": 160,
+    "w": 358,
+    "h": 111
+   },
+   "productBg": {
+    "bg": "rgb(12, 12, 31)",
+    "tag": "SECTION",
+    "w": 390
+   },
+   "roles": [
+    {
+     "word": "DESIGNER",
+     "fs": "72px",
+     "y": 271
+    },
+    {
+     "word": "STRATEGIST",
+     "fs": "48px",
+     "y": 379
+    },
+    {
+     "word": "RESEARCHER",
+     "fs": "40px",
+     "y": 451
+    },
+    {
+     "word": "STORYTELLER",
+     "fs": "32px",
+     "y": 511
+    },
+    {
+     "word": "COPY WRITER",
+     "fs": "28px",
+     "y": 559
+    },
+    {
+     "word": "ANIMATOR",
+     "fs": "28px",
+     "y": 601
+    }
+   ],
+   "utkarsh": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 390,
+    "h": 640
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 390,
+    "h": 640,
+    "src": ""
+   },
+   "rotatingBadge": true
+  },
+  "we": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "35.65px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 33,
+    "y": 781,
+    "w": 324,
+    "h": 36
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 390,
+    "h": 9155
+   },
+   "statValues": [
+    {
+     "fs": "64px",
+     "fw": "700",
+     "lh": "64px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1334,
+     "w": 73,
+     "h": 64
+    },
+    null,
+    null
+   ],
+   "statLabels": [
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1398,
+     "w": 127,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1518,
+     "w": 136,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1638,
+     "w": 124,
+     "h": 52
+    }
+   ],
+   "spinnyImg": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(12, 12, 31)",
+    "x": 33,
+    "y": 1042,
+    "w": 324,
+    "h": 165,
+    "vis": true
+   }
+  },
+  "rw": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 20,
+    "y": 1858,
+    "w": 350,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 390,
+    "h": 9155
+   },
+   "cardTitle1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 32,
+    "y": 1979,
+    "w": 326,
+    "h": 67
+   },
+   "statNum": null,
+   "statLabel": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 390,
+    "h": 9155
+   }
+  },
+  "tts": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4264,
+    "w": 350,
+    "h": 37
+   }
+  },
+  "about": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 183, 5)",
+    "x": 20,
+    "y": 4709,
+    "w": 350,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "700",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4754,
+    "w": 350,
+    "h": 24
+   },
+   "bio": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 215,
+    "y": 4806,
+    "w": 81,
+    "h": 53
+   },
+   "script1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 100,
+    "y": 4859,
+    "w": 101,
+    "h": 53
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 232,
+    "y": 3676,
+    "w": 108,
+    "h": 938,
+    "visible": true
+   }
+  },
+  "hob": {
+   "intro": {
+    "fs": "24px",
+    "fw": "700",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 5415,
+    "w": 350,
+    "h": 34
+   },
+   "photoTitle": {
+    "fs": "40px",
+    "fw": "600",
+    "lh": "48px",
+    "ls": "0.4px",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 6956,
+    "w": 390,
+    "h": 48
+   },
+   "gridCols": 18
+  },
+  "footer": {
+   "headingWide": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8120,
+    "w": 350,
+    "h": 270
+   },
+   "headingNarrow": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8120,
+    "w": 350,
+    "h": 270
+   },
+   "cta": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "100px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 8398,
+    "w": 350,
+    "h": 300
+   },
+   "pillPhone": {
+    "fs": "20px",
+    "fw": "600",
+    "lh": "20px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(62, 193, 79)",
+    "x": 20,
+    "y": 8734,
+    "w": 350,
+    "h": 40
+   },
+   "goToTop": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 390,
+    "h": 9155
+   },
+   "bg": {
+    "bg": "rgb(255, 183, 5)",
+    "tag": "FOOTER",
+    "w": 390
+   }
+  },
+  "global": {
+   "cursorEl": false,
+   "cursorVisible": null,
+   "bodyCursor": "auto",
+   "framerBadge": false,
+   "framerBadgeText": false
+  },
+  "consoleErrors": [
+   "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ "414": {
+  "vw": 414,
+  "overflow": {
+   "scrollWidth": 414,
+   "innerWidth": 414,
+   "overflows": false
+  },
+  "header": {
+   "counter": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 414,
+    "h": 9293
+   },
+   "about": null,
+   "contact": null,
+   "resume": {
+    "fs": "14px",
+    "fw": "600",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 302,
+    "y": 35,
+    "w": 57,
+    "h": 24
+   },
+   "navLinks": 4,
+   "hasHamburger": false
+  },
+  "hero": {
+   "product": {
+    "fs": "74px",
+    "fw": "700",
+    "lh": "111px",
+    "ls": "-2.96px",
+    "ff": "Clash Display",
+    "color": "rgb(238, 238, 255)",
+    "x": 16,
+    "y": 160,
+    "w": 382,
+    "h": 111
+   },
+   "productBg": {
+    "bg": "rgb(12, 12, 31)",
+    "tag": "SECTION",
+    "w": 414
+   },
+   "roles": [
+    {
+     "word": "DESIGNER",
+     "fs": "72px",
+     "y": 271
+    },
+    {
+     "word": "STRATEGIST",
+     "fs": "48px",
+     "y": 379
+    },
+    {
+     "word": "RESEARCHER",
+     "fs": "40px",
+     "y": 451
+    },
+    {
+     "word": "STORYTELLER",
+     "fs": "32px",
+     "y": 511
+    },
+    {
+     "word": "COPY WRITER",
+     "fs": "28px",
+     "y": 559
+    },
+    {
+     "word": "ANIMATOR",
+     "fs": "28px",
+     "y": 601
+    }
+   ],
+   "utkarsh": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 414,
+    "h": 640
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 414,
+    "h": 640,
+    "src": ""
+   },
+   "rotatingBadge": true
+  },
+  "we": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "35.65px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 33,
+    "y": 781,
+    "w": 348,
+    "h": 36
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 414,
+    "h": 9293
+   },
+   "statValues": [
+    {
+     "fs": "24px",
+     "fw": "900",
+     "lh": "52.8px",
+     "ls": "normal",
+     "ff": "Satoshi",
+     "color": "rgb(255, 255, 255)",
+     "x": 183,
+     "y": 4943,
+     "w": 29,
+     "h": 53
+    },
+    null,
+    null
+   ],
+   "statLabels": [
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1398,
+     "w": 127,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1518,
+     "w": 136,
+     "h": 52
+    },
+    {
+     "fs": "20px",
+     "fw": "600",
+     "lh": "26px",
+     "ls": "normal",
+     "ff": "Clash Display",
+     "color": "rgb(255, 255, 255)",
+     "x": 57,
+     "y": 1638,
+     "w": 124,
+     "h": 52
+    }
+   ],
+   "spinnyImg": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(12, 12, 31)",
+    "x": 33,
+    "y": 1042,
+    "w": 348,
+    "h": 177,
+    "vis": true
+   }
+  },
+  "rw": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 20,
+    "y": 1858,
+    "w": 374,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 414,
+    "h": 9293
+   },
+   "cardTitle1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 32,
+    "y": 1979,
+    "w": 350,
+    "h": 67
+   },
+   "statNum": null,
+   "statLabel": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 414,
+    "h": 9293
+   }
+  },
+  "tts": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4348,
+    "w": 374,
+    "h": 37
+   }
+  },
+  "about": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 183, 5)",
+    "x": 20,
+    "y": 4793,
+    "w": 374,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "700",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4838,
+    "w": 374,
+    "h": 24
+   },
+   "bio": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 215,
+    "y": 4890,
+    "w": 81,
+    "h": 53
+   },
+   "script1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4943,
+    "w": 101,
+    "h": 53
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 232,
+    "y": 3736,
+    "w": 108,
+    "h": 938,
+    "visible": true
+   }
+  },
+  "hob": {
+   "intro": {
+    "fs": "24px",
+    "fw": "700",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 5499,
+    "w": 374,
+    "h": 34
+   },
+   "photoTitle": {
+    "fs": "40px",
+    "fw": "600",
+    "lh": "48px",
+    "ls": "0.4px",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 7040,
+    "w": 414,
+    "h": 48
+   },
+   "gridCols": 18
+  },
+  "footer": {
+   "headingWide": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8258,
+    "w": 374,
+    "h": 270
+   },
+   "headingNarrow": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8258,
+    "w": 374,
+    "h": 270
+   },
+   "cta": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "100px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 8536,
+    "w": 374,
+    "h": 300
+   },
+   "pillPhone": {
+    "fs": "20px",
+    "fw": "600",
+    "lh": "20px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(62, 193, 79)",
+    "x": 20,
+    "y": 8872,
+    "w": 374,
+    "h": 40
+   },
+   "goToTop": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 414,
+    "h": 9293
+   },
+   "bg": {
+    "bg": "rgb(255, 183, 5)",
+    "tag": "FOOTER",
+    "w": 414
+   }
+  },
+  "global": {
+   "cursorEl": false,
+   "cursorVisible": null,
+   "bodyCursor": "auto",
+   "framerBadge": false,
+   "framerBadgeText": false
+  },
+  "consoleErrors": [
+   "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ "430": {
+  "vw": 430,
+  "overflow": {
+   "scrollWidth": 430,
+   "innerWidth": 430,
+   "overflows": false
+  },
+  "header": {
+   "counter": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 9381
+   },
+   "about": null,
+   "contact": null,
+   "resume": {
+    "fs": "14px",
+    "fw": "600",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 318,
+    "y": 35,
+    "w": 57,
+    "h": 24
+   },
+   "navLinks": 4,
+   "hasHamburger": false
+  },
+  "hero": {
+   "product": {
+    "fs": "74px",
+    "fw": "700",
+    "lh": "111px",
+    "ls": "-2.96px",
+    "ff": "Clash Display",
+    "color": "rgb(238, 238, 255)",
+    "x": 16,
+    "y": 160,
+    "w": 398,
+    "h": 111
+   },
+   "productBg": {
+    "bg": "rgb(12, 12, 31)",
+    "tag": "SECTION",
+    "w": 430
+   },
+   "roles": [
+    {
+     "word": "DESIGNER",
+     "fs": "72px",
+     "y": 271
+    },
+    {
+     "word": "STRATEGIST",
+     "fs": "48px",
+     "y": 379
+    },
+    {
+     "word": "RESEARCHER",
+     "fs": "40px",
+     "y": 451
+    },
+    {
+     "word": "STORYTELLER",
+     "fs": "32px",
+     "y": 511
+    },
+    {
+     "word": "COPY WRITER",
+     "fs": "28px",
+     "y": 559
+    },
+    {
+     "word": "ANIMATOR",
+     "fs": "28px",
+     "y": 601
+    }
+   ],
+   "utkarsh": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 430,
+    "h": 640
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 150,
+    "w": 430,
+    "h": 640,
+    "src": ""
+   },
+   "rotatingBadge": true
+  },
+  "we": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "35.65px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 33,
+    "y": 781,
+    "w": 364,
+    "h": 36
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 9381
+   },
+   "statValues": [
+    {
+     "fs": "24px",
+     "fw": "900",
+     "lh": "52.8px",
+     "ls": "normal",
+     "ff": "Satoshi",
+     "color": "rgb(255, 255, 255)",
+     "x": 183,
+     "y": 4995,
+     "w": 29,
+     "h": 53
+    },
+    null,
+    null
+   ],
+   "statLabels": [
+    {
+     "fs": "16px",
+     "fw": "400",
+     "lh": "normal",
+     "ls": "normal",
+     "ff": "Satoshi",
+     "color": "rgb(255, 255, 255)",
+     "x": 0,
+     "y": 0,
+     "w": 430,
+     "h": 9381
+    },
+    {
+     "fs": "16px",
+     "fw": "400",
+     "lh": "normal",
+     "ls": "normal",
+     "ff": "Satoshi",
+     "color": "rgb(255, 255, 255)",
+     "x": 0,
+     "y": 0,
+     "w": 430,
+     "h": 9381
+    },
+    {
+     "fs": "16px",
+     "fw": "400",
+     "lh": "normal",
+     "ls": "normal",
+     "ff": "Satoshi",
+     "color": "rgb(255, 255, 255)",
+     "x": 0,
+     "y": 0,
+     "w": 430,
+     "h": 9381
+    }
+   ],
+   "spinnyImg": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(12, 12, 31)",
+    "x": 33,
+    "y": 1042,
+    "w": 364,
+    "h": 186,
+    "vis": true
+   }
+  },
+  "rw": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(14, 12, 32)",
+    "x": 20,
+    "y": 1858,
+    "w": 390,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 9381
+   },
+   "cardTitle1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 32,
+    "y": 1979,
+    "w": 366,
+    "h": 67
+   },
+   "statNum": null,
+   "statLabel": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 9381
+   }
+  },
+  "tts": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4400,
+    "w": 390,
+    "h": 37
+   }
+  },
+  "about": {
+   "heading": {
+    "fs": "31px",
+    "fw": "700",
+    "lh": "37.2px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 183, 5)",
+    "x": 20,
+    "y": 4845,
+    "w": 390,
+    "h": 37
+   },
+   "subtitle": {
+    "fs": "16px",
+    "fw": "700",
+    "lh": "24px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4890,
+    "w": 390,
+    "h": 24
+   },
+   "bio": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 215,
+    "y": 4942,
+    "w": 81,
+    "h": 53
+   },
+   "script1": {
+    "fs": "24px",
+    "fw": "900",
+    "lh": "52.8px",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 4995,
+    "w": 101,
+    "h": 53
+   },
+   "portrait": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 232,
+    "y": 3772,
+    "w": 108,
+    "h": 938,
+    "visible": true
+   }
+  },
+  "hob": {
+   "intro": {
+    "fs": "24px",
+    "fw": "700",
+    "lh": "33.6px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 5551,
+    "w": 390,
+    "h": 34
+   },
+   "photoTitle": {
+    "fs": "40px",
+    "fw": "600",
+    "lh": "48px",
+    "ls": "0.4px",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 7092,
+    "w": 430,
+    "h": 48
+   },
+   "gridCols": 18
+  },
+  "footer": {
+   "headingWide": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8346,
+    "w": 390,
+    "h": 270
+   },
+   "headingNarrow": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "90px",
+    "ls": "-2px",
+    "ff": "Clash Display",
+    "color": "rgba(255, 255, 255, 0.56)",
+    "x": 20,
+    "y": 8346,
+    "w": 390,
+    "h": 270
+   },
+   "cta": {
+    "fs": "100px",
+    "fw": "700",
+    "lh": "100px",
+    "ls": "normal",
+    "ff": "Clash Display",
+    "color": "rgb(255, 255, 255)",
+    "x": 20,
+    "y": 8624,
+    "w": 390,
+    "h": 300
+   },
+   "pillPhone": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 9381
+   },
+   "goToTop": {
+    "fs": "16px",
+    "fw": "400",
+    "lh": "normal",
+    "ls": "normal",
+    "ff": "Satoshi",
+    "color": "rgb(255, 255, 255)",
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 9381
+   },
+   "bg": {
+    "bg": "rgb(255, 183, 5)",
+    "tag": "FOOTER",
+    "w": 430
+   }
+  },
+  "global": {
+   "cursorEl": false,
+   "cursorVisible": null,
+   "bodyCursor": "auto",
+   "framerBadge": false,
+   "framerBadgeText": false
+  },
+  "consoleErrors": [
+   "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ }
+}

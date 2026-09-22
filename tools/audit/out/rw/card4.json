@@ -1,0 +1,81 @@
+{
+  "cardTag": "DIV",
+  "docY": 5016,
+  "box": {
+    "w": 1200,
+    "h": 620
+  },
+  "position": "sticky",
+  "stickyTop": "204px",
+  "bg": "rgb(86, 35, 153)",
+  "radius": "24px",
+  "padding": "48px",
+  "links": [],
+  "title": {
+    "text": "Other small & big projects with",
+    "fs": "56px",
+    "lh": "78.4px",
+    "x": 620,
+    "y": 48,
+    "w": 532,
+    "h": 157
+  },
+  "tiles": [
+    {
+      "bg": "rgba(255, 182, 1, 0.1)",
+      "x": 620,
+      "y": 455,
+      "w": 254,
+      "h": 117,
+      "text": "516R PROJECTS DONE"
+    },
+    {
+      "bg": "rgba(255, 182, 1, 0.1)",
+      "x": 898,
+      "y": 455,
+      "w": 254,
+      "h": 117,
+      "text": "PZKUDPF AND BEYOND "
+    }
+  ],
+  "innerText": "Other small & big projects with\n\nbig & BIG impact\n\n516R\n\nPROJECTS\nDONE\n\nPZKUDPF\n\nAND\n\nBEYOND ",
+  "imgCount": 5,
+  "imgs": [
+    {
+      "file": "Hc8qhenVvOzLFygH7bRBkqgUo.jpg",
+      "x": 382,
+      "y": -239,
+      "w": 180,
+      "h": 1563
+    },
+    {
+      "file": "O7otRCPpiunRfMOoFypvX76Zw.png",
+      "x": 64,
+      "y": 64,
+      "w": 306,
+      "h": 175
+    },
+    {
+      "file": "wJSpzHHWPlexbIf1wtaEMsSiKjM.gif",
+      "x": 204,
+      "y": 184,
+      "w": 171,
+      "h": 274
+    },
+    {
+      "file": "w1Uk2Z8nPI65mdCgH1IKeD5A.jpg",
+      "x": 64,
+      "y": 250,
+      "w": 131,
+      "h": 306
+    },
+    {
+      "file": "ekzcQGySZuDI6aO6napaJLM7l4.jpg",
+      "x": 208,
+      "y": 400,
+      "w": 163,
+      "h": 433
+    }
+  ],
+  "bgs": []
+}

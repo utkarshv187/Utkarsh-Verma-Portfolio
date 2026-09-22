@@ -1,0 +1,69 @@
+[
+  {
+    "href": "https://auction-plp-redesign-by-uv.vercel.app/",
+    "target": "_blank",
+    "rel": null,
+    "docY": 2713,
+    "bg": "rgb(15, 12, 32)",
+    "stickyTop": "132px",
+    "title": "Spinny's car auction app PLP redesign",
+    "labels": [
+      "MORE USER",
+      "RETENTION",
+      "REVENUE",
+      "GROWTH",
+      "SHOOT UP",
+      "IN NPS"
+    ],
+    "imgs": [],
+    "bgs": [
+      "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+      "eKISVOiUdQcSF8TrYhBxq1COg.jpg"
+    ]
+  },
+  {
+    "href": "https://gamification-by-uv.vercel.app/",
+    "target": "_blank",
+    "rel": null,
+    "docY": 3454,
+    "bg": "rgb(86, 35, 154)",
+    "stickyTop": "146px",
+    "title": "Introduced a",
+    "labels": [
+      "MORE USER",
+      "RETENTION",
+      "SURGE IN",
+      "REVENUE",
+      "RISE IN",
+      "BIDS MADE",
+      "REDUCED T.A.T OF",
+      "CAR DELIVERIES"
+    ],
+    "imgs": [
+      "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+      "xkzkmWXB2AV2EIqCliUZyQEHw.gif"
+    ],
+    "bgs": [
+      "BeRbTT6Zpf9Eybwmy9WStsO0hGg.jpg"
+    ]
+  },
+  {
+    "href": "https://www.figma.com/design/iBOEPZFnnHc4BZ3FtVsQZ7/Spinny-Design-System---Styles---Components?node-id=2-4101",
+    "target": "_blank",
+    "rel": null,
+    "docY": 4235,
+    "bg": "rgb(15, 12, 32)",
+    "stickyTop": "160px",
+    "title": "Established the Spinny design system",
+    "labels": [
+      "DESIGN",
+      "BANDWIDTH SAVED",
+      "DEVELOPMENT TIME",
+      "REDUCED"
+    ],
+    "imgs": [
+      "upit0LYDKKJSw1HtFId1F3CeUM.jpg"
+    ],
+    "bgs": []
+  }
+]

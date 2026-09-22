@@ -1,0 +1,137 @@
+[
+  {
+    "card": 1,
+    "cardBox": {
+      "w": 1200,
+      "h": 620
+    },
+    "cardTag": "A",
+    "title": {
+      "text": "Spinny's car auction app PLP redesign",
+      "x": 620,
+      "y": 48,
+      "w": 532,
+      "h": 235,
+      "fs": "56px",
+      "ff": "Satoshi",
+      "fw": "900",
+      "lh": "78.4px"
+    },
+    "media": [
+      {
+        "tag": "DIV",
+        "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+        "x": 48,
+        "y": 48,
+        "w": 524,
+        "h": 524,
+        "clip": null,
+        "bgSize": "cover",
+        "bgPos": "50% 50%"
+      },
+      {
+        "tag": "DIV",
+        "file": "eKISVOiUdQcSF8TrYhBxq1COg.jpg",
+        "x": 48,
+        "y": 48,
+        "w": 524,
+        "h": 524,
+        "clip": "inset(0px 50% 0px 0px)",
+        "bgSize": "cover",
+        "bgPos": "50% 50%"
+      }
+    ],
+    "tiles": [],
+    "statCount": 0
+  },
+  {
+    "card": 2,
+    "cardBox": {
+      "w": 1200,
+      "h": 620
+    },
+    "cardTag": "A",
+    "title": {
+      "text": "Introduced a",
+      "x": 620,
+      "y": 48,
+      "w": 532,
+      "h": 78,
+      "fs": "56px",
+      "ff": "Satoshi",
+      "fw": "900",
+      "lh": "78.4px"
+    },
+    "media": [
+      {
+        "tag": "DIV",
+        "file": "BeRbTT6Zpf9Eybwmy9WStsO0hGg.jpg",
+        "x": 48,
+        "y": 48,
+        "w": 524,
+        "h": 524,
+        "clip": null,
+        "bgSize": "750px",
+        "bgPos": "0% 0%"
+      },
+      {
+        "tag": "IMG",
+        "file": "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+        "x": 231,
+        "y": 129,
+        "w": 338,
+        "h": 480,
+        "clip": null,
+        "bgSize": "auto",
+        "bgPos": "0% 0%"
+      },
+      {
+        "tag": "IMG",
+        "file": "xkzkmWXB2AV2EIqCliUZyQEHw.gif",
+        "x": 49,
+        "y": 59,
+        "w": 362,
+        "h": 593,
+        "clip": null,
+        "bgSize": "auto",
+        "bgPos": "0% 0%"
+      }
+    ],
+    "tiles": [],
+    "statCount": 0
+  },
+  {
+    "card": 3,
+    "cardBox": {
+      "w": 1200,
+      "h": 620
+    },
+    "cardTag": "A",
+    "title": {
+      "text": "Established the Spinny design system",
+      "x": 620,
+      "y": 48,
+      "w": 532,
+      "h": 235,
+      "fs": "56px",
+      "ff": "Satoshi",
+      "fw": "900",
+      "lh": "78.4px"
+    },
+    "media": [
+      {
+        "tag": "IMG",
+        "file": "upit0LYDKKJSw1HtFId1F3CeUM.jpg",
+        "x": 26,
+        "y": -213,
+        "w": 674,
+        "h": 814,
+        "clip": null,
+        "bgSize": "auto",
+        "bgPos": "0% 0%"
+      }
+    ],
+    "tiles": [],
+    "statCount": 0
+  }
+]

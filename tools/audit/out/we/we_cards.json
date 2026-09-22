@@ -1,0 +1,128 @@
+{
+  "cards": [
+    {
+      "bg": "rgb(83, 31, 154)",
+      "radius": "24px",
+      "w": 380,
+      "h": 150,
+      "x": 120,
+      "y": 2095,
+      "pad": "0px",
+      "cls": "framer-6f8dY framer-ffyi"
+    },
+    {
+      "bg": "rgb(83, 31, 154)",
+      "radius": "24px",
+      "w": 380,
+      "h": 150,
+      "x": 530,
+      "y": 2095,
+      "pad": "0px",
+      "cls": "framer-6f8dY framer-ffyi"
+    },
+    {
+      "bg": "rgb(83, 31, 154)",
+      "radius": "24px",
+      "w": 380,
+      "h": 150,
+      "x": 940,
+      "y": 2095,
+      "pad": "0px",
+      "cls": "framer-6f8dY framer-ffyi"
+    }
+  ],
+  "counterValues": [],
+  "logos": [
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1331,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1345,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1359,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1373,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1387,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1401,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1415,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1429,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1443,
+      "src": "",
+      "alt": null
+    },
+    {
+      "tag": "svg",
+      "w": 0,
+      "h": 0,
+      "x": 0,
+      "y": 1457,
+      "src": "",
+      "alt": null
+    }
+  ],
+  "dividers": []
+}

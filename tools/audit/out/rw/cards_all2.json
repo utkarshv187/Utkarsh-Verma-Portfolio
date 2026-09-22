@@ -1,0 +1,60 @@
+[
+  {
+    "href": "https://auction-plp-redesign-by-uv.vercel.app/",
+    "target": "_blank",
+    "rel": null,
+    "docY": 2713,
+    "w": 1200,
+    "h": 620,
+    "position": "sticky",
+    "stickyTop": "132px",
+    "bg": "rgb(15, 12, 32)",
+    "radius": "24px",
+    "title": "Spinny's car auction app PLP redesign",
+    "innerText": "< | > | Spinny's car auction app PLP redesign | MORE USER | RETENTION | REVENUE | GROWTH | DROP IN | CARS MISSED | SHOOT UP | IN NPS",
+    "imgs": [],
+    "bgs": [
+      "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+      "eKISVOiUdQcSF8TrYhBxq1COg.jpg"
+    ]
+  },
+  {
+    "href": "https://gamification-by-uv.vercel.app/",
+    "target": "_blank",
+    "rel": null,
+    "docY": 3454,
+    "w": 1200,
+    "h": 620,
+    "position": "sticky",
+    "stickyTop": "146px",
+    "bg": "rgb(86, 35, 154)",
+    "radius": "24px",
+    "title": "Introduced a",
+    "innerText": "Introduced a | tier based gamification | MORE USER | RETENTION | SURGE IN | REVENUE | RISE IN | BIDS MADE | REDUCED T.A.T OF | CAR DELIVERIES ",
+    "imgs": [
+      "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+      "xkzkmWXB2AV2EIqCliUZyQEHw.gif"
+    ],
+    "bgs": [
+      "BeRbTT6Zpf9Eybwmy9WStsO0hGg.jpg"
+    ]
+  },
+  {
+    "href": "https://www.figma.com/design/iBOEPZFnnHc4BZ3FtVsQZ7/Spinny-Design-System---Styles---Components?node-id=2-4101",
+    "target": "_blank",
+    "rel": null,
+    "docY": 4235,
+    "w": 1200,
+    "h": 620,
+    "position": "sticky",
+    "stickyTop": "160px",
+    "bg": "rgb(15, 12, 32)",
+    "radius": "24px",
+    "title": "Established the Spinny design system",
+    "innerText": "Established the Spinny design system | VARIANTS DESIGNED | & DEVELOPED | DESIGN  | BANDWIDTH SAVED | DEVELOPMENT TIME | REDUCED | CONSISTENCY | ACHIEVED",
+    "imgs": [
+      "upit0LYDKKJSw1HtFId1F3CeUM.jpg"
+    ],
+    "bgs": []
+  }
+]

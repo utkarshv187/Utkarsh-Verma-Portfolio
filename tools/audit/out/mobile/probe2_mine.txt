@@ -1,0 +1,156 @@
+
+===== mine @390 =====
+{
+ "header": {
+  "barH": 64,
+  "items": [
+   {
+    "label": "Utkarsh Verma — home",
+    "hasIcon": true,
+    "w": 42
+   },
+   {
+    "label": "Email",
+    "hasIcon": true,
+    "w": 24
+   },
+   {
+    "label": "WhatsApp",
+    "hasIcon": true,
+    "w": 24
+   },
+   {
+    "label": "Résumé",
+    "hasIcon": true,
+    "w": 101
+   }
+  ]
+ },
+ "we_subtitle": {
+  "t": "Designing for7y 8m 12d 2",
+  "fs": "16px",
+  "fw": "400",
+  "lh": "normal",
+  "ls": "normal",
+  "color": "rgb(255, 255, 255)",
+  "w": 390,
+  "h": 9155,
+  "x": 0,
+  "y": 0
+ },
+ "we_stat_years": {
+  "label": {
+   "t": "YEARS OFEXPERIENCE",
+   "fs": "20px",
+   "fw": "600",
+   "lh": "26px",
+   "ls": "normal",
+   "color": "rgb(255, 255, 255)",
+   "w": 127,
+   "h": 52,
+   "x": 57,
+   "y": 1398
+  },
+  "value": {
+   "t": "7+5+",
+   "fs": "64px",
+   "fw": "700",
+   "lh": "64px",
+   "ls": "normal",
+   "color": "rgb(255, 255, 255)",
+   "w": 73,
+   "h": 64,
+   "x": 57,
+   "y": 1334
+  }
+ },
+ "rw_stat": {
+  "label": {
+   "t": "Designing for7y 8m 12d 2",
+   "fs": "16px",
+   "fw": "400",
+   "lh": "normal",
+   "ls": "normal",
+   "color": "rgb(255, 255, 255)",
+   "w": 390,
+   "h": 9155,
+   "x": 0,
+   "y": 0
+  },
+  "num": {
+   "t": "5+",
+   "fs": "64px",
+   "fw": "700",
+   "lh": "64px",
+   "ls": "normal",
+   "color": "rgb(255, 255, 255)",
+   "w": 81,
+   "h": 64,
+   "x": 57,
+   "y": 1334
+  }
+ },
+ "about_portrait": {
+  "t": "",
+  "fs": "16px",
+  "fw": "400",
+  "lh": "normal",
+  "ls": "normal",
+  "color": "rgb(255, 255, 255)",
+  "w": 108,
+  "h": 938,
+  "x": 232,
+  "y": 3676,
+  "vis": true,
+  "src": "rw-c4-a.webp"
+ },
+ "hob_intro": {
+  "t": "JUST IN CASE WHEN I AM N",
+  "fs": "24px",
+  "fw": "700",
+  "lh": "33.6px",
+  "ls": "normal",
+  "color": "rgb(255, 255, 255)",
+  "w": 350,
+  "h": 34,
+  "x": 20,
+  "y": 5415
+ },
+ "photo_grid": {
+  "cols": 2,
+  "n": 15,
+  "cellW": 193
+ },
+ "footer": {
+  "heading": {
+   "t": "SCROLLED THIS FAR?CAME T",
+   "fs": "100px",
+   "fw": "700",
+   "lh": "90px",
+   "ls": "-2px",
+   "color": "rgba(255, 255, 255, 0.56)",
+   "w": 350,
+   "h": 270,
+   "x": 20,
+   "y": 8120
+  },
+  "pill": {
+   "t": "+91 8869808079",
+   "fs": "20px",
+   "fw": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "color": "rgb(62, 193, 79)",
+   "w": 350,
+   "h": 40,
+   "x": 20,
+   "y": 8734
+  },
+  "goldW": 390
+ },
+ "cursor": {
+  "count": 0,
+  "anyVisible": false,
+  "classes": []
+ }
+}

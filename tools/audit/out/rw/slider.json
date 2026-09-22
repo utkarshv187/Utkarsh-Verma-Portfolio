@@ -1,0 +1,123 @@
+{
+  "before": {
+    "media": [
+      {
+        "tag": "IMG",
+        "name": null,
+        "file": "7nuBCHYzW4t5TCODcz3ifgeAc.png",
+        "x": 557,
+        "y": 206,
+        "w": 97,
+        "h": 207,
+        "clipPath": null,
+        "overflow": "clip",
+        "transform": null,
+        "zIndex": "auto",
+        "pos": "static"
+      },
+      {
+        "tag": "DIV",
+        "name": null,
+        "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+        "x": 168,
+        "y": 180,
+        "w": 524,
+        "h": 524,
+        "clipPath": null,
+        "overflow": "visible",
+        "transform": null,
+        "zIndex": "auto",
+        "pos": "absolute"
+      },
+      {
+        "tag": "DIV",
+        "name": null,
+        "file": "eKISVOiUdQcSF8TrYhBxq1COg.jpg",
+        "x": 168,
+        "y": 180,
+        "w": 524,
+        "h": 524,
+        "clipPath": "inset(0px 50% 0px 0px)",
+        "overflow": "visible",
+        "transform": null,
+        "zIndex": "auto",
+        "pos": "absolute"
+      }
+    ],
+    "handle": [
+      {
+        "text": "<",
+        "x": 416,
+        "y": 436
+      },
+      {
+        "text": ">",
+        "x": 430,
+        "y": 436
+      }
+    ]
+  },
+  "after": {
+    "media": [
+      {
+        "tag": "IMG",
+        "name": null,
+        "file": "7nuBCHYzW4t5TCODcz3ifgeAc.png",
+        "x": 557,
+        "y": 206,
+        "w": 97,
+        "h": 207,
+        "clipPath": null,
+        "overflow": "clip",
+        "transform": null,
+        "zIndex": "auto",
+        "pos": "static"
+      },
+      {
+        "tag": "DIV",
+        "name": null,
+        "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+        "x": 168,
+        "y": 180,
+        "w": 524,
+        "h": 524,
+        "clipPath": null,
+        "overflow": "visible",
+        "transform": null,
+        "zIndex": "auto",
+        "pos": "absolute"
+      },
+      {
+        "tag": "DIV",
+        "name": null,
+        "file": "eKISVOiUdQcSF8TrYhBxq1COg.jpg",
+        "x": 168,
+        "y": 180,
+        "w": 524,
+        "h": 524,
+        "clipPath": "inset(0px 74.2366% 0px 0px)",
+        "overflow": "visible",
+        "transform": null,
+        "zIndex": "auto",
+        "pos": "absolute"
+      }
+    ],
+    "handle": [
+      {
+        "text": "<",
+        "x": 289,
+        "y": 436
+      },
+      {
+        "text": ">",
+        "x": 303,
+        "y": 436
+      },
+      {
+        "text": "See",
+        "x": 278,
+        "y": 435
+      }
+    ]
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "390": [
+    {
+      "padding": "12px",
+      "box": {
+        "w": 328,
+        "h": 505
+      },
+      "title": {
+        "fs": "24px",
+        "lh": "33.6px",
+        "x": 12,
+        "y": 12,
+        "w": 304,
+        "h": 67
+      },
+      "tiles": [
+        {
+          "x": 12,
+          "y": 407,
+          "w": 67,
+          "h": 86
+        },
+        {
+          "x": 91,
+          "y": 407,
+          "w": 67,
+          "h": 86
+        },
+        {
+          "x": 170,
+          "y": 407,
+          "w": 67,
+          "h": 86
+        },
+        {
+          "x": 249,
+          "y": 407,
+          "w": 67,
+          "h": 86
+        }
+      ],
+      "tileCount": 4,
+      "numFs": "20px",
+      "labelFs": "10px",
+      "media": [
+        {
+          "tag": "DIV",
+          "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+          "x": 12,
+          "y": 91,
+          "w": 304,
+          "h": 304,
+          "transform": null
+        },
+        {
+          "tag": "DIV",
+          "file": "eKISVOiUdQcSF8TrYhBxq1COg.jpg",
+          "x": 12,
+          "y": 91,
+          "w": 304,
+          "h": 304,
+          "transform": null
+        }
+      ]
+    },
+    {
+      "padding": "12px",
+      "box": {
+        "w": 328,
+        "h": 505
+      },
+      "title": {
+        "fs": "24px",
+        "lh": "33.6px",
+        "x": 12,
+        "y": 12,
+        "w": 304,
+        "h": 67
+      },
+      "tiles": [
+        {
+          "x": 12,
+          "y": 407,
+          "w": 67,
+          "h": 86
+        },
+        {
+          "x": 91,
+          "y": 407,
+          "w": 67,
+          "h": 86
+        },
+        {
+          "x": 170,
+          "y": 407,
+          "w": 67,
+          "h": 86
+        },
+        {
+          "x": 249,
+          "y": 407,
+          "w": 67,
+          "h": 86
+        }
+      ],
+      "tileCount": 4,
+      "numFs": "20px",
+      "labelFs": "10px",
+      "media": [
+        {
+          "tag": "DIV",
+          "file": "BeRbTT6Zpf9Eybwmy9WStsO0hGg.jpg",
+          "x": 12,
+          "y": 91,
+          "w": 304,
+          "h": 304,
+          "transform": null
+        },
+        {
+          "tag": "IMG",
+          "file": "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+          "x": 113,
+          "y": 137,
+          "w": 194,
+          "h": 276,
+          "transform": null
+        },
+        {
+          "tag": "IMG",
+          "file": "xkzkmWXB2AV2EIqCliUZyQEHw.gif",
+          "x": 19,
+          "y": 99,
+          "w": 200,
+          "h": 328,
+          "transform": null
+        }
+      ]
+    },
+    null
+  ],
+  "1024": [
+    {
+      "padding": "28.8px",
+      "box": {
+        "w": 720,
+        "h": 420
+      },
+      "title": {
+        "fs": "56px",
+        "lh": "78.4px",
+        "x": -152,
+        "y": -172,
+        "w": 0,
+        "h": 0
+      },
+      "tiles": [
+        {
+          "x": 420,
+          "y": 220,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 563,
+          "y": 220,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 420,
+          "y": 313,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 563,
+          "y": 313,
+          "w": 128,
+          "h": 78
+        }
+      ],
+      "tileCount": 4,
+      "numFs": null,
+      "labelFs": "16px",
+      "media": [
+        {
+          "tag": "DIV",
+          "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+          "x": 29,
+          "y": 29,
+          "w": 362,
+          "h": 362,
+          "transform": null
+        },
+        {
+          "tag": "DIV",
+          "file": "eKISVOiUdQcSF8TrYhBxq1COg.jpg",
+          "x": 29,
+          "y": 29,
+          "w": 362,
+          "h": 362,
+          "transform": null
+        }
+      ]
+    },
+    {
+      "padding": "28.8px",
+      "box": {
+        "w": 720,
+        "h": 420
+      },
+      "title": {
+        "fs": "56px",
+        "lh": "78.4px",
+        "x": -152,
+        "y": -146,
+        "w": 0,
+        "h": 0
+      },
+      "tiles": [
+        {
+          "x": 420,
+          "y": 220,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 563,
+          "y": 220,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 420,
+          "y": 313,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 563,
+          "y": 313,
+          "w": 128,
+          "h": 78
+        }
+      ],
+      "tileCount": 4,
+      "numFs": null,
+      "labelFs": "16px",
+      "media": [
+        {
+          "tag": "DIV",
+          "file": "BeRbTT6Zpf9Eybwmy9WStsO0hGg.jpg",
+          "x": 29,
+          "y": 29,
+          "w": 362,
+          "h": 362,
+          "transform": null
+        },
+        {
+          "tag": "IMG",
+          "file": "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+          "x": 137,
+          "y": 119,
+          "w": 132,
+          "h": 289,
+          "transform": null
+        },
+        {
+          "tag": "IMG",
+          "file": "xkzkmWXB2AV2EIqCliUZyQEHw.gif",
+          "x": 125,
+          "y": 57,
+          "w": 170,
+          "h": 371,
+          "transform": null
+        }
+      ]
+    },
+    {
+      "padding": "28.8px",
+      "box": {
+        "w": 720,
+        "h": 420
+      },
+      "title": {
+        "fs": "56px",
+        "lh": "78.4px",
+        "x": -152,
+        "y": -160,
+        "w": 0,
+        "h": 0
+      },
+      "tiles": [
+        {
+          "x": 420,
+          "y": 220,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 563,
+          "y": 220,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 420,
+          "y": 313,
+          "w": 128,
+          "h": 78
+        },
+        {
+          "x": 563,
+          "y": 313,
+          "w": 128,
+          "h": 78
+        }
+      ],
+      "tileCount": 4,
+      "numFs": null,
+      "labelFs": null,
+      "media": [
+        {
+          "tag": "IMG",
+          "file": "upit0LYDKKJSw1HtFId1F3CeUM.jpg",
+          "x": -61,
+          "y": 29,
+          "w": 452,
+          "h": 546,
+          "transform": null
+        }
+      ]
+    }
+  ]
+}

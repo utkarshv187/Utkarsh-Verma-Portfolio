@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "tag": "DIV",
+      "cls": "framer-ohndim-container",
+      "name": null,
+      "x": 48,
+      "y": 48,
+      "w": 524,
+      "h": 524,
+      "clip": null,
+      "bg": null
+    },
+    {
+      "tag": "DIV",
+      "cls": "",
+      "name": null,
+      "x": 48,
+      "y": 48,
+      "w": 524,
+      "h": 524,
+      "clip": null,
+      "bg": null
+    },
+    {
+      "tag": "DIV",
+      "cls": "",
+      "name": null,
+      "x": 48,
+      "y": 48,
+      "w": 524,
+      "h": 524,
+      "clip": null,
+      "bg": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg"
+    },
+    {
+      "tag": "DIV",
+      "cls": "",
+      "name": null,
+      "x": 48,
+      "y": 48,
+      "w": 524,
+      "h": 524,
+      "clip": "inset(0px 50% 0px 0px)",
+      "bg": "eKISVOiUdQcSF8TrYhBxq1COg.jpg"
+    },
+    {
+      "tag": "DIV",
+      "cls": "",
+      "name": null,
+      "x": 295,
+      "y": 48,
+      "w": 16,
+      "h": 524,
+      "clip": null,
+      "bg": null
+    },
+    {
+      "tag": "DIV",
+      "cls": "",
+      "name": null,
+      "x": 296,
+      "y": 296,
+      "w": 28,
+      "h": 28,
+      "clip": null,
+      "bg": null
+    },
+    {
+      "tag": "SPAN",
+      "cls": "",
+      "name": null,
+      "x": 296,
+      "y": 304,
+      "w": 14,
+      "h": 12,
+      "clip": null,
+      "bg": null
+    },
+    {
+      "tag": "SPAN",
+      "cls": "",
+      "name": null,
+      "x": 310,
+      "y": 304,
+      "w": 14,
+      "h": 12,
+      "clip": null,
+      "bg": null
+    }
+  ],
+  "svgCount": 0,
+  "svgs": [],
+  "canvases": 0
+}

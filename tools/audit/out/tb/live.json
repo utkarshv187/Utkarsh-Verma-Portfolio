@@ -1,0 +1,606 @@
+{
+ "360": {
+  "vw": 360,
+  "product": {
+   "fs": "74px",
+   "w": "700",
+   "lh": "81.4px",
+   "ls": "-2.96px",
+   "x": 1,
+   "bw": 358
+  },
+  "role": {
+   "fs": "72px",
+   "w": "700",
+   "lh": "79.2px",
+   "ls": "-2.88px",
+   "x": 3,
+   "bw": 354
+  },
+  "moreAbout": {
+   "fs": "31px",
+   "w": "700",
+   "lh": "37.2px",
+   "ls": "normal",
+   "x": 32,
+   "bw": 297
+  },
+  "engineer": {
+   "fs": "16px",
+   "w": "700",
+   "lh": "24px",
+   "ls": "normal",
+   "x": 32,
+   "bw": 297
+  },
+  "photographing": {
+   "fs": "40px",
+   "w": "600",
+   "lh": "48px",
+   "ls": "normal",
+   "x": 15,
+   "bw": 330
+  },
+  "footerQ": {
+   "fs": "100px",
+   "w": "700",
+   "lh": "90px",
+   "ls": "-2px",
+   "x": 32,
+   "bw": 249
+  },
+  "footerCta": {
+   "fs": "100px",
+   "w": "700",
+   "lh": "100px",
+   "ls": "normal",
+   "x": 32,
+   "bw": 288
+  },
+  "phone": {
+   "fs": "20px",
+   "w": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "x": 98,
+   "bw": 172
+  },
+  "aboutPortrait": {
+   "w": 367,
+   "h": 439,
+   "vis": true,
+   "src": "LPldbLZleWCHQ8"
+  },
+  "bio": {
+   "fs": "12px",
+   "w": "400",
+   "bw": 360,
+   "x": 0
+  }
+ },
+ "390": {
+  "vw": 390,
+  "product": {
+   "fs": "74px",
+   "w": "700",
+   "lh": "81.4px",
+   "ls": "-2.96px",
+   "x": 16,
+   "bw": 358
+  },
+  "role": {
+   "fs": "72px",
+   "w": "700",
+   "lh": "79.2px",
+   "ls": "-2.88px",
+   "x": 18,
+   "bw": 354
+  },
+  "moreAbout": {
+   "fs": "31px",
+   "w": "700",
+   "lh": "37.2px",
+   "ls": "normal",
+   "x": 33,
+   "bw": 324
+  },
+  "engineer": {
+   "fs": "16px",
+   "w": "700",
+   "lh": "24px",
+   "ls": "normal",
+   "x": 33,
+   "bw": 324
+  },
+  "photographing": {
+   "fs": "40px",
+   "w": "600",
+   "lh": "48px",
+   "ls": "normal",
+   "x": 15,
+   "bw": 360
+  },
+  "footerQ": {
+   "fs": "100px",
+   "w": "700",
+   "lh": "90px",
+   "ls": "-2px",
+   "x": 33,
+   "bw": 324
+  },
+  "footerCta": {
+   "fs": "100px",
+   "w": "700",
+   "lh": "100px",
+   "ls": "normal",
+   "x": 33,
+   "bw": 288
+  },
+  "phone": {
+   "fs": "20px",
+   "w": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "x": 113,
+   "bw": 172
+  },
+  "aboutPortrait": {
+   "w": 367,
+   "h": 439,
+   "vis": true,
+   "src": "LPldbLZleWCHQ8"
+  },
+  "bio": {
+   "fs": "12px",
+   "w": "400",
+   "bw": 390,
+   "x": 0
+  }
+ },
+ "430": {
+  "vw": 430,
+  "product": {
+   "fs": "74px",
+   "w": "700",
+   "lh": "81.4px",
+   "ls": "-2.96px",
+   "x": 36,
+   "bw": 358
+  },
+  "role": {
+   "fs": "72px",
+   "w": "700",
+   "lh": "79.2px",
+   "ls": "-2.88px",
+   "x": 38,
+   "bw": 354
+  },
+  "moreAbout": {
+   "fs": "31px",
+   "w": "700",
+   "lh": "37.2px",
+   "ls": "normal",
+   "x": 35,
+   "bw": 360
+  },
+  "engineer": {
+   "fs": "16px",
+   "w": "700",
+   "lh": "24px",
+   "ls": "normal",
+   "x": 35,
+   "bw": 360
+  },
+  "photographing": {
+   "fs": "40px",
+   "w": "600",
+   "lh": "48px",
+   "ls": "normal",
+   "x": 15,
+   "bw": 400
+  },
+  "footerQ": {
+   "fs": "100px",
+   "w": "700",
+   "lh": "90px",
+   "ls": "-2px",
+   "x": 35,
+   "bw": 324
+  },
+  "footerCta": {
+   "fs": "100px",
+   "w": "700",
+   "lh": "100px",
+   "ls": "normal",
+   "x": 35,
+   "bw": 288
+  },
+  "phone": {
+   "fs": "20px",
+   "w": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "x": 133,
+   "bw": 172
+  },
+  "aboutPortrait": {
+   "w": 367,
+   "h": 439,
+   "vis": true,
+   "src": "LPldbLZleWCHQ8"
+  },
+  "bio": {
+   "fs": "12px",
+   "w": "400",
+   "bw": 430,
+   "x": 0
+  }
+ },
+ "768": {
+  "vw": 768,
+  "product": {
+   "fs": "74px",
+   "w": "700",
+   "lh": "81.4px",
+   "ls": "-2.96px",
+   "x": 205,
+   "bw": 358
+  },
+  "role": {
+   "fs": "72px",
+   "w": "700",
+   "lh": "79.2px",
+   "ls": "-2.88px",
+   "x": 207,
+   "bw": 354
+  },
+  "moreAbout": {
+   "fs": "31px",
+   "w": "700",
+   "lh": "37.2px",
+   "ls": "normal",
+   "x": 52,
+   "bw": 664
+  },
+  "engineer": {
+   "fs": "16px",
+   "w": "700",
+   "lh": "24px",
+   "ls": "normal",
+   "x": 52,
+   "bw": 664
+  },
+  "photographing": {
+   "fs": "40px",
+   "w": "600",
+   "lh": "48px",
+   "ls": "normal",
+   "x": 15,
+   "bw": 738
+  },
+  "footerQ": {
+   "fs": "100px",
+   "w": "700",
+   "lh": "90px",
+   "ls": "-2px",
+   "x": 52,
+   "bw": 553
+  },
+  "footerCta": {
+   "fs": "100px",
+   "w": "700",
+   "lh": "100px",
+   "ls": "normal",
+   "x": 52,
+   "bw": 288
+  },
+  "phone": {
+   "fs": "20px",
+   "w": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "x": 302,
+   "bw": 172
+  },
+  "aboutPortrait": {
+   "w": 367,
+   "h": 439,
+   "vis": true,
+   "src": "LPldbLZleWCHQ8"
+  },
+  "bio": {
+   "fs": "12px",
+   "w": "400",
+   "bw": 768,
+   "x": 0
+  }
+ },
+ "810": {
+  "vw": 810,
+  "product": {
+   "fs": "160px",
+   "w": "700",
+   "lh": "176px",
+   "ls": "-6.4px",
+   "x": -96,
+   "bw": 1001
+  },
+  "role": {
+   "fs": "160px",
+   "w": "700",
+   "lh": "176px",
+   "ls": "-6.4px",
+   "x": -15,
+   "bw": 840
+  },
+  "moreAbout": {
+   "fs": "80px",
+   "w": "700",
+   "lh": "96px",
+   "ls": "normal",
+   "x": 25,
+   "bw": 760
+  },
+  "engineer": {
+   "fs": "40px",
+   "w": "700",
+   "lh": "56px",
+   "ls": "normal",
+   "x": 25,
+   "bw": 760
+  },
+  "photographing": {
+   "fs": "80px",
+   "w": "500",
+   "lh": "96px",
+   "ls": "normal",
+   "x": 25,
+   "bw": 760
+  },
+  "footerQ": {
+   "fs": "180px",
+   "w": "700",
+   "lh": "162px",
+   "ls": "-3.6px",
+   "x": 103,
+   "bw": 600
+  },
+  "footerCta": null,
+  "phone": {
+   "fs": "20px",
+   "w": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "x": 329,
+   "bw": 161
+  },
+  "aboutPortrait": {
+   "w": 458,
+   "h": 549,
+   "vis": true,
+   "src": "LPldbLZleWCHQ8"
+  },
+  "bio": {
+   "fs": "40px",
+   "w": "900",
+   "bw": 760,
+   "x": 25
+  }
+ },
+ "1024": {
+  "vw": 1024,
+  "product": {
+   "fs": "160px",
+   "w": "700",
+   "lh": "176px",
+   "ls": "-6.4px",
+   "x": 120,
+   "bw": 784
+  },
+  "role": {
+   "fs": "160px",
+   "w": "700",
+   "lh": "176px",
+   "ls": "-6.4px",
+   "x": 119,
+   "bw": 786
+  },
+  "moreAbout": {
+   "fs": "80px",
+   "w": "700",
+   "lh": "96px",
+   "ls": "normal",
+   "x": 132,
+   "bw": 760
+  },
+  "engineer": {
+   "fs": "40px",
+   "w": "700",
+   "lh": "56px",
+   "ls": "normal",
+   "x": 132,
+   "bw": 760
+  },
+  "photographing": {
+   "fs": "80px",
+   "w": "500",
+   "lh": "96px",
+   "ls": "normal",
+   "x": 25,
+   "bw": 974
+  },
+  "footerQ": {
+   "fs": "180px",
+   "w": "700",
+   "lh": "162px",
+   "ls": "-3.6px",
+   "x": 210,
+   "bw": 600
+  },
+  "footerCta": null,
+  "phone": {
+   "fs": "20px",
+   "w": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "x": 430,
+   "bw": 172
+  },
+  "aboutPortrait": {
+   "w": 458,
+   "h": 549,
+   "vis": true,
+   "src": "LPldbLZleWCHQ8"
+  },
+  "bio": {
+   "fs": "40px",
+   "w": "900",
+   "bw": 974,
+   "x": 25
+  }
+ },
+ "1280": {
+  "vw": 1280,
+  "product": {
+   "fs": "282px",
+   "w": "700",
+   "lh": "310.2px",
+   "ls": "-11.28px",
+   "x": -206,
+   "bw": 1692
+  },
+  "role": {
+   "fs": "265px",
+   "w": "700",
+   "lh": "291.5px",
+   "ls": "-5.3px",
+   "x": -43,
+   "bw": 1434
+  },
+  "moreAbout": {
+   "fs": "80px",
+   "w": "700",
+   "lh": "96px",
+   "ls": "normal",
+   "x": 40,
+   "bw": 1200
+  },
+  "engineer": {
+   "fs": "40px",
+   "w": "700",
+   "lh": "56px",
+   "ls": "normal",
+   "x": 40,
+   "bw": 596
+  },
+  "photographing": {
+   "fs": "80px",
+   "w": "500",
+   "lh": "96px",
+   "ls": "normal",
+   "x": 0,
+   "bw": 1280
+  },
+  "footerQ": {
+   "fs": "140px",
+   "w": "700",
+   "lh": "140px",
+   "ls": "normal",
+   "x": 40,
+   "bw": 1024
+  },
+  "footerCta": null,
+  "phone": {
+   "fs": "20px",
+   "w": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "x": 85,
+   "bw": 161
+  },
+  "aboutPortrait": {
+   "w": 395,
+   "h": 500,
+   "vis": true,
+   "src": "XqTvKhL5G8EjG5"
+  },
+  "bio": {
+   "fs": "12px",
+   "w": "400",
+   "bw": 1280,
+   "x": 0
+  }
+ },
+ "1440": {
+  "vw": 1440,
+  "product": {
+   "fs": "282px",
+   "w": "700",
+   "lh": "310.2px",
+   "ls": "-11.28px",
+   "x": 44,
+   "bw": 1353
+  },
+  "role": {
+   "fs": "265px",
+   "w": "700",
+   "lh": "291.5px",
+   "ls": "-5.3px",
+   "x": 42,
+   "bw": 1344
+  },
+  "moreAbout": {
+   "fs": "80px",
+   "w": "700",
+   "lh": "96px",
+   "ls": "normal",
+   "x": 120,
+   "bw": 1200
+  },
+  "engineer": {
+   "fs": "40px",
+   "w": "700",
+   "lh": "56px",
+   "ls": "normal",
+   "x": 120,
+   "bw": 554
+  },
+  "photographing": {
+   "fs": "80px",
+   "w": "500",
+   "lh": "96px",
+   "ls": "normal",
+   "x": 0,
+   "bw": 1440
+  },
+  "footerQ": {
+   "fs": "140px",
+   "w": "700",
+   "lh": "140px",
+   "ls": "normal",
+   "x": 120,
+   "bw": 1024
+  },
+  "footerCta": null,
+  "phone": {
+   "fs": "20px",
+   "w": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "x": 165,
+   "bw": 172
+  },
+  "aboutPortrait": {
+   "w": 395,
+   "h": 500,
+   "vis": true,
+   "src": "XqTvKhL5G8EjG5"
+  },
+  "bio": {
+   "fs": "12px",
+   "w": "400",
+   "bw": 1440,
+   "x": 0
+  }
+ }
+}

@@ -1,0 +1,120 @@
+
+===== live @390 =====
+{
+ "header": {
+  "barH": 64,
+  "items": [
+   {
+    "label": "",
+    "hasIcon": false,
+    "w": 119
+   },
+   {
+    "label": "",
+    "hasIcon": false,
+    "w": 25
+   },
+   {
+    "label": "",
+    "hasIcon": false,
+    "w": 27
+   },
+   {
+    "label": "Résumé",
+    "hasIcon": false,
+    "w": 93
+   }
+  ]
+ },
+ "we_subtitle": {
+  "t": "BASED IN DELHI NCR, INDI",
+  "fs": "16px",
+  "fw": "700",
+  "lh": "24px",
+  "ls": "normal",
+  "color": "rgb(255, 255, 255)",
+  "w": 324,
+  "h": 48,
+  "x": 33,
+  "y": 860
+ },
+ "we_stat_years": {
+  "label": {
+   "t": "YEARS OF EXPERIENCE",
+   "fs": "16px",
+   "fw": "600",
+   "lh": "25.6px",
+   "ls": "normal",
+   "color": "rgb(255, 255, 255)",
+   "w": 158,
+   "h": 51,
+   "x": 53,
+   "y": 1323
+  },
+  "value": null
+ },
+ "rw_stat": null,
+ "about_portrait": {
+  "t": "",
+  "fs": "12px",
+  "fw": "400",
+  "lh": "normal",
+  "ls": "normal",
+  "color": "rgb(0, 0, 0)",
+  "w": 367,
+  "h": 439,
+  "x": 12,
+  "y": 5230,
+  "vis": true,
+  "src": "LPldbLZleWCHQ8iStd"
+ },
+ "hob_intro": {
+  "t": "WHEN I AM NOT DESIGNING",
+  "fs": "16px",
+  "fw": "700",
+  "lh": "24px",
+  "ls": "normal",
+  "color": "rgb(255, 255, 255)",
+  "w": 328,
+  "h": 24,
+  "x": 31,
+  "y": 5189
+ },
+ "photo_grid": {
+  "cols": 2,
+  "n": 14,
+  "cellW": 178
+ },
+ "footer": {
+  "heading": {
+   "t": "CAME THIS",
+   "fs": "100px",
+   "fw": "700",
+   "lh": "90px",
+   "ls": "-2px",
+   "color": "rgba(255, 255, 255, 0.56)",
+   "w": 324,
+   "h": 204,
+   "x": 33,
+   "y": 7657
+  },
+  "pill": {
+   "t": "+91 8869808079",
+   "fs": "20px",
+   "fw": "600",
+   "lh": "20px",
+   "ls": "normal",
+   "color": "rgb(62, 193, 79)",
+   "w": 172,
+   "h": 20,
+   "x": 113,
+   "y": 8388
+  },
+  "goldW": 360
+ },
+ "cursor": {
+  "count": 0,
+  "anyVisible": false,
+  "classes": []
+ }
+}

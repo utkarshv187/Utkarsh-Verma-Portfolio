@@ -1,0 +1,117 @@
+{
+  "desktop1280": {
+    "cardBox": {
+      "x": 40,
+      "w": 1200,
+      "h": 620
+    },
+    "media": {
+      "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+      "x": 48,
+      "y": 48,
+      "w": 524,
+      "h": 524
+    },
+    "title": {
+      "text": "Spinny's car auction app PLP redesign",
+      "fs": "56px",
+      "x": 620,
+      "y": 48,
+      "w": 532,
+      "h": 235
+    },
+    "docY": 2713
+  },
+  "tablet1024": {
+    "cardBox": {
+      "x": 152,
+      "w": 720,
+      "h": 420
+    },
+    "media": {
+      "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+      "x": 29,
+      "y": 29,
+      "w": 362,
+      "h": 362
+    },
+    "title": {
+      "text": "Spinny's car auction app PLP redesign",
+      "fs": "38px",
+      "x": 420,
+      "y": 29,
+      "w": 271,
+      "h": 160
+    },
+    "docY": 2385
+  },
+  "tablet834": {
+    "cardBox": {
+      "x": 57,
+      "w": 720,
+      "h": 420
+    },
+    "media": {
+      "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+      "x": 29,
+      "y": 29,
+      "w": 362,
+      "h": 362
+    },
+    "title": {
+      "text": "Spinny's car auction app PLP redesign",
+      "fs": "38px",
+      "x": 420,
+      "y": 29,
+      "w": 271,
+      "h": 160
+    },
+    "docY": 2385
+  },
+  "phone430": {
+    "cardBox": {
+      "x": 31,
+      "w": 368,
+      "h": 545
+    },
+    "media": {
+      "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+      "x": 12,
+      "y": 91,
+      "w": 344,
+      "h": 344
+    },
+    "title": {
+      "text": "Spinny's car auction app PLP redesign",
+      "fs": "24px",
+      "x": 12,
+      "y": 12,
+      "w": 344,
+      "h": 67
+    },
+    "docY": 1875
+  },
+  "phone390": {
+    "cardBox": {
+      "x": 31,
+      "w": 328,
+      "h": 505
+    },
+    "media": {
+      "file": "PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg",
+      "x": 12,
+      "y": 91,
+      "w": 304,
+      "h": 304
+    },
+    "title": {
+      "text": "Spinny's car auction app PLP redesign",
+      "fs": "24px",
+      "x": 12,
+      "y": 12,
+      "w": 304,
+      "h": 67
+    },
+    "docY": 1936
+  }
+}

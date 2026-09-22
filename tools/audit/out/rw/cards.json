@@ -1,0 +1,93 @@
+{
+  "cards": [
+    [
+      {
+        "href": "https://auction-plp-redesign-by-uv.vercel.app/",
+        "target": "_blank",
+        "rel": null,
+        "box": {
+          "x": 120,
+          "y": 2713,
+          "w": 1200,
+          "h": 620
+        },
+        "innerText": "<\n>\n\nSpinny's car auction app PLP redesign\n\nMORE USER\n\nRETENTION\n\nREVENUE\n\nGROWTH\n\nDROP IN\nCARS MISSED\n\nSHOOT UP\n\nIN NPS",
+        "images": [],
+        "dataFramerName": null
+      }
+    ],
+    [
+      {
+        "href": "https://gamification-by-uv.vercel.app/",
+        "target": "_blank",
+        "rel": null,
+        "box": {
+          "x": 120,
+          "y": 3454,
+          "w": 1200,
+          "h": 620
+        },
+        "innerText": "Introduced a\n\ntier based gamification\n\nMORE USER\n\nRETENTION\n\nSURGE IN\n\nREVENUE\n\nRISE IN\n\nBIDS MADE\n\nREDUCED T.A.T OF\n\nCAR DELIVERIES ",
+        "images": [
+          "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+          "xkzkmWXB2AV2EIqCliUZyQEHw.gif",
+          "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+          "xkzkmWXB2AV2EIqCliUZyQEHw.gif"
+        ],
+        "dataFramerName": null
+      }
+    ],
+    [
+      {
+        "href": "https://www.figma.com/design/iBOEPZFnnHc4BZ3FtVsQZ7/Spinny-Design-System---Styles---Components?node-id=2-4101",
+        "target": "_blank",
+        "rel": null,
+        "box": {
+          "x": 120,
+          "y": 4235,
+          "w": 1200,
+          "h": 620
+        },
+        "innerText": "Established the Spinny design system\n\nVARIANTS DESIGNED\n& DEVELOPED\n\nDESIGN \n\nBANDWIDTH SAVED\n\nDEVELOPMENT TIME\n\nREDUCED\n\nCONSISTENCY\nACHIEVED",
+        "images": [
+          "upit0LYDKKJSw1HtFId1F3CeUM.jpg"
+        ],
+        "dataFramerName": null
+      }
+    ]
+  ],
+  "heads": {
+    "recentWork": {
+      "text": "RECENT  WORK",
+      "tag": "P",
+      "fontFamily": "\"Clash Display\", \"Clash Display Placeholder\", sans-serif",
+      "fontSize": "80px",
+      "fontWeight": "700",
+      "lineHeight": "96px",
+      "letterSpacing": "normal",
+      "color": "rgb(14, 12, 32)",
+      "textTransform": "none",
+      "box": {
+        "x": 120,
+        "y": 2469,
+        "w": 1200
+      }
+    },
+    "blending": {
+      "text": "I  LOVE  BLENDING  ART  &  TECHNOLOGY",
+      "tag": "P",
+      "fontFamily": "\"Clash Display\", \"Clash Display Placeholder\", sans-serif",
+      "fontSize": "40px",
+      "fontWeight": "700",
+      "lineHeight": "56px",
+      "letterSpacing": "normal",
+      "color": "rgb(108, 55, 178)",
+      "textTransform": "none",
+      "box": {
+        "x": 120,
+        "y": 2577,
+        "w": 1200
+      }
+    }
+  }
+}

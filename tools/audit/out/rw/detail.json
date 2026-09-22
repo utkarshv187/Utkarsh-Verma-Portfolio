@@ -1,0 +1,1035 @@
+{
+  "results": [
+    {
+      "card": 1,
+      "meta": {
+        "docY": 2713,
+        "x": 120,
+        "w": 1200,
+        "h": 620,
+        "radius": "24px",
+        "bg": "rgb(15, 12, 32)",
+        "padding": "48px",
+        "stickyTop": "132px"
+      },
+      "viewportBox": {
+        "l": 120,
+        "t": 172,
+        "r": 1320,
+        "b": 792
+      },
+      "texts": [
+        {
+          "text": "PR DUCT",
+          "fs": "282px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": -76,
+          "y": 24,
+          "w": 1353
+        },
+        {
+          "text": "O",
+          "fs": "282px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": 222,
+          "y": -41,
+          "w": 346
+        },
+        {
+          "text": "LET'S • WORK • TOGETHER •",
+          "fs": "16px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(0, 0, 0)",
+          "x": 307,
+          "y": 83,
+          "w": 187
+        },
+        {
+          "text": "DESIGNER",
+          "fs": "265px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": -78,
+          "y": 307,
+          "w": 1344
+        },
+        {
+          "text": "<",
+          "fs": "11.2px",
+          "fw": "600",
+          "ff": "sans-serif",
+          "color": "rgb(255, 255, 255)",
+          "x": 296,
+          "y": 304,
+          "w": 14
+        },
+        {
+          "text": ">",
+          "fs": "11.2px",
+          "fw": "600",
+          "ff": "sans-serif",
+          "color": "rgb(255, 255, 255)",
+          "x": 310,
+          "y": 304,
+          "w": 14
+        },
+        {
+          "text": "Spinny's car auction app PLP redesign",
+          "fs": "56px",
+          "fw": "900",
+          "ff": "Satoshi",
+          "color": "rgb(255, 255, 255)",
+          "x": 620,
+          "y": 48,
+          "w": 532
+        },
+        {
+          "text": "MORE USER",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 700,
+          "y": 406,
+          "w": 94
+        },
+        {
+          "text": "RETENTION",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 700,
+          "y": 429,
+          "w": 94
+        },
+        {
+          "text": "REVENUE",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 987,
+          "y": 406,
+          "w": 77
+        },
+        {
+          "text": "GROWTH",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 987,
+          "y": 429,
+          "w": 77
+        },
+        {
+          "text": "SHOOT UP",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 984,
+          "y": 515,
+          "w": 83
+        },
+        {
+          "text": "IN NPS",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 984,
+          "y": 538,
+          "w": 83
+        }
+      ],
+      "imgs": [
+        {
+          "file": "IWdo08dy1SBtkPucLvwPp046Fug.png",
+          "x": 306,
+          "y": -77,
+          "w": 631,
+          "h": 770
+        },
+        {
+          "file": "7nuBCHYzW4t5TCODcz3ifgeAc.png",
+          "x": 429,
+          "y": 18,
+          "w": 112,
+          "h": 240
+        },
+        {
+          "file": "eNT4XgzhjkW7AqGWTXtlFa3a230.png",
+          "x": 485,
+          "y": 451,
+          "w": 231,
+          "h": 140
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 620,
+          "y": 378,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 898,
+          "y": 378,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 620,
+          "y": 487,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 898,
+          "y": 487,
+          "w": 254,
+          "h": 85
+        }
+      ]
+    },
+    {
+      "card": 2,
+      "meta": {
+        "docY": 3454,
+        "x": 120,
+        "w": 1200,
+        "h": 620,
+        "radius": "24px",
+        "bg": "rgb(86, 35, 154)",
+        "padding": "48px",
+        "stickyTop": "146px"
+      },
+      "viewportBox": {
+        "l": 120,
+        "t": 150,
+        "r": 1320,
+        "b": 770
+      },
+      "texts": [
+        {
+          "text": "PR DUCT",
+          "fs": "282px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": -76,
+          "y": 46,
+          "w": 1353
+        },
+        {
+          "text": "O",
+          "fs": "282px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": 222,
+          "y": -19,
+          "w": 346
+        },
+        {
+          "text": "LET'S • WORK • TOGETHER •",
+          "fs": "16px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(0, 0, 0)",
+          "x": 307,
+          "y": 105,
+          "w": 187
+        },
+        {
+          "text": "DESIGNER",
+          "fs": "265px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": -78,
+          "y": 329,
+          "w": 1344
+        },
+        {
+          "text": "<",
+          "fs": "11.2px",
+          "fw": "600",
+          "ff": "sans-serif",
+          "color": "rgb(255, 255, 255)",
+          "x": 296,
+          "y": 326,
+          "w": 14
+        },
+        {
+          "text": ">",
+          "fs": "11.2px",
+          "fw": "600",
+          "ff": "sans-serif",
+          "color": "rgb(255, 255, 255)",
+          "x": 310,
+          "y": 326,
+          "w": 14
+        },
+        {
+          "text": "Spinny's car auction app PLP redesign",
+          "fs": "56px",
+          "fw": "900",
+          "ff": "Satoshi",
+          "color": "rgb(255, 255, 255)",
+          "x": 620,
+          "y": 70,
+          "w": 532
+        },
+        {
+          "text": "MORE USER",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 700,
+          "y": 428,
+          "w": 94
+        },
+        {
+          "text": "RETENTION",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 700,
+          "y": 451,
+          "w": 94
+        },
+        {
+          "text": "REVENUE",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 987,
+          "y": 428,
+          "w": 77
+        },
+        {
+          "text": "GROWTH",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 987,
+          "y": 451,
+          "w": 77
+        },
+        {
+          "text": "SHOOT UP",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 984,
+          "y": 537,
+          "w": 83
+        },
+        {
+          "text": "IN NPS",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 984,
+          "y": 559,
+          "w": 83
+        },
+        {
+          "text": "Introduced a",
+          "fs": "56px",
+          "fw": "900",
+          "ff": "Satoshi",
+          "color": "rgb(255, 255, 255)",
+          "x": 620,
+          "y": 48,
+          "w": 532
+        },
+        {
+          "text": "tier based gamification",
+          "fs": "56px",
+          "fw": "900",
+          "ff": "Satoshi",
+          "color": "rgb(255, 255, 255)",
+          "x": 620,
+          "y": 126,
+          "w": 532
+        },
+        {
+          "text": "MORE USER",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 700,
+          "y": 406,
+          "w": 94
+        },
+        {
+          "text": "RETENTION",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 700,
+          "y": 429,
+          "w": 94
+        },
+        {
+          "text": "SURGE IN",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 987,
+          "y": 406,
+          "w": 77
+        },
+        {
+          "text": "REVENUE",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 987,
+          "y": 429,
+          "w": 77
+        },
+        {
+          "text": "RISE IN",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 702,
+          "y": 515,
+          "w": 89
+        },
+        {
+          "text": "BIDS MADE",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 702,
+          "y": 538,
+          "w": 89
+        },
+        {
+          "text": "REDUCED T.A.T OF",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 951,
+          "y": 515,
+          "w": 149
+        },
+        {
+          "text": "CAR DELIVERIES",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 951,
+          "y": 538,
+          "w": 149
+        }
+      ],
+      "imgs": [
+        {
+          "file": "IWdo08dy1SBtkPucLvwPp046Fug.png",
+          "x": 306,
+          "y": -55,
+          "w": 631,
+          "h": 770
+        },
+        {
+          "file": "7nuBCHYzW4t5TCODcz3ifgeAc.png",
+          "x": 429,
+          "y": 40,
+          "w": 112,
+          "h": 240
+        },
+        {
+          "file": "eNT4XgzhjkW7AqGWTXtlFa3a230.png",
+          "x": 485,
+          "y": 473,
+          "w": 231,
+          "h": 140
+        },
+        {
+          "file": "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+          "x": 200,
+          "y": 150,
+          "w": 200,
+          "h": 438
+        },
+        {
+          "file": "xkzkmWXB2AV2EIqCliUZyQEHw.gif",
+          "x": 184,
+          "y": 79,
+          "w": 253,
+          "h": 552
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 620,
+          "y": 400,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 898,
+          "y": 400,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 620,
+          "y": 509,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 898,
+          "y": 509,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(255, 182, 1, 0.16)",
+          "radius": "8px",
+          "x": 620,
+          "y": 378,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(255, 182, 1, 0.16)",
+          "radius": "8px",
+          "x": 898,
+          "y": 378,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(255, 182, 1, 0.16)",
+          "radius": "8px",
+          "x": 620,
+          "y": 487,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(255, 182, 1, 0.16)",
+          "radius": "8px",
+          "x": 898,
+          "y": 487,
+          "w": 254,
+          "h": 85
+        }
+      ]
+    },
+    {
+      "card": 3,
+      "meta": {
+        "docY": 4235,
+        "x": 120,
+        "w": 1200,
+        "h": 620,
+        "radius": "24px",
+        "bg": "rgb(15, 12, 32)",
+        "padding": "48px",
+        "stickyTop": "160px"
+      },
+      "viewportBox": {
+        "l": 120,
+        "t": 160,
+        "r": 1320,
+        "b": 780
+      },
+      "texts": [
+        {
+          "text": "PR DUCT",
+          "fs": "282px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": -76,
+          "y": 36,
+          "w": 1353
+        },
+        {
+          "text": "O",
+          "fs": "282px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": 222,
+          "y": -29,
+          "w": 346
+        },
+        {
+          "text": "LET'S • WORK • TOGETHER •",
+          "fs": "16px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(0, 0, 0)",
+          "x": 307,
+          "y": 95,
+          "w": 187
+        },
+        {
+          "text": "DESIGNER",
+          "fs": "265px",
+          "fw": "700",
+          "ff": "Clash Display",
+          "color": "rgb(238, 238, 255)",
+          "x": -78,
+          "y": 319,
+          "w": 1344
+        },
+        {
+          "text": "<",
+          "fs": "11.2px",
+          "fw": "600",
+          "ff": "sans-serif",
+          "color": "rgb(255, 255, 255)",
+          "x": 296,
+          "y": 316,
+          "w": 14
+        },
+        {
+          "text": ">",
+          "fs": "11.2px",
+          "fw": "600",
+          "ff": "sans-serif",
+          "color": "rgb(255, 255, 255)",
+          "x": 310,
+          "y": 316,
+          "w": 14
+        },
+        {
+          "text": "Spinny's car auction app PLP redesign",
+          "fs": "56px",
+          "fw": "900",
+          "ff": "Satoshi",
+          "color": "rgb(255, 255, 255)",
+          "x": 620,
+          "y": 60,
+          "w": 532
+        },
+        {
+          "text": "MORE USER",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 700,
+          "y": 418,
+          "w": 94
+        },
+        {
+          "text": "RETENTION",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 700,
+          "y": 441,
+          "w": 94
+        },
+        {
+          "text": "REVENUE",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 987,
+          "y": 418,
+          "w": 77
+        },
+        {
+          "text": "GROWTH",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 987,
+          "y": 441,
+          "w": 77
+        },
+        {
+          "text": "SHOOT UP",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 984,
+          "y": 527,
+          "w": 83
+        },
+        {
+          "text": "IN NPS",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 984,
+          "y": 550,
+          "w": 83
+        },
+        {
+          "text": "Introduced a",
+          "fs": "56px",
+          "fw": "900",
+          "ff": "Satoshi",
+          "color": "rgb(255, 255, 255)",
+          "x": 620,
+          "y": 34,
+          "w": 532
+        },
+        {
+          "text": "tier based gamification",
+          "fs": "56px",
+          "fw": "900",
+          "ff": "Satoshi",
+          "color": "rgb(255, 255, 255)",
+          "x": 620,
+          "y": 112,
+          "w": 532
+        },
+        {
+          "text": "MORE USER",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 700,
+          "y": 392,
+          "w": 94
+        },
+        {
+          "text": "RETENTION",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 700,
+          "y": 415,
+          "w": 94
+        },
+        {
+          "text": "SURGE IN",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 987,
+          "y": 392,
+          "w": 77
+        },
+        {
+          "text": "REVENUE",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 987,
+          "y": 415,
+          "w": 77
+        },
+        {
+          "text": "RISE IN",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 702,
+          "y": 501,
+          "w": 89
+        },
+        {
+          "text": "BIDS MADE",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 702,
+          "y": 524,
+          "w": 89
+        },
+        {
+          "text": "REDUCED T.A.T OF",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 951,
+          "y": 501,
+          "w": 149
+        },
+        {
+          "text": "CAR DELIVERIES",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(255, 182, 1)",
+          "x": 951,
+          "y": 524,
+          "w": 149
+        },
+        {
+          "text": "Established the Spinny design system",
+          "fs": "56px",
+          "fw": "900",
+          "ff": "Satoshi",
+          "color": "rgb(255, 255, 255)",
+          "x": 620,
+          "y": 48,
+          "w": 532
+        },
+        {
+          "text": "DESIGN",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 944,
+          "y": 406,
+          "w": 163
+        },
+        {
+          "text": "BANDWIDTH SAVED",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 944,
+          "y": 429,
+          "w": 163
+        },
+        {
+          "text": "DEVELOPMENT TIME",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 664,
+          "y": 515,
+          "w": 166
+        },
+        {
+          "text": "REDUCED",
+          "fs": "16px",
+          "fw": "600",
+          "ff": "Clash Display",
+          "color": "rgb(37, 197, 179)",
+          "x": 664,
+          "y": 538,
+          "w": 166
+        }
+      ],
+      "imgs": [
+        {
+          "file": "IWdo08dy1SBtkPucLvwPp046Fug.png",
+          "x": 306,
+          "y": -65,
+          "w": 631,
+          "h": 770
+        },
+        {
+          "file": "7nuBCHYzW4t5TCODcz3ifgeAc.png",
+          "x": 429,
+          "y": 30,
+          "w": 112,
+          "h": 240
+        },
+        {
+          "file": "eNT4XgzhjkW7AqGWTXtlFa3a230.png",
+          "x": 485,
+          "y": 463,
+          "w": 231,
+          "h": 140
+        },
+        {
+          "file": "bAXnzVrKeF5riTiESNxjpvqOWWM.gif",
+          "x": 200,
+          "y": 136,
+          "w": 200,
+          "h": 438
+        },
+        {
+          "file": "xkzkmWXB2AV2EIqCliUZyQEHw.gif",
+          "x": 184,
+          "y": 65,
+          "w": 253,
+          "h": 552
+        },
+        {
+          "file": "upit0LYDKKJSw1HtFId1F3CeUM.jpg",
+          "x": -102,
+          "y": 48,
+          "w": 674,
+          "h": 814
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 620,
+          "y": 390,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 898,
+          "y": 390,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 620,
+          "y": 499,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 898,
+          "y": 499,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(255, 182, 1, 0.16)",
+          "radius": "8px",
+          "x": 620,
+          "y": 364,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(255, 182, 1, 0.16)",
+          "radius": "8px",
+          "x": 898,
+          "y": 364,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(255, 182, 1, 0.16)",
+          "radius": "8px",
+          "x": 620,
+          "y": 473,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(255, 182, 1, 0.16)",
+          "radius": "8px",
+          "x": 898,
+          "y": 473,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 620,
+          "y": 378,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 898,
+          "y": 378,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 620,
+          "y": 487,
+          "w": 254,
+          "h": 85
+        },
+        {
+          "bg": "rgba(37, 197, 179, 0.12)",
+          "radius": "8px",
+          "x": 898,
+          "y": 487,
+          "w": 254,
+          "h": 85
+        }
+      ]
+    }
+  ],
+  "sectionBg": [
+    {
+      "d": 0,
+      "name": "Solid Part work",
+      "bg": "rgb(236, 236, 245)",
+      "bgImg": "none"
+    },
+    {
+      "d": 1,
+      "name": "Portfolio",
+      "bg": "rgba(0, 0, 0, 0)",
+      "bgImg": "none"
+    },
+    {
+      "d": 2,
+      "name": "Website Wrapper",
+      "bg": "rgb(12, 12, 31)",
+      "bgImg": "none"
+    },
+    {
+      "d": 3,
+      "name": null,
+      "bg": "rgb(14, 12, 32)",
+      "bgImg": "none"
+    }
+  ]
+}

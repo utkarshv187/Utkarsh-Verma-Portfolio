@@ -434,7 +434,8 @@
     width: 493px;
     height: 347px;
     pointer-events: none;
-    background: url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 493 347%22><path d=%22M 29 327.475 L 504 217 L 533 294 L -22.731 272.012 L -18 360 L 447 335 C 447 335 653.357 400.63 542.5 343%22 fill=%22transparent%22 stroke-width=%2221.37%22 stroke=%22rgb(255, 183, 4)%22 stroke-linejoin=%22bevel%22></path></svg>") no-repeat center / 100% 100%;
+    /* 3rd (bottom) line removed on mobile — path stops after line 2 (was: ...L -18 360 L 447 335 C ...) */
+    background: url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 493 347%22><path d=%22M 29 327.475 L 504 217 L 533 294 L -22.731 272.012%22 fill=%22transparent%22 stroke-width=%2221.37%22 stroke=%22rgb(255, 183, 4)%22 stroke-linejoin=%22bevel%22></path></svg>") no-repeat center / 100% 100%;
   }
   /* live's phone hero is a CENTRED fixed column (not full-bleed): portrait is a fixed 306x396 centred
      on the viewport, top 119 — not viewport-width x 640 top-anchored. z-order: PRODUCT behind the

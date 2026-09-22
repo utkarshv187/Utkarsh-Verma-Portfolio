@@ -1,0 +1,197 @@
+[
+  {
+    "idx": 0,
+    "anc": [
+      {
+        "d": 0,
+        "tag": "A",
+        "name": null,
+        "position": "sticky",
+        "top": "132px",
+        "zIndex": "1",
+        "transform": "matrix(1, 0, 0, 1, 0, 40)",
+        "h": 620
+      },
+      {
+        "d": 1,
+        "tag": "DIV",
+        "name": null,
+        "position": "static",
+        "top": "auto",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 0
+      },
+      {
+        "d": 2,
+        "tag": "DIV",
+        "name": null,
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 2963
+      },
+      {
+        "d": 3,
+        "tag": "DIV",
+        "name": "Solid Part work",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "1",
+        "transform": "none",
+        "h": 3447
+      },
+      {
+        "d": 4,
+        "tag": "DIV",
+        "name": "Portfolio",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "2",
+        "transform": "none",
+        "h": 3447
+      },
+      {
+        "d": 5,
+        "tag": "DIV",
+        "name": "Website Wrapper",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 18019
+      }
+    ]
+  },
+  {
+    "idx": 1,
+    "anc": [
+      {
+        "d": 0,
+        "tag": "A",
+        "name": null,
+        "position": "sticky",
+        "top": "146px",
+        "zIndex": "1",
+        "transform": "none",
+        "h": 620
+      },
+      {
+        "d": 1,
+        "tag": "DIV",
+        "name": null,
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 2963
+      },
+      {
+        "d": 2,
+        "tag": "DIV",
+        "name": "Solid Part work",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "1",
+        "transform": "none",
+        "h": 3447
+      },
+      {
+        "d": 3,
+        "tag": "DIV",
+        "name": "Portfolio",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "2",
+        "transform": "none",
+        "h": 3447
+      },
+      {
+        "d": 4,
+        "tag": "DIV",
+        "name": "Website Wrapper",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 18019
+      },
+      {
+        "d": 5,
+        "tag": "DIV",
+        "name": null,
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 18019
+      }
+    ]
+  },
+  {
+    "idx": 2,
+    "anc": [
+      {
+        "d": 0,
+        "tag": "A",
+        "name": null,
+        "position": "sticky",
+        "top": "160px",
+        "zIndex": "1",
+        "transform": "none",
+        "h": 620
+      },
+      {
+        "d": 1,
+        "tag": "DIV",
+        "name": null,
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 2963
+      },
+      {
+        "d": 2,
+        "tag": "DIV",
+        "name": "Solid Part work",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "1",
+        "transform": "none",
+        "h": 3447
+      },
+      {
+        "d": 3,
+        "tag": "DIV",
+        "name": "Portfolio",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "2",
+        "transform": "none",
+        "h": 3447
+      },
+      {
+        "d": 4,
+        "tag": "DIV",
+        "name": "Website Wrapper",
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 18019
+      },
+      {
+        "d": 5,
+        "tag": "DIV",
+        "name": null,
+        "position": "relative",
+        "top": "0px",
+        "zIndex": "auto",
+        "transform": "none",
+        "h": 18019
+      }
+    ]
+  }
+]

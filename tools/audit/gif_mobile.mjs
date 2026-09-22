@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ headless: true });
+const p = await (await b.newContext({ viewport:{width:390,height:844}, isMobile:true, hasTouch:true, reducedMotion:'no-preference' })).newPage();
+await p.goto('http://localhost:5199/',{waitUntil:'load'}).catch(()=>{});
+await p.waitForTimeout(900);
+const c2 = await p.evaluate(()=>[...document.querySelectorAll('.rw-card')][1].getBoundingClientRect().top+(window.scrollY||document.body.scrollTop));
+await p.evaluate((y)=>{const t=y-40;window.scrollTo(0,t);document.documentElement.scrollTop=t;document.body.scrollTop=t;}, c2); await p.waitForTimeout(1500);
+const v = await p.evaluate(async ()=>{ const out=[]; for(const v of document.querySelectorAll('video')){ if(!v.currentSrc)continue; const t0=v.currentTime; await new Promise(r=>setTimeout(r,500)); out.push({src:v.currentSrc.split('/').pop(),paused:v.paused,advancing:v.currentTime>t0,radius:getComputedStyle(v).borderRadius}); } return out; });
+console.log('mobile videos:', JSON.stringify(v));
+await p.screenshot({ path:'audit/out/diff/gif_mobile_card2.png', clip:{x:0,y:80,width:390,height:520} });
+await b.close();

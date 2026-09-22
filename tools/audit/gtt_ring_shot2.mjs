@@ -1,0 +1,15 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ headless: true });
+const p = await (await b.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' })).newPage();
+await p.goto('http://localhost:5199/', { waitUntil: 'load' }).catch(() => {});
+await p.waitForTimeout(700);
+await p.evaluate(() => { const el = document.getElementById('more-about-me'); const y = el.getBoundingClientRect().top + (window.scrollY||document.body.scrollTop) + 500; document.documentElement.scrollTop=y; document.body.scrollTop=y; });
+await p.waitForTimeout(700);
+const gb = await p.evaluate(() => { const r = document.querySelector('.gtt').getBoundingClientRect(); return { x:Math.round(r.left+r.width/2), y:Math.round(r.top+r.height/2), r: JSON.stringify({l:Math.round(r.left),t:Math.round(r.top),w:Math.round(r.width),h:Math.round(r.height)}) }; });
+console.log('gtt rect', gb.r, 'center', gb.x, gb.y);
+await p.mouse.move(gb.x, gb.y); await p.waitForTimeout(700);
+const op = await p.evaluate(() => getComputedStyle(document.querySelector('.gtt__ring')).opacity);
+console.log('ring opacity after hover:', op);
+await p.screenshot({ path: 'audit/out/fix5/mine_gtt_corner.png', clip: { x: 1240, y: 700, width: 200, height: 200 } });
+console.log('saved');
+await b.close();

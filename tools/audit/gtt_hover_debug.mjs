@@ -1,0 +1,20 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ headless: true });
+const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+await p.goto('http://localhost:5199/', { waitUntil: 'load' }).catch(()=>{});
+await p.waitForTimeout(800);
+console.log('hover:hover matches =', await p.evaluate(()=>matchMedia('(hover: hover) and (pointer: fine)').matches));
+await p.evaluate(() => { const el=document.getElementById('more-about-me'); const y=el.getBoundingClientRect().top+(window.scrollY||document.body.scrollTop)+500; window.scrollTo(0,y); document.documentElement.scrollTop=y; document.body.scrollTop=y; });
+await p.waitForTimeout(700);
+console.log('gtt show =', await p.evaluate(()=>document.querySelector('.gtt').classList.contains('gtt--show')));
+await p.hover('.gtt');
+await p.waitForTimeout(600);
+const s = await p.evaluate(()=>({ labelOp: getComputedStyle(document.querySelector('.gtt__label')).opacity, arrowTf: getComputedStyle(document.querySelector('.gtt__arrow')).transform }));
+console.log('after .hover(.gtt):', JSON.stringify(s));
+// also try hovering the inner circle
+await p.hover('.gtt__circle'); await p.waitForTimeout(400);
+console.log('after .hover(.gtt__circle):', JSON.stringify(await p.evaluate(()=>({ labelOp: getComputedStyle(document.querySelector('.gtt__label')).opacity }))));
+const r = await p.evaluate(()=>{ const b=document.querySelector('.gtt').getBoundingClientRect(); return {l:Math.round(b.left),t:Math.round(b.top),w:Math.round(b.width),h:Math.round(b.height)}; });
+console.log('gtt rect', JSON.stringify(r));
+await p.screenshot({ path: 'audit/out/gtt2/dbg_hover.png', clip: { x: Math.max(0,r.l-40), y: Math.max(0,r.t-40), width: 160, height: 160 } });
+await b.close();

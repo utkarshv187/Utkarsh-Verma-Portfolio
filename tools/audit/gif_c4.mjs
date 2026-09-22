@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ headless: true });
+const p = await (await b.newContext({ viewport:{width:1440,height:1000} })).newPage();
+await p.goto('http://localhost:5199/',{waitUntil:'load'}).catch(()=>{});
+await p.waitForTimeout(800);
+const c4 = await p.evaluate(()=>[...document.querySelectorAll('.rw-card')][3].getBoundingClientRect().top+(window.scrollY||document.body.scrollTop));
+await p.evaluate((y)=>{const t=y-20;window.scrollTo(0,t);document.documentElement.scrollTop=t;document.body.scrollTop=t;}, c4); await p.waitForTimeout(1500);
+const v = await p.evaluate(async ()=>{ const v=[...document.querySelectorAll('video')].find(x=>x.currentSrc.includes('rw-c4-c')); if(!v) return 'not found'; const t0=v.currentTime; await new Promise(r=>setTimeout(r,600)); return { paused:v.paused, advancing:v.currentTime>t0, t:+v.currentTime.toFixed(2), inView:(()=>{const r=v.getBoundingClientRect();return r.top<1000&&r.bottom>0;})() }; });
+console.log('rw-c4-c video when card4 in view:', JSON.stringify(v));
+await b.close();

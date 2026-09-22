@@ -1,0 +1,32 @@
+{
+  "divider": [
+    {
+      "tag": "DIV",
+      "depth": 0,
+      "cls": "",
+      "w": 16,
+      "h": 524,
+      "x": 308,
+      "bg": "rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 2",
+      "filter": "none",
+      "animation": "none 0s",
+      "transform": "matrix(1, 0, 0, 1, -1.64, 0)",
+      "boxShadow": "none",
+      "borderRadius": "0px",
+      "backdrop": "none"
+    }
+  ],
+  "before": {
+    "content": "none",
+    "bg": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box",
+    "anim": "none",
+    "filter": "none"
+  },
+  "after": {
+    "content": "none",
+    "bg": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box",
+    "anim": "none",
+    "filter": "none"
+  },
+  "parentHTML": "<div style=\"position:relative;width:100%;height:100%;overflow:hidden;cursor:ew-resize;user-select:none;border-radius:8px\" tabindex=\"0\" role=\"slider\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-orientation=\"horizontal\"><div style=\"position:absolute;top:0;left:0;width:100%;height:100%;background-image:url(https://framerusercontent.com/images/PqGj8J2MVkxfOEclM8s4LM1lfiY.jpg?width=1952&amp;height=1944);background-size:cover;background-position:center\" aria-label=\"\" role=\"img\"></div><div style=\"position:absolute;top:0;left:0;width:100%;height:100%;background-image:url(https://fram"
+}
