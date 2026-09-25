@@ -41,10 +41,14 @@ export function Footer() {
             </div>
           </div>
 
-          <picture className="footer__badge">
-            <source srcSet="/images/footer-badge.avif" type="image/avif" />
-            <img src="/images/footer-badge.webp" alt="Featured on Wall of Portfolios · 2026" width={112} height={212} loading="lazy" />
-          </picture>
+          {/* hover (fine pointer): the badge shrinks to 90% and a two-line script caption fades in below */}
+          <div className="footer__badge">
+            <picture className="footer__badge-img">
+              <source srcSet="/images/footer-badge.avif" type="image/avif" />
+              <img src="/images/footer-badge.webp" alt="Featured on Wall of Portfolios · 2026" width={112} height={212} loading="lazy" />
+            </picture>
+            <p className="footer__badge-cap" aria-hidden="true">Featured on<br />Wall Of Portfolios</p>
+          </div>
         </div>
       </div>
     </footer>

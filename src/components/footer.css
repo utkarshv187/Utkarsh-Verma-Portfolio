@@ -97,11 +97,44 @@
 /* ---- Wall Of Portfolios badge (top-right on desktop) ---- */
 .footer__badge {
   position: absolute;
+  z-index: 2; /* above the full-width .footer__copy (z1), which otherwise swallows the badge's hover */
   top: 130px;
   right: 0;
   width: 112px;
 }
 .footer__badge img { display: block; width: 112px; height: 212px; }
+/* Hover: the badge IMAGE shrinks to 90% (the unscaled wrapper stays the hover target, so the edge
+   never slips out from under the pointer) and the two-line caption fades in below, in sync. The
+   caption is absolute + click-through, so it takes no layout and never extends the hover area. */
+.footer__badge-img {
+  display: block;
+  transform-origin: 50% 50%;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.footer__badge-cap {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 2px);
+  margin: 0;
+  font-family: var(--font-script); /* Square Peg, as in More About Me */
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.1;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -6px);
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .footer__badge:hover .footer__badge-img { transform: scale(0.9); }
+  .footer__badge:hover .footer__badge-cap { opacity: 1; transform: translate(-50%, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer__badge-img, .footer__badge-cap { transition: opacity 0.2s linear; }
+}
 
 /* ================= TABLET / PHONE (<=1279.98) — centred, flows (not pinned) ================= */
 @media (max-width: 1279.98px) {
