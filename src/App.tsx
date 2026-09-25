@@ -9,9 +9,11 @@ import { AboutMe } from './components/AboutMe';
 import { Hobbies } from './components/Hobbies';
 import { Footer } from './components/Footer';
 import { GoToTop } from './components/GoToTop';
+import { useScrollReveal } from './lib/scrollReveal';
 import './app.css';
 
 export function App() {
+  useScrollReveal(); // site-wide blur → sharp scroll reveal (after children mount, before paint)
   return (
     <>
       <Cursor />
