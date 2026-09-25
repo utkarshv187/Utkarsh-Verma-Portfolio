@@ -94,12 +94,17 @@
   }
 }
 
-/* Purple aurora background — living, drifting glow.
-   Live renders this as an animated canvas shader (slow purple light that flows across the
-   upper area and breathes). Approximated here with two big, soft violet/magenta blobs that
-   slowly drift HORIZONTALLY + breathe (scale) on the dark base, on offset long eased loops,
-   so the glow reshapes continuously. GPU transforms/opacity only — no layout animation.
-   Concentrated in the upper band (matches live); .hero__fade ramps the bottom to black. */
+/* Purple aurora background — a busy, living glow.
+   Live renders this as an animated canvas shader (purple light flowing across the upper area with
+   turbulence). Rebuilt as SIX soft blobs of mixed sizes on the dark base, each on its OWN eased CSS
+   loop (different durations + negative delays = offset phases, so they never sync), with wide
+   horizontal travel + vertical wander across the upper band, breathing scale/opacity and a slow hue
+   shift on two. Two blobs also ease toward the cursor (see useAurora in Hero.tsx), and an animated
+   film grain sits on top. .hero__fade ramps the bottom to black; everything stays at z0, behind the
+   portrait + text.
+   Performance: CSS keyframes on transform/opacity/filter:hue-rotate run on the compositor thread
+   (they keep going even if the main thread is busy). Blob softness is the radial gradient itself —
+   a STATIC "blur" rasterised once — so no blur radius is ever animated or re-filtered per frame. */
 .hero__aurora {
   position: absolute;
   inset: 0;
@@ -107,39 +112,139 @@
   overflow: hidden;
   background: var(--bg-dark-3);
 }
-/* Blob layers (framer-motion drives x/y/scale/opacity — see Hero.tsx). Softness comes from
-   the radial gradient, so there is NO heavy filter blur -> the moving layer composites cheaply
-   and smoothly on any GPU. */
 .hero__aurora-blob {
   position: absolute;
   border-radius: 50%;
   will-change: transform, opacity;
+  animation: var(--aur-name) var(--aur-dur) cubic-bezier(0.45, 0, 0.55, 1) var(--aur-delay, 0s) infinite alternate both;
 }
-/* Three blobs at DIFFERENT radii for an organic (non-uniform) glow. */
-/* dominant violet glow — largest */
+/* pointer-parallax wrappers (transform written by useAurora); full-bleed so the child's % sizes
+   and positions resolve exactly as if it sat directly in .hero__aurora */
+.hero__aurora-follow {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+/* A — dominant violet glow, extra-large, slow sweep */
 .hero__aurora-blob--a {
-  width: 78%;
-  height: 84%;
-  left: -10%;
-  top: -28%;
+  width: 80%;
+  height: 86%;
+  left: -14%;
+  top: -30%;
   background: radial-gradient(closest-side, rgba(155, 52, 240, 0.9) 0%, rgba(112, 32, 194, 0.42) 38%, rgba(90, 26, 170, 0.14) 62%, rgba(12, 12, 31, 0) 80%);
+  --aur-name: aur-a; --aur-dur: 7.2s;
 }
-/* secondary magenta glow — medium */
+/* B — magenta, large, crosses the other way, hue drifts toward pink */
 .hero__aurora-blob--b {
-  width: 56%;
-  height: 60%;
-  left: 24%;
-  top: -8%;
-  background: radial-gradient(closest-side, rgba(192, 60, 218, 0.78) 0%, rgba(128, 44, 184, 0.32) 40%, rgba(12, 12, 31, 0) 78%);
+  width: 58%;
+  height: 62%;
+  left: 36%;
+  top: -14%;
+  background: radial-gradient(closest-side, rgba(192, 60, 218, 0.8) 0%, rgba(128, 44, 184, 0.32) 40%, rgba(12, 12, 31, 0) 78%);
+  --aur-name: aur-b; --aur-dur: 5.4s; --aur-delay: -2.1s;
 }
-/* deep indigo-violet accent — smallest, drifts on the longest loop */
+/* C — deep indigo-violet, medium, longest loop */
 .hero__aurora-blob--c {
   width: 44%;
   height: 50%;
-  left: 6%;
-  top: 2%;
-  background: radial-gradient(closest-side, rgba(138, 70, 236, 0.72) 0%, rgba(96, 40, 190, 0.3) 42%, rgba(12, 12, 31, 0) 76%);
+  left: 2%;
+  top: 4%;
+  background: radial-gradient(closest-side, rgba(138, 70, 236, 0.74) 0%, rgba(96, 40, 190, 0.3) 42%, rgba(12, 12, 31, 0) 76%);
+  --aur-name: aur-c; --aur-dur: 8.8s; --aur-delay: -4.6s;
 }
+/* E — electric blue-violet, small-medium, quick wander, hue drifts toward blue */
+.hero__aurora-blob--e {
+  width: 32%;
+  height: 36%;
+  left: 58%;
+  top: 18%;
+  background: radial-gradient(closest-side, rgba(104, 86, 255, 0.72) 0%, rgba(84, 52, 220, 0.26) 45%, rgba(12, 12, 31, 0) 76%);
+  --aur-name: aur-e; --aur-dur: 4.6s; --aur-delay: -1.3s;
+}
+/* F — cursor-follow glow (depth 0.55): soft violet-pink, medium */
+.hero__aurora-blob--f {
+  width: 38%;
+  height: 42%;
+  left: 31%;
+  top: 6%;
+  background: radial-gradient(closest-side, rgba(206, 96, 255, 0.62) 0%, rgba(150, 60, 230, 0.24) 45%, rgba(12, 12, 31, 0) 78%);
+  --aur-name: aur-f; --aur-dur: 6.1s; --aur-delay: -3.4s;
+}
+/* D — cursor-follow glow (depth 0.9, tracks closest): bright fuchsia core, small */
+.hero__aurora-blob--d {
+  width: 22%;
+  height: 26%;
+  left: 39%;
+  top: 14%;
+  background: radial-gradient(closest-side, rgba(236, 92, 230, 0.7) 0%, rgba(176, 60, 220, 0.26) 46%, rgba(12, 12, 31, 0) 78%);
+  --aur-name: aur-d; --aur-dur: 3.9s; --aur-delay: -0.8s;
+}
+/* Paths: translate % is of the blob's OWN box, so travel scales with the hero at every breakpoint
+   (A's 44% ≈ 500px on desktop). Four waypoints each, alternating, so the loop never visibly restarts. */
+@keyframes aur-a {
+  0%   { transform: translate(-8%, 0%) scale(0.86); opacity: 0.74; }
+  35%  { transform: translate(24%, 14%) scale(1.16); opacity: 1; }
+  70%  { transform: translate(44%, -6%) scale(1.02); opacity: 0.84; }
+  100% { transform: translate(12%, 20%) scale(1.3); opacity: 1; }
+}
+@keyframes aur-b {
+  0%   { transform: translate(18%, 4%) scale(1.25); opacity: 0.6; filter: hue-rotate(0deg); }
+  30%  { transform: translate(-30%, 22%) scale(0.86); opacity: 0.95; }
+  65%  { transform: translate(-62%, 2%) scale(1.1); opacity: 0.72; filter: hue-rotate(28deg); }
+  100% { transform: translate(-20%, 30%) scale(0.78); opacity: 1; filter: hue-rotate(-14deg); }
+}
+@keyframes aur-c {
+  0%   { transform: translate(0%, 0%) scale(0.92); opacity: 0.5; }
+  40%  { transform: translate(70%, -18%) scale(1.4); opacity: 0.9; }
+  75%  { transform: translate(110%, 26%) scale(1.05); opacity: 0.66; }
+  100% { transform: translate(40%, 40%) scale(1.5); opacity: 0.86; }
+}
+@keyframes aur-e {
+  0%   { transform: translate(0%, 0%) scale(1); opacity: 0.55; filter: hue-rotate(0deg); }
+  33%  { transform: translate(-90%, 34%) scale(1.35); opacity: 0.95; filter: hue-rotate(-24deg); }
+  66%  { transform: translate(-150%, -12%) scale(0.85); opacity: 0.7; }
+  100% { transform: translate(-60%, -30%) scale(1.2); opacity: 1; filter: hue-rotate(18deg); }
+}
+@keyframes aur-f {
+  0%   { transform: translate(-40%, 10%) scale(0.9); opacity: 0.6; }
+  50%  { transform: translate(50%, -20%) scale(1.25); opacity: 1; }
+  100% { transform: translate(-10%, 40%) scale(1.05); opacity: 0.75; }
+}
+@keyframes aur-d {
+  0%   { transform: translate(60%, -30%) scale(1.1); opacity: 0.7; }
+  40%  { transform: translate(-80%, 40%) scale(0.8); opacity: 1; }
+  100% { transform: translate(40%, 70%) scale(1.3); opacity: 0.8; }
+}
+/* Animated grain — an SVG fractal-noise tile (rasterised ONCE), on its own layer that is 256px
+   larger than the hero on every side and jumps between offsets in steps (~12fps), like film grain /
+   the shader's turbulence. Only transform changes, so the tile is never repainted. Low opacity +
+   soft-light keeps it texture, not haze; clipped by .hero__aurora's overflow:hidden (hero only). */
+.hero__grain {
+  position: absolute;
+  inset: -256px;
+  pointer-events: none;
+  opacity: 0.4; /* mid-grey noise is neutral under soft-light, so this reads as fine grain, not haze */
+  mix-blend-mode: soft-light;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E") repeat;
+  will-change: transform;
+  animation: aur-grain 0.8s steps(1) infinite;
+}
+@keyframes aur-grain {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(-96px, 64px); }
+  20%  { transform: translate(112px, -128px); }
+  30%  { transform: translate(-176px, -32px); }
+  40%  { transform: translate(48px, 160px); }
+  50%  { transform: translate(-64px, -192px); }
+  60%  { transform: translate(208px, 80px); }
+  70%  { transform: translate(-224px, 144px); }
+  80%  { transform: translate(144px, -64px); }
+  90%  { transform: translate(-16px, 224px); }
+}
+/* hero fully hidden (covered by Work Experience / scrolled off): stop spending frames on it */
+.hero__aurora.is-paused .hero__aurora-blob,
+.hero__aurora.is-paused .hero__grain { animation-play-state: paused; }
 /* bottom ramp to black (fades portrait bottom + bg) */
 .hero__fade {
   position: absolute;
@@ -398,7 +503,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .badge__svg { animation: none; }
-  /* aurora blobs are framer-motion driven and already frozen via the reduced-motion hook */
+  /* aurora: freeze the drift + grain; the blobs sit at their resting positions as a static glow
+     (the cursor follow is also disabled in useAurora) */
+  .hero__aurora-blob, .hero__grain { animation: none; }
   .hero__graffiti-img, .hero__thatsme { transition: none; }
 }
 
