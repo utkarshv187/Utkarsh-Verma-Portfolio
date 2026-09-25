@@ -3,9 +3,9 @@
 export const SITE_URL = 'https://uxuiuv.vercel.app';
 
 // All external links, captured from the live site (see AUDIT.md §7).
-// Résumé uses the bare /view (authorized: drop ?usp=sharing). Footer résumé reuses the header file (authorized deviation 1c).
+// One résumé link used site-wide (header Résumé button, all breakpoints), opened in a new tab.
 export const LINKS = {
-  resume: 'https://drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view',
+  resume: 'https://drive.google.com/file/d/1EvrImXsOyJRC91z4bxUpK2U5gzaE_x-I/view?usp=sharing',
   whatsapp:
     'https://api.whatsapp.com/send/?phone=918869808079&text=Hi+Utkarsh%2C+I+visited+your+portfolio+and+would+like+to+discuss+an+opportunity.&type=phone_number&app_absent=0',
   email: 'mailto:utkarshv187@gmail.com',
