@@ -20,8 +20,12 @@
     <meta name="twitter:description" content="Let's work together. Call/WhatsApp at +918869808079" />
     <meta name="twitter:image" content="https://uxuiuv.vercel.app/images/og.png" />
 
-    <!-- Favicons (self-hosted, mirrors the original set) -->
-    <link rel="icon" href="/images/favicon.png" />
+    <!-- Favicons. favicon.svg is theme-adaptive (dark mark on light tabs, white on dark tabs — the
+         original site served a dark/light PNG pair for the same reason). The PNG (dark mark on a gold
+         tile, visible on any tab colour) is the fallback for browsers without SVG favicons, e.g. Safari;
+         it's listed first WITH sizes so SVG-capable browsers still choose the SVG. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 
     <!-- Font preloads (added as fonts are subset) -->
