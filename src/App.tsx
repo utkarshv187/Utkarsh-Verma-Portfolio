@@ -10,10 +10,12 @@ import { Hobbies } from './components/Hobbies';
 import { Footer } from './components/Footer';
 import { GoToTop } from './components/GoToTop';
 import { useScrollReveal } from './lib/scrollReveal';
+import { useMagneticButtons } from './lib/magnetic';
 import './app.css';
 
 export function App() {
   useScrollReveal(); // site-wide blur → sharp scroll reveal (after children mount, before paint)
+  useMagneticButtons(); // magnetic hover + springy press on the header/footer/go-to-top buttons
   return (
     <>
       <Cursor />
