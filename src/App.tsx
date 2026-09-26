@@ -12,14 +12,14 @@ import { Footer } from './components/Footer';
 import { GoToTop } from './components/GoToTop';
 import { useScrollReveal } from './lib/scrollReveal';
 import { useMagneticButtons } from './lib/magnetic';
-import { useButtonSounds } from './lib/sound';
+import { useSounds } from './lib/sound';
 import { SoundToggle } from './components/SoundToggle';
 import './app.css';
 
 export function App() {
   useScrollReveal(); // site-wide fade + rise scroll reveal (after children mount, before paint)
   useMagneticButtons(); // magnetic hover + springy press on the header/footer/go-to-top buttons
-  useButtonSounds(); // button hover tick + click (silent unless the visitor turned sound on)
+  useSounds(); // sound: unlock on first gesture, background preload, button hover + click
   // page-load intro (flag set in index.html before first paint): drop it once the ~0.7s settle has
   // actually FINISHED, so it runs exactly once per load. Keyed off animationend rather than a timer
   // from mount, because the animations only start at the first rendered frame, which can come later.

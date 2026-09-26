@@ -1,6 +1,7 @@
 import './footer.css';
 import { LINKS, EXTERNAL } from '../config/site';
 import { WhatsAppIcon, MailIcon, LinkedInIcon, ArrowUpRight } from './Icons';
+import { play } from '../lib/sound';
 
 // FOOTER / CONTACT — the gold (#FFB705) closing CTA. A sticky CTA pins as the section scrolls up
 // over the hobbies grid: a pale question heading + a white CTA heading (both swap by breakpoint —
@@ -42,7 +43,13 @@ export function Footer() {
           </div>
 
           {/* hover (fine pointer): the badge shrinks to 90% and a two-line script caption fades in below */}
-          <div className="footer__badge">
+          <div
+            className="footer__badge"
+            onPointerEnter={(e) => {
+              // a short heroic flourish on hover (mouse / fine pointer only; 1.5s re-trigger gap)
+              if (e.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) play('heroic');
+            }}
+          >
             <picture className="footer__badge-img">
               <source srcSet="/images/footer-badge.avif" type="image/avif" />
               <img src="/images/footer-badge.webp" alt="Featured on Wall of Portfolios · 2026" width={112} height={212} loading="lazy" />

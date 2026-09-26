@@ -2,6 +2,7 @@ import './work-experience.css';
 import { useEffect, useRef, useState } from 'react';
 import { SpinnyLogo } from './SpinnyLogo';
 import { usePointerWithin, usePrefersReducedMotion } from '../lib/hooks';
+import { playSequence } from '../lib/sound';
 
 type Row = { company: 'spinny' | string; roleFull: string; roleShort: string; date: string };
 const ROWS: Row[] = [
@@ -84,6 +85,20 @@ export function WorkExperience() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  // scramble sound, in sync with the ~1s digit scramble (all three cards scramble together, so one
+  // sound): a soft flurry of digital blips that thins out as the digits lock left→right, then a
+  // gentle two-note "settle" exactly when the values land at 1.0s. No scramble under reduced motion.
+  useEffect(() => {
+    if (!statsIn || reduced) return;
+    const offsets: number[] = [];
+    for (let t = 0; t < 0.95; ) {
+      offsets.push(t);
+      t += 0.028 + 0.035 * Math.pow(t / 0.95, 1.5) + Math.random() * 0.008;
+    }
+    playSequence('blip', offsets, { gap: 1200, rates: [1, 1.18, 0.86, 1.32, 0.94, 1.1] });
+    playSequence('settle', [1.0], { gap: 1200 });
+  }, [statsIn, reduced]);
 
   // Pinch-to-zoom the Spinny highlights image (touch/pen only — mouse users are unaffected). Two
   // fingers scale ONLY the <img> within its clipped frame (.we__reveal-inner has overflow:hidden, so

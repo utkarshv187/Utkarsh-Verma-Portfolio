@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { startLoop } from '../lib/sound';
 import { COUNTER_ORIGIN, elapsedSince, formatElapsed } from '../lib/dateDiff';
 
 // Left header block. Default: "Designing for" + live counter.
@@ -12,8 +13,17 @@ export function HeaderIntro() {
     return () => window.clearInterval(id);
   }, []);
 
+  // stopwatch ticking while the counter is hovered (mouse / fine pointer only; loops until leave)
+  const stopRef = useRef<() => void>(() => {});
+  useEffect(() => () => stopRef.current(), []);
+  const onEnter = (e: React.PointerEvent) => {
+    if (e.pointerType !== 'mouse' || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    stopRef.current = startLoop('stopwatch');
+  };
+  const onLeave = () => { stopRef.current(); stopRef.current = () => {}; };
+
   return (
-    <div className="intro" aria-label="Designing for">
+    <div className="intro" aria-label="Designing for" onPointerEnter={onEnter} onPointerLeave={onLeave}>
       <div className="intro__default">
         <p className="intro__label">Designing for</p>
         <div className="intro__value" role="timer" aria-label="Forward timer">{text}</div>

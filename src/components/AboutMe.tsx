@@ -1,7 +1,8 @@
 import './about-me.css';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { useMarquee } from '../lib/useMarquee';
-import { play } from '../lib/sound';
+import { playSequence } from '../lib/sound';
+import { usePrefersReducedMotion } from '../lib/hooks';
 
 // The bio: a sequence of words. Five words are ANCHORS — the gold script annotation (caret +
 // phrase) is a child of that word's span, so it always sits right after that exact word, at every
@@ -39,21 +40,17 @@ export function AboutMe() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
-  // one soft tick as EACH gold script phrase appears (silent unless sound is on). Timed off each
-  // anchor's own CSS reveal delay (--delay), so the ticks always land with the phrases they belong to.
+  // typewriter under the BODY TEXT reveal: one very quiet keystroke per word, scheduled on the audio
+  // clock at that word's own reveal delay (--wd), so the typing runs WITH the words as they fade in
+  // and stops at the last one. (The gold script phrases have no sound.) No reveal animation under
+  // reduced motion, so no typing either.
+  const reduced = usePrefersReducedMotion();
   useEffect(() => {
-    if (!revealed) return;
-    const anchors = [...(bioRef.current?.querySelectorAll<HTMLElement>('.about__anchor') ?? [])];
-    const timers = anchors.map((a) => {
-      const s = parseFloat(getComputedStyle(a).getPropertyValue('--delay')) || 0;
-      return window.setTimeout(() => {
-        // only for a phrase the visitor can actually see appear (not if they've scrolled away since)
-        const r = a.getBoundingClientRect();
-        if (r.bottom > 0 && r.top < window.innerHeight) play('tick');
-      }, s * 1000 + 60); // + a beat for the fade to start
-    });
-    return () => timers.forEach((t) => window.clearTimeout(t));
-  }, [revealed]);
+    if (!revealed || reduced) return;
+    const words = [...(bioRef.current?.querySelectorAll<HTMLElement>('.about__word') ?? [])];
+    const offsets = words.map((w) => parseFloat(w.style.getPropertyValue('--wd')) || 0);
+    playSequence('type', offsets, { gap: 3000, rateJitter: 0.08, gainJitter: 0.35 });
+  }, [revealed, reduced]);
   const loop = [...ICONS, ...ICONS];
   // tools ticker: 50px/s auto (2x the old ~25), eases to half (~25) on hover; drag-scrollable
   const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 50, hoverFactor: 0.5 });
