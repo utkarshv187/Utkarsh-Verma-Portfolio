@@ -1,13 +1,14 @@
 import { useEffect, useSyncExternalStore } from 'react';
 
-// UI sound — ON by default ("armed"), and the visitor can mute it with the SoundToggle.
-// - Browsers only allow audio after a real user gesture (click / tap / key press — NOT scroll or
-//   hover). So sound is armed from the start and the FIRST such gesture anywhere silently unlocks the
-//   AudioContext; from then on everything plays (unless muted). Nothing broken is ever shown: before
-//   the unlock, sounds are simply skipped.
-// - The small WAVs are fetched + decoded in the background once the page is idle (decoded on an
-//   OfflineAudioContext, which needs no gesture), so even the unlocking click is already audible.
-// - The mute choice is remembered for the browser tab (sessionStorage), so a reload keeps it.
+// UI sound — OFF by default; the visitor turns it ON with the SoundToggle. Until then nothing plays
+// and nothing audio-related is even created or fetched.
+// - The choice is remembered for the browser tab (sessionStorage), so a reload keeps it.
+// - Browsers only allow audio after a real user gesture (click / tap / key press — not scroll or
+//   hover). Turning sound on with the toggle IS that gesture. After a reload of a tab where sound
+//   was left ON, it's armed and the first such gesture silently unlocks the AudioContext (before
+//   that, sounds are simply skipped — nothing broken is shown).
+// - Once enabled, the small WAVs are fetched + decoded in the background (on an OfflineAudioContext,
+//   which needs no gesture), so even the unlocking click is already audible.
 // - Muted = fully silent: play/sequence/loop are no-ops, running loops stop, the context suspends.
 // - Anti-noise: each sound has a minimum re-trigger gap and at most 4 voices overlap at once
 //   (a scheduled sequence — the typewriter, the scramble flurry — counts as one voice).
@@ -28,11 +29,11 @@ const MASTER = 0.9;
 const STORE_KEY = 'uv-sound';
 
 const readStored = (): boolean => {
-  try { return sessionStorage.getItem(STORE_KEY) !== 'off'; } catch { return true; }
+  try { return sessionStorage.getItem(STORE_KEY) === 'on'; } catch { return false; }
 };
 
-let enabled = typeof window === 'undefined' ? false : readStored(); // armed ON unless muted this session
-let loadPlayed = false; // the page-load sound plays once per page load, at the first unlock
+let enabled = typeof window === 'undefined' ? false : readStored(); // OFF unless turned on this session
+let loadPlayed = false; // the page-load sound plays once per page load, when sound first starts
 let ctx: AudioContext | null = null;
 let master: GainNode | null = null;
 let loading: Promise<void> | null = null;
@@ -200,7 +201,8 @@ export function useSounds(): void {
     };
     GESTURES.forEach((t) => window.addEventListener(t, unlock, { capture: true, passive: true }));
 
-    // preload in the background once the page is idle (never competes with first paint / LCP)
+    // if sound is on (left on earlier this tab session), preload once the page is idle — never
+    // competes with first paint / LCP; when it's off, nothing is fetched until the toggle turns it on
     const preload = () => { if (enabled) void loadAll(); };
     const hasIdle = 'requestIdleCallback' in window; // not in older Safari
     const idle = hasIdle ? window.requestIdleCallback(preload, { timeout: 3000 }) : window.setTimeout(preload, 1500);

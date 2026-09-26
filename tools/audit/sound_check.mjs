@@ -1,7 +1,7 @@
-// UI sound check (src/lib/sound.ts). Sound is ARMED ON by default and unlocks on the first real
-// gesture. Instruments Web Audio: every buffer start is logged with its sound name and its scheduled
-// time relative to the audio clock (so sequences can be checked against the animations), and every
-// stop() is logged (so loops can be checked to end).
+// UI sound check (src/lib/sound.ts). Sound is OFF by default: nothing plays or loads until the
+// toggle turns it on, and the choice persists for the tab. Instruments Web Audio: every buffer start
+// is logged with its sound name and its absolute scheduled time on the audio clock (so sequences can
+// be checked against the animations), and every stop() is logged (so loops can be checked to end).
 // usage: node tools/audit/sound_check.mjs [url]
 import { chromium } from 'playwright';
 const PAGE = process.argv[2] || 'http://localhost:5199/';
@@ -47,17 +47,23 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   const warns = []; p.on('console', (m) => { if (m.type() === 'warning' || m.type() === 'error') warns.push(m.text()); });
   const errs = []; p.on('pageerror', (e) => errs.push(e.message));
   await p.addInitScript(instrument);
-  await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(3500); // idle preload
+  await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(3500); // past any idle preload
   const step = async (label, fn, wait = 400) => { const n0 = (await snap(p)).plays.length; await fn(); await p.waitForTimeout(wait); const got = (await snap(p)).plays.slice(n0); log(label, names(got)); return got; };
 
+  // --- default: OFF, and nothing plays / loads until the toggle turns it on ---
   let s = await snap(p);
   log('DEFAULT: toggle aria-pressed / label', await p.evaluate(() => { const t = document.querySelector('.sound-toggle'); return `${t.getAttribute('aria-pressed')} / "${t.getAttribute('aria-label')}"`; }));
-  log('DEFAULT: files preloaded (idle) / AudioContexts', `${s.fetches.length} / ${s.ctx}`);
+  log('DEFAULT: files fetched / AudioContexts', `${s.fetches.length} / ${s.ctx}`);
   let c = await rectOf(p, '.header__nav--desktop .resume');
-  await step('before any gesture: hover Résumé', async () => { await p.mouse.move(1430, 400); await p.mouse.move(c.x, c.y, { steps: 3 }); await p.mouse.move(700, 500); });
-  // unlock with a key press (a hero click can land on a link and open a tab)
-  await step('FIRST GESTURE (key press) -> unlock', () => p.keyboard.press('Shift'), 800);
-  s = await snap(p); log('  AudioContexts after unlock', s.ctx);
+  await step('OFF: key press, hover Résumé, click Contact', async () => { await p.keyboard.press('Shift'); await p.mouse.move(1430, 400); await p.mouse.move(c.x, c.y, { steps: 3 }); const r = await rectOf(p, '.contact'); await p.mouse.click(r.x, r.y); await p.mouse.move(700, 500); });
+  c = await rectOf(p, '.intro');
+  await step('OFF: hover "Designing for" counter', async () => { await p.mouse.move(c.x, c.y, { steps: 3 }); await p.waitForTimeout(800); await p.mouse.move(700, 500); });
+  s = await snap(p); log('OFF: files fetched / AudioContexts after all that', `${s.fetches.length} / ${s.ctx}`);
+  // --- turn it ON with the toggle ---
+  c = await rectOf(p, '.sound-toggle');
+  await step('click toggle -> ON', () => p.mouse.click(c.x, c.y), 900);
+  s = await snap(p); log('  files fetched / AudioContexts after ON', `${s.fetches.length} / ${s.ctx}`);
+  log('  toggle aria-pressed / label', await p.evaluate(() => { const t = document.querySelector('.sound-toggle'); return `${t.getAttribute('aria-pressed')} / "${t.getAttribute('aria-label')}"`; }));
   c = await rectOf(p, '.header__nav--desktop .resume');
   await p.mouse.move(1430, 400);
   await step('hover Résumé', () => p.mouse.move(c.x, c.y, { steps: 3 }));
@@ -127,13 +133,46 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   const p = await ctx.newPage();
   await p.addInitScript(instrument);
   await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(3000);
-  log('PHONE: armed by default', await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed')));
-  await p.touchscreen.tap(200, 400); await p.waitForTimeout(800);
-  log('PHONE: first tap -> unlock', names((await snap(p)).plays));
-  const n0 = (await snap(p)).plays.length;
+  log('PHONE: default aria-pressed (false = off)', await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed')));
   ctx.on('page', (np) => np.close()); // résumé opens a new tab
-  const r = await rectOf(p, '.resume--mobile'); await p.touchscreen.tap(r.x, r.y); await p.waitForTimeout(400);
-  log('PHONE: tap Résumé (no hover sound on touch)', names((await snap(p)).plays.slice(n0)));
+  let r = await rectOf(p, '.resume--mobile'); await p.touchscreen.tap(r.x, r.y); await p.waitForTimeout(400);
+  let s = await snap(p);
+  log('PHONE (off): tap Résumé', `${names(s.plays)} · files ${s.fetches.length} · AudioContexts ${s.ctx}`);
+  r = await rectOf(p, '.sound-toggle'); await p.touchscreen.tap(r.x, r.y); await p.waitForTimeout(900);
+  log('PHONE: tap toggle -> ON', names((await snap(p)).plays));
+  const n0 = (await snap(p)).plays.length;
+  r = await rectOf(p, '.resume--mobile'); await p.touchscreen.tap(r.x, r.y); await p.waitForTimeout(400);
+  log('PHONE (on): tap Résumé (no hover sound on touch)', names((await snap(p)).plays.slice(n0)));
   await ctx.close();
+}
+
+// ---------- a whole muted visit: scroll the full page (scramble + typewriter triggers) ----------
+{
+  const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+  await p.addInitScript(instrument);
+  await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(2500);
+  await p.keyboard.press('Shift');
+  const H = await p.evaluate(() => document.scrollingElement.scrollHeight);
+  for (let y = 0; y < H; y += 250) { await setY(p, y); await p.waitForTimeout(50); }
+  await p.waitForTimeout(1500);
+  const s = await snap(p);
+  log('OFF, whole-page scroll: plays / files / contexts', `${s.plays.length} / ${s.fetches.length} / ${s.ctx}`);
+  await p.context().close();
+}
+
+// ---------- turned ON, then reload: stays on (session), unlocks on the first gesture ----------
+{
+  const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+  await p.addInitScript(instrument);
+  await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(1200);
+  const r = await rectOf(p, '.sound-toggle'); await p.mouse.click(r.x, r.y); await p.waitForTimeout(600);
+  await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(3500);
+  log('ON + RELOAD: aria-pressed (true = still on)', await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed')));
+  let s = await snap(p);
+  log('  before any gesture: plays / AudioContexts', `${s.plays.length} / ${s.ctx}`);
+  await p.keyboard.press('Shift'); await p.waitForTimeout(800);
+  s = await snap(p);
+  log('  first key press -> unlock', names(s.plays));
+  await p.context().close();
 }
 await b.close();
