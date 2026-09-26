@@ -1,10 +1,11 @@
 import './hero.css';
 import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { cancelFrame, frame, motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { RoleTicker, ROLES } from './RoleTicker';
 import { RotatingBadge } from './RotatingBadge';
 import { LINKS, EXTERNAL } from '../config/site';
 import { usePrefersReducedMotion } from '../lib/hooks';
+import { readScroll } from '../lib/scroll';
 
 // Aurora runtime:
 // 1) cursor-follow — each .hero__aurora-follow wrapper eases toward the pointer's offset from the
@@ -12,24 +13,49 @@ import { usePrefersReducedMotion } from '../lib/hooks';
 //    rAF loop only runs while a wrapper is still travelling, and only for a real mouse.
 // 2) pause — the drift + grain are paused (animation-play-state) once the hero is fully hidden:
 //    covered by Work Experience (desktop/tablet, where the hero is pinned) or scrolled off (phone).
-function useAurora(ref: React.RefObject<HTMLDivElement | null>, reduced: boolean) {
+function useAurora(ref: React.RefObject<HTMLDivElement | null>, reduced: boolean, scrollY: MotionValue<number>) {
   useEffect(() => {
     const root = ref.current;
     const hero = root?.parentElement;
     if (!root || !hero) return;
 
-    let pauseRaf = 0;
-    const checkPaused = () => {
-      pauseRaf = 0;
-      const h = hero.getBoundingClientRect();
-      const we = document.querySelector('.we')?.getBoundingClientRect();
-      const hidden = h.bottom <= 0 || (!!we && we.top <= Math.max(0, h.top));
+    // Hidden = scrolled off the top, or Work Experience has risen to (or past) the hero's top edge.
+    // The geometry is measured once (and on resize / any layout shift), and each scroll only does
+    // arithmetic on framer's scrollY (the value it already measures once per frame for the skew) —
+    // re-reading element rects / window.scrollY on every scroll frame forced a layout flush per frame.
+    // The hero's on-screen top is its natural top, clamped at its sticky `top` when pinned.
+    const we = document.querySelector<HTMLElement>('.we');
+    const main = hero.parentElement!; // the hero is the first box in <main>, so they share a top
+    let geo = { heroTop: 0, heroH: 0, heroLeft: 0, heroW: 0, weTop: Infinity, stickyTop: null as number | null };
+    const measure = () => {
+      const s = readScroll();
+      const cs = getComputedStyle(hero);
+      const hr = hero.getBoundingClientRect(); // fractional, like the rect maths it replaces
+      geo = {
+        heroTop: main.getBoundingClientRect().top + s,
+        heroH: hr.height,
+        heroLeft: hr.left,
+        heroW: hr.width,
+        weTop: we ? we.getBoundingClientRect().top + s : Infinity,
+        stickyTop: cs.position === 'sticky' ? parseFloat(cs.top) || 0 : null,
+      };
+    };
+    // the hero's on-screen top for scroll position s (no layout read)
+    const heroTopAt = (s: number) => {
+      const natural = geo.heroTop - s;
+      return geo.stickyTop == null ? natural : Math.max(geo.stickyTop, natural);
+    };
+    const checkPaused = (s: number) => {
+      const top = heroTopAt(s);
+      const hidden = top + geo.heroH <= 0 || geo.weTop - s <= Math.max(0, top);
       root.classList.toggle('is-paused', hidden);
     };
-    const onScroll = () => { if (!pauseRaf) pauseRaf = requestAnimationFrame(checkPaused); };
-    window.addEventListener('scroll', onScroll, { passive: true, capture: true });
-    window.addEventListener('resize', onScroll);
-    checkPaused();
+    const remeasure = () => { measure(); checkPaused(readScroll()); };
+    const unsubScroll = scrollY.on('change', checkPaused);
+    window.addEventListener('resize', remeasure);
+    const ro = new ResizeObserver(remeasure); // fonts/images settling shift where WE starts
+    ro.observe(document.body);
+    remeasure();
 
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const wraps = reduced || !fine ? [] : [...root.querySelectorAll<HTMLElement>('.hero__aurora-follow')];
@@ -37,17 +63,20 @@ function useAurora(ref: React.RefObject<HTMLDivElement | null>, reduced: boolean
       const depth = parseFloat(el.dataset.depth || '0.5');
       return { el, depth, ease: depth > 0.7 ? 0.085 : 0.05, x: 0, y: 0 }; // smaller + nearer = quicker
     });
-    let px = 0, py = 0, inside = false, raf = 0, last = 0;
-    const tick = (t: number) => {
-      raf = 0;
+    // Runs on framer's frame loop (UPDATE phase, just after framer has measured the scroll for this
+    // frame), with the hero's rect computed from the cached geometry + that scroll — reading the
+    // hero's rect here every frame forced a style/layout flush per frame while the mouse moved.
+    let px = 0, py = 0, inside = false, running = false, last = 0;
+    const tick = ({ timestamp: t }: { timestamp: number }) => {
+      running = false;
       const dt = last ? Math.min(64, t - last) : 16.7;
       last = t;
       let moving = false;
       if (!root.classList.contains('is-paused')) {
-        const r = hero.getBoundingClientRect();
+        const top = heroTopAt(scrollY.get());
         for (const it of items) {
-          const tx = inside ? (px - (r.left + r.width / 2)) * it.depth : 0;
-          const ty = inside ? (py - (r.top + r.height * 0.35)) * it.depth * 0.6 : 0; // glow lives in the upper band
+          const tx = inside ? (px - (geo.heroLeft + geo.heroW / 2)) * it.depth : 0;
+          const ty = inside ? (py - (top + geo.heroH * 0.35)) * it.depth * 0.6 : 0; // glow lives in the upper band
           const k = 1 - Math.pow(1 - it.ease, dt / 16.7);
           it.x += (tx - it.x) * k;
           it.y += (ty - it.y) * k;
@@ -55,16 +84,16 @@ function useAurora(ref: React.RefObject<HTMLDivElement | null>, reduced: boolean
           it.el.style.transform = `translate3d(${it.x.toFixed(1)}px, ${it.y.toFixed(1)}px, 0)`;
         }
       }
-      if (moving) raf = requestAnimationFrame(tick);
+      if (moving) { running = true; frame.update(tick); }
       else last = 0;
     };
-    const kick = () => { if (!raf && items.length) raf = requestAnimationFrame(tick); };
+    const kick = () => { if (!running && items.length) { running = true; frame.update(tick); } };
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== 'mouse') return;
-      const r = hero.getBoundingClientRect();
+      const top = heroTopAt(scrollY.get());
       px = e.clientX;
       py = e.clientY;
-      inside = py >= r.top && py <= r.bottom && !root.classList.contains('is-paused');
+      inside = py >= top && py <= top + geo.heroH && !root.classList.contains('is-paused');
       kick();
     };
     const onLeave = () => { inside = false; kick(); };
@@ -73,22 +102,22 @@ function useAurora(ref: React.RefObject<HTMLDivElement | null>, reduced: boolean
       document.documentElement.addEventListener('pointerleave', onLeave);
     }
     return () => {
-      cancelAnimationFrame(pauseRaf);
-      cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', onScroll, { capture: true });
-      window.removeEventListener('resize', onScroll);
+      ro.disconnect();
+      cancelFrame(tick);
+      unsubScroll();
+      window.removeEventListener('resize', remeasure);
       window.removeEventListener('pointermove', onMove);
       document.documentElement.removeEventListener('pointerleave', onLeave);
       wraps.forEach((el) => { el.style.transform = ''; });
     };
-  }, [ref, reduced]);
+  }, [ref, reduced, scrollY]);
 }
 
 export function Hero() {
   const reduced = usePrefersReducedMotion();
   const auroraRef = useRef<HTMLDivElement>(null);
-  useAurora(auroraRef, reduced);
   const { scrollY } = useScroll();
+  useAurora(auroraRef, reduced, scrollY);
   // Pure scroll-POSITION → transform mapping (timeline scrub): bound to scroll offset, so it
   // HOLDS when you stop and unwinds as you scroll back up (no velocity/spring/settle). Both a
   // skew AND a real translateX are applied together, in opposite directions:

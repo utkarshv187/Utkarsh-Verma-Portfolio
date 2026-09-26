@@ -11,21 +11,17 @@ import { play } from '../lib/sound';
 export function GoToTop() {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    const evaluate = () => {
-      const el = document.getElementById('more-about-me');
-      if (!el) return;
-      // visible once the section has scrolled up to ~60% of the viewport (matches live's trigger),
-      // and stays true for all greater scroll; false again only above that point.
-      setShow(el.getBoundingClientRect().top <= window.innerHeight * 0.6);
-    };
-    evaluate();
-    // body is the scroll container -> a capture-phase window scroll listener still catches it
-    window.addEventListener('scroll', evaluate, { passive: true, capture: true });
-    window.addEventListener('resize', evaluate);
-    return () => {
-      window.removeEventListener('scroll', evaluate, { capture: true } as EventListenerOptions);
-      window.removeEventListener('resize', evaluate);
-    };
+    const el = document.getElementById('more-about-me');
+    if (!el) return;
+    // visible once the section's top has scrolled up to ~60% of the viewport (matches live's
+    // trigger), and stays true for all greater scroll; false again only above that point.
+    // An IntersectionObserver whose root is EVERYTHING above the viewport's 60% line (bottom trimmed by
+    // 40%, top extended far above the page) intersects the section exactly when its top is at or above
+    // that line — so any scroll, including an instant jump, flips it. The browser precomputes this, so
+    // there's no layout read on every scroll event (that per-scroll read was the biggest jank source).
+    const io = new IntersectionObserver(([e]) => setShow(e.isIntersecting), { rootMargin: '1000000px 0px -40% 0px' });
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return (

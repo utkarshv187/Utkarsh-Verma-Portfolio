@@ -46,7 +46,13 @@ export function useMarquee({ speed, hoverFactor = 1 }: Opts) {
       track.style.transform = `translate3d(${offset.toFixed(2)}px,0,0)`;
       raf = requestAnimationFrame(frame);
     };
-    raf = requestAnimationFrame(frame);
+    // Only run while the marquee is on (or about to come on) screen. Off-screen, a per-frame
+    // transform write still forced layer-tree updates every frame for nothing; now the loop idles
+    // and picks up from the same spot (with a fresh clock, so no jump) as it scrolls back in.
+    const start = () => { if (!raf) { prev = performance.now(); raf = requestAnimationFrame(frame); } };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: '200px 0px' });
+    io.observe(container);
 
     // ---- grab-drag ----
     const onDown = (e: PointerEvent) => {
@@ -87,7 +93,8 @@ export function useMarquee({ speed, hoverFactor = 1 }: Opts) {
     container.addEventListener('pointerleave', onLeave);
 
     return () => {
-      cancelAnimationFrame(raf);
+      io.disconnect();
+      stop();
       clearTimeout(settle);
       window.removeEventListener('resize', measure);
       container.removeEventListener('pointerdown', onDown);

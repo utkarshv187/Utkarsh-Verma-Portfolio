@@ -1,6 +1,6 @@
 import './recent-work.css';
 import { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'framer-motion';
+import { motion, useMotionValue, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion';
 import { usePrefersReducedMotion } from '../lib/hooks';
 
 type Stat = { num: string; label: [string, string] };
@@ -305,28 +305,15 @@ const PAN: [number, number, number][] = [
 const SPIN_START = 640;
 const SPIN_RANGE = 540;
 function useStack(count: number): { scales: MotionValue<number>[]; pans: MotionValue<number>[]; spins: MotionValue<number>[] } {
-  const scrollY = useMotionValue(0);
+  // Page scroll position from framer (the same source the hero skew uses): updated only when the page
+  // actually scrolls, read in framer's batched frame. (It replaced a rAF loop that polled
+  // window.scrollY every frame forever — forcing a style/layout flush each frame even while idle.)
+  const { scrollY } = useScroll();
   const reduced = usePrefersReducedMotion();
   const pinsRef = useRef<number[]>([]);
   const phoneRef = useRef(false);
   const reducedRef = useRef(reduced);
   reducedRef.current = reduced;
-
-  useEffect(() => {
-    // Sync scroll via rAF rather than a 'scroll' event: the body is the scroll container here
-    // (overflow-x:hidden makes overflow-y computed auto), so window 'scroll' events don't fire
-    // reliably. Polling window.scrollY each frame tracks it regardless, and useTransform only
-    // recomputes when the value actually changes.
-    let raf = 0;
-    let last = -1;
-    const tick = () => {
-      const y = window.scrollY;
-      if (y !== last) { last = y; scrollY.set(y); }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [scrollY]);
 
   useEffect(() => {
     const measure = () => {

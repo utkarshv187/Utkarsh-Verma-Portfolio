@@ -1,4 +1,5 @@
 import { useLayoutEffect } from 'react';
+import { cancelFrame, frame } from 'framer-motion';
 import { readScroll } from './scroll';
 
 // Site-wide scroll-scrubbed reveal: a block entering from the bottom of the viewport starts faded +
@@ -7,8 +8,9 @@ import { readScroll } from './scroll';
 // above that line is untouched. No blur — content is always sharp.
 //
 // Performance:
-// - ONE scroll listener + ONE rAF per frame for the whole site; an IntersectionObserver keeps the
-//   per-frame set to the few blocks near the viewport (reads batched, then writes).
+// - ONE scroll listener for the whole site, and the per-frame work runs on framer-motion's frame
+//   loop (reads in its read phase, writes in its render phase — no forced layout); an
+//   IntersectionObserver keeps the per-frame set to the few blocks near the viewport.
 // - Only block-level containers are targeted (headings, text blocks, cards, images) — never their
 //   children — and only `filter: opacity()` + `translate` are written: compositor-friendly, no
 //   layout. Using the individual `translate` property and `filter: opacity()` (not `transform` /
@@ -44,7 +46,6 @@ export function useScrollReveal(): void {
     const els = [...document.querySelectorAll<HTMLElement>(TARGETS)];
     const state = new Map<HTMLElement, State>();
     const active = new Set<HTMLElement>();
-    let raf = 0;
 
     const liftPx = () => (phoneMq.matches ? LIFT_PHONE : LIFT_DESKTOP);
 
@@ -85,29 +86,40 @@ export function useScrollReveal(): void {
       state.set(el, { p: q, y });
     };
 
+    // Document height is cached (refreshed on resize / any body size change below) instead of reading
+    // scrollHeight every frame — that read forced a layout flush per scroll frame.
+    const measureDocH = () => Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    let docH = measureDocH();
     const docMetrics = () => {
       const vh = window.innerHeight;
-      const h = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-      return { vh, remaining: Math.max(0, h - vh - readScroll()) };
+      return { vh, remaining: Math.max(0, docH - vh - readScroll()) };
     };
 
-    const update = (list: Iterable<HTMLElement>) => {
+    // read: rect minus our own translate, so the lift never feeds back
+    const measure = (list: Iterable<HTMLElement>) => {
       const { vh, remaining } = docMetrics();
-      // read everything first (rect minus our own translate, so the lift never feeds back) …
       const reads: [HTMLElement, number][] = [];
       for (const el of list) {
         const r = el.getBoundingClientRect();
         reads.push([el, progress(r.top - (state.get(el)?.y || 0), vh, remaining)]);
       }
-      // … then write
-      for (const [el, p] of reads) write(el, p);
+      return reads;
     };
+    const update = (list: Iterable<HTMLElement>) => { for (const [el, p] of measure(list)) write(el, p); };
 
-    const frame = () => {
-      raf = 0;
-      update(active);
+    // Per-frame work runs on framer-motion's frame loop (the one driving the hero skew + card stack):
+    // all reads happen in its READ phase and all writes in its RENDER phase, so the reveal's layout
+    // reads never land after someone else's style writes (which forced a layout flush every frame).
+    let pending: [HTMLElement, number][] = [];
+    let scheduled = false;
+    const readPhase = () => { pending = measure(active); };
+    const renderPhase = () => { scheduled = false; for (const [el, p] of pending) write(el, p); pending = []; };
+    const schedule = () => {
+      if (scheduled) return;
+      scheduled = true;
+      frame.read(readPhase);
+      frame.render(renderPhase);
     };
-    const schedule = () => { if (!raf) raf = requestAnimationFrame(frame); };
 
     // Watch a band a little larger than the viewport so blocks are already in their hidden state
     // before their first pixel appears (no one-frame sharp flash on a fast fling).
@@ -127,12 +139,14 @@ export function useScrollReveal(): void {
 
     let on = false;
     const onScroll = () => schedule();
-    const onResize = () => { state.clear(); update(els); };
-    const ro = new ResizeObserver(() => { state.clear(); schedule(); }); // fonts/images shifting layout
+    const onResize = () => { docH = measureDocH(); state.clear(); update(els); };
+    // fonts/images shifting layout (ResizeObserver delivers after layout, so this read is free)
+    const ro = new ResizeObserver(() => { docH = measureDocH(); state.clear(); schedule(); });
 
     const start = () => {
       if (on) return;
       on = true;
+      docH = measureDocH();
       update(els); // initial state for every block before first paint
       els.forEach((el) => io.observe(el));
       // capture: the body is the scroll container here, and its 'scroll' doesn't bubble to window
@@ -143,8 +157,10 @@ export function useScrollReveal(): void {
     const stop = () => {
       if (!on) return;
       on = false;
-      cancelAnimationFrame(raf);
-      raf = 0;
+      cancelFrame(readPhase);
+      cancelFrame(renderPhase);
+      scheduled = false;
+      pending = [];
       io.disconnect();
       ro.disconnect();
       window.removeEventListener('scroll', onScroll, { capture: true });
