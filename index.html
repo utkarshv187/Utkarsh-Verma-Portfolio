@@ -27,6 +27,12 @@
     <!-- Font preloads (added as fonts are subset) -->
     <link rel="preload" href="/fonts/ClashDisplay-subset.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Satoshi-subset.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Page-load intro: flag it before first paint (no flash); skipped under reduced motion.
+         App removes the flag once the ~0.7s settle has played (see app.css "Page-load intro"). -->
+    <script>
+      try { if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('is-intro'); } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -12,6 +12,48 @@
   background: var(--bg-dark-2);
 }
 
+/* ================= Page-load intro — "simple settle" (~0.7s, once per load) =================
+   The hero content fades + rises 16px into place (PRODUCT -> portrait -> role/badge, 60ms apart) and
+   the header fades down. Gated by html.is-intro, which index.html sets before first paint (not under
+   reduced motion) and App removes once it has played, so it never replays (resize, re-render, in-page
+   nav). Nothing blocks input — content is live from the first frame.
+   Only `opacity` + the individual `translate` property animate: `translate` composes with the hero's
+   own transforms (framer skew/shift, graffiti hover lift) instead of overriding them, and every target
+   already has its own z-index, so the stacking order is unchanged during the intro.
+   LCP measured on the prod build (tools/audit/intro_lcp.mjs, warm browser): no change vs no intro. */
+@keyframes intro-rise {
+  from { opacity: 0.05; translate: 0 16px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+@keyframes intro-drop {
+  from { opacity: 0.05; translate: 0 -10px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+.is-intro .hero__product,
+.is-intro .hero__o,
+.is-intro .hero__portrait,
+.is-intro .hero__face,
+.is-intro .hero__graffiti,
+.is-intro .hero__role-shift,
+.is-intro .hero__accent {
+  animation: intro-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--intro-delay, 0s) backwards;
+}
+.is-intro .hero__portrait,
+.is-intro .hero__face,
+.is-intro .hero__accent { --intro-delay: 0.06s; }
+.is-intro .hero__role-shift,
+.is-intro .hero__graffiti { --intro-delay: 0.12s; }
+.is-intro .header__inner { animation: intro-drop 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards; }
+@media (max-width: 809.98px) {
+  /* phone: the role group is NOT a stacking context here (its roles layer against the portrait), so
+     animate the roles list itself (z4) instead of the group */
+  .is-intro .hero__role-shift { animation: none; }
+  .is-intro .hero__roles-m { animation: intro-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.12s backwards; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-intro * { animation: none; }
+}
+
 /* ================= MOBILE LETTERBOX (#0) — content column with dark bars =================
    Like live, mobile is NOT edge-to-edge: the content sits in a centred column and the dark body
    colour (#0E0C20) shows as bars on the sides. Live insets its sections to viewport-30 (15px gutters)
