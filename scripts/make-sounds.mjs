@@ -59,27 +59,6 @@ const SOUNDS = {
   // air transient, shorter and ~13 dB quieter. Click = warm "tok", hover = light "tik".
   hover: () => render(22050, 0.018, (t) =>
     Math.sin(TAU * 4200 * t) * env(t, 0.0004, 0.0022) + Math.sin(TAU * 6300 * t) * env(t, 0.0004, 0.0015) * 0.4, db(-27)),
-  // header "Designing for" counter hover: a seamless 0.4s stopwatch loop — tick (0ms) + tock (200ms),
-  // i.e. 5 beats/sec like a mechanical stopwatch; looped while hovered
-  stopwatch: () => { const bp = bandpass(16000); return render(16000, 0.4, (t) => {
-    const beat = (tt, f) => (tt < 0 ? 0 : Math.sin(TAU * f * tt) * env(tt, 0.0005, 0.0025) + bp(rand(), 4000, 2) * env(tt, 0.0003, 0.001) * 0.6);
-    return beat(t, 3000) + beat(t - 0.2, 2500) * 0.8; }, db(-24)); },
-  // Work Experience scramble: one soft digital "blip" per digit change (pitch varied at playback), …
-  blip: () => render(22050, 0.028, (t) =>
-    Math.sin(TAU * 2400 * t) * env(t, 0.0004, 0.004) + Math.sin(TAU * 4800 * t) * env(t, 0.0004, 0.002) * 0.3, db(-26)),
-  // … and a gentle two-note "settle" as the digits lock
-  settle: () => render(22050, 0.09, (t) =>
-    Math.sin(TAU * 1760 * t) * env(t, 0.0008, 0.012) + (t < 0.035 ? 0 : Math.sin(TAU * 2637 * (t - 0.035)) * env(t - 0.035, 0.0008, 0.02)), db(-22)),
-  // More About Me body text: one very quiet typewriter keystroke per word as it types in (a papery
-  // strike + a soft low thock + a faint release click)
-  type: () => { const bp = bandpass(22050); return render(22050, 0.024, (t) =>
-    bp(rand(), 3200, 1.8) * env(t, 0.0003, 0.0018) + Math.sin(TAU * 190 * t) * env(t, 0.0006, 0.005) * 0.5 +
-    (t < 0.008 ? 0 : bp(rand(), 4200, 2) * env(t - 0.008, 0.0003, 0.001) * 0.3), db(-26)); },
-  // Wall Of Portfolios badge hover: a short heroic flourish — a quick A-major arpeggio (A4 C#5 E5 → A5)
-  // with a warm brassy (2nd/3rd harmonic) tone, the last note held briefly
-  heroic: () => render(16000, 0.62, (t) => {
-    const note = (f, at, tau) => { const tt = t - at; if (tt < 0) return 0; const e = env(tt, 0.008, tau); return (Math.sin(TAU * f * tt) + 0.5 * Math.sin(TAU * 2 * f * tt) + 0.25 * Math.sin(TAU * 3 * f * tt)) * e; };
-    return note(440, 0, 0.06) + note(554.37, 0.07, 0.06) + note(659.26, 0.14, 0.07) + note(880, 0.21, 0.18) * 1.1; }, db(-18)),
   // cursor pill appears: a short rising "wind"
   whoosh: () => { const bp = bandpass(22050); return render(22050, 0.24, (t) =>
     bp(rand(), expSweep(700, 2200, t / 0.24), 0.9) * env(t, 0.07, 0.05), db(-18)); },
@@ -104,6 +83,30 @@ const SOUNDS = {
     const e = env(t, 0.18, 0.24, 0.17);
     const v = (f, a) => a * (Math.sin(TAU * f * t) + Math.sin(TAU * (f + 0.8) * t)) * 0.5;
     return (v(440, 1) + v(659.26, 0.6) + v(880, 0.35) + v(1108.73, 0.12)) * e; }, db(-17)),
+  // ---- added later: keep NEW sounds at the END of this list. The noise generator is one seeded
+  // sequence shared in list order, so inserting a sound earlier would change the noise samples of
+  // every noise-based sound after it (different bytes for sounds already approved).
+  // header "Designing for" counter hover: a seamless 0.4s stopwatch loop — tick (0ms) + tock (200ms),
+  // i.e. 5 beats/sec like a mechanical stopwatch; looped while hovered
+  stopwatch: () => { const bp = bandpass(16000); return render(16000, 0.4, (t) => {
+    const beat = (tt, f) => (tt < 0 ? 0 : Math.sin(TAU * f * tt) * env(tt, 0.0005, 0.0025) + bp(rand(), 4000, 2) * env(tt, 0.0003, 0.001) * 0.6);
+    return beat(t, 3000) + beat(t - 0.2, 2500) * 0.8; }, db(-24)); },
+  // Work Experience scramble: one soft digital "blip" per digit change (pitch varied at playback), …
+  blip: () => render(22050, 0.028, (t) =>
+    Math.sin(TAU * 2400 * t) * env(t, 0.0004, 0.004) + Math.sin(TAU * 4800 * t) * env(t, 0.0004, 0.002) * 0.3, db(-26)),
+  // … and a gentle two-note "settle" as the digits lock
+  settle: () => render(22050, 0.09, (t) =>
+    Math.sin(TAU * 1760 * t) * env(t, 0.0008, 0.012) + (t < 0.035 ? 0 : Math.sin(TAU * 2637 * (t - 0.035)) * env(t - 0.035, 0.0008, 0.02)), db(-22)),
+  // More About Me body text: one very quiet typewriter keystroke per word as it types in (a papery
+  // strike + a soft low thock + a faint release click)
+  type: () => { const bp = bandpass(22050); return render(22050, 0.024, (t) =>
+    bp(rand(), 3200, 1.8) * env(t, 0.0003, 0.0018) + Math.sin(TAU * 190 * t) * env(t, 0.0006, 0.005) * 0.5 +
+    (t < 0.008 ? 0 : bp(rand(), 4200, 2) * env(t - 0.008, 0.0003, 0.001) * 0.3), db(-26)); },
+  // Wall Of Portfolios badge hover: a short heroic flourish — a quick A-major arpeggio (A4 C#5 E5 → A5)
+  // with a warm brassy (2nd/3rd harmonic) tone, the last note held briefly
+  heroic: () => render(16000, 0.62, (t) => {
+    const note = (f, at, tau) => { const tt = t - at; if (tt < 0) return 0; const e = env(tt, 0.008, tau); return (Math.sin(TAU * f * tt) + 0.5 * Math.sin(TAU * 2 * f * tt) + 0.25 * Math.sin(TAU * 3 * f * tt)) * e; };
+    return note(440, 0, 0.06) + note(554.37, 0.07, 0.06) + note(659.26, 0.14, 0.07) + note(880, 0.21, 0.18) * 1.1; }, db(-18)),
 };
 
 await mkdir(OUT, { recursive: true });
