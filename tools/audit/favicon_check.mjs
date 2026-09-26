@@ -1,4 +1,5 @@
-// Theme-adaptive favicon check: renders /favicon.svg under light + dark color schemes in each
+// Theme-adaptive favicon check: renders /favicon.svg under light + dark color schemes (desktop, and
+// a Chromium mobile profile) in each
 // Playwright engine and samples the mark's pixel colour (expect dark ~#0E0C20 on light, white on
 // dark); also logs which icon files each engine requests for the page itself.
 // usage: node tools/audit/favicon_check.mjs [origin]
@@ -8,15 +9,16 @@ for (const [name, type] of [['chromium', chromium], ['firefox', firefox], ['webk
   let b;
   try { b = await type.launch(); } catch (e) { console.log(name.padEnd(9), 'not installed'); continue; }
   const out = [];
-  for (const scheme of ['light', 'dark']) {
-    const ctx = await b.newContext({ colorScheme: scheme, viewport: { width: 400, height: 300 } });
+  for (const [device, dev] of [['desktop', { viewport: { width: 1280, height: 800 } }], ['mobile', { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 3 }]]) for (const scheme of ['light', 'dark']) {
+    if (device === 'mobile' && name !== 'chromium') continue; // isMobile is Chromium-only
+    const ctx = await b.newContext({ colorScheme: scheme, ...dev });
     const p = await ctx.newPage();
     const icons = [];
     p.on('request', (r) => { if (/favicon|apple-touch/.test(r.url())) icons.push(new URL(r.url()).pathname); });
     await p.goto(ORIGIN + '/', { waitUntil: 'load' });
     await p.waitForTimeout(800);
     // render the SVG as an image (it follows the embedding page's scheme) and sample the mark:
-    // (13%, 35%) of the square lands inside the U's left bar
+    // (7%, 40%) of the square lands inside the U's left bar
     const px = await p.evaluate(async (src) => {
       const img = new Image(); img.src = src + '?v=' + Math.random(); await img.decode();
       const c = document.createElement('canvas'); c.width = c.height = 200;
@@ -24,9 +26,9 @@ for (const [name, type] of [['chromium', chromium], ['firefox', firefox], ['webk
       const d = g.getImageData(Math.round(200 * 0.07), Math.round(200 * 0.4), 1, 1).data;
       return '#' + [d[0], d[1], d[2]].map((v) => v.toString(16).padStart(2, '0')).join('') + ` a${d[3]}`;
     }, ORIGIN + '/favicon.svg').catch((e) => 'err ' + e.message);
-    out.push(`${scheme}: mark ${px}  icons requested: ${[...new Set(icons)].join(', ') || '(none)'}`);
+    out.push(`${device} ${scheme}: mark ${px}  icons requested: ${[...new Set(icons)].join(', ') || '(none)'}`);
     await ctx.close();
   }
-  console.log(name.padEnd(9), out.join('   |   '));
+  console.log(`${name}\n  ${out.join('\n  ')}`);
   await b.close();
 }
