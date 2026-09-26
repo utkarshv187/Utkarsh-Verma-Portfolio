@@ -1,0 +1,32 @@
+/* Sound toggle — small dark-glass circle, bottom-left (mirrors Go to top, bottom-right). Styled like
+   the header's glass (same tint, hairline border, blur) so it reads as part of the site chrome, and
+   dimmed until hovered/on so it stays unobtrusive. */
+.sound-toggle {
+  position: fixed;
+  left: 40px;
+  bottom: 50px; /* centre level with Go to top (80px at bottom 32 -> centre 72) */
+  z-index: 12; /* same layer as Go to top: under the custom cursor + the hobbies lightbox */
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(226, 226, 240, 0.18);
+  background: rgba(12, 12, 31, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+.sound-toggle svg { display: block; }
+.sound-toggle--on { color: var(--gold-2); border-color: rgba(255, 183, 5, 0.45); }
+.sound-toggle:focus-visible { outline: 2px solid var(--gold-2); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .sound-toggle:hover { color: #fff; background: rgba(12, 12, 31, 0.75); }
+  .sound-toggle--on:hover { color: var(--gold-2); }
+}
+@media (max-width: 809.98px) {
+  .sound-toggle { left: 18px; bottom: 28px; width: 40px; height: 40px; } /* level with Go to top (60px at 18) */
+}

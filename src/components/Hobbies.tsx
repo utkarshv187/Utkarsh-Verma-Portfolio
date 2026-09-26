@@ -1,5 +1,6 @@
 import './hobbies.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { play } from '../lib/sound';
 
 // WHEN I AM NOT DESIGNING — three photo piles (GAMING / SOCIALIZING / ADVENTURING) fanned as a
 // clean rotational stack (each card rotates about the SAME centre — no horizontal scatter — so the
@@ -67,15 +68,17 @@ function Pile({ stack, slots, onOpen }: { stack: Stack; slots: Slot[]; onOpen: (
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    let startX = 0, startY = 0, moved = 0, active = false, id = -1;
+    let startX = 0, startY = 0, moved = 0, active = false, id = -1, swished = false;
     const down = (e: PointerEvent) => {
-      active = true; moved = 0; startX = e.clientX; startY = e.clientY; id = e.pointerId;
+      active = true; moved = 0; swished = false; startX = e.clientX; startY = e.clientY; id = e.pointerId;
       try { el.setPointerCapture(e.pointerId); } catch { /* ignore */ }
     };
     const move = (e: PointerEvent) => {
       if (!active) return;
       const dx = e.clientX - startX, dy = e.clientY - startY;
       moved = Math.max(moved, Math.hypot(dx, dy));
+      // one swish per drag, once the card has clearly started moving (a tap stays silent)
+      if (!swished && moved > 24) { swished = true; play('swish'); }
       setDrag({ x: dx, y: dy });
     };
     const end = (e: PointerEvent) => {
@@ -149,8 +152,8 @@ export function Hobbies() {
     return () => io.disconnect();
   }, []);
 
-  const open = useCallback((v: LB) => { setLb(v); requestAnimationFrame(() => setLbOpen(true)); }, []);
-  const close = useCallback(() => { setLbOpen(false); setTimeout(() => setLb(null), 260); }, []);
+  const open = useCallback((v: LB) => { play('pop-open'); setLb(v); requestAnimationFrame(() => setLbOpen(true)); }, []);
+  const close = useCallback(() => { play('pop-close'); setLbOpen(false); setTimeout(() => setLb(null), 260); }, []);
 
   // keyboard: Esc closes, arrows move the photo lightbox
   useEffect(() => {

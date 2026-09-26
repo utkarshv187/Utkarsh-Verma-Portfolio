@@ -1,6 +1,7 @@
 import './about-me.css';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { useMarquee } from '../lib/useMarquee';
+import { play } from '../lib/sound';
 
 // The bio: a sequence of words. Five words are ANCHORS — the gold script annotation (caret +
 // phrase) is a child of that word's span, so it always sits right after that exact word, at every
@@ -38,6 +39,21 @@ export function AboutMe() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
+  // one soft tick as EACH gold script phrase appears (silent unless sound is on). Timed off each
+  // anchor's own CSS reveal delay (--delay), so the ticks always land with the phrases they belong to.
+  useEffect(() => {
+    if (!revealed) return;
+    const anchors = [...(bioRef.current?.querySelectorAll<HTMLElement>('.about__anchor') ?? [])];
+    const timers = anchors.map((a) => {
+      const s = parseFloat(getComputedStyle(a).getPropertyValue('--delay')) || 0;
+      return window.setTimeout(() => {
+        // only for a phrase the visitor can actually see appear (not if they've scrolled away since)
+        const r = a.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight) play('tick');
+      }, s * 1000 + 60); // + a beat for the fade to start
+    });
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  }, [revealed]);
   const loop = [...ICONS, ...ICONS];
   // tools ticker: 50px/s auto (2x the old ~25), eases to half (~25) on hover; drag-scrollable
   const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 50, hoverFactor: 0.5 });

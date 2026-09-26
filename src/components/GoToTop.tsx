@@ -1,6 +1,7 @@
 import './go-to-top.css';
 import { useEffect, useState } from 'react';
 import { smoothScrollTo } from '../lib/scroll';
+import { play } from '../lib/sound';
 
 // "GO TO TOP" — fixed white circle with a dark up-arrow (live: 80px circle, right:40 bottom:32).
 // On hover it matches live's variant swap: the arrow shrinks + slides up and the straight two-line
@@ -34,7 +35,7 @@ export function GoToTop() {
       aria-label="Go to top"
       aria-hidden={!show}
       tabIndex={show ? 0 : -1}
-      onClick={() => smoothScrollTo(0)}
+      onClick={() => { play('whoosh-up'); smoothScrollTo(0); }}
     >
       <span className="gtt__circle">
         <svg className="gtt__arrow" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
