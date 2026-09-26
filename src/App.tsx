@@ -17,7 +17,7 @@ import { SoundToggle } from './components/SoundToggle';
 import './app.css';
 
 export function App() {
-  useScrollReveal(); // site-wide blur → sharp scroll reveal (after children mount, before paint)
+  useScrollReveal(); // site-wide fade + rise scroll reveal (after children mount, before paint)
   useMagneticButtons(); // magnetic hover + springy press on the header/footer/go-to-top buttons
   useButtonSounds(); // button hover tick + click (silent unless the visitor turned sound on)
   // page-load intro (flag set in index.html before first paint): drop it once the ~0.7s settle has

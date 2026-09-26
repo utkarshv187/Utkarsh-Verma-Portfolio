@@ -1,23 +1,22 @@
 import { useLayoutEffect } from 'react';
 import { readScroll } from './scroll';
 
-// Site-wide scroll-scrubbed reveal: a block entering from the bottom of the viewport starts
-// blurred + faded + slightly low, and resolves to sharp / opaque / in place by the time its top has
-// risen ~20% of the viewport height. Tied 1:1 to scroll position both ways (re-blurs as it drops
-// back out the bottom); anything above that line is always sharp.
+// Site-wide scroll-scrubbed reveal: a block entering from the bottom of the viewport starts faded +
+// slightly low, and eases to opaque / in place by the time its top has risen ~20% of the viewport
+// height. Tied 1:1 to scroll position both ways (fades back as it drops out the bottom); anything
+// above that line is untouched. No blur — content is always sharp.
 //
 // Performance:
 // - ONE scroll listener + ONE rAF per frame for the whole site; an IntersectionObserver keeps the
 //   per-frame set to the few blocks near the viewport (reads batched, then writes).
 // - Only block-level containers are targeted (headings, text blocks, cards, images) — never their
-//   children — and only `filter` + `translate` are written: both compositor-friendly, no layout.
-//   Using the individual `translate` property and `filter: opacity()` (not `transform`/`opacity`)
-//   means we never fight the components' own entrance/hover transforms or opacity transitions.
+//   children — and only `filter: opacity()` + `translate` are written: compositor-friendly, no
+//   layout. Using the individual `translate` property and `filter: opacity()` (not `transform` /
+//   `opacity`) means we never fight the components' own entrance/hover transforms or opacity
+//   transitions (e.g. Work Experience's fade-up, the photo grid's scale-in).
 // - `will-change` is set only while a block is mid-transition, and every style is REMOVED once it
 //   is fully revealed, so settled content carries no filter, no layer and no stacking context.
-// - Phones / touch devices get the fade + lift WITHOUT blur (see BLUR below); low-power devices
-//   and any device that drops frames while blurring also fall back to no blur.
-// - prefers-reduced-motion: nothing is applied — content is always sharp and in place.
+// - prefers-reduced-motion: nothing is applied — content is always in place.
 
 // Block-level targets, section by section. The hero is the first screen (pinned on desktop/tablet),
 // so it is always fully on screen and has nothing to reveal.
@@ -33,7 +32,6 @@ const TARGETS = [
 const BAND = 0.2; // fraction of the viewport height over which a block resolves
 const LIFT_DESKTOP = 28; // px the block starts below its resting spot
 const LIFT_PHONE = 18;
-const BLUR_DESKTOP = 6; // px of blur at the bottom edge
 const FADE_FROM = 0.25; // starting opacity
 
 type State = { p: number; y: number };
@@ -42,17 +40,12 @@ export function useScrollReveal(): void {
   useLayoutEffect(() => {
     const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)');
     const phoneMq = window.matchMedia('(max-width: 809.98px), (hover: none), (pointer: coarse)');
-    const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
-    const lowPower =
-      (nav.hardwareConcurrency || 8) <= 4 || (nav.deviceMemory || 8) <= 4 || !!nav.connection?.saveData;
 
     const els = [...document.querySelectorAll<HTMLElement>(TARGETS)];
     const state = new Map<HTMLElement, State>();
     const active = new Set<HTMLElement>();
-    let blurOff = false; // latched by the frame-rate guard below
     let raf = 0;
 
-    const blurPx = () => (blurOff || lowPower || phoneMq.matches ? 0 : BLUR_DESKTOP);
     const liftPx = () => (phoneMq.matches ? LIFT_PHONE : LIFT_DESKTOP);
 
     const clear = (el: HTMLElement) => {
@@ -84,10 +77,9 @@ export function useScrollReveal(): void {
       }
       const e = q * q * (3 - 2 * q); // smoothstep: soft at both ends, spread across the whole band
       const y = (1 - e) * liftPx();
-      const b = (1 - e) * blurPx();
       const o = FADE_FROM + (1 - FADE_FROM) * e;
       el.style.setProperty('translate', `0 ${y.toFixed(2)}px`);
-      el.style.setProperty('filter', b > 0.05 ? `blur(${b.toFixed(2)}px) opacity(${o.toFixed(3)})` : `opacity(${o.toFixed(3)})`);
+      el.style.setProperty('filter', `opacity(${o.toFixed(3)})`);
       if (q > 0) el.style.setProperty('will-change', 'filter, translate');
       else el.style.removeProperty('will-change'); // parked offscreen/at the edge: no layer
       state.set(el, { p: q, y });
@@ -111,29 +103,8 @@ export function useScrollReveal(): void {
       for (const [el, p] of reads) write(el, p);
     };
 
-    // Frame-rate guard: if a SUSTAINED share of frames drop while blur is animating (over a quarter of
-    // the last 60 blurring frames slower than ~40fps), drop blur for the rest of the session (fade +
-    // lift remain). A one-off first-paint hitch doesn't trip it.
-    let lastT = 0;
-    const slow: boolean[] = [];
-    const guard = (t: number) => {
-      const dt = t - lastT;
-      lastT = t;
-      if (blurPx() === 0 || dt <= 0 || dt > 100) return; // idle gap, not a dropped frame
-      let blurring = false;
-      for (const el of active) { const s = state.get(el); if (s && s.p > 0 && s.p < 1) { blurring = true; break; } }
-      if (!blurring) return;
-      slow.push(dt > 25);
-      if (slow.length > 60) slow.shift();
-      if (slow.length === 60 && slow.filter(Boolean).length > 15) {
-        blurOff = true;
-        state.clear(); // force a rewrite without blur
-      }
-    };
-
-    const frame = (t: number) => {
+    const frame = () => {
       raf = 0;
-      guard(t);
       update(active);
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(frame); };
