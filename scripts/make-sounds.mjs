@@ -118,6 +118,13 @@ const SOUNDS = {
     const flutter = 1 + 0.12 * Math.sin(TAU * 7 * t) * Math.sin(Math.PI * p);
     const n = rand();
     return (bp(n, f, 0.6) + bp2(n, f * 2.1, 0.8) * 0.25) * swell * flutter; }, db(-25)); },
+  // hero O hover (the WhatsApp icon popping in): the lightbox pop's sibling, higher and quicker — a
+  // bubble rising 420 -> 1180 Hz in 35ms, a breath of air, and a faint glassy G6 ping just after it
+  // for a hint of "message", all over in ~0.18s and a few dB under the lightbox pop
+  'wa-pop': () => { const bp = bandpass(22050); let ph = 0; return render(22050, 0.18, (t) => {
+    ph += (TAU * expSweep(420, 1180, t / 0.035)) / 22050;
+    const ping = t < 0.025 ? 0 : Math.sin(TAU * 1568 * (t - 0.025)) * env(t - 0.025, 0.002, 0.05) * 0.18;
+    return Math.sin(ph) * env(t, 0.0015, 0.028) + bp(rand(), 2200, 1.4) * env(t, 0.003, 0.015) * 0.25 + ping; }, db(-19)); },
 };
 
 await mkdir(OUT, { recursive: true });

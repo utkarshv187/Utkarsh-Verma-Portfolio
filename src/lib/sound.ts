@@ -15,18 +15,18 @@ import { useEffect, useSyncExternalStore } from 'react';
 
 export type SoundName =
   | 'click' | 'hover' | 'whoosh' | 'swish' | 'pop-open' | 'pop-close' | 'whoosh-up' | 'load'
-  | 'stopwatch' | 'blip' | 'type' | 'wind' | 'wow';
+  | 'stopwatch' | 'blip' | 'type' | 'wind' | 'wow' | 'wa-pop';
 
-const NAMES: SoundName[] = ['click', 'hover', 'whoosh', 'swish', 'pop-open', 'pop-close', 'whoosh-up', 'load', 'stopwatch', 'blip', 'type', 'wind', 'wow'];
+const NAMES: SoundName[] = ['click', 'hover', 'whoosh', 'swish', 'pop-open', 'pop-close', 'whoosh-up', 'load', 'stopwatch', 'blip', 'type', 'wind', 'wow', 'wa-pop'];
 const FILE: Partial<Record<SoundName, string>> = { wow: 'wow.mp3' }; // everything else: <name>.wav
 // minimum ms between two plays of the same sound (rapid triggers never stack into noise)
 const MIN_GAP: Record<SoundName, number> = {
   click: 90, hover: 80, whoosh: 350, swish: 250, 'pop-open': 150, 'pop-close': 150, 'whoosh-up': 500, load: 0,
-  stopwatch: 0, blip: 0, type: 0, wind: 400, wow: 0,
+  stopwatch: 0, blip: 0, type: 0, wind: 400, wow: 0, 'wa-pop': 600,
 };
-// long one-shots that must never overlap themselves: a re-trigger while one is still playing is
-// ignored (one hover = one play, never stacked copies)
-const NO_OVERLAP = new Set<SoundName>(['wow']);
+// one-shots that must never overlap themselves: a re-trigger while one is still playing is ignored
+// (one hover = one play, never stacked copies)
+const NO_OVERLAP = new Set<SoundName>(['wow', 'wa-pop']);
 const playing = new Set<SoundName>();
 const MAX_VOICES = 4;
 const MASTER = 0.9;

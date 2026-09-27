@@ -36,6 +36,7 @@ const instrument = () => {
 const b = await chromium.launch();
 const snap = (p) => p.evaluate(() => JSON.parse(JSON.stringify(window.__snd)));
 const rectOf = (p, sel) => p.evaluate((s) => { const r = document.querySelector(s).getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }, sel);
+const oSpot = (p) => p.evaluate(() => { const r = document.querySelector('.hero__o').getBoundingClientRect(); return { x: r.left + r.width * 0.2, y: r.top + r.height / 2 }; });
 const setY = (p, y) => p.evaluate((v) => { document.scrollingElement.scrollTop = v; }, y);
 const log = (k, v) => console.log(k.padEnd(50), v);
 const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 0) + 1; }); return Object.entries(c).map(([k, v]) => (v > 1 ? `${k}×${v}` : k)).join(', ') || '(silent)'; };
@@ -58,6 +59,7 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   await step('OFF: key press, hover Résumé, click Contact', async () => { await p.keyboard.press('Shift'); await p.mouse.move(1430, 400); await p.mouse.move(c.x, c.y, { steps: 3 }); const r = await rectOf(p, '.contact'); await p.mouse.click(r.x, r.y); await p.mouse.move(700, 500); });
   c = await rectOf(p, '.intro');
   await step('OFF: hover "Designing for" counter', async () => { await p.mouse.move(c.x, c.y, { steps: 3 }); await p.waitForTimeout(800); await p.mouse.move(700, 500); });
+  await step('OFF: hover the hero O', async () => { const o = await oSpot(p); await p.mouse.move(o.x, o.y, { steps: 3 }); await p.waitForTimeout(300); await p.mouse.move(700, 500); });
   s = await snap(p); log('OFF: files fetched / AudioContexts after all that', `${s.fetches.length} / ${s.ctx}`);
   // --- turn it ON with the toggle ---
   c = await rectOf(p, '.sound-toggle');
@@ -81,6 +83,23 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   await p.evaluate(() => document.querySelector('.sound-toggle').click()); await p.waitForTimeout(300);
   log('  hovering counter, then MUTE -> loop stopped?', (await snap(p)).stops.slice(n0).join(', ') || 'NO STOP');
   await p.evaluate(() => document.querySelector('.sound-toggle').click()); await p.waitForTimeout(300); // unmute
+  await p.mouse.move(700, 500); await p.waitForTimeout(200);
+  // hero O (WhatsApp icon pops in)
+  let o = await oSpot(p);
+  await p.mouse.move(o.x - 200, o.y + 250); await p.waitForTimeout(300);
+  await step('hover the hero O (icon appears)', () => p.mouse.move(o.x, o.y, { steps: 3 }), 300);
+  await step('  keep moving around inside the O (1s)', async () => { for (let i = 0; i < 20; i++) { await p.mouse.move(o.x + (i % 5) * 6, o.y + (i % 4) * 8 - 12); await p.waitForTimeout(50); } }, 200);
+  await p.mouse.move(o.x - 200, o.y + 250); await p.waitForTimeout(600);
+  const qt = Date.now(); const q = await step('  out/in x3 (max one pop per 600ms)', async () => { for (let i = 0; i < 3; i++) { await p.mouse.move(o.x - 200, o.y + 250); await p.mouse.move(o.x, o.y, { steps: 2 }); await p.waitForTimeout(60); } }, 300);
+  log('    (3 re-entries took / pops at)', `${Date.now() - qt - 300}ms / +${q.map((x) => ((x.w - q[0].w) * 1000).toFixed(0)).join('ms, +')}ms`);
+  await p.mouse.move(o.x - 200, o.y + 250); await p.waitForTimeout(600);
+  await step('  a fresh hover later', () => p.mouse.move(o.x, o.y, { steps: 3 }), 300);
+  await p.mouse.move(700, 500); await p.waitForTimeout(300);
+  await p.evaluate(() => document.querySelector('.sound-toggle').click()); await p.waitForTimeout(300); // mute
+  await step('  MUTED: hover the hero O', async () => { await p.mouse.move(o.x, o.y, { steps: 3 }); }, 400);
+  await p.mouse.move(700, 500);
+  await p.evaluate(() => document.querySelector('.sound-toggle').click()); await p.waitForTimeout(300); // unmute
+  await step('  unmuted again: hover the hero O', async () => { await p.mouse.move(o.x, o.y, { steps: 3 }); }, 400);
   await p.mouse.move(700, 500); await p.waitForTimeout(200);
 
   // Work Experience stats scramble

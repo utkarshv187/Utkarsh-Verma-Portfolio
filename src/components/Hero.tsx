@@ -8,6 +8,7 @@ import { ORipples } from './ORipples';
 import { LINKS, EXTERNAL } from '../config/site';
 import { usePrefersReducedMotion } from '../lib/hooks';
 import { readScroll } from '../lib/scroll';
+import { play } from '../lib/sound';
 
 // Aurora runtime:
 // 1) cursor-follow — each .hero__aurora-follow wrapper eases toward the pointer's offset from the
@@ -187,6 +188,9 @@ export function Hero() {
           {...EXTERNAL}
           aria-label="Chat on WhatsApp"
           style={{ skewX: productSkew, x: productX }}
+          // the icon pops in on hover (fine pointer only, like the CSS hover): one soft pop per entry
+          // (pointerenter doesn't re-fire while moving inside the O; play() debounces re-hovers)
+          onPointerEnter={(e) => { if (e.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) play('wa-pop'); }}
         >
           O
           <span className="hero__o-dot" aria-hidden="true" />
