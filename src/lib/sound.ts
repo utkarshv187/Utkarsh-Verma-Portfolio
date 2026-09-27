@@ -1,14 +1,12 @@
 import { useEffect, useSyncExternalStore } from 'react';
 
-// UI sound — OFF by default; the visitor turns it ON with the SoundToggle. Until then nothing plays
-// and nothing audio-related is even created or fetched.
-// - The choice is remembered for the browser tab (sessionStorage), so a reload keeps it.
-// - Browsers only allow audio after a real user gesture (click / tap / key press — not scroll or
-//   hover). Turning sound on with the toggle IS that gesture. After a reload of a tab where sound
-//   was left ON, it's armed and the first such gesture silently unlocks the AudioContext (before
-//   that, sounds are simply skipped — nothing broken is shown).
-// - Once enabled, the small WAVs are fetched + decoded in the background (on an OfflineAudioContext,
-//   which needs no gesture), so even the unlocking click is already audible.
+// UI sound — ALWAYS OFF on every page load / reload / new session; the visitor turns it ON with the
+// SoundToggle. Until then nothing plays and nothing audio-related is even created or fetched.
+// - The on/off state lives ONLY in memory for the current page view: it is never saved to
+//   localStorage / sessionStorage / cookies, so any reload brings it back to OFF.
+// - Turning it on is a click on the toggle — the user gesture browsers require before audio — so
+//   the AudioContext is created + resumed right there, and the small WAVs are fetched + decoded then
+//   (on an OfflineAudioContext, which needs no gesture).
 // - Muted = fully silent: play/sequence/loop are no-ops, running loops stop, the context suspends.
 // - Anti-noise: each sound has a minimum re-trigger gap and at most 4 voices overlap at once
 //   (a scheduled sequence — the typewriter, the scramble flurry — counts as one voice).
@@ -26,14 +24,9 @@ const MIN_GAP: Record<SoundName, number> = {
 };
 const MAX_VOICES = 4;
 const MASTER = 0.9;
-const STORE_KEY = 'uv-sound';
 
-const readStored = (): boolean => {
-  try { return sessionStorage.getItem(STORE_KEY) === 'on'; } catch { return false; }
-};
-
-let enabled = typeof window === 'undefined' ? false : readStored(); // OFF unless turned on this session
-let loadPlayed = false; // the page-load sound plays once per page load, when sound first starts
+let enabled = false; // in memory only: every page load starts OFF, whatever was chosen before
+let loadPlayed = false; // the sound-on chime plays once per page load, the first time sound is turned on
 let ctx: AudioContext | null = null;
 let master: GainNode | null = null;
 let loading: Promise<void> | null = null;
@@ -102,10 +95,9 @@ export function isSoundOn(): boolean {
   return enabled;
 }
 
-// From the toggle (a click, so it may also create/resume the context right here).
+// From the toggle (a click, so it may also create/resume the context right here). Not persisted.
 export function setSoundOn(on: boolean): void {
   enabled = on;
-  try { sessionStorage.setItem(STORE_KEY, on ? 'on' : 'off'); } catch { /* private mode: in-memory only */ }
   subs.forEach((f) => f());
   if (!on) {
     loops.forEach((stop) => stop());
@@ -182,8 +174,8 @@ export function useSoundOn(): boolean {
   );
 }
 
-// Global wiring: unlock on the first real gesture, background preload, and the button HOVER + CLICK
-// sounds via one delegated listener pair (no per-component wiring).
+// Global wiring: the button HOVER + CLICK sounds via one delegated listener pair (no per-component
+// wiring), and stopping loops when the tab is hidden.
 // Go to top has its own "whoosh up" on click (see GoToTop), so it only gets the hover tick here;
 // the sound toggle gets no click (turning sound on plays the page-load sound instead).
 const HOVER_TARGETS = '.nav-link, .contact, .resume, .nav-icon, .footer__pill, .gtt';
@@ -191,22 +183,6 @@ const CLICK_TARGETS = '.nav-link, .contact, .resume, .nav-icon, .footer__pill, .
 
 export function useSounds(): void {
   useEffect(() => {
-    // first user gesture (the events browsers accept as "activation") unlocks audio
-    const GESTURES = ['pointerdown', 'pointerup', 'keydown', 'touchend'] as const;
-    const unlock = () => {
-      if (!enabled) return; // muted: stay silent; the toggle unlocks when turned back on
-      ensureContext();
-      void loadAll().then(maybePlayLoad);
-      GESTURES.forEach((t) => window.removeEventListener(t, unlock, true));
-    };
-    GESTURES.forEach((t) => window.addEventListener(t, unlock, { capture: true, passive: true }));
-
-    // if sound is on (left on earlier this tab session), preload once the page is idle — never
-    // competes with first paint / LCP; when it's off, nothing is fetched until the toggle turns it on
-    const preload = () => { if (enabled) void loadAll(); };
-    const hasIdle = 'requestIdleCallback' in window; // not in older Safari
-    const idle = hasIdle ? window.requestIdleCallback(preload, { timeout: 3000 }) : window.setTimeout(preload, 1500);
-
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
     const onOver = (e: PointerEvent) => {
       if (e.pointerType !== 'mouse' || !fine.matches) return;
@@ -224,8 +200,6 @@ export function useSounds(): void {
     document.addEventListener('click', onClick, { capture: true });
     document.addEventListener('visibilitychange', onHide);
     return () => {
-      GESTURES.forEach((t) => window.removeEventListener(t, unlock, true));
-      if (hasIdle) window.cancelIdleCallback(idle); else window.clearTimeout(idle);
       document.removeEventListener('pointerover', onOver);
       document.removeEventListener('click', onClick, { capture: true });
       document.removeEventListener('visibilitychange', onHide);

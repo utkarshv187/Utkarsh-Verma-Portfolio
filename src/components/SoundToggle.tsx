@@ -2,8 +2,8 @@ import './sound-toggle.css';
 import { setSoundOn, useSoundOn } from '../lib/sound';
 
 // Mute/unmute — a small glass circle in the bottom-left corner (Go to top owns bottom-right).
-// Sound is OFF by default; turning it on (this click) starts it and plays the page-load sound once.
-// The choice is remembered for the tab session.
+// Sound is OFF on every page load / reload; turning it on (this click) starts it and plays the
+// sound-on chime once. The state is in memory only — a reload always brings it back to OFF.
 export function SoundToggle() {
   const on = useSoundOn();
   return (

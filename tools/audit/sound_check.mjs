@@ -1,5 +1,5 @@
-// UI sound check (src/lib/sound.ts). Sound is OFF by default: nothing plays or loads until the
-// toggle turns it on, and the choice persists for the tab. Instruments Web Audio: every buffer start
+// UI sound check (src/lib/sound.ts). Sound is OFF on every load and reload: nothing plays or loads
+// until the toggle turns it on, and that state is never persisted. Instruments Web Audio: every buffer start
 // is logged with its sound name and its absolute scheduled time on the audio clock (so sequences can
 // be checked against the animations), and every stop() is logged (so loops can be checked to end).
 // usage: node tools/audit/sound_check.mjs [url]
@@ -115,7 +115,7 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   await setY(p, 0); await p.waitForTimeout(400);
   await step('muted: hover Résumé, click Contact, hover counter', async () => { let r = await rectOf(p, '.header__nav--desktop .resume'); await p.mouse.move(r.x, r.y, { steps: 3 }); r = await rectOf(p, '.contact'); await p.mouse.click(r.x, r.y); r = await rectOf(p, '.intro'); await p.mouse.move(r.x, r.y, { steps: 3 }); await p.waitForTimeout(600); });
   await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(1500);
-  log('RELOAD: toggle aria-pressed (false = still muted)', await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed')));
+  log('RELOAD: toggle aria-pressed (false = OFF)', await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed')));
   await p.keyboard.press('Shift'); await p.waitForTimeout(500);
   c = await rectOf(p, '.contact');
   await p.mouse.click(c.x, c.y); await p.waitForTimeout(400);
@@ -187,19 +187,26 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   await p.context().close();
 }
 
-// ---------- turned ON, then reload: stays on (session), unlocks on the first gesture ----------
+// ---------- turned ON, then reload: must come back OFF (state is in memory only) ----------
 {
   const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
   await p.addInitScript(instrument);
   await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(1200);
-  const r = await rectOf(p, '.sound-toggle'); await p.mouse.click(r.x, r.y); await p.waitForTimeout(600);
+  let r = await rectOf(p, '.sound-toggle'); await p.mouse.click(r.x, r.y); await p.waitForTimeout(800);
+  log('ON (before reload): aria-pressed / played', `${await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed'))} / ${names((await snap(p)).plays)}`);
   await p.reload({ waitUntil: 'load' }); await p.waitForTimeout(3500);
-  log('ON + RELOAD: aria-pressed (true = still on)', await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed')));
+  log('ON + RELOAD: aria-pressed (false = back to OFF)', await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed')));
+  log('  storage keys (expect none)', await p.evaluate(() => JSON.stringify({ session: Object.keys(sessionStorage), local: Object.keys(localStorage), cookie: document.cookie })));
+  await p.keyboard.press('Shift');
+  r = await rectOf(p, '.contact'); await p.mouse.move(r.x, r.y, { steps: 3 }); await p.mouse.click(r.x, r.y);
+  r = await rectOf(p, '.intro'); await p.mouse.move(r.x, r.y, { steps: 3 }); await p.waitForTimeout(800);
   let s = await snap(p);
-  log('  before any gesture: plays / AudioContexts', `${s.plays.length} / ${s.ctx}`);
-  await p.keyboard.press('Shift'); await p.waitForTimeout(800);
+  log('  after reload: key press, hover + click Contact, counter', `${names(s.plays)} · files ${s.fetches.length} · AudioContexts ${s.ctx}`);
+  r = await rectOf(p, '.sound-toggle'); await p.mouse.click(r.x, r.y); await p.waitForTimeout(800);
   s = await snap(p);
-  log('  first key press -> unlock', names(s.plays));
+  log('  toggle ON again in this session', `${await p.evaluate(() => document.querySelector('.sound-toggle').getAttribute('aria-pressed'))} / ${names(s.plays)}`);
+  r = await rectOf(p, '.contact'); await p.mouse.move(700, 500); await p.mouse.move(r.x, r.y, { steps: 3 }); await p.mouse.click(r.x, r.y); await p.waitForTimeout(400);
+  log('  then hover + click Contact', names((await snap(p)).plays.slice(s.plays.length)));
   await p.context().close();
 }
 await b.close();
