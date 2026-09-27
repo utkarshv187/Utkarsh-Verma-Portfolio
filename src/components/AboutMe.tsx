@@ -1,7 +1,7 @@
 import './about-me.css';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { useMarquee } from '../lib/useMarquee';
-import { playSequence } from '../lib/sound';
+import { play, playSequence } from '../lib/sound';
 import { usePrefersReducedMotion } from '../lib/hooks';
 
 // The bio: a sequence of words. Five words are ANCHORS — the gold script annotation (caret +
@@ -53,7 +53,7 @@ export function AboutMe() {
   }, [revealed, reduced]);
   const loop = [...ICONS, ...ICONS];
   // tools ticker: 50px/s auto (2x the old ~25), eases to half (~25) on hover; drag-scrollable
-  const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 50, hoverFactor: 0.5 });
+  const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 50, hoverFactor: 0.5, onSwipe: () => play('swish') }); // same swipe swoosh as the hobby cards
 
   return (
     <section className="about" id="more-about-me">

@@ -4,16 +4,21 @@ import { usePrefersReducedMotion } from './hooks';
 type Opts = {
   speed: number; // auto-scroll px/sec, leftward
   hoverFactor?: number; // multiply speed while hovered (e.g. 0.5 = half). 1 = no change.
+  onSwipe?: () => void; // called once per drag, when it has clearly become a swipe (e.g. a sound)
 };
+
+const SWOOSH_AT = 24; // px of drag before a gesture counts as a swipe (a tap stays silent)
 
 // A seamless leftward auto-scroll marquee (track holds two copies of the content, wraps at -50%)
 // that is ALSO grab-and-drag scrollable (pointer + touch), with optional release momentum and a
 // smooth hover speed change. JS drives the transform each frame (not a CSS animation) so drag and
 // auto-scroll share one source of truth.
-export function useMarquee({ speed, hoverFactor = 1 }: Opts) {
+export function useMarquee({ speed, hoverFactor = 1, onSwipe: onSwipeProp }: Opts) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLUListElement>(null);
   const reduced = usePrefersReducedMotion();
+  const swipeRef = useRef(onSwipeProp);
+  swipeRef.current = onSwipeProp;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -30,6 +35,8 @@ export function useMarquee({ speed, hoverFactor = 1 }: Opts) {
     let target = reduced ? 0 : speed;
     let dragging = false;
     let moved = 0;
+    let swooshed = false;
+    const onSwipe = () => swipeRef.current?.();
     let lastX = 0, lastT = 0, velocity = 0;
     let raf = 0, prev = performance.now();
 
@@ -55,12 +62,15 @@ export function useMarquee({ speed, hoverFactor = 1 }: Opts) {
     io.observe(container);
 
     // ---- grab-drag ----
+    // The pointer is captured only once it has actually DRAGGED (moved past DRAG_START). Capturing on
+    // pointerdown retargeted a plain click/tap to the container, so the card links never opened; now a
+    // tap reaches its <a> untouched, and a real drag still captures + has its click swallowed below.
+    const DRAG_START = 6;
+    let captured = false;
     const onDown = (e: PointerEvent) => {
       if (e.button != null && e.button !== 0) return;
-      dragging = true; moved = 0; velocity = 0;
+      dragging = true; moved = 0; velocity = 0; captured = false;
       lastX = e.clientX; lastT = performance.now();
-      try { container.setPointerCapture(e.pointerId); } catch { /* noop */ }
-      document.body.classList.add('marquee-grabbing');
     };
     const onMove = (e: PointerEvent) => {
       if (!dragging) return;
@@ -70,11 +80,18 @@ export function useMarquee({ speed, hoverFactor = 1 }: Opts) {
       if (dtm > 0) velocity = dx / dtm;
       lastX = e.clientX; lastT = now;
       wrap();
+      if (!captured && moved > DRAG_START) {
+        captured = true;
+        try { container.setPointerCapture(e.pointerId); } catch { /* noop */ }
+        document.body.classList.add('marquee-grabbing');
+      }
+      if (moved > SWOOSH_AT && !swooshed) { swooshed = true; onSwipe(); } // once per drag
     };
     const onUp = (e: PointerEvent) => {
       if (!dragging) return;
       dragging = false;
-      try { container.releasePointerCapture(e.pointerId); } catch { /* noop */ }
+      swooshed = false;
+      if (captured) { try { container.releasePointerCapture(e.pointerId); } catch { /* noop */ } }
       document.body.classList.remove('marquee-grabbing');
     };
     // if the pointer moved (a drag, not a tap), swallow the click so links don't navigate

@@ -78,11 +78,18 @@ const SOUNDS = {
     ph += (TAU * expSweep(320, 960, t / 0.42)) / 16000;
     const e = env(t, 0.12, 0.09, 0.05);
     return bp(rand(), expSweep(450, 3200, t / 0.42), 1.0) * e + Math.sin(ph) * e * 0.15; }, db(-16)); },
-  // once per page load (first time sound is enabled): a soft A-major shimmer pad
+  // "sound on" confirmation (plays once, when sound is turned on): a soft two-note glass chime rising
+  // a fourth (E5 -> A5) — gentle mallet attack, nearly pure tones with a hint of overtone, a long
+  // natural decay and a whisper of air on top. Same 1.0s as before but quieter (-21 dB vs -17) and
+  // shaped like a struck chime rather than a flat sustained pad.
   load: () => render(16000, 1.0, (t) => {
-    const e = env(t, 0.18, 0.24, 0.17);
-    const v = (f, a) => a * (Math.sin(TAU * f * t) + Math.sin(TAU * (f + 0.8) * t)) * 0.5;
-    return (v(440, 1) + v(659.26, 0.6) + v(880, 0.35) + v(1108.73, 0.12)) * e; }, db(-17)),
+    const chime = (f, at, tau, amp) => {
+      const tt = t - at; if (tt < 0) return 0;
+      const strike = env(tt, 0.004, tau);
+      return amp * strike * (Math.sin(TAU * f * tt) + 0.12 * Math.sin(TAU * 2 * f * tt) * Math.exp(-tt / (tau * 0.4)) + 0.035 * Math.sin(TAU * 3 * f * tt) * Math.exp(-tt / (tau * 0.25)));
+    };
+    const air = Math.sin(TAU * 1760 * (t - 0.12)) * (t < 0.12 ? 0 : env(t - 0.12, 0.09, 0.22)) * 0.06; // faint shimmer an octave up
+    return chime(659.26, 0, 0.22, 0.8) + chime(880, 0.12, 0.36, 1) + chime(440, 0.12, 0.3, 0.12) + air; }, db(-21)),
   // ---- added later: keep NEW sounds at the END of this list. The noise generator is one seeded
   // sequence shared in list order, so inserting a sound earlier would change the noise samples of
   // every noise-based sound after it (different bytes for sounds already approved).
@@ -91,12 +98,10 @@ const SOUNDS = {
   stopwatch: () => { const bp = bandpass(16000); return render(16000, 0.4, (t) => {
     const beat = (tt, f) => (tt < 0 ? 0 : Math.sin(TAU * f * tt) * env(tt, 0.0005, 0.0025) + bp(rand(), 4000, 2) * env(tt, 0.0003, 0.001) * 0.6);
     return beat(t, 3000) + beat(t - 0.2, 2500) * 0.8; }, db(-24)); },
-  // Work Experience scramble: one soft digital "blip" per digit change (pitch varied at playback), …
+  // Work Experience scramble: one soft digital "blip" per digit change (pitch varied at playback);
+  // the flurry just stops as the digits land (no closing chime)
   blip: () => render(22050, 0.028, (t) =>
     Math.sin(TAU * 2400 * t) * env(t, 0.0004, 0.004) + Math.sin(TAU * 4800 * t) * env(t, 0.0004, 0.002) * 0.3, db(-26)),
-  // … and a gentle two-note "settle" as the digits lock
-  settle: () => render(22050, 0.09, (t) =>
-    Math.sin(TAU * 1760 * t) * env(t, 0.0008, 0.012) + (t < 0.035 ? 0 : Math.sin(TAU * 2637 * (t - 0.035)) * env(t - 0.035, 0.0008, 0.02)), db(-22)),
   // More About Me body text: one very quiet typewriter keystroke per word as it types in (a papery
   // strike + a soft low thock + a faint release click)
   type: () => { const bp = bandpass(22050); return render(22050, 0.024, (t) =>

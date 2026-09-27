@@ -87,8 +87,8 @@ export function WorkExperience() {
   }, []);
 
   // scramble sound, in sync with the ~1s digit scramble (all three cards scramble together, so one
-  // sound): a soft flurry of digital blips that thins out as the digits lock left→right, then a
-  // gentle two-note "settle" exactly when the values land at 1.0s. No scramble under reduced motion.
+  // sound): a soft flurry of digital blips that thins out as the digits lock left→right and simply
+  // stops as they land — no closing chime. No scramble under reduced motion.
   useEffect(() => {
     if (!statsIn || reduced) return;
     const offsets: number[] = [];
@@ -97,7 +97,6 @@ export function WorkExperience() {
       t += 0.028 + 0.035 * Math.pow(t / 0.95, 1.5) + Math.random() * 0.008;
     }
     playSequence('blip', offsets, { gap: 1200, rates: [1, 1.18, 0.86, 1.32, 0.94, 1.1] });
-    playSequence('settle', [1.0], { gap: 1200 });
   }, [statsIn, reduced]);
 
   // Pinch-to-zoom the Spinny highlights image (touch/pen only — mouse users are unaffected). Two

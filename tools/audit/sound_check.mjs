@@ -90,8 +90,8 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   const statsOnScreenAt = async () => { for (let y = 0; y < 20000; y += 150) { await setY(p, y); await p.waitForTimeout(40); const t = await p.evaluate(() => document.querySelector('.we__stats').getBoundingClientRect().top); if (t < 450) return y; } return null; };
   let got = await step('scroll to WE stats (scramble)', statsOnScreenAt, 1500);
   const statsTop = await p.evaluate(() => document.querySelector('.we__stats').getBoundingClientRect().top + scrollY);
-  const blips = got.filter((x) => x.n === 'blip'), settle = got.find((x) => x.n === 'settle');
-  if (blips.length) log('  blips span / settle offset (expect <0.95 / 1.000s)', `${(blips.at(-1).w - blips[0].w).toFixed(3)}s / ${settle ? (settle.w - blips[0].w).toFixed(3) : 'none'}s`);
+  const blips = got.filter((x) => x.n === 'blip');
+  if (blips.length) log('  flurry span / anything after the flurry (expect <0.95s / none)', `${(blips.at(-1).w - blips[0].w).toFixed(3)}s / ${got.filter((x) => x.n !== 'blip').map((x) => x.n).join(', ') || 'none'}`);
   // More About Me body text
   const bioTop = await p.evaluate(() => document.querySelector('.about__bio').getBoundingClientRect().top + scrollY);
   got = await step('scroll to More About Me bio (typewriter)', async () => { for (let y = statsTop; y <= bioTop - 250; y += 250) { await setY(p, y); await p.waitForTimeout(40); } await setY(p, bioTop - 250); }, 3000);
@@ -144,6 +144,33 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   r = await rectOf(p, '.resume--mobile'); await p.touchscreen.tap(r.x, r.y); await p.waitForTimeout(400);
   log('PHONE (on): tap Résumé (no hover sound on touch)', names((await snap(p)).plays.slice(n0)));
   await ctx.close();
+}
+
+// ---------- cursor pill (mouse AND scroll-triggered) + marquee swipes ----------
+{
+  const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+  await p.addInitScript(instrument);
+  await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(1200);
+  const step = async (label, fn, wait = 400) => { const n0 = (await snap(p)).plays.length; await fn(); await p.waitForTimeout(wait); const got = (await snap(p)).plays.slice(n0); log(label, names(got)); return got; };
+  let c = await rectOf(p, '.sound-toggle'); await p.mouse.click(c.x, c.y); await p.waitForTimeout(900);
+  c = await rectOf(p, '.hero__graffiti');
+  await p.mouse.move(c.x, 150); await p.waitForTimeout(400);
+  await step("pill via MOUSE (That's me)", () => p.mouse.move(c.x, c.y, { steps: 3 }));
+  await p.mouse.move(c.x, 150); await p.waitForTimeout(500);
+  // park the cursor on the Recent Work card's text side and let the PAGE scroll a card under it
+  await p.mouse.move(1150, 450); await p.waitForTimeout(400);
+  const rwTop = await p.evaluate(() => document.querySelector('.rw-card').getBoundingClientRect().top + scrollY);
+  const got = await step('pill via SCROLL only (cursor still)', async () => { for (let y = rwTop - 1200; y < rwTop + 700; y += 60) { await setY(p, y); await p.waitForTimeout(30); } }, 500);
+  log('  pill showing after that scroll? / whooshes', `${await p.evaluate(() => !!document.querySelector('.cursor-text--show'))} / ${got.filter((x) => x.n === 'whoosh').length}`);
+  // testimonials: tap = no swoosh; swipe = swoosh
+  const cardPt = async (sel) => p.evaluate((s) => { document.querySelector(s).scrollIntoView({ block: 'center' }); const q = document.querySelector(s).getBoundingClientRect(); return { x: q.left + q.width * 0.4, y: q.top + q.height / 2 }; }, sel);
+  const ctx = p.context(); ctx.on('page', (np) => np.close());
+  c = await cardPt('.tts__marquee'); await p.waitForTimeout(300); c = await cardPt('.tts__marquee');
+  await step('testimonials: plain click (no drag)', () => p.mouse.click(c.x, c.y), 600);
+  await step('testimonials: swipe', async () => { await p.mouse.move(c.x + 100, c.y); await p.mouse.down(); await p.mouse.move(c.x - 100, c.y, { steps: 10 }); await p.mouse.up(); });
+  c = await cardPt('.about__marquee'); await p.waitForTimeout(300); c = await cardPt('.about__marquee');
+  await step('tools ticker: swipe', async () => { await p.mouse.move(c.x + 100, c.y); await p.mouse.down(); await p.mouse.move(c.x - 100, c.y, { steps: 10 }); await p.mouse.up(); });
+  await p.context().close();
 }
 
 // ---------- a whole muted visit: scroll the full page (scramble + typewriter triggers) ----------

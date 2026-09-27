@@ -32,18 +32,16 @@ export function Cursor() {
     // bubbling pointerover/pointerout) so it switches the instant the pointer enters a labelled
     // element and resets the instant it leaves — never dependent on continuous movement.
     const pos = { x: -1, y: -1 }; // last known pointer position (viewport coords)
-    let movedAt = -Infinity; // last time the pointer ACTUALLY moved (coordinates changed)
-    const move = (e: PointerEvent) => {
-      if (e.clientX !== pos.x || e.clientY !== pos.y) movedAt = performance.now();
-      pos.x = e.clientX; pos.y = e.clientY; x.set(e.clientX); y.set(e.clientY);
-    };
+    const move = (e: PointerEvent) => { pos.x = e.clientX; pos.y = e.clientY; x.set(e.clientX); y.set(e.clientY); };
     let shown: string | null = null; // the pill currently showing (null = plain dot)
-    const apply = (el: HTMLElement | null, fromScroll = false) => {
+    const apply = (el: HTMLElement | null) => {
       const lbl = el ? el.getAttribute('data-cursor-label') : null; // empty string => suppress pill
-      // a pill APPEARING because the pointer moved onto something gets a short whoosh (silent unless
-      // sound is on). Not when it appears only because the page scrolled under a still cursor — incl.
-      // the browser's own post-scroll hover events, which report an unchanged position. No scroll sounds.
-      if (lbl && !shown && !fromScroll && performance.now() - movedAt < 150) play('whoosh');
+      // The whoosh is tied to the cursor-STATE change itself: it plays whenever a pill appears (dot ->
+      // pill), whatever caused it — the pointer moving onto a card OR the page scrolling a card under
+      // a still cursor. Every path (pointer events, the scroll re-check, the browser's own post-scroll
+      // hover events) funnels through here and only the dot->pill transition sounds, so one change =
+      // one whoosh; the whoosh's re-trigger gap keeps quick flips from stacking. Silent unless on.
+      if (lbl && !shown) play('whoosh');
       shown = lbl || null;
       setLabel(lbl || null);
       setSize(el && lbl ? el.getAttribute('data-cursor-size') || 'sm' : 'sm');
@@ -59,7 +57,7 @@ export function Cursor() {
     };
     // On SCROLL the page moves under a stationary cursor, so re-evaluate what's under the last
     // pointer position (no mouse-move needed) — pill appears/disappears from scrolling alone.
-    const onScroll = () => { if (pos.x < 0) return; apply(labelled(document.elementFromPoint(pos.x, pos.y)), true); };
+    const onScroll = () => { if (pos.x < 0) return; apply(labelled(document.elementFromPoint(pos.x, pos.y))); };
     // press-shrink to 75% on button-down, back to 100% on release/cancel
     const press = () => pressScale.set(0.75);
     const release = () => pressScale.set(1);

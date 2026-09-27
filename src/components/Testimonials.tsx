@@ -1,5 +1,6 @@
 import './testimonials.css';
 import { useMarquee } from '../lib/useMarquee';
+import { play } from '../lib/sound';
 
 // THINGS THEY SAY — a leftward marquee of 3 baked LinkedIn recommendation screenshots, each
 // linking to the profile. Auto-scrolls (2x the old pace), slows to half on hover, and is also
@@ -15,7 +16,7 @@ export function Testimonials() {
   // duplicate the set so the track loops seamlessly (wrap at one copy width)
   const loop = [...CARDS, ...CARDS];
   // ~48px/s (2x the old ~24px/s); hover drops to half (~24px/s), smooth
-  const { containerRef, trackRef } = useMarquee({ speed: 48, hoverFactor: 0.5 });
+  const { containerRef, trackRef } = useMarquee({ speed: 48, hoverFactor: 0.5, onSwipe: () => play('swish') }); // same swipe swoosh as the hobby cards
   return (
     <section className="tts" id="things-they-say">
       <div className="tts__inner">
