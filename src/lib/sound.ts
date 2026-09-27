@@ -10,18 +10,24 @@ import { useEffect, useSyncExternalStore } from 'react';
 // - Muted = fully silent: play/sequence/loop are no-ops, running loops stop, the context suspends.
 // - Anti-noise: each sound has a minimum re-trigger gap and at most 4 voices overlap at once
 //   (a scheduled sequence — the typewriter, the scramble flurry — counts as one voice).
-// Files: public/sounds/*.wav, rendered by scripts/make-sounds.mjs (swap any file at the same path).
+// Files: public/sounds/ — the .wav files are rendered by scripts/make-sounds.mjs; wow.mp3 is a
+// supplied recording played exactly as-is. Swap any file at the same path.
 
 export type SoundName =
   | 'click' | 'hover' | 'whoosh' | 'swish' | 'pop-open' | 'pop-close' | 'whoosh-up' | 'load'
-  | 'stopwatch' | 'blip' | 'type' | 'heroic' | 'wind';
+  | 'stopwatch' | 'blip' | 'type' | 'wind' | 'wow';
 
-const NAMES: SoundName[] = ['click', 'hover', 'whoosh', 'swish', 'pop-open', 'pop-close', 'whoosh-up', 'load', 'stopwatch', 'blip', 'type', 'heroic', 'wind'];
+const NAMES: SoundName[] = ['click', 'hover', 'whoosh', 'swish', 'pop-open', 'pop-close', 'whoosh-up', 'load', 'stopwatch', 'blip', 'type', 'wind', 'wow'];
+const FILE: Partial<Record<SoundName, string>> = { wow: 'wow.mp3' }; // everything else: <name>.wav
 // minimum ms between two plays of the same sound (rapid triggers never stack into noise)
 const MIN_GAP: Record<SoundName, number> = {
   click: 90, hover: 80, whoosh: 350, swish: 250, 'pop-open': 150, 'pop-close': 150, 'whoosh-up': 500, load: 0,
-  stopwatch: 0, blip: 0, type: 0, heroic: 1500, wind: 400,
+  stopwatch: 0, blip: 0, type: 0, wind: 400, wow: 0,
 };
+// long one-shots that must never overlap themselves: a re-trigger while one is still playing is
+// ignored (one hover = one play, never stacked copies)
+const NO_OVERLAP = new Set<SoundName>(['wow']);
+const playing = new Set<SoundName>();
 const MAX_VOICES = 4;
 const MASTER = 0.9;
 
@@ -38,14 +44,15 @@ const subs = new Set<() => void>();
 
 function loadAll(): Promise<void> {
   if (!loading) {
-    // decode without a live AudioContext (needs no gesture, logs no autoplay warning); AudioBuffers
-    // are context-independent, so the real context plays them once it exists
+    // decode on an OfflineAudioContext (logs no autoplay warning); AudioBuffers are context-
+    // independent. Decoded at the live context's own sample rate, so files are resampled at most once
+    // (e.g. the 48 kHz wow.mp3 plays untouched on a 48 kHz output).
     const OAC = window.OfflineAudioContext || (window as unknown as { webkitOfflineAudioContext: typeof OfflineAudioContext }).webkitOfflineAudioContext;
-    const dec = new OAC(1, 1, 44100);
+    const dec = new OAC(1, 1, ctx?.sampleRate ?? 48000);
     loading = Promise.all(
       NAMES.map(async (n) => {
         try {
-          const res = await fetch(`/sounds/${n}.wav`);
+          const res = await fetch(`/sounds/${FILE[n] ?? `${n}.wav`}`);
           buffers.set(n, await dec.decodeAudioData(await res.arrayBuffer()));
         } catch { /* a missing/undecodable file just stays silent */ }
       }),
@@ -101,6 +108,8 @@ export function setSoundOn(on: boolean): void {
   subs.forEach((f) => f());
   if (!on) {
     loops.forEach((stop) => stop());
+    // stop long one-shots outright (a suspended context would otherwise resume them mid-way later)
+    oneShots.forEach((src) => { try { src.stop(); } catch { /* already ended */ } });
     void ctx?.suspend();
     return;
   }
@@ -108,12 +117,16 @@ export function setSoundOn(on: boolean): void {
   void loadAll().then(maybePlayLoad);
 }
 
+const oneShots = new Map<SoundName, AudioBufferSourceNode>(); // live NO_OVERLAP sounds (stopped on mute)
+
 export function play(name: SoundName, opts: { rate?: number; gain?: number } = {}): void {
   if (!usable()) return;
   const buf = buffers.get(name);
-  if (!buf || voices >= MAX_VOICES || !gapOk(name, MIN_GAP[name])) return;
+  if (!buf || voices >= MAX_VOICES || (NO_OVERLAP.has(name) && playing.has(name)) || !gapOk(name, MIN_GAP[name])) return;
   voices++;
-  source(buf, 0, opts.rate, opts.gain, () => { voices--; });
+  playing.add(name);
+  const src = source(buf, 0, opts.rate, opts.gain, () => { voices--; playing.delete(name); oneShots.delete(name); });
+  if (NO_OVERLAP.has(name)) oneShots.set(name, src);
 }
 
 // Schedules one buffer at several offsets (seconds from now) on the audio clock — sample-accurate,

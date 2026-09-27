@@ -46,8 +46,8 @@ export function Footer() {
           <div
             className="footer__badge"
             onPointerEnter={(e) => {
-              // a short heroic flourish on hover (mouse / fine pointer only; 1.5s re-trigger gap)
-              if (e.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) play('heroic');
+              // the 'wow' flourish on hover (mouse / fine pointer only; ignored while it's still playing)
+              if (e.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) play('wow');
             }}
           >
             <picture className="footer__badge-img">

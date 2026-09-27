@@ -15,7 +15,7 @@ const instrument = () => {
     if (u.includes('/sounds/')) {
       window.__snd.fetches.push(u);
       const ab0 = r.arrayBuffer.bind(r);
-      r.arrayBuffer = async () => { const ab = await ab0(); names.set(ab, u.split('/').pop().replace('.wav', '')); return ab; };
+      r.arrayBuffer = async () => { const ab = await ab0(); names.set(ab, u.split('/').pop().replace(/\.(wav|mp3)$/, '')); return ab; };
     }
     return r;
   };
@@ -106,7 +106,13 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   await p.evaluate(() => { document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight; }); await p.waitForTimeout(800);
   c = await rectOf(p, '.footer__badge');
   await step('hover Wall Of Portfolios badge', () => p.mouse.move(c.x, c.y, { steps: 3 }), 800);
-  await step('leave + re-hover badge within 1.5s', async () => { await p.mouse.move(c.x - 300, c.y); await p.mouse.move(c.x, c.y, { steps: 2 }); }, 400);
+  await step('re-hover x3 while the wow is still playing', async () => { for (let i = 0; i < 3; i++) { await p.mouse.move(c.x - 300, c.y); await p.mouse.move(c.x, c.y, { steps: 2 }); await p.waitForTimeout(150); } }, 300);
+  await p.mouse.move(600, 500); await p.waitForTimeout(2200); // let it finish (2.686s)
+  await step('re-hover after it finished', () => p.mouse.move(c.x, c.y, { steps: 3 }), 500);
+  let n1 = (await snap(p)).stops.length;
+  await p.evaluate(() => document.querySelector('.sound-toggle').click()); await p.waitForTimeout(300); // mute mid-play
+  log('  MUTE while the wow plays -> stopped?', (await snap(p)).stops.slice(n1).join(', ') || 'NO STOP');
+  await p.evaluate(() => document.querySelector('.sound-toggle').click()); await p.waitForTimeout(500); // back on
   await p.mouse.move(600, 500);
   // MUTE everything
   c = await rectOf(p, '.sound-toggle');

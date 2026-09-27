@@ -1,3 +1,5 @@
+// (public/sounds/wow.mp3 — the Wall Of Portfolios badge hover — is a supplied recording, used as-is;
+// this script never writes or touches it.)
 // Renders the site's UI sound family to public/sounds/*.wav — the ORIGINALS (synthesised here, so
 // they're our own work: no third-party licence). One family: soft, rounded, low-level; clicks/ticks
 // share a warm sine "wood" body, the air sounds share band-passed noise. Deterministic (seeded noise),
@@ -107,11 +109,6 @@ const SOUNDS = {
   type: () => { const bp = bandpass(22050); return render(22050, 0.024, (t) =>
     bp(rand(), 3200, 1.8) * env(t, 0.0003, 0.0018) + Math.sin(TAU * 190 * t) * env(t, 0.0006, 0.005) * 0.5 +
     (t < 0.008 ? 0 : bp(rand(), 4200, 2) * env(t - 0.008, 0.0003, 0.001) * 0.3), db(-26)); },
-  // Wall Of Portfolios badge hover: a short heroic flourish — a quick A-major arpeggio (A4 C#5 E5 → A5)
-  // with a warm brassy (2nd/3rd harmonic) tone, the last note held briefly
-  heroic: () => render(16000, 0.62, (t) => {
-    const note = (f, at, tau) => { const tt = t - at; if (tt < 0) return 0; const e = env(tt, 0.008, tau); return (Math.sin(TAU * f * tt) + 0.5 * Math.sin(TAU * 2 * f * tt) + 0.25 * Math.sin(TAU * 3 * f * tt)) * e; };
-    return note(440, 0, 0.06) + note(554.37, 0.07, 0.06) + note(659.26, 0.14, 0.07) + note(880, 0.21, 0.18) * 1.1; }, db(-18)),
   // testimonials + tools ticker swipe: a soft gust of WIND — low, wide band-passed air whose centre
   // drifts up and back (≈500 -> 900 -> 600 Hz), a gentle swell in and out and a slight flutter
   wind: () => { const bp = bandpass(16000); const bp2 = bandpass(16000); return render(16000, 0.5, (t) => {
