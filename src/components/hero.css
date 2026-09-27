@@ -355,12 +355,13 @@
 }
 @keyframes badge-spin { to { transform: rotate(360deg); } }
 
-/* ---- O hover: WhatsApp icon + outward ripples, both on the O's counter centre ----
+/* ---- O hover: WhatsApp icon + dotted green ripples, both on the O's counter centre ----
    The icon is the Contact button's WhatsApp SVG at 40px, parked at scale(0) and grown to scale(1)
-   (0 -> 40px) on hover, sharing the ring/dot centring (translate(-50%,-50%) + --o-cx/--o-cy). The
-   ripples are three thin rings growing from the icon's size out past the O and fading, staggered and
-   looping; they're PAUSED unless hovered (free when idle) and fade out on leave. The whole O is the
-   WhatsApp link, so clicking the icon opens it. Fine pointer only (see the hover block below). */
+   (0 -> 40px) on hover, sharing the ring/dot centring (translate(-50%,-50%) + --o-cx/--o-cy).
+   The ripples are live's own effect (a canvas of green dots, see ORipples.tsx): a 1.344em circle
+   (379px at desktop, like live) centred on the O, drawn only from the O's outer edge outward. It
+   fades in on hover and out on leave; its draw loop runs only while it's visible. The whole O is
+   the WhatsApp link, so clicking the icon opens it. Fine pointer only (see the hover block below). */
 .hero__o > .hero__o-wa {
   position: absolute;
   top: 50%;
@@ -377,39 +378,18 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 2;
-  width: 0; /* a point at the counter centre; each ring centres on it */
-  height: 0;
-  transform: translate(var(--o-cx), var(--o-cy));
+  z-index: 2; /* over the O glyph (like live), under the ring text + icon */
+  width: 1.344em; /* live: a 379px canvas around the 282px O */
+  height: 1.344em;
+  border-radius: 50%; /* clips the dot grid to a circle, as live does */
+  transform: translate(calc(-50% + var(--o-cx)), calc(-50% + var(--o-cy)));
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.35s ease;
 }
-.hero__o-ripples i {
-  position: absolute;
-  left: 0;
-  top: 0;
-  box-sizing: border-box;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(214, 214, 255, 0.7); /* the O's own lavender-white */
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: o-ripple 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite paused;
-}
-/* negative delays pre-stagger the three rings, so all are already in motion on the first hover */
-.hero__o-ripples i:nth-child(2) { animation-delay: -0.6s; }
-.hero__o-ripples i:nth-child(3) { animation-delay: -1.2s; }
-/* width/height (not scale) so the ring line stays a crisp 2px as it grows; from the icon's 40px to
-   ~0.95em — just past the O (268px at desktop, 152px on tablet) */
-@keyframes o-ripple {
-  from { width: 40px; height: 40px; opacity: 1; }
-  to   { width: 0.95em; height: 0.95em; opacity: 0; }
-}
 @media (hover: hover) and (pointer: fine) {
   .hero__o:hover > .hero__o-wa { transform: translate(calc(-50% + var(--o-cx)), calc(-50% + var(--o-cy))) scale(1); }
   .hero__o:hover > .hero__o-ripples { opacity: 1; }
-  .hero__o:hover > .hero__o-ripples i { animation-play-state: running; }
 }
 
 /* tiny centre dot inside the counter (measured ~1.5px, #E3E3FF on live) */
