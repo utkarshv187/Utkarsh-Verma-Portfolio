@@ -355,6 +355,63 @@
 }
 @keyframes badge-spin { to { transform: rotate(360deg); } }
 
+/* ---- O hover: WhatsApp icon + outward ripples, both on the O's counter centre ----
+   The icon is the Contact button's WhatsApp SVG at 40px, parked at scale(0) and grown to scale(1)
+   (0 -> 40px) on hover, sharing the ring/dot centring (translate(-50%,-50%) + --o-cx/--o-cy). The
+   ripples are three thin rings growing from the icon's size out past the O and fading, staggered and
+   looping; they're PAUSED unless hovered (free when idle) and fade out on leave. The whole O is the
+   WhatsApp link, so clicking the icon opens it. Fine pointer only (see the hover block below). */
+.hero__o > .hero__o-wa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4; /* above the ring text (3) and the centre dot (2) */
+  width: 40px;
+  height: 40px;
+  pointer-events: none; /* the click lands on the O link itself */
+  transform: translate(calc(-50% + var(--o-cx)), calc(-50% + var(--o-cy))) scale(0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero__o-wa svg { width: 40px; height: 40px; }
+.hero__o > .hero__o-ripples {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 0; /* a point at the counter centre; each ring centres on it */
+  height: 0;
+  transform: translate(var(--o-cx), var(--o-cy));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.hero__o-ripples i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(214, 214, 255, 0.7); /* the O's own lavender-white */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: o-ripple 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite paused;
+}
+/* negative delays pre-stagger the three rings, so all are already in motion on the first hover */
+.hero__o-ripples i:nth-child(2) { animation-delay: -0.6s; }
+.hero__o-ripples i:nth-child(3) { animation-delay: -1.2s; }
+/* width/height (not scale) so the ring line stays a crisp 2px as it grows; from the icon's 40px to
+   ~0.95em — just past the O (268px at desktop, 152px on tablet) */
+@keyframes o-ripple {
+  from { width: 40px; height: 40px; opacity: 1; }
+  to   { width: 0.95em; height: 0.95em; opacity: 0; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__o:hover > .hero__o-wa { transform: translate(calc(-50% + var(--o-cx)), calc(-50% + var(--o-cy))) scale(1); }
+  .hero__o:hover > .hero__o-ripples { opacity: 1; }
+  .hero__o:hover > .hero__o-ripples i { animation-play-state: running; }
+}
+
 /* tiny centre dot inside the counter (measured ~1.5px, #E3E3FF on live) */
 .hero__o-dot {
   width: 0.0055em;
@@ -507,6 +564,9 @@
      (the cursor follow is also disabled in useAurora) */
   .hero__aurora-blob, .hero__grain { animation: none; }
   .hero__graffiti-img, .hero__thatsme { transition: none; }
+  /* O hover: the WhatsApp icon still appears (no scale animation); no ripples */
+  .hero__o > .hero__o-wa { transition: none; }
+  .hero__o > .hero__o-ripples { display: none; }
 }
 
 /* ================= Phone hero (<= 809.98px) ================= */

@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { cancelFrame, frame, motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { RoleTicker, ROLES } from './RoleTicker';
 import { RotatingBadge } from './RotatingBadge';
+import { WhatsAppIcon } from './Icons';
 import { LINKS, EXTERNAL } from '../config/site';
 import { usePrefersReducedMotion } from '../lib/hooks';
 import { readScroll } from '../lib/scroll';
@@ -188,6 +189,10 @@ export function Hero() {
         >
           O
           <span className="hero__o-dot" aria-hidden="true" />
+          {/* hover (fine pointer): ripples expand out from the O's centre and the Contact button's
+              WhatsApp icon scales in dead-centre; the whole O is the WhatsApp link */}
+          <span className="hero__o-ripples" aria-hidden="true"><i /><i /><i /></span>
+          <span className="hero__o-wa" aria-hidden="true"><WhatsAppIcon size={40} /></span>
           <RotatingBadge />
         </motion.a>
 
