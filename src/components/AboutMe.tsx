@@ -53,7 +53,7 @@ export function AboutMe() {
   }, [revealed, reduced]);
   const loop = [...ICONS, ...ICONS];
   // tools ticker: 50px/s auto (2x the old ~25), eases to half (~25) on hover; drag-scrollable
-  const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 50, hoverFactor: 0.5, onSwipe: () => play('swish') }); // same swipe swoosh as the hobby cards
+  const { containerRef: tickerRef, trackRef } = useMarquee({ speed: 50, hoverFactor: 0.5, onSwipe: () => play('wind') }); // soft wind on swipe (same as the testimonials)
 
   return (
     <section className="about" id="more-about-me">

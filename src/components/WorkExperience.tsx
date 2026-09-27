@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { SpinnyLogo } from './SpinnyLogo';
 import { usePointerWithin, usePrefersReducedMotion } from '../lib/hooks';
 import { playSequence } from '../lib/sound';
+import { useScroll } from 'framer-motion';
 
 type Row = { company: 'spinny' | string; roleFull: string; roleShort: string; date: string };
 const ROWS: Row[] = [
@@ -28,14 +29,16 @@ function ZBolt() {
 // Only the DIGITS scramble (letters/symbols like "M"/"+" stay fixed); with tabular figures every
 // digit is the same width, so the value never changes size while scrambling.
 const rndDigit = () => '0123456789'[(Math.random() * 10) | 0];
-const scrambleStr = (final: string) => final.replace(/[0-9]/g, rndDigit);
-function ScrambleValue({ final, active }: { final: string; active: boolean }) {
+// One entry of the stats into view: scramble (entered scrolling DOWN) or just show the final value
+// (entered scrolling UP). `n` changes on every entry so the effect re-runs each time.
+type Entry = { n: number; scramble: boolean };
+
+function ScrambleValue({ final, entry }: { final: string; entry: Entry }) {
   const reduced = usePrefersReducedMotion();
-  const [text, setText] = useState(reduced ? final : final.replace(/./g, ' '));
+  const [text, setText] = useState(final);
   useEffect(() => {
-    if (reduced) { setText(final); return; }
-    // live re-runs the scramble each time the stats re-enter view; blank it while out of view
-    if (!active) { setText(scrambleStr(final)); return; }
+    // scrolling up into the stats (or reduced motion): the final numbers, straight away
+    if (reduced || !entry.scramble) { setText(final); return; }
     const chars = final.split('');
     const DURATION = 1000;
     const start = performance.now();
@@ -49,7 +52,7 @@ function ScrambleValue({ final, active }: { final: string; active: boolean }) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [active, final, reduced]);
+  }, [entry, final, reduced]);
   return (
     <span className="we-card__value" aria-label={final}>
       {/* invisible ghost of the FINAL value reserves the exact box; the live scramble overlays it */}
@@ -64,7 +67,19 @@ export function WorkExperience() {
   const statsRef = useRef<HTMLDivElement>(null);
   const spinnyFrameRef = useRef<HTMLDivElement>(null);
   const spinnyImgRef = useRef<HTMLImageElement>(null);
-  const [statsIn, setStatsIn] = useState(false);
+  const [entry, setEntry] = useState<Entry>({ n: 0, scramble: false });
+  // page scroll (framer's value — already measured once per frame, so no extra layout reads) and the
+  // direction of the latest movement
+  const { scrollY } = useScroll();
+  const dirRef = useRef<'down' | 'up' | null>(null);
+  useEffect(() => {
+    let last = scrollY.get();
+    return scrollY.on('change', (v) => {
+      if (v > last) dirRef.current = 'down';
+      else if (v < last) dirRef.current = 'up';
+      last = v;
+    });
+  }, [scrollY]);
   // Spinny bento is a one-way latch: the FIRST hover of the Work Experience section (which
   // includes the Spinny row) flips this true and it stays true for the rest of the session —
   // the image never hides on mouse-leave/scroll. It's in-memory only, so a page reload resets it.
@@ -78,8 +93,15 @@ export function WorkExperience() {
   useEffect(() => {
     const el = statsRef.current;
     if (!el) return;
+    // Each time the stats come into view: scramble only if the visitor got here scrolling DOWN.
+    // Scrolling UP into them shows the final numbers directly. (No movement yet — e.g. the page
+    // loads with the stats already in view — counts as a downward, first reveal.)
     const io = new IntersectionObserver(
-      (entries) => { entries.forEach((e) => setStatsIn(e.isIntersecting)); },
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setEntry((m) => ({ n: m.n + 1, scramble: dirRef.current !== 'up' }));
+        });
+      },
       { threshold: 0.4 },
     );
     io.observe(el);
@@ -88,16 +110,17 @@ export function WorkExperience() {
 
   // scramble sound, in sync with the ~1s digit scramble (all three cards scramble together, so one
   // sound): a soft flurry of digital blips that thins out as the digits lock left→right and simply
-  // stops as they land — no closing chime. No scramble under reduced motion.
+  // stops as they land — no closing chime. Only when the digits actually scramble (downward entry;
+  // never under reduced motion).
   useEffect(() => {
-    if (!statsIn || reduced) return;
+    if (!entry.scramble || reduced) return;
     const offsets: number[] = [];
     for (let t = 0; t < 0.95; ) {
       offsets.push(t);
       t += 0.028 + 0.035 * Math.pow(t / 0.95, 1.5) + Math.random() * 0.008;
     }
     playSequence('blip', offsets, { gap: 1200, rates: [1, 1.18, 0.86, 1.32, 0.94, 1.1] });
-  }, [statsIn, reduced]);
+  }, [entry, reduced]);
 
   // Pinch-to-zoom the Spinny highlights image (touch/pen only — mouse users are unaffected). Two
   // fingers scale ONLY the <img> within its clipped frame (.we__reveal-inner has overflow:hidden, so
@@ -215,7 +238,7 @@ export function WorkExperience() {
         <div className="we__stats" ref={statsRef}>
           {STATS.map((s, i) => (
             <div className="we-card we-reveal" key={i}>
-              <ScrambleValue final={s.value} active={statsIn} />
+              <ScrambleValue final={s.value} entry={entry} />
               <ZBolt />
               <p className="we-card__label">
                 {s.label[0]}{' '}

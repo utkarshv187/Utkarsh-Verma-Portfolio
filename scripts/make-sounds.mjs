@@ -112,6 +112,15 @@ const SOUNDS = {
   heroic: () => render(16000, 0.62, (t) => {
     const note = (f, at, tau) => { const tt = t - at; if (tt < 0) return 0; const e = env(tt, 0.008, tau); return (Math.sin(TAU * f * tt) + 0.5 * Math.sin(TAU * 2 * f * tt) + 0.25 * Math.sin(TAU * 3 * f * tt)) * e; };
     return note(440, 0, 0.06) + note(554.37, 0.07, 0.06) + note(659.26, 0.14, 0.07) + note(880, 0.21, 0.18) * 1.1; }, db(-18)),
+  // testimonials + tools ticker swipe: a soft gust of WIND — low, wide band-passed air whose centre
+  // drifts up and back (≈500 -> 900 -> 600 Hz), a gentle swell in and out and a slight flutter
+  wind: () => { const bp = bandpass(16000); const bp2 = bandpass(16000); return render(16000, 0.5, (t) => {
+    const p = t / 0.5;
+    const f = 500 + 400 * Math.sin(Math.PI * Math.min(1, p * 1.4)) - 100 * p; // up, then settles lower
+    const swell = Math.sin(Math.PI * Math.min(1, p)) ** 1.6; // soft in, soft out
+    const flutter = 1 + 0.12 * Math.sin(TAU * 7 * t) * Math.sin(Math.PI * p);
+    const n = rand();
+    return (bp(n, f, 0.6) + bp2(n, f * 2.1, 0.8) * 0.25) * swell * flutter; }, db(-25)); },
 };
 
 await mkdir(OUT, { recursive: true });

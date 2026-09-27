@@ -14,13 +14,13 @@ import { useEffect, useSyncExternalStore } from 'react';
 
 export type SoundName =
   | 'click' | 'hover' | 'whoosh' | 'swish' | 'pop-open' | 'pop-close' | 'whoosh-up' | 'load'
-  | 'stopwatch' | 'blip' | 'type' | 'heroic';
+  | 'stopwatch' | 'blip' | 'type' | 'heroic' | 'wind';
 
-const NAMES: SoundName[] = ['click', 'hover', 'whoosh', 'swish', 'pop-open', 'pop-close', 'whoosh-up', 'load', 'stopwatch', 'blip', 'type', 'heroic'];
+const NAMES: SoundName[] = ['click', 'hover', 'whoosh', 'swish', 'pop-open', 'pop-close', 'whoosh-up', 'load', 'stopwatch', 'blip', 'type', 'heroic', 'wind'];
 // minimum ms between two plays of the same sound (rapid triggers never stack into noise)
 const MIN_GAP: Record<SoundName, number> = {
   click: 90, hover: 80, whoosh: 350, swish: 250, 'pop-open': 150, 'pop-close': 150, 'whoosh-up': 500, load: 0,
-  stopwatch: 0, blip: 0, type: 0, heroic: 1500,
+  stopwatch: 0, blip: 0, type: 0, heroic: 1500, wind: 400,
 };
 const MAX_VOICES = 4;
 const MASTER = 0.9;

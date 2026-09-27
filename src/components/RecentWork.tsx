@@ -137,8 +137,9 @@ function BeforeAfter() {
       <motion.div className="rw-ba__layer rw-ba__old" style={{ clipPath: oldClip }} />
       <motion.div className={`rw-ba__divider${hovering || dragging ? '' : ' rw-ba__divider--idle'}`} style={{ left }}>
         <div className="rw-ba__bar" aria-hidden="true" />
-        {/* two-sided arrow control — suppress the card's "View" pill here (empty cursor label) */}
-        <div className="rw-ba__handle" data-cursor-label="">
+        {/* two-sided arrow control — the card's custom "View ↗" cursor stays on over it (no override
+            here), so the custom cursor never drops out on the circle */}
+        <div className="rw-ba__handle">
           <span className="rw-ba__arrows" aria-hidden="true">
             <svg viewBox="0 0 16 16" width="15" height="15"><path d="M10 3.5 5.5 8 10 12.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
             <svg viewBox="0 0 16 16" width="15" height="15"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>

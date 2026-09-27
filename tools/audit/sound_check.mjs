@@ -166,10 +166,68 @@ const names = (arr) => { const c = {}; arr.forEach((x) => { c[x.n] = (c[x.n] || 
   const cardPt = async (sel) => p.evaluate((s) => { document.querySelector(s).scrollIntoView({ block: 'center' }); const q = document.querySelector(s).getBoundingClientRect(); return { x: q.left + q.width * 0.4, y: q.top + q.height / 2 }; }, sel);
   const ctx = p.context(); ctx.on('page', (np) => np.close());
   c = await cardPt('.tts__marquee'); await p.waitForTimeout(300); c = await cardPt('.tts__marquee');
-  await step('testimonials: plain click (no drag)', () => p.mouse.click(c.x, c.y), 600);
+  let tabs = 0; ctx.on('page', () => { tabs++; });
+  await step('testimonials: plain click (no drag)', () => p.mouse.click(c.x, c.y), 900);
+  log('  -> LinkedIn tab opened?', tabs > 0);
   await step('testimonials: swipe', async () => { await p.mouse.move(c.x + 100, c.y); await p.mouse.down(); await p.mouse.move(c.x - 100, c.y, { steps: 10 }); await p.mouse.up(); });
   c = await cardPt('.about__marquee'); await p.waitForTimeout(300); c = await cardPt('.about__marquee');
+  tabs = 0;
   await step('tools ticker: swipe', async () => { await p.mouse.move(c.x + 100, c.y); await p.mouse.down(); await p.mouse.move(c.x - 100, c.y, { steps: 10 }); await p.mouse.up(); });
+  log('  (tabs opened by the swipes)', tabs);
+  await p.context().close();
+}
+
+// ---------- Recent Work card 1: the custom 'View' pill stays on over the before/after centre circle ----------
+// (fresh page so card 1 is on top of the sticky stack; the divider trails the mouse on a spring, so
+// hover the image, then sit on the centre line and let the circle settle under the pointer)
+{
+  const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+  await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(1200);
+  await p.evaluate(() => document.querySelector('.rw-ba').scrollIntoView({ block: 'center' })); await p.waitForTimeout(600);
+  const box = await p.evaluate(() => { const r = document.querySelector('.rw-ba').getBoundingClientRect(); return { l: r.left, t: r.top, w: r.width, h: r.height }; });
+  const y = box.t + box.h / 2;
+  await p.mouse.move(box.l + 20, y); await p.waitForTimeout(300);
+  const pillBefore = await p.evaluate(() => document.querySelector('.cursor-text--show')?.textContent || 'none');
+  const x = box.l + box.w * 0.62;
+  await p.mouse.move(x, y, { steps: 8 }); await p.waitForTimeout(1200);
+  const onCircle = await p.evaluate(([px, py]) => { const el = document.elementFromPoint(px, py); return { on: !!el?.closest('.rw-ba__handle'), native: getComputedStyle(el).cursor, pill: document.querySelector('.cursor-text--show')?.textContent || 'none' }; }, [x, y]);
+  log('card 1: pill on image / on centre circle', pillBefore + ' / ' + onCircle.pill + ' (pointer on circle: ' + onCircle.on + ', native cursor: ' + onCircle.native + ')');
+  await p.context().close();
+}
+
+// ---------- Work Experience scramble: only when entering the stats scrolling DOWN ----------
+{
+  const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+  await p.addInitScript(instrument);
+  await p.goto(PAGE, { waitUntil: 'load' }); await p.waitForTimeout(1200);
+  const t = await rectOf(p, '.sound-toggle'); await p.mouse.click(t.x, t.y); await p.waitForTimeout(800);
+  await p.mouse.move(5, 895);
+  const statsTopAt = () => p.evaluate(() => document.querySelector('.we__stats').getBoundingClientRect().top);
+  const values = () => p.evaluate(() => [...document.querySelectorAll('.we-card__value-live')].map((e) => e.textContent).join(' '));
+  const finals = await p.evaluate(() => [...document.querySelectorAll('.we-card__value-ghost')].map((e) => e.textContent).join(' '));
+  // move in 60px steps in one direction until the stats are well inside the viewport, sampling the
+  // digits right after entry
+  const glide = async (label, dir) => {
+    const n0 = (await snap(p)).plays.length;
+    let y = await p.evaluate(() => document.scrollingElement.scrollTop);
+    for (let i = 0; i < 400; i++) {
+      y += dir * 60; await setY(p, y); await p.waitForTimeout(25);
+      const top = await statsTopAt();
+      if (top > 150 && top < 500) break;
+    }
+    const samples = [];
+    for (let i = 0; i < 4; i++) { await p.waitForTimeout(120); samples.push(await values()); }
+    await p.waitForTimeout(900);
+    const got = (await snap(p)).plays.slice(n0);
+    const scrambled = samples.some((s) => s !== finals);
+    log(label, `digits scrambled: ${scrambled} · sound: ${names(got)} · settled: ${(await values()) === finals}`);
+  };
+  const leave = async (dir) => { let y = await p.evaluate(() => document.scrollingElement.scrollTop); for (let i = 0; i < 400; i++) { y += dir * 120; await setY(p, y); await p.waitForTimeout(20); const top = await statsTopAt(); if (dir > 0 ? top < -400 : top > 1300) break; } await p.waitForTimeout(300); };
+  await glide('scramble: enter scrolling DOWN', +1);
+  await leave(+1);
+  await glide('scramble: enter scrolling UP (from below)', -1);
+  await leave(-1);
+  await glide('scramble: enter scrolling DOWN again', +1);
   await p.context().close();
 }
 

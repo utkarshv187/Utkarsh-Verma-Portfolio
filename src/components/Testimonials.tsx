@@ -16,7 +16,7 @@ export function Testimonials() {
   // duplicate the set so the track loops seamlessly (wrap at one copy width)
   const loop = [...CARDS, ...CARDS];
   // ~48px/s (2x the old ~24px/s); hover drops to half (~24px/s), smooth
-  const { containerRef, trackRef } = useMarquee({ speed: 48, hoverFactor: 0.5, onSwipe: () => play('swish') }); // same swipe swoosh as the hobby cards
+  const { containerRef, trackRef } = useMarquee({ speed: 48, hoverFactor: 0.5, onSwipe: () => play('wind') }); // soft wind on swipe (same as the tools ticker)
   return (
     <section className="tts" id="things-they-say">
       <div className="tts__inner">
@@ -27,7 +27,9 @@ export function Testimonials() {
         <ul className="tts__track" ref={trackRef}>
           {loop.map((c, i) => (
             <li className="tts__item" key={i} aria-hidden={i >= CARDS.length || undefined}>
-              <a className="tts__card" href={HREF} target="_blank" rel="noopener noreferrer" tabIndex={i >= CARDS.length ? -1 : undefined} data-cursor-variant="link" data-cursor-arrow="up-right">
+              {/* a real tap/click opens LinkedIn + plays the button click. A drag never gets here: the
+                  marquee swallows a dragged click in the capture phase, before it reaches the card. */}
+              <a className="tts__card" href={HREF} target="_blank" rel="noopener noreferrer" tabIndex={i >= CARDS.length ? -1 : undefined} data-cursor-variant="link" data-cursor-arrow="up-right" onClick={() => play('click')}>
                 <picture>
                   {/* mobile: live's tall PORTRAIT testimonial cards (750x936). desktop/tablet keep the
                       landscape screenshots. */}
