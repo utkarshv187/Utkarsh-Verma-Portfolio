@@ -266,7 +266,7 @@ Exact per-breakpoint strings for **every** section will be re-verified section-b
 - **R2 — Counter:** origin `new Date(2019,0,7,0,0,0,0)` **viewer-local** (authorized deviation, below). Reproduce the original's algorithm/format/no-reflow/aria exactly (see §5 row A). Sanity: on 2026-09-03 → ~`7y 7m 27d` ✓ with calendar-borrow.
 - **R3 — Testimonials:** 3 image cards, transcribed verbatim in §S5; all link to `linkedin.com/in/uxuiuv/` `_blank`. Kept as images to match the original exactly; transcription used as `alt`. Marquee behaviour to confirm live (Phase 3).
 - **R4 — GIFs:** build animated-WebP **and** muted-video variants, present byte sizes + a side-by-side before committing anything; keep untouched originals in `/assets/original`. Acceptance = playback fidelity (fps, duration, loop, autoplay, no first-frame freeze), not size. Will report iOS Low-Power-Mode behaviour for the video route (`muted`+`playsinline`+`autoplay` mandatory).
-- **R5 — Résumé:** use `https://drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view` in **both** header and footer. Live site currently only exposes the header link (with `?usp=sharing`); the footer link `1Ks4l8…` you mentioned is **not present** in the live DOM (flagged in Remaining Questions).
+- **R5 — Résumé:** use `https://drive.google.com/file/d/1tfhAWJ2jAmRjVymT_v4HQ_srxkQiQlTi/view?usp=drive_link` in **both** header and footer. Live site currently only exposes the header link (with `?usp=sharing`); a separate footer résumé file you mentioned is **not present** in the live DOM (flagged in Remaining Questions). *(2026-10-06: all résumé links now use the one updated file above.)*
 - **R6 — Favicon/OG:** reuse + self-host. Live has **no web manifest**; favicon set = `icon` `Jf2rQV…`, `icon` `jrFoxM…`, `apple-touch-icon` `aY7J5i…` (no `sizes`). OG/Twitter meta captured below. Canonical + OG/Twitter absolute URLs → new domain.
 - **R7 — Links:** confirmed table below. WhatsApp `http`→`https` (only authorized link change; query byte-identical). `#home` anchor + "GO TO TOP" present — behaviour to match live (Phase 3).
 - **R8 — Custom cursor:** reproduce; gate on `@media (hover:hover) and (pointer:fine)`; keep keyboard focus visible; reduced-motion behaviour proposed in the Phase 2 plan (drop follow-lag, keep 1:1 tracking) — awaiting your OK before implementing.
@@ -277,7 +277,7 @@ Exact per-breakpoint strings for **every** section will be re-verified section-b
 | Where | Live target | target | rel |
 |---|---|---|---|
 | Logo + "GO TO TOP" | `/#home` | — | — |
-| Résumé (header) | `drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view?usp=sharing` | `_blank` | *(empty)* |
+| Résumé (header) | `https://drive.google.com/file/d/1tfhAWJ2jAmRjVymT_v4HQ_srxkQiQlTi/view?usp=drive_link` | `_blank` | *(empty)* |
 | Card 1 — Auction PLP | `https://auction-plp-redesign-by-uv.vercel.app/` | `_blank` | *(empty)* |
 | Card 2 — Gamification | `https://gamification-by-uv.vercel.app/` | `_blank` | *(empty)* |
 | Card 3 — Design system | `https://www.figma.com/design/iBOEPZFnnHc4BZ3FtVsQZ7/Spinny-Design-System---Styles---Components?node-id=2-4101` | `_blank` | *(empty)* |
@@ -297,14 +297,14 @@ Exact per-breakpoint strings for **every** section will be re-verified section-b
 5. **Hotlinked Framer assets** → self-hosted, AVIF/WebP re-encoded from originals.
 6. **Approved:** add `rel="noopener noreferrer"` to all `_blank` links (original leaves `rel` empty).
 7. **Approved:** GIF→animated-WebP/video swap (R4) — present comparison before shipping each.
-8. **Footer résumé link (1c):** original DOM has **no** footer résumé link; we deliberately add one pointing to the same header file `1g0gHmhit…` (`/view`, no `?usp=sharing`).
+8. **Footer résumé link (1c):** original DOM has **no** footer résumé link; we deliberately add one pointing to the same header résumé file.
 9. **Résumé URL:** use bare `…/view` (drop live `?usp=sharing`).
 
 **Not deviations (final):** design-system card → live `iBOEPZ…Spinny-Design-System` (ANSWERS §7 table was wrong; live is correct). Card 4 "Other projects" → non-clickable, as on live.
 
 ## 7b. Remaining questions (do not block Phase 2; needed before/within Phase 3)
 1. **Two-cards-same-Figma discrepancy:** ANSWERS §7 says the design-system and "Other projects" cards both point to `E3jWyZ8…/Auction-new-listing-B2B`. **The live site shows neither** — design-system → `iBOEPZ…` and card 4 is **not linked**. I'll reproduce the **live** state (design-system→`iBOEPZ…`, card 4 unlinked) and list it as a deviation. Confirm, or give the intended targets.
-2. **Résumé footer link:** the `1Ks4l8…` file isn't in the live DOM. Confirm the footer should link the same `1g0gHmhit…` file (I'll do that per R5).
+2. **Résumé footer link:** the separate footer file isn't in the live DOM. Confirm the footer should link the same header résumé file (I'll do that per R5).
 3. **`rel` on `_blank` links:** OK to add `rel="noopener noreferrer"` (7a-6), or reproduce the empty `rel` exactly?
 4. **Résumé URL form:** live uses `?usp=sharing`; you gave the bare `/view`. I'll use `/view` unless you want the suffix preserved.
 5. **Testimonial marquee behaviour** (autoplay/direction/speed/pause-on-hover/wrap): I'll capture the live behaviour precisely in Phase 3 and match it; will flag if ambiguous.
