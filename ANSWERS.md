@@ -68,14 +68,14 @@ Present both options with actual byte sizes and your recommendation. Keep the un
 
 **5. Résumé — there are currently two different files**
 
-The live site links two different Google Drive documents:
+The live site linked two different (now outdated) Google Drive résumés; as of 2026-10-06 every résumé link uses the one updated file:
 
-- Header/nav → `https://drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view`
-- Footer → `https://drive.google.com/file/d/1Ks4l8EMZ4APXw8kltDBxUHBfWEW8SOsf/view`
+- Header/nav → `https://drive.google.com/file/d/1tfhAWJ2jAmRjVymT_v4HQ_srxkQiQlTi/view?usp=drive_link`
+- Footer → `https://drive.google.com/file/d/1tfhAWJ2jAmRjVymT_v4HQ_srxkQiQlTi/view?usp=drive_link`
 
 Use this one in **both** places:
 
-> `https://drive.google.com/file/d/1g0gHmhit20T1NDhhfXOdSiKGgI2SqxU3/view`
+> `https://drive.google.com/file/d/1tfhAWJ2jAmRjVymT_v4HQ_srxkQiQlTi/view?usp=drive_link`
 
 Flag it back to me if you find a third résumé link anywhere else on the site.
 
